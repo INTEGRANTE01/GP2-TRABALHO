@@ -156,25 +156,26 @@
 													<i class="fa fa-search"></i>
 												</button>
 											</p>
-
-											<table id="datatable-buttons"
-												class="table table-striped table-bordered">
+ 										<div class="table-responsive">
+											<table class="table table-striped jambo_table bulk_action">
 												<thead>
 													<tr>
 														<th>Denunciante</th>
+														<th>Bairro</th>
+														<th>Cidade</th>														
 														<th>Data</th>
 														<th>Ações</th>
 													</tr>
 												</thead>
-
-
 												<tbody>
 													<c:forEach var="denuncia" items="${listadenuncia}">
 														<tr>
 															<td>${denuncia.denunciante}</td>
+															<td>${denuncia.bairro}</td>
+															<td>${denuncia.cidade}</td>
 															<td><fmt:formatDate
 																	value="${denuncia.data_denuncia}" type="both"
-																	pattern="dd/MM/yyyy" dateStyle="full" /></td>
+																	pattern="dd/MM/yyyy hh:mm" dateStyle="full" /></td>
 															<td><div class="btn-group">
 																	<button type="button"
 																		class="btn dropdown-toggle btn btn-info btn-sm"
@@ -184,10 +185,10 @@
 																	<ul class="dropdown-menu">
 																		<li><a
 																			href="buscadenuncia?acao=Consultar&iddenuncia=${denuncia.iddenuncia}"><span
-																				class="glyphicon glyphicon-pencil"></span> Editar</a></li>
+																				class="glyphicon glyphicon-edit"></span> Editar</a></li>
 																		<li><a
 																			onclick="confirmaexclusao(${denuncia.iddenuncia})"><span
-																				class="glyphicon glyphicon-trash"></span> Excluir</a></li>
+																				class="glyphicon glyphicon-remove-sign"></span> Excluir</a></li>
 
 																	</ul>
 																</div></td>
@@ -195,6 +196,7 @@
 													</c:forEach>
 												</tbody>
 											</table>
+											</div>
 										</div>
 									</form>
 								</div>

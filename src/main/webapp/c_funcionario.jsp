@@ -112,7 +112,7 @@
                           <i class="fa fa-search"></i>
                         </button>                   
                     </p>                     
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <table id="datatable-responsive" class="table table-striped table-bordered table-hover dt-responsive nowrap">
                       <thead>
                         <tr>
                           <th>Matrícula</th>
