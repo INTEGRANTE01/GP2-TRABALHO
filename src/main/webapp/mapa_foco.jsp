@@ -76,7 +76,7 @@ html, body {
 
 
 								<form class="form-horizontal form-label-left"
-									data-toggle="validator" method="post" action="mapa_foco.jsp">
+									data-toggle="validator" method="post">
 
 									<div class="form-group  col-lg-3 col-xs-12">
 										<label>Bairro </label> <input type="text" name="txtpesquisa1"
@@ -190,10 +190,10 @@ html, body {
 				String textopesquisa2 = request.getParameter("txtpesquisa2");
 				String textopesquisa3 = request.getParameter("txtpesquisa3");
 				String textopesquisa4 = request.getParameter("txtpesquisa4");
-				//System.out.println(textopesquisa1);
-				//System.out.println(textopesquisa2);
-				//System.out.println(textopesquisa3);
-				//System.out.println(textopesquisa4);
+				System.out.println(textopesquisa1);
+				System.out.println(textopesquisa2);
+				System.out.println(textopesquisa3);
+				System.out.println(textopesquisa4);
 				listavisita = visitaDAO.listarmapa(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);%>
 										var locations = [ 
 											<%for (Visita v : listavisita) {
