@@ -57,7 +57,15 @@
                   </div>
                   <div class="x_content">					
                 <form class="form-horizontal form-label-left" data-toggle="validator" method="post" action="buscavisita">
-			 	        <div class="form-group  col-lg-3 col-xs-12">
+			 	       	<div class="form-group  col-lg-3 col-xs-12">
+						<label>Agente </label> 	
+                                <input type="text" name="txtpesquisa1" class="form-control input-md">
+                        </div>						
+                        <div class="form-group  col-lg-9 col-xs-12">
+						<label>Rua </label> 	
+                                <input type="text" name="txtpesquisa6" class="form-control input-md">
+                         </div>  
+                         <div class="form-group  col-lg-3 col-xs-12">
 							<label>Bairro </label>  <select name="txtpesquisa2"
 								title="" class="form-control input-md selectpicker"
 								data-live-search="true">
@@ -66,15 +74,7 @@
 		      							  <option>${combobairro.bairro}</option>      
 							     </c:forEach> 
 							</select>
-						</div>						
-                        <div class="form-group  col-lg-9 col-xs-12">
-						<label>Rua </label> 	
-                                <input type="text" name="txtpesquisa6" class="form-control input-md">
-                         </div>
-                        <div class="form-group  col-lg-3 col-xs-12">
-						<label>Agente </label> 	
-                                <input type="text" name="txtpesquisa1" class="form-control input-md">
-                        </div>	 
+						</div> 
 						<div class="form-group  col-lg-3 col-xs-12">
 							<label>Cidade </label> <select name="txtpesquisa3" title=""
 								class="form-control input-md selectpicker"
@@ -84,8 +84,7 @@
 		      							  <option>${combocidade.cidade}</option>      
 								 </c:forEach> 
 							</select>
-						</div>
-						
+						</div>						
 						<div class="form-group  col-lg-3 col-xs-12">
 							<label>Tipo de Imovel </label> <select name="txtpesquisa4"
 								title="" class="form-control input-md selectpicker"
@@ -133,12 +132,12 @@
 								</c:if>
 								</div>
                      <p class="text-muted font-13 m-b-30">
-                      <a href="visita.jsp">
+                      <a href="visita">
                         <button type="button" class="btn btn-success" data-container="body" data-toggle="popover" data-placement="bottom" title="Incluir Nova Visita">
                           <i class="fa fa-plus-circle"></i>
                         </button>
                       </a>
-                      <a href="c_visita.jsp">
+                      <a href="buscavisita">
                         <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="bottom" title="Limpar Listagem">
                           <i class="fa fa-refresh"></i>
                         </button>
@@ -147,7 +146,7 @@
                           <i class="fa fa-search"></i>
                         </button>             
                     </p>   
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>Agente</th>

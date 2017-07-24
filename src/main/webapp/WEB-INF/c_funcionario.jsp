@@ -57,15 +57,15 @@
                 <form class="form-horizontal form-label-left" data-toggle="validator" method="post" action="buscafuncionario">
 						<div class="form-group col-lg-3 col-xs-12">
 							<label>Matricula </label>
-							<input name="txtpesquisa3" class="form-control input-sm" type="text">
+							<input name="txtpesquisa3" class="form-control input-md" type="text">
 						</div>
 						<div class="form-group col-lg-6 col-xs-12">
 							<label>Nome</label>
-							<input name="txtpesquisa1" class="form-control input-sm" type="text">
+							<input name="txtpesquisa1" class="form-control input-md" type="text">
 						</div>					
 						<div class="form-group  col-lg-3 col-xs-12">
 						<label>Função </label> 	  
-			            	<select data-live-search="true" class="form-control placeholder input-sm selectpicker" title="" name="txtpesquisa2">			            
+			            	<select data-live-search="true" class="form-control placeholder input-md selectpicker" title="" name="txtpesquisa2">			            
 		                        <option selected="selected"></option>
 		                         <c:forEach var="funcionario" items="${listafuncao}">      
 						       		 <option>${funcionario.funcao}</option>      
