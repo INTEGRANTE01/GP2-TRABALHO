@@ -33,7 +33,7 @@ public class FuncionarioDAO extends ConectaBanco {
 			pstmt.setInt(6, funcionario.getIdfuncionario());
 			pstmt.execute();
 			}catch (Exception e) {
-				erro = true;					
+				erro = true;
 			}finally{
 				pstmt.close();
 				conexao.close();			
