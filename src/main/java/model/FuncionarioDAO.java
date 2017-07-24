@@ -32,13 +32,12 @@ public class FuncionarioDAO extends ConectaBanco {
 			pstmt.setString(5, funcionario.getSenha());
 			pstmt.setInt(6, funcionario.getIdfuncionario());
 			pstmt.execute();
-			pstmt.close();
-			conexao.close();
-			pstmt.close();
-			conexao.close();
 			}catch (Exception e) {
 				erro = true;					
-			}
+			}finally{
+				pstmt.close();
+				conexao.close();			
+		}
 		return erro;
 	}
 
@@ -50,11 +49,12 @@ public class FuncionarioDAO extends ConectaBanco {
 					.prepareStatement("Delete from funcionario where idfuncionario = ?");
 			pstm.setInt(1, funcionario.getIdfuncionario());
 			pstm.execute();
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			erro = true;
-		}
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
 		return erro;
 	}
 
@@ -70,11 +70,12 @@ public class FuncionarioDAO extends ConectaBanco {
 			if (rs.next()) {
 				achou = true;
 			}
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("ERRO AO BUSCAR PARA EDIÇÃO");			
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return achou;
 	}
@@ -91,10 +92,11 @@ public class FuncionarioDAO extends ConectaBanco {
 			pstm.setString(4, funcionario.getEmail());
 			pstm.setString(5, funcionario.getSenha());
 			pstm.execute();
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			erro = true;
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return erro;
 	}	
@@ -122,11 +124,12 @@ public class FuncionarioDAO extends ConectaBanco {
 				funcionario.setSenha(rs.getString("senha"));
 				lista.add(funcionario);
 			}
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
 		return lista;
 	}
 	
@@ -150,11 +153,12 @@ public List<Funcionario> listar() {
 				funcionario.setSenha(rs.getString("senha"));
 				lista.add(funcionario);
 			}
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
 		return lista;
 	}
 
@@ -172,35 +176,12 @@ public List<Funcionario> listar() {
 				funcionario.setFuncao(rs.getString("funcao"));
 				funcionario.setEmail(rs.getString("email"));
 				funcionario.setSenha(rs.getString("senha"));
-			}
-			pstm.close();
-			conexao.close();
+			}			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		return funcionario;
-	}
-	
-	public Funcionario buscarPorMatricula(String matricula) {
-		Funcionario funcionario = new Funcionario();
-		try {
-			Connection conexao = getConexao();
-			PreparedStatement pstm = conexao
-					.prepareStatement("Select * from funcionario where matricula = ?");
-			pstm.setString(1, matricula);
-			ResultSet rs = pstm.executeQuery();
-			if (rs.next()) {
-				funcionario.setIdfuncionario(rs.getInt("idfuncionario"));
-				funcionario.setMatricula(rs.getString("matricula"));
-				funcionario.setNome(rs.getString("nome"));
-				funcionario.setFuncao(rs.getString("funcao"));
-				funcionario.setEmail(rs.getString("email"));
-				funcionario.setSenha(rs.getString("senha"));
-			}
+		}finally{
 			pstm.close();
-			conexao.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+			conexao.close();			
 		}
 		return funcionario;
 	}

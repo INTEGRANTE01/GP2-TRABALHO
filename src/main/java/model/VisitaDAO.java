@@ -47,12 +47,13 @@ public class VisitaDAO extends ConectaBanco {
 			pstmt.setString(16, visita.getLocal_foco());			
 			pstmt.setInt(17, visita.getIdvisita());
 			pstmt.execute();
-			pstmt.close();
-			conexao.close();
 			}catch (Exception e) {
 				e.printStackTrace();
 				erro = true;					
-			}
+			}finally{
+				pstmt.close();
+				conexao.close();			
+		}
 		return erro;
 	}
 
@@ -64,11 +65,12 @@ public class VisitaDAO extends ConectaBanco {
 					.prepareStatement("Delete from visita where idvisita = ?");
 			pstm.setInt(1, visita.getIdvisita());
 			pstm.execute();
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			erro = true;
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return erro;
 	}
@@ -86,11 +88,13 @@ public class VisitaDAO extends ConectaBanco {
 			if (rs.next()) {
 				achou = true;
 			}
-			pstm.close();
-			conexao.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("ERRO AO EDITAR");			
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return achou;
 	}
@@ -119,12 +123,13 @@ public class VisitaDAO extends ConectaBanco {
 			pstm.setString(15, visita.getAc_corretiva());
 			pstm.setString(16, visita.getLocal_foco());	
 			pstm.execute();
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			erro = true;	
 			e.printStackTrace();
 			System.out.println("ERRO AO INSERIR");	
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return erro;
 	}
@@ -155,11 +160,12 @@ public class VisitaDAO extends ConectaBanco {
 				visita.setEstagio(rs.getString("estagio"));				
 				lista.add(visita);
 			}
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
 		return lista;
 	}
 	
@@ -183,10 +189,11 @@ public class VisitaDAO extends ConectaBanco {
 			visita.setLatitude(rs.getString("latitude"));				
 			lista.add(visita);
 		}
-		pstm.close();
-		conexao.close();
 	} catch (Exception e) {
 		e.printStackTrace();
+	}finally{
+		pstm.close();
+		conexao.close();			
 	}
 	return lista;
 }
@@ -210,15 +217,14 @@ public List<Visita> listarmapa() {
 			visita.setLatitude(rs.getString("latitude"));					
 			lista.add(visita);
 		}
-		pstm.close();
-		conexao.close();
 	} catch (Exception e) {
 		e.printStackTrace();
+	}finally{
+		pstm.close();
+		conexao.close();			
 	}
 	return lista;
 }
-	
-	
 	
 public List<Visita> listar() {
 		
@@ -244,6 +250,9 @@ public List<Visita> listar() {
 			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return lista;
 	}
@@ -279,6 +288,9 @@ public List<Visita> listar() {
 			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return visita;
 	}

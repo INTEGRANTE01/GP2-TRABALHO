@@ -39,12 +39,11 @@ public class DenunciaDAO extends ConectaBanco {
 			pstmt.setString(11, denuncia.getCep());
 			pstmt.setInt(12, denuncia.getIddenuncia());
 			pstmt.execute();
-			pstmt.close();
-			conexao.close();
-			pstmt.close();
-			conexao.close();
 			}catch (Exception e) {
 				erro = true;					
+			}finally{
+				pstmt.close();
+				conexao.close();			
 			}
 		return erro;
 	}
@@ -77,12 +76,13 @@ public class DenunciaDAO extends ConectaBanco {
 			if (rs.next()) {
 				achou = true;
 			}
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("ERRO AO BUSCAR PARA EDIÇÃO");			
-		}
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
 		return achou;
 	}
 
@@ -104,10 +104,11 @@ public class DenunciaDAO extends ConectaBanco {
 			pstm.setString(10, denuncia.getDenunciante());
 			pstm.setString(11, denuncia.getCep());
 			pstm.execute();
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			erro = true;	
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return erro;
 	}
@@ -140,10 +141,11 @@ public class DenunciaDAO extends ConectaBanco {
 				denuncia.setCep(rs.getString("cep"));
 				lista.add(denuncia);
 			}
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return lista;
 	}
@@ -172,11 +174,12 @@ public class DenunciaDAO extends ConectaBanco {
 				denuncia.setCep(rs.getString("cep"));
 				lista.add(denuncia);
 			}
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
 		return lista;
 	}
 
@@ -201,11 +204,12 @@ public class DenunciaDAO extends ConectaBanco {
 				denuncia.setDenunciante(rs.getString("denunciante"));
 				denuncia.setCep(rs.getString("cep"));
 			}
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
 		return denuncia;
 	}
 	
