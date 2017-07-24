@@ -130,6 +130,6 @@ public class ServletBuscaDenuncia extends HttpServlet {
 		List<Denuncia> listadenuncia = new ArrayList<Denuncia>();
 		listadenuncia = denunciaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);
 		request.setAttribute("listadenuncia", listadenuncia);
-		destino = "/c_denuncia.jsp";
+		destino = "WEB-INF/c_denuncia.jsp";
 	}
 }

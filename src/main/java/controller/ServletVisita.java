@@ -107,19 +107,16 @@ public class ServletVisita extends HttpServlet {
 		List<Visita> combocidade = new ArrayList<Visita>(); 
 		List<Visita> combotipo = new ArrayList<Visita>();
 		List<Visita> combobairro = new ArrayList<Visita>();
-		List<Visita> comboestagio = new ArrayList<Visita>();
 		try {
 			combocidade = VisitaDAO.populaComboCidade();
 			combotipo = VisitaDAO.populaComboImovel();
 			combobairro = VisitaDAO.populaComboBairro();
-			comboestagio = VisitaDAO.populaComboEstagio();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("listacidade",combocidade);	
 		request.setAttribute("listatipo",combotipo);
 		request.setAttribute("listabairro",combobairro);
-		request.setAttribute("listaestagio",comboestagio);
 	}
 
 	protected void adicionaVisita(HttpServletRequest request, HttpServletResponse response)

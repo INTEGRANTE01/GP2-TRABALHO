@@ -61,10 +61,11 @@ public class ServletBuscaVisita extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {	
-			
+			HttpServletResponse response) throws ServletException, IOException {		
+
 			request.setCharacterEncoding("UTF8");
 			try {
+				popularcombos(request,response);
 				buscarvisita(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -79,16 +80,19 @@ public class ServletBuscaVisita extends HttpServlet {
 		List<Visita> combocidade = new ArrayList<Visita>(); 
 		List<Visita> combotipo = new ArrayList<Visita>();
 		List<Visita> combobairro = new ArrayList<Visita>();
+		List<Visita> comboestagio = new ArrayList<Visita>();
 		try {
 			combocidade = visitaDAO.populaComboCidade();
 			combotipo = visitaDAO.populaComboImovel();
 			combobairro = visitaDAO.populaComboBairro();
+			comboestagio = visitaDAO.populaComboEstagio();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("listacidade",combocidade);	
 		request.setAttribute("listatipo",combotipo);
 		request.setAttribute("listabairro",combobairro);
+		request.setAttribute("listaestagio",comboestagio);
 	}
 	protected void buscarvisita(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -115,7 +119,7 @@ public class ServletBuscaVisita extends HttpServlet {
 		   // 	listavisita = visitaDAO.listar();	
 		   // }	 
 	        request.setAttribute("listavisita", listavisita);
-			destino = "/c_visita.jsp";
+			destino = "WEB-INF/c_visita.jsp";
 	}  
 	 protected void consultareditarvisita(HttpServletRequest request,
 	 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -125,7 +129,7 @@ public class ServletBuscaVisita extends HttpServlet {
 				visita.setIdvisita(idvisita);			
 				visita = visitaDAO.consultar_editar(visita);					
 		        request.setAttribute("visita", visita);
-				destino = "/visita.jsp";	
+				destino = "WEB-INF/visita.jsp";	
 		}
 	 
 	 protected void excluirvisita(HttpServletRequest request,
@@ -138,6 +142,6 @@ public class ServletBuscaVisita extends HttpServlet {
 				List<Visita> listavisita = new ArrayList<Visita>();    		
 	        	listavisita = visitaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4, textopesquisa5, textopesquisa6);
 				request.setAttribute("listavisita", listavisita);				
-				destino = "/c_visita.jsp";	
+				destino = "WEB-INF/c_visita.jsp";	
 		}
 }
