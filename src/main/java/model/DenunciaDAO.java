@@ -56,10 +56,11 @@ public class DenunciaDAO extends ConectaBanco {
 					.prepareStatement("Delete from denuncia where iddenuncia = ?");
 			pstm.setInt(1, denuncia.getIddenuncia());
 			pstm.execute();
-			pstm.close();
-			conexao.close();
 		} catch (Exception e) {
 			erro = true;
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
 		return erro;
 	}
@@ -212,6 +213,4 @@ public class DenunciaDAO extends ConectaBanco {
 	}
 		return denuncia;
 	}
-	
-	
 }
