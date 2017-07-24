@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,17 +55,34 @@ public class ServletDenuncia extends HttpServlet {
 
 		} catch (NumberFormatException number) {
 			acao = true;
-			adicionaDenuncia(request, response);
+			try {
+				adicionaDenuncia(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			destino = "/c_denuncia.jsp";
 		}
 
 		if (acao == false) {
 			denuncia.setIddenuncia(iddenuncia);
-			denunciaDAO.existe(denuncia);
-			if (denunciaDAO.existe(denuncia) == true) {
-				editarDenuncia(request, response);
-				destino = "/c_denuncia.jsp";
+			try {
+				denunciaDAO.existe(denuncia);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			try {
+				if (denunciaDAO.existe(denuncia) == true) {
+					editarDenuncia(request, response);
+					destino = "/c_denuncia.jsp";
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}		
 
 		request.setAttribute("message", message);
@@ -73,7 +91,7 @@ public class ServletDenuncia extends HttpServlet {
 	}
 
 	protected void adicionaDenuncia(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 		denunciante = request.getParameter("denunciante");
 		cep = request.getParameter("cep");
 		data_string = request.getParameter("data_denuncia");
@@ -118,7 +136,7 @@ public class ServletDenuncia extends HttpServlet {
 	}
 
 	protected void editarDenuncia(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 		iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
 		denunciante = request.getParameter("denunciante");
 		cep = request.getParameter("cep");

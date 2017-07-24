@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -66,15 +67,27 @@ public class ServletVisita extends HttpServlet {
 				destino = "/c_visita.jsp";
 			}
 			
-		} catch (NumberFormatException number) {			
+		} catch (Exception e) {			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		if (acao == false) {
 			visita.setIdvisita(idvisita);
-			VisitaDAO.existe(visita);
-			if (VisitaDAO.existe(visita) == true) {
-				editarVisita(request, response);
-				destino = "/c_visita.jsp";
+			try {
+				VisitaDAO.existe(visita);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				if (VisitaDAO.existe(visita) == true) {
+					editarVisita(request, response);
+					destino = "/c_visita.jsp";
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 
@@ -90,7 +103,7 @@ public class ServletVisita extends HttpServlet {
 	}
 
 	protected void adicionaVisita(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 		
 		  System.out.println(agente = request.getParameter("agente"));
 		  data_string = request.getParameter("data_visita");
@@ -144,7 +157,7 @@ public class ServletVisita extends HttpServlet {
 	}
 
 	protected void editarVisita(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 
 		   agente = request.getParameter("agente");
 		   data_string = request.getParameter("data_visita");

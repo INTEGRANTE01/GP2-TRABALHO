@@ -2,6 +2,7 @@ package controller;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,11 +43,21 @@ public class ServletBuscaVisita extends HttpServlet {
 			acao = request.getParameter("acao");	
 			if(acao!=null){
 				if(acao.equalsIgnoreCase("Consultar")){
-					consultareditarvisita(request, response);
+					try {
+						consultareditarvisita(request, response);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					RequestDispatcher rd = request.getRequestDispatcher(destino);
 				    rd.forward(request, response); 
 				}else if(acao.equalsIgnoreCase("Excluir")){
-					excluirvisita(request,response);
+					try {
+						excluirvisita(request,response);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					RequestDispatcher rd = request.getRequestDispatcher(destino);
 				    rd.forward(request, response); 
 				}
@@ -57,13 +68,18 @@ public class ServletBuscaVisita extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {	
 			
 			request.setCharacterEncoding("UTF8");
-			buscarvisita(request, response);
+			try {
+				buscarvisita(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			RequestDispatcher rd = request.getRequestDispatcher(destino);
 	     	rd.forward(request, response);
 		
 	}
 	protected void buscarvisita(HttpServletRequest request,
-		    HttpServletResponse response) throws ServletException, IOException {
+		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 
 			textopesquisa1 = request.getParameter("txtpesquisa1");
 			textopesquisa2 = request.getParameter("txtpesquisa2");		
@@ -90,7 +106,7 @@ public class ServletBuscaVisita extends HttpServlet {
 			destino = "/c_visita.jsp";
 	}  
 	 protected void consultareditarvisita(HttpServletRequest request,
-	 		    HttpServletResponse response) throws ServletException, IOException {
+	 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 			 	
 		 		String auxiliar = ""; 	 	
 		 		idvisita = Integer.parseInt(request.getParameter("idvisita")); 			
@@ -101,7 +117,7 @@ public class ServletBuscaVisita extends HttpServlet {
 		}
 	 
 	 protected void excluirvisita(HttpServletRequest request,
-	 		    HttpServletResponse response) throws ServletException, IOException {
+	 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 
 		 		idvisita = Integer.parseInt(request.getParameter("idvisita"));
 				visita.setIdvisita(idvisita);			

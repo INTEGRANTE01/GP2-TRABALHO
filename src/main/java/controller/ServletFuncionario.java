@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,16 +46,31 @@ public class ServletFuncionario extends HttpServlet {
 
 		} catch (NumberFormatException number) {
 			acao = true;
-			adicionafuncionario(request, response);
+			try {
+				adicionafuncionario(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			destino = "/c_funcionario.jsp";
 		}
 
 		if (acao == false) {
 			funcionario.setIdfuncionario(idfuncionario);
-			funcionarioDAO.existe(funcionario);
-			if (funcionarioDAO.existe(funcionario) == true) {
-				editarfuncionario(request, response);
-				destino = "/c_funcionario.jsp";
+			try {
+				funcionarioDAO.existe(funcionario);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				if (funcionarioDAO.existe(funcionario) == true) {
+					editarfuncionario(request, response);
+					destino = "/c_funcionario.jsp";
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 
@@ -69,7 +86,7 @@ public class ServletFuncionario extends HttpServlet {
 	}
 
 	protected void adicionafuncionario(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 		nome = request.getParameter("nome");
 		System.out.println("Nome: " + nome);
 		funcao = request.getParameter("funcao");
@@ -96,7 +113,7 @@ public class ServletFuncionario extends HttpServlet {
 	}
 
 	protected void editarfuncionario(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 
 		nome = request.getParameter("nome");
 		funcao = request.getParameter("funcao");

@@ -2,6 +2,7 @@ package controller;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +39,21 @@ public class ServletBuscaFuncionario extends HttpServlet {
 			acao = request.getParameter("acao");	
 			if(acao!=null){
 				if(acao.equalsIgnoreCase("Consultar")){
-					consultareditarfuncionario(request, response);
+					try {
+						consultareditarfuncionario(request, response);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					RequestDispatcher rd = request.getRequestDispatcher(destino);
 				    rd.forward(request, response); 
 				}else if(acao.equalsIgnoreCase("Excluir")){
-					excluirfuncionario(request,response);
+					try {
+						excluirfuncionario(request,response);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					RequestDispatcher rd = request.getRequestDispatcher(destino);
 				    rd.forward(request, response); 
 				}
@@ -53,13 +64,18 @@ public class ServletBuscaFuncionario extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {	
 			
 			request.setCharacterEncoding("UTF8");
-			buscarfuncionario(request, response);
+			try {
+				buscarfuncionario(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			RequestDispatcher rd = request.getRequestDispatcher(destino);
 	     	rd.forward(request, response);
 		
 	}
 	protected void buscarfuncionario(HttpServletRequest request,
-		    HttpServletResponse response) throws ServletException, IOException {
+		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 
 			textopesquisa1 = request.getParameter("txtpesquisa1");
 			textopesquisa2 = request.getParameter("txtpesquisa2");		
@@ -75,7 +91,7 @@ public class ServletBuscaFuncionario extends HttpServlet {
 			destino = "/c_funcionario.jsp";
 	}  
 	 protected void consultareditarfuncionario(HttpServletRequest request,
-	 		    HttpServletResponse response) throws ServletException, IOException {
+	 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 			 
 			 	idfuncionario = Integer.parseInt(request.getParameter("idfuncionario")); 			
 				funcionario.setIdfuncionario(idfuncionario);				
@@ -85,7 +101,7 @@ public class ServletBuscaFuncionario extends HttpServlet {
 		}
 	 
 	 protected void excluirfuncionario(HttpServletRequest request,
-	 		    HttpServletResponse response) throws ServletException, IOException {
+	 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 
 		 		idfuncionario = Integer.parseInt(request.getParameter("idfuncionario"));
 				funcionario.setIdfuncionario(idfuncionario);			

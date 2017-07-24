@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,11 +39,21 @@ public class ServletBuscaDenuncia extends HttpServlet {
 		acao = request.getParameter("acao");
 		if (acao != null) {
 			if (acao.equalsIgnoreCase("Consultar")) {
-				consultareditardenuncia(request, response);
+				try {
+					consultareditardenuncia(request, response);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				RequestDispatcher rd = request.getRequestDispatcher(destino);
 				rd.forward(request, response);
 			} else if (acao.equalsIgnoreCase("Excluir")) {
-				excluirdenuncia(request, response);
+				try {
+					excluirdenuncia(request, response);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				RequestDispatcher rd = request.getRequestDispatcher(destino);
 				rd.forward(request, response);
 			}
@@ -53,14 +64,19 @@ public class ServletBuscaDenuncia extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF8");
-		buscardenuncia(request, response);
+		try {
+			buscardenuncia(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
 
 	}
 
 	protected void buscardenuncia(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 		List<Denuncia> listadenuncia = new ArrayList<Denuncia>();
 
 		textopesquisa1 = request.getParameter("txtpesquisa1");
@@ -82,7 +98,7 @@ public class ServletBuscaDenuncia extends HttpServlet {
 	}
 
 	protected void consultareditardenuncia(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 
 		String auxiliar = "";
 		iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
@@ -93,7 +109,7 @@ public class ServletBuscaDenuncia extends HttpServlet {
 	}
 
 	protected void excluirdenuncia(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, SQLException {
 
 		iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
 		denuncia.setIddenuncia(iddenuncia);

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,14 +19,12 @@ import model.Denuncia;
 
 public class DenunciaDAO extends ConectaBanco {
 	
-	public boolean alterar(Denuncia denuncia) {
+	public boolean alterar(Denuncia denuncia) throws SQLException {
 		boolean erro = false;
-
-		try {
-			Connection conexao = getConexao();
-
-			PreparedStatement pstmt = conexao
-					.prepareStatement("Update denuncia SET data_denuncia = ?, bairro = ?, rua = ?, quadra = ?, lote = ?, numero = ?, cidade = ?, tp_imovel = ?, desc_den = ?, denunciante = ?, cep = ? WHERE iddenuncia = ? ");
+		Connection conexao = getConexao();
+		PreparedStatement pstmt = conexao
+				.prepareStatement("Update denuncia SET data_denuncia = ?, bairro = ?, rua = ?, quadra = ?, lote = ?, numero = ?, cidade = ?, tp_imovel = ?, desc_den = ?, denunciante = ?, cep = ? WHERE iddenuncia = ? ");
+		try {			
 			pstmt.setTimestamp(1,  new java.sql.Timestamp(denuncia.getData_denuncia().getTime()));  
 			pstmt.setString(2, denuncia.getBairro());
 			pstmt.setString(3, denuncia.getRua());
@@ -48,12 +47,12 @@ public class DenunciaDAO extends ConectaBanco {
 		return erro;
 	}
 
-	public boolean excluir(Denuncia denuncia) {
+	public boolean excluir(Denuncia denuncia) throws SQLException {
 		boolean erro = false;
-		try {
-			Connection conexao = getConexao();
-			PreparedStatement pstm = conexao
-					.prepareStatement("Delete from denuncia where iddenuncia = ?");
+		Connection conexao = getConexao();
+		PreparedStatement pstm = conexao
+				.prepareStatement("Delete from denuncia where iddenuncia = ?");
+		try {			
 			pstm.setInt(1, denuncia.getIddenuncia());
 			pstm.execute();
 		} catch (Exception e) {
@@ -65,12 +64,12 @@ public class DenunciaDAO extends ConectaBanco {
 		return erro;
 	}
 
-	public boolean existe(Denuncia denuncia) {
+	public boolean existe(Denuncia denuncia) throws SQLException {
 		boolean achou = false;
-		try {
-			Connection conexao = getConexao();
-			PreparedStatement pstm = conexao
-					.prepareStatement("Select iddenuncia from denuncia where iddenuncia = ?");
+		Connection conexao = getConexao();
+		PreparedStatement pstm = conexao
+				.prepareStatement("Select iddenuncia from denuncia where iddenuncia = ?");
+		try {			
 			pstm.setInt(1, denuncia.getIddenuncia());
 			ResultSet rs = pstm.executeQuery();
 			
@@ -87,12 +86,12 @@ public class DenunciaDAO extends ConectaBanco {
 		return achou;
 	}
 
-	public boolean inserir(Denuncia denuncia) {
+	public boolean inserir(Denuncia denuncia) throws SQLException {
 		boolean erro = false;
-		try {
-			Connection conexao = getConexao();
-			PreparedStatement pstm = conexao
-					.prepareStatement("Insert into	denuncia (data_denuncia, bairro, rua, quadra, lote, numero, cidade, tp_imovel, desc_den, denunciante, cep) values	(?,?,?,?,?,?,?,?,?,?,?)");
+		Connection conexao = getConexao();
+		PreparedStatement pstm = conexao
+				.prepareStatement("Insert into	denuncia (data_denuncia, bairro, rua, quadra, lote, numero, cidade, tp_imovel, desc_den, denunciante, cep) values	(?,?,?,?,?,?,?,?,?,?,?)");
+		try {			
 			pstm.setTimestamp(1,  new java.sql.Timestamp(denuncia.getData_denuncia().getTime()));  
 			pstm.setString(2, denuncia.getBairro());
 			pstm.setString(3, denuncia.getRua());
@@ -114,14 +113,12 @@ public class DenunciaDAO extends ConectaBanco {
 		return erro;
 	}
 
-	public List<Denuncia> listar(String par_denunciante, String par_bairo, String par_cidade, String par_tp_imovel) {
+	public List<Denuncia> listar(String par_denunciante, String par_bairo, String par_cidade, String par_tp_imovel) throws SQLException {
 		List<Denuncia> lista = new ArrayList<Denuncia>();
-		
-		try {
-			/*Statement stm = conexao.createStatement();*/
-			Connection conexao = getConexao();
-			PreparedStatement pstm = conexao
-					.prepareStatement("Select * from denuncia where denunciante like ? and bairro like ? and cidade like ? and tp_imovel like ? order by data_denuncia asc");
+		Connection conexao = getConexao();
+		PreparedStatement pstm = conexao
+				.prepareStatement("Select * from denuncia where denunciante like ? and bairro like ? and cidade like ? and tp_imovel like ? order by data_denuncia asc");
+		try {					
 			pstm.setString(1, "%" + par_denunciante +"%");
 			pstm.setString(2, "%" + par_bairo +"%");
 			pstm.setString(3, "%" + par_cidade +"%");
@@ -151,14 +148,12 @@ public class DenunciaDAO extends ConectaBanco {
 		return lista;
 	}
 	
-	public List<Denuncia> listar() {
+	public List<Denuncia> listar() throws SQLException {
 		List<Denuncia> lista = new ArrayList<Denuncia>();
-		
+		Connection conexao = getConexao();
+		PreparedStatement pstm = conexao
+				.prepareStatement("Select * from denuncia order by data_denuncia asc");
 		try {
-			/*Statement stm = conexao.createStatement();*/
-			Connection conexao = getConexao();
-			PreparedStatement pstm = conexao
-					.prepareStatement("Select * from denuncia order by data_denuncia asc");
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
 				Denuncia denuncia = new Denuncia();
@@ -184,11 +179,11 @@ public class DenunciaDAO extends ConectaBanco {
 		return lista;
 	}
 
-	public Denuncia consultar_editar(Denuncia denuncia) {
-		try {
-			Connection conexao = getConexao();
-			PreparedStatement pstm = conexao
-					.prepareStatement("Select * from denuncia where iddenuncia = ?");
+	public Denuncia consultar_editar(Denuncia denuncia) throws SQLException {
+		Connection conexao = getConexao();
+		PreparedStatement pstm = conexao
+				.prepareStatement("Select * from denuncia where iddenuncia = ?");
+		try {			
 			pstm.setInt(1, denuncia.getIddenuncia());
 			ResultSet rs = pstm.executeQuery();
 			if (rs.next()) {
