@@ -98,12 +98,12 @@
 						</c:if>																			
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                      <a href="funcionario.jsp">
+                      <a href="funcionario">
                         <button type="button" class="btn btn-success" data-container="body" data-toggle="popover" data-placement="bottom" title="Incluir Novo Funcionário">
                           <i class="fa fa-plus-circle"></i>
                         </button>
                       </a>
-                      <a href="c_funcionario.jsp">
+                      <a href="buscafuncionario">
                         <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="bottom" title="Limpar Listagem">
                           <i class="fa fa-refresh"></i>
                         </button>

@@ -31,6 +31,9 @@ public class ServletFuncionario extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/funcionario.jsp");
+			rd.forward(request, response);
 
 	}
 
@@ -52,7 +55,7 @@ public class ServletFuncionario extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			destino = "/c_funcionario.jsp";
+			destino = "WEB-INF/c_funcionario.jsp";
 		}
 
 		if (acao == false) {
@@ -66,7 +69,7 @@ public class ServletFuncionario extends HttpServlet {
 			try {
 				if (funcionarioDAO.existe(funcionario) == true) {
 					editarfuncionario(request, response);
-					destino = "/c_funcionario.jsp";
+					destino = "WEB-INF/c_funcionario.jsp";
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

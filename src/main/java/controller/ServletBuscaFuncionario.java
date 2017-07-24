@@ -36,6 +36,8 @@ public class ServletBuscaFuncionario extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 			
+				
+		
 			acao = request.getParameter("acao");	
 			if(acao!=null){
 				if(acao.equalsIgnoreCase("Consultar")){
@@ -57,7 +59,10 @@ public class ServletBuscaFuncionario extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher(destino);
 				    rd.forward(request, response); 
 				}
-			}					
+			}else if (acao==null){
+				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/c_funcionario.jsp");
+				rd.forward(request, response);
+			}
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -88,7 +93,7 @@ public class ServletBuscaFuncionario extends HttpServlet {
 			 //	listafuncionario = funcionarioDAO.listar();
 		     // }	 
 	        request.setAttribute("listafuncionario", listafuncionario);
-			destino = "/c_funcionario.jsp";
+			destino = "WEB-INF/c_funcionario.jsp";
 	}  
 	 protected void consultareditarfuncionario(HttpServletRequest request,
 	 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -97,7 +102,7 @@ public class ServletBuscaFuncionario extends HttpServlet {
 				funcionario.setIdfuncionario(idfuncionario);				
 				funcionario = funcionarioDAO.consultar_editar(funcionario);
 				request.setAttribute("funcionario", funcionario);
-				destino = "/funcionario.jsp";	
+				destino = "WEB-INF/funcionario.jsp";	
 		}
 	 
 	 protected void excluirfuncionario(HttpServletRequest request,
@@ -110,6 +115,6 @@ public class ServletBuscaFuncionario extends HttpServlet {
 				List<Funcionario> listafuncionario = new ArrayList<Funcionario>();    		
 	        	listafuncionario = funcionarioDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3);
 				request.setAttribute("listafuncionario", listafuncionario);				
-				destino = "/c_funcionario.jsp";	
+				destino = "WEB-INF/c_funcionario.jsp";	
 		}
 }

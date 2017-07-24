@@ -62,11 +62,18 @@
                    %>
                    <li><a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
                    		<ul class="nav child_menu">                   
-                    		<li><a href="funcionario.jsp">Funcionário</a></li>
+                    		<li><a href="funcionario">Funcionário</a></li>
                             <li><a href="visita.jsp">Visita</a></li>
                            	<li><a href="denuncia.jsp">Denúncia</a></li>
                     	</ul> 
-                    </li>       
+                    </li> 
+                   <li><a><i class="fa fa-search"></i> Busca <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="buscafuncionario">Funcionários</a></li>
+                      <li><a href="c_visita.jsp">Visitas</a></li>
+                      <li><a href="c_denuncia.jsp">Denúncias</a></li>                      
+                    </ul>
+                   </li>      
                     <% 
                     } else if (session.getAttribute("funcao").equals("Atendente")) {                    	
                         	  
@@ -74,6 +81,11 @@
                      <li><a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
                      	<ul class="nav child_menu">
                            	<li><a href="denuncia.jsp">Denúncia</a></li>
+                    	</ul> 
+                    </li>
+                    <li><a><i class="fa fa-edit"></i> Busca <span class="fa fa-chevron-down"></span></a>
+                     	<ul class="nav child_menu">
+                           	<li><a href="c_denuncia.jsp">Denúncia</a></li>
                     	</ul> 
                     </li>
                     <%
@@ -84,39 +96,15 @@
                     	<ul class="nav child_menu">
                            	<li><a href="visita.jsp">Visita</a></li>
                    		</ul> 
-                    </li>		
-              		<%
-                    }
-                    %>                    
-                  <% if (session.getAttribute("funcao").equals("Administrador")) {
-                   %>
-                  <li><a><i class="fa fa-search"></i> Busca <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="c_funcionario.jsp">Funcionários</a></li>
-                      <li><a href="c_visita.jsp">Visitas</a></li>
-                      <li><a href="c_denuncia.jsp">Denúncias</a></li>                      
-                    </ul>
-                  </li>
-                   <% 
-                    } else if (session.getAttribute("funcao").equals("Atendente")) {
-                    %>                    
-                    <li><a><i class="fa fa-edit"></i> Busca <span class="fa fa-chevron-down"></span></a>
-                     	<ul class="nav child_menu">
-                           	<li><a href="c_denuncia.jsp">Denúncia</a></li>
-                    	</ul> 
                     </li>
-                   <%
-                    } else if (session.getAttribute("funcao").equals("Agente")) {                    	
-                  	  
-              		%>
-              		<li><a><i class="fa fa-edit"></i> Busca <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-edit"></i> Busca <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
                            	<li><a href="c_visita.jsp">Visita</a></li>
                    		</ul> 
-                    </li>		
+                    </li>			
               		<%
                     }
-                    %>             
+                    %>  
                  </ul>
               </div>   
             </div>

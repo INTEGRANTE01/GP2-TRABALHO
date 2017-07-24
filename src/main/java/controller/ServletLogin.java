@@ -57,8 +57,9 @@ public class ServletLogin extends HttpServlet {
 			// setando um atributo da sessao
 			sessao.setAttribute("nome", funcionario.getNome());
 			sessao.setAttribute("funcao", funcionario.getFuncao());
-			destino = "pagina_inicial.jsp";
-			response.sendRedirect(destino);			
+			destino = "WEB-INF/pagina_inicial.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(destino);
+			rd.forward(request, response);		
 		} else {
 			message = "Falha no login, verifique os dados.";
 			request.setAttribute("message", message);
@@ -74,6 +75,7 @@ public class ServletLogin extends HttpServlet {
 		// no logout invalido a sessao
 		HttpSession sessao = request.getSession();
 		sessao.removeAttribute("nome");
+		sessao.removeAttribute("funcao");
 		sessao.invalidate();
 		destino = "/index.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
