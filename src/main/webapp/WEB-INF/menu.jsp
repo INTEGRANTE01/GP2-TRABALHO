@@ -50,7 +50,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-globe"></i> Mapa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="mapa_foco.jsp">Mapa de focos </a></li>
+                      <li><a href="carregamapa">Mapa de focos </a></li>
                     </ul>
                   </li>                                
                 </ul>
@@ -64,14 +64,14 @@
                    		<ul class="nav child_menu">                   
                     		<li><a href="funcionario">Funcionário</a></li>
                             <li><a href="visita.jsp">Visita</a></li>
-                           	<li><a href="denuncia.jsp">Denúncia</a></li>
+                           	<li><a href="denuncia">Denúncia</a></li>
                     	</ul> 
                     </li> 
                    <li><a><i class="fa fa-search"></i> Busca <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="buscafuncionario">Funcionários</a></li>
                       <li><a href="c_visita.jsp">Visitas</a></li>
-                      <li><a href="c_denuncia.jsp">Denúncias</a></li>                      
+                      <li><a href="buscadenuncia">Denúncias</a></li>                      
                     </ul>
                    </li>      
                     <% 
@@ -80,12 +80,12 @@
                     %>
                      <li><a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
                      	<ul class="nav child_menu">
-                           	<li><a href="denuncia.jsp">Denúncia</a></li>
+                           	<li><a href="denuncia">Denúncia</a></li>
                     	</ul> 
                     </li>
                     <li><a><i class="fa fa-edit"></i> Busca <span class="fa fa-chevron-down"></span></a>
                      	<ul class="nav child_menu">
-                           	<li><a href="c_denuncia.jsp">Denúncia</a></li>
+                           	<li><a href="buscadenuncia">Denúncia</a></li>
                     	</ul> 
                     </li>
                     <%

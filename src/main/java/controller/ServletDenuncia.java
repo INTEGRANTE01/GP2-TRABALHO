@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DenunciaDAO;
+import model.Funcionario;
 import model.Denuncia;
 
 @WebServlet(name = "ServletDenuncia", urlPatterns = "/denuncia")
@@ -42,6 +45,15 @@ public class ServletDenuncia extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		try {
+			popularcombos(request,response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/denuncia.jsp");
+		rd.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -52,42 +64,46 @@ public class ServletDenuncia extends HttpServlet {
 
 		try {
 			iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
-
-		} catch (NumberFormatException number) {
-			acao = true;
-			try {
-				adicionaDenuncia(request, response);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (NumberFormatException number) {
+				acao = true;
+				try {
+					adicionaDenuncia(request, response);
+					destino = "buscadenuncia";
+				  } catch (SQLException e) {			
+					e.printStackTrace();
+				}
 			}
-			destino = "/c_denuncia.jsp";
-		}
 
 		if (acao == false) {
 			denuncia.setIddenuncia(iddenuncia);
 			try {
-				denunciaDAO.existe(denuncia);
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
+				denunciaDAO.existe(denuncia);				
 				if (denunciaDAO.existe(denuncia) == true) {
 					editarDenuncia(request, response);
-					destino = "/c_denuncia.jsp";
+					destino = "buscadenuncia";
 				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			} catch (SQLException e) {			
 				e.printStackTrace();
-			}
-			
-		}		
+			}			
+		}	
 
 		request.setAttribute("message", message);
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
+	}
+	
+	protected void popularcombos(HttpServletRequest request,
+		    HttpServletResponse response) throws ServletException, IOException, SQLException {
+		List<Denuncia> combocidade = new ArrayList<Denuncia>(); 
+		List<Denuncia> combotipo = new ArrayList<Denuncia>();
+		try {
+			combocidade = denunciaDAO.populaComboCidade();
+			combotipo = denunciaDAO.populaComboImovel();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("listacidade",combocidade);	
+		request.setAttribute("listatipo",combotipo);
 	}
 
 	protected void adicionaDenuncia(HttpServletRequest request, HttpServletResponse response)

@@ -34,15 +34,13 @@ public class ServletFuncionario extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-					
-			List<Funcionario> funcionario = new ArrayList<Funcionario>(); 
+						
 			try {
-				funcionario = funcionarioDAO.populaCombo();
+				popularcombo(request,response);
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			request.setAttribute("listafuncao",funcionario);
+			} 	
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/funcionario.jsp");
 			rd.forward(request, response);
 
@@ -55,12 +53,11 @@ public class ServletFuncionario extends HttpServlet {
 
 		try {
 			idfuncionario = Integer.parseInt(request.getParameter("idfuncionario"));
-			System.out.println("NA VARIAVEL: " + idfuncionario);			
-			} catch (Exception number) {
+			} catch (NumberFormatException number) {
 				acao = true;
 				try {
 					adicionafuncionario(request, response);
-					destino = "WEB-INF/c_funcionario.jsp";
+					destino = "buscafuncionario";
 				} catch (SQLException e) {
 					e.printStackTrace();				
 				}

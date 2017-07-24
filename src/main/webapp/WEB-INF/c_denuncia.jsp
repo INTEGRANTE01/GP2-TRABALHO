@@ -88,11 +88,9 @@
 												class="form-control input-md selectpicker"
 												data-live-search="true">
 												<option selected="selected"></option>
-												<option value="Goiânia">Goiânia</option>
-												<option value="Aparecida de Goiânia">Aparecida de
-													Goiânia</option>
-												<option value="Senador Canedo">Senador Canedo</option>
-												<option value="Trindade">Trindade</option>
+												 <c:forEach var="combocidade" items="${listacidade}">      
+						      							  <option>${combocidade.cidade}</option>      
+												 </c:forEach> 
 											</select>
 										</div>
 
@@ -101,12 +99,9 @@
 												title="" class="form-control input-md selectpicker"
 												data-live-search="true">
 												<option selected="selected"></option>
-												<option value="Lote">Lote</option>
-												<option value="Casa">Casa</option>
-												<option value="Apartamento">Apartamento</option>
-												<option value="Deposito">Depósito</option>
-												<option value="Loja">Loja</option>
-												<option value="Sala">Sala comercial</option>
+												 <c:forEach var="combotipo" items="${listatipo}">      
+						      							  <option>${combotipo.tp_imovel}</option>      
+											     </c:forEach> 
 											</select>
 										</div>
 										<div class="x_content">
@@ -137,13 +132,13 @@
 												</c:if>
 											</div>
 											<p class="text-muted font-13 m-b-30">
-												<a href="denuncia.jsp">
+												<a href="denuncia">
 													<button type="button" class="btn btn-success"
 														data-container="body" data-toggle="popover"
 														data-placement="bottom" title="Incluir Nova Denúncia">
 														<i class="fa fa-plus-circle"></i>
 													</button>
-												</a> <a href="c_denuncia.jsp">
+												</a> <a href="buscadenuncia">
 													<button type="button" class="btn btn-primary"
 														data-container="body" data-toggle="popover"
 														data-placement="bottom" title="Limpar Listagem">

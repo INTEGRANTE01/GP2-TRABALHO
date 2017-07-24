@@ -208,4 +208,48 @@ public class DenunciaDAO extends ConectaBanco {
 	}
 		return denuncia;
 	}
+	
+public List<Denuncia> populaComboImovel() throws SQLException {
+		
+		List<Denuncia> combotipo = new ArrayList<Denuncia>();
+		Connection conexao = getConexao();
+		PreparedStatement pstm = conexao.prepareStatement("Select distinct(tp_imovel) from denuncia order by tp_imovel asc");
+		try {		
+			
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				Denuncia denuncia = new Denuncia();
+				denuncia.setTp_imovel(rs.getString("tp_imovel"));
+				combotipo.add(denuncia);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
+		return combotipo;
+	}
+
+public List<Denuncia> populaComboCidade() throws SQLException {
+	
+	List<Denuncia> combocidade = new ArrayList<Denuncia>();
+	Connection conexao = getConexao();
+	PreparedStatement pstm = conexao.prepareStatement("Select distinct(cidade) from denuncia order by cidade asc");
+	try {		
+		
+		ResultSet rs = pstm.executeQuery();
+		while (rs.next()) {
+			Denuncia denuncia = new Denuncia();
+			denuncia.setCidade(rs.getString("cidade"));
+			combocidade.add(denuncia);
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally{
+		pstm.close();
+		conexao.close();			
+}
+	return combocidade;
+}
 }

@@ -52,8 +52,8 @@ public class ServletBuscaFuncionario extends HttpServlet {
 				}else if (acao==null){				
 						destino ="WEB-INF/c_funcionario.jsp";						
 				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}						
 			RequestDispatcher rd = request.getRequestDispatcher(destino);
 		    rd.forward(request, response); 

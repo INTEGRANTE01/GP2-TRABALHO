@@ -35,29 +35,23 @@ public class ServletBuscaDenuncia extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		acao = request.getParameter("acao");
-		if (acao != null) {
-			if (acao.equalsIgnoreCase("Consultar")) {
-				try {
-					consultareditardenuncia(request, response);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+		
+		try {
+			popularcombos(request,response);
+			acao = request.getParameter("acao");
+				if (acao != null) {
+					if (acao.equalsIgnoreCase("Consultar")) {				
+						consultareditardenuncia(request, response);						
+					} else if (acao.equalsIgnoreCase("Excluir")) {				
+						excluirdenuncia(request, response);
+					}
+				}else if (acao==null){				
+					destino ="WEB-INF/c_denuncia.jsp";
 				}
-				RequestDispatcher rd = request.getRequestDispatcher(destino);
-				rd.forward(request, response);
-			} else if (acao.equalsIgnoreCase("Excluir")) {
-				try {
-					excluirdenuncia(request, response);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				RequestDispatcher rd = request.getRequestDispatcher(destino);
-				rd.forward(request, response);
-			}
-		}
+			}catch (Exception e){
+		}		
+		RequestDispatcher rd = request.getRequestDispatcher(destino);
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -65,9 +59,9 @@ public class ServletBuscaDenuncia extends HttpServlet {
 
 		request.setCharacterEncoding("UTF8");
 		try {
+			popularcombos(request,response);
 			buscardenuncia(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
@@ -75,6 +69,20 @@ public class ServletBuscaDenuncia extends HttpServlet {
 
 	}
 
+	protected void popularcombos(HttpServletRequest request,
+		    HttpServletResponse response) throws ServletException, IOException, SQLException {
+		List<Denuncia> combocidade = new ArrayList<Denuncia>(); 
+		List<Denuncia> combotipo = new ArrayList<Denuncia>();
+		try {
+			combocidade = denunciaDAO.populaComboCidade();
+			combotipo = denunciaDAO.populaComboImovel();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("listacidade",combocidade);	
+		request.setAttribute("listatipo",combotipo);
+	}
+	
 	protected void buscardenuncia(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		List<Denuncia> listadenuncia = new ArrayList<Denuncia>();
@@ -94,7 +102,7 @@ public class ServletBuscaDenuncia extends HttpServlet {
 
 	//	}
 		request.setAttribute("listadenuncia", listadenuncia);
-		destino = "/c_denuncia.jsp";
+		destino = "WEB-INF/c_denuncia.jsp";
 	}
 
 	protected void consultareditardenuncia(HttpServletRequest request, HttpServletResponse response)
@@ -105,7 +113,7 @@ public class ServletBuscaDenuncia extends HttpServlet {
 		denuncia.setIddenuncia(iddenuncia);
 		denuncia = denunciaDAO.consultar_editar(denuncia);
 		request.setAttribute("denuncia", denuncia);
-		destino = "/denuncia.jsp";
+		destino = "WEB-INF/denuncia.jsp";
 	}
 
 	protected void excluirdenuncia(HttpServletRequest request, HttpServletResponse response)

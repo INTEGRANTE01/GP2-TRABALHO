@@ -166,10 +166,9 @@
 													class="form-control input-md selectpicker"
 													data-live-search="true">
 													<option selected="selected">${denuncia.cidade}</option>
-													<option value="Goiania">Goiânia</option>
-													<option value="Aparecida de Goiânia">Aparecida de Goiânia</option>
-													<option value="Senador Canedo">Senador Canedo</option>
-													<option value="Trindade">Trindade</option>
+													 <c:forEach var="combocidade" items="${listacidade}">      
+						      							  <option>${combocidade.cidade}</option>      
+													 </c:forEach> 
 												</select>
 												<div class="help-block with-errors"></div>
 											</div>
@@ -186,12 +185,9 @@
 													class="form-control input-md selectpicker"
 													data-live-search="true">
 													<option selected="selected">${denuncia.tp_imovel}</option>
-													<option value="Lote">Lote</option>
-													<option value="Casa">Casa</option>
-													<option value="Apartamento">Apartamento</option>
-													<option value="Deposito">Depósito</option>
-													<option value="Loja">Loja</option>
-													<option value="Sala comercial">Sala comercial</option>
+													 <c:forEach var="combotipo" items="${listatipo}">      
+						      							  <option>${combotipo.tp_imovel}</option>      
+													</c:forEach> 
 												</select>
 												<div class="help-block with-errors"></div>
 											</div>
