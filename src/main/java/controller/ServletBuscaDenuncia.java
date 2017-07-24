@@ -49,6 +49,7 @@ public class ServletBuscaDenuncia extends HttpServlet {
 					destino ="WEB-INF/c_denuncia.jsp";
 				}
 			}catch (Exception e){
+				e.printStackTrace();
 		}		
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
@@ -73,14 +74,17 @@ public class ServletBuscaDenuncia extends HttpServlet {
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 		List<Denuncia> combocidade = new ArrayList<Denuncia>(); 
 		List<Denuncia> combotipo = new ArrayList<Denuncia>();
+		List<Denuncia> combobairro = new ArrayList<Denuncia>();
 		try {
 			combocidade = denunciaDAO.populaComboCidade();
 			combotipo = denunciaDAO.populaComboImovel();
+			combobairro = denunciaDAO.populaComboBairro();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("listacidade",combocidade);	
 		request.setAttribute("listatipo",combotipo);
+		request.setAttribute("listabairro",combobairro);
 	}
 	
 	protected void buscardenuncia(HttpServletRequest request, HttpServletResponse response)

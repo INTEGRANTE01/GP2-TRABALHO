@@ -286,5 +286,90 @@ public List<Visita> listar() throws SQLException {
 		}
 		return visita;
 	}
+public List<Visita> populaComboImovel() throws SQLException {
+		
+		List<Visita> combotipo = new ArrayList<Visita>();
+		Connection conexao = getConexao();
+		PreparedStatement pstm = conexao.prepareStatement("Select distinct(tp_imovel) from visita order by tp_imovel asc");
+		try {		
+			
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				Visita visita = new Visita();
+				visita.setTp_imovel(rs.getString("tp_imovel"));
+				combotipo.add(visita);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
+		return combotipo;
+	}
+
+public List<Visita> populaComboCidade() throws SQLException {
 	
+	List<Visita> combocidade = new ArrayList<Visita>();
+	Connection conexao = getConexao();
+	PreparedStatement pstm = conexao.prepareStatement("Select distinct(cidade) from visita order by cidade asc");
+		try {		
+			
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				Visita visita = new Visita();
+				visita.setCidade(rs.getString("cidade"));
+				combocidade.add(visita);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
+		return combocidade;
+}
+
+public List<Visita> populaComboBairro() throws SQLException {
+	
+	List<Visita> combobairro = new ArrayList<Visita>();
+	Connection conexao = getConexao();
+	PreparedStatement pstm = conexao.prepareStatement("Select distinct(bairro) from visita order by bairro asc");
+		try {		
+			
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				Visita visita = new Visita();
+				visita.setBairro(rs.getString("bairro"));
+				combobairro.add(visita);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
+		}
+		return combobairro;
+	}	
+public List<Visita> populaComboEstagio() throws SQLException {
+	
+	List<Visita> comboestagio = new ArrayList<Visita>();
+	Connection conexao = getConexao();
+	PreparedStatement pstm = conexao.prepareStatement("Select distinct(estagio) from visita order by estagio asc");
+		try {		
+			
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				Visita visita = new Visita();
+				visita.setEstagio(rs.getString("estagio"));
+				comboestagio.add(visita);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
+		}
+		return comboestagio;
+	}	
 }

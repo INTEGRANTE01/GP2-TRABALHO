@@ -63,14 +63,14 @@
                    <li><a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
                    		<ul class="nav child_menu">                   
                     		<li><a href="funcionario">Funcionário</a></li>
-                            <li><a href="visita.jsp">Visita</a></li>
+                            <li><a href="visita">Visita</a></li>
                            	<li><a href="denuncia">Denúncia</a></li>
                     	</ul> 
                     </li> 
                    <li><a><i class="fa fa-search"></i> Busca <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="buscafuncionario">Funcionários</a></li>
-                      <li><a href="c_visita.jsp">Visitas</a></li>
+                      <li><a href="buscavisita">Visitas</a></li>
                       <li><a href="buscadenuncia">Denúncias</a></li>                      
                     </ul>
                    </li>      
@@ -94,12 +94,12 @@
               		%>
               		<li><a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
-                           	<li><a href="visita.jsp">Visita</a></li>
+                           	<li><a href="visita">Visita</a></li>
                    		</ul> 
                     </li>
                     <li><a><i class="fa fa-edit"></i> Busca <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
-                           	<li><a href="c_visita.jsp">Visita</a></li>
+                           	<li><a href="buscavisita">Visita</a></li>
                    		</ul> 
                     </li>			
               		<%

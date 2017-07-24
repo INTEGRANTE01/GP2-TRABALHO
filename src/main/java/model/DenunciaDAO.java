@@ -236,20 +236,42 @@ public List<Denuncia> populaComboCidade() throws SQLException {
 	List<Denuncia> combocidade = new ArrayList<Denuncia>();
 	Connection conexao = getConexao();
 	PreparedStatement pstm = conexao.prepareStatement("Select distinct(cidade) from denuncia order by cidade asc");
-	try {		
-		
-		ResultSet rs = pstm.executeQuery();
-		while (rs.next()) {
-			Denuncia denuncia = new Denuncia();
-			denuncia.setCidade(rs.getString("cidade"));
-			combocidade.add(denuncia);
+		try {		
+			
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				Denuncia denuncia = new Denuncia();
+				denuncia.setCidade(rs.getString("cidade"));
+				combocidade.add(denuncia);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
+		return combocidade;
+}
+
+public List<Denuncia> populaComboBairro() throws SQLException {
+	
+	List<Denuncia> combobairro = new ArrayList<Denuncia>();
+	Connection conexao = getConexao();
+	PreparedStatement pstm = conexao.prepareStatement("Select distinct(bairro) from denuncia order by bairro asc");
+		try {		
+			
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				Denuncia denuncia = new Denuncia();
+				denuncia.setBairro(rs.getString("bairro"));
+				combobairro.add(denuncia);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
-	}finally{
-		pstm.close();
-		conexao.close();			
-}
-	return combocidade;
-}
+		return combobairro;
+	}
 }

@@ -80,8 +80,14 @@
 												name="txtpesquisa1" class="form-control input-md">
 										</div>
 										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Bairro </label> <input type="text" name="txtpesquisa2"
-												class="form-control input-md">
+											<label>Bairro </label>  <select name="txtpesquisa2"
+												title="" class="form-control input-md selectpicker"
+												data-live-search="true">
+												<option selected="selected"></option>
+												 <c:forEach var="combobairro" items="${listabairro}">      
+						      							  <option>${combobairro.bairro}</option>      
+											     </c:forEach> 
+											</select>
 										</div>
 										<div class="form-group  col-lg-3 col-xs-12">
 											<label>Cidade </label> <select name="txtpesquisa3" title=""

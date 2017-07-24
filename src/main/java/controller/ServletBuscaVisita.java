@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.VisitaDAO;
+import model.Denuncia;
 import model.Visita;
 
 @WebServlet(name="ServletBuscaVisita", urlPatterns = "/buscavisita")
@@ -40,28 +41,23 @@ public class ServletBuscaVisita extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		try {
+			popularcombos(request,response);
 			acao = request.getParameter("acao");	
 			if(acao!=null){
 				if(acao.equalsIgnoreCase("Consultar")){
-					try {
 						consultareditarvisita(request, response);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					RequestDispatcher rd = request.getRequestDispatcher(destino);
-				    rd.forward(request, response); 
 				}else if(acao.equalsIgnoreCase("Excluir")){
-					try {
 						excluirvisita(request,response);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					RequestDispatcher rd = request.getRequestDispatcher(destino);
-				    rd.forward(request, response); 
-				}
-			}					
+				}					
+			}else if (acao==null){				
+				destino ="WEB-INF/c_visita.jsp";
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+			RequestDispatcher rd = request.getRequestDispatcher(destino);
+		    rd.forward(request, response); 	
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -71,12 +67,28 @@ public class ServletBuscaVisita extends HttpServlet {
 			try {
 				buscarvisita(request, response);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			RequestDispatcher rd = request.getRequestDispatcher(destino);
 	     	rd.forward(request, response);
 		
+	}
+	
+	protected void popularcombos(HttpServletRequest request,
+		    HttpServletResponse response) throws ServletException, IOException, SQLException {
+		List<Visita> combocidade = new ArrayList<Visita>(); 
+		List<Visita> combotipo = new ArrayList<Visita>();
+		List<Visita> combobairro = new ArrayList<Visita>();
+		try {
+			combocidade = visitaDAO.populaComboCidade();
+			combotipo = visitaDAO.populaComboImovel();
+			combobairro = visitaDAO.populaComboBairro();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("listacidade",combocidade);	
+		request.setAttribute("listatipo",combotipo);
+		request.setAttribute("listabairro",combobairro);
 	}
 	protected void buscarvisita(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {

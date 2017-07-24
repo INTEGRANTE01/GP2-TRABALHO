@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.VisitaDAO;
+import model.Funcionario;
 import model.Visita;
 
 @WebServlet(name = "ServletVisita", urlPatterns = "/visita")
@@ -46,6 +49,13 @@ public class ServletVisita extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
+			popularcombo(request,response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 	
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/visita.jsp");
+		rd.forward(request, response);
 		
 	}
 
@@ -54,17 +64,15 @@ public class ServletVisita extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF8");
 		acao = false;
-		 System.out.println(agente = request.getParameter("agente"));
+		//agente = request.getParameter("agente");
 
 		try {
 
 			idvisita = Integer.parseInt(request.getParameter("idvisita"));
-			System.out.println("NA VARIAVEL: " + idvisita);
-
 			if (idvisita<=0){
 				acao = true;
 				adicionaVisita(request, response);
-				destino = "/c_visita.jsp";
+				destino = "buscavisita";
 			}
 			
 		} catch (Exception e) {			
@@ -77,29 +85,41 @@ public class ServletVisita extends HttpServlet {
 			try {
 				VisitaDAO.existe(visita);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				if (VisitaDAO.existe(visita) == true) {
 					editarVisita(request, response);
-					destino = "/c_visita.jsp";
+					destino = "buscavisita";
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
-		/*
-		 * System.out.println("NA VARIAVEL ACAO: " + acao);
-		 * System.out.println("NO metodo existe " +
-		 * VisitaDAO.existe(Visita));
-		 */
-
 		request.setAttribute("message", message);
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
+	}
+	
+	protected void popularcombo(HttpServletRequest request,
+		    HttpServletResponse response) throws ServletException, IOException, SQLException {
+		List<Visita> combocidade = new ArrayList<Visita>(); 
+		List<Visita> combotipo = new ArrayList<Visita>();
+		List<Visita> combobairro = new ArrayList<Visita>();
+		List<Visita> comboestagio = new ArrayList<Visita>();
+		try {
+			combocidade = VisitaDAO.populaComboCidade();
+			combotipo = VisitaDAO.populaComboImovel();
+			combobairro = VisitaDAO.populaComboBairro();
+			comboestagio = VisitaDAO.populaComboEstagio();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("listacidade",combocidade);	
+		request.setAttribute("listatipo",combotipo);
+		request.setAttribute("listabairro",combobairro);
+		request.setAttribute("listaestagio",comboestagio);
 	}
 
 	protected void adicionaVisita(HttpServletRequest request, HttpServletResponse response)

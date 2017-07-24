@@ -57,55 +57,54 @@
                   </div>
                   <div class="x_content">					
                 <form class="form-horizontal form-label-left" data-toggle="validator" method="post" action="buscavisita">
-			 			
-			 			<div class="form-group  col-lg-3 col-xs-12">
-						<label>Agente </label> 	
-                                <input type="text" name="txtpesquisa1" class="form-control input-md">
-                        </div>
-			 			<div class="form-group  col-lg-3 col-xs-12">
-						<label>Bairro </label> 	
-                                <input type="text" name="txtpesquisa2" class="form-control input-md">
-                        </div>
-                        <div class="form-group  col-lg-6 col-xs-12">
+			 	        <div class="form-group  col-lg-3 col-xs-12">
+							<label>Bairro </label>  <select name="txtpesquisa2"
+								title="" class="form-control input-md selectpicker"
+								data-live-search="true">
+								<option selected="selected"></option>
+								 <c:forEach var="combobairro" items="${listabairro}">      
+		      							  <option>${combobairro.bairro}</option>      
+							     </c:forEach> 
+							</select>
+						</div>						
+                        <div class="form-group  col-lg-9 col-xs-12">
 						<label>Rua </label> 	
                                 <input type="text" name="txtpesquisa6" class="form-control input-md">
-                        </div>						
+                         </div>
+                        <div class="form-group  col-lg-3 col-xs-12">
+						<label>Agente </label> 	
+                                <input type="text" name="txtpesquisa1" class="form-control input-md">
+                        </div>	 
 						<div class="form-group  col-lg-3 col-xs-12">
-						<label>Cidade </label> 	  
-			            	<select name="txtpesquisa3"  title="" class="form-control input-md selectpicker" data-live-search="true">
-                              <option selected="selected"></option>
-                              <option value="Goiânia">Goiânia</option>
-                              <option value="Aparecida de Goiânia">Aparecida de Goiânia</option>
-                              <option value="Senador Canedo">Senador Canedo</option>
-                              <option value="Trindade">Trindade</option>
-                            </select>			           		    				
-						</div>	
+							<label>Cidade </label> <select name="txtpesquisa3" title=""
+								class="form-control input-md selectpicker"
+								data-live-search="true">
+								<option selected="selected"></option>
+								 <c:forEach var="combocidade" items="${listacidade}">      
+		      							  <option>${combocidade.cidade}</option>      
+								 </c:forEach> 
+							</select>
+						</div>
 						
 						<div class="form-group  col-lg-3 col-xs-12">
-						<label>Tipo de Imovel </label> 	  
-			            	<select name="txtpesquisa4" title="" class="form-control input-md selectpicker" data-live-search="true">
-                              <option selected="selected"></option>
-                              <option value="Lote">Lote</option>
-                              <option value="Casa">Casa</option>
-                              <option value="Apartamento">Apartamento</option>
-                              <option value="Deposito">Depósito</option>
-                              <option value="Loja">Loja</option>
-                              <option value="Sala">Sala comercial</option>
-                            </select>
-			           		    				
-						</div>							
+							<label>Tipo de Imovel </label> <select name="txtpesquisa4"
+								title="" class="form-control input-md selectpicker"
+								data-live-search="true">
+								<option selected="selected"></option>
+								 <c:forEach var="combotipo" items="${listatipo}">      
+		      							  <option>${combotipo.tp_imovel}</option>      
+							     </c:forEach> 
+							</select>
+						</div> 					
 						<div class="form-group  col-lg-3 col-xs-12">
 						<label>Estagio</label> 	  
 			            <select name="txtpesquisa5" title="" class="form-control input-md selectpicker" data-live-search="true">
                               <option selected="selected"></option>
-                              <option value="Ovo">Ovo</option>
-                              <option value="Larva">Larva</option>
-                              <option value="Pupa">Pupa</option>
-                              <option value="Mosquito">Mosquito</option>							  
+                              <c:forEach var="comboestagio" items="${listaestagio}">      
+		      							  <option>${comboestagio.estagio}</option>      
+							  </c:forEach> 							  
                             </select>			           		    				
 						</div>
-						
-						
                   <div class="x_content">
                   <div class="row">
 								<c:if test="${not empty message}">

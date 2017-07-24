@@ -38,7 +38,6 @@ public class ServletFuncionario extends HttpServlet {
 			try {
 				popularcombo(request,response);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 	
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/funcionario.jsp");
