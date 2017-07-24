@@ -17,18 +17,17 @@ import javax.servlet.http.HttpSession;
 import model.Visita;
 
 @WebFilter("/visita.jsp")
-public class ServletFiltroSegurança implements Filter {
+
+public class ServletFiltroSegurança implements Filter {	
 	
 	private Visita visita = new Visita();
 	
 	private String agente;			
-		
   public void init(FilterConfig filterConfig) throws ServletException {
   }
 
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
     HttpServletRequest res = (HttpServletRequest) request;
-
     try {
 		agente = request.getParameter("agente");
 		if (agente==null) {
@@ -40,8 +39,8 @@ public class ServletFiltroSegurança implements Filter {
 		    view.forward(request, response);
 		}
 	} catch(Exception e){
-		e.printStackTrace();
-	}   
+		e.printStackTrace();  
+  }
   }
 
   public void destroy() {

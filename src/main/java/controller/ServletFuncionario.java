@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import model.FuncionarioDAO;
 import model.Funcionario;
 
@@ -32,6 +35,14 @@ public class ServletFuncionario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+					
+			List<Funcionario> funcionario = new ArrayList<Funcionario>(); 
+			try {
+				funcionario = funcionarioDAO.populaCombo();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("listafuncao",funcionario);
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/funcionario.jsp");
 			rd.forward(request, response);
 
@@ -43,51 +54,46 @@ public class ServletFuncionario extends HttpServlet {
 		acao = false;
 
 		try {
-
 			idfuncionario = Integer.parseInt(request.getParameter("idfuncionario"));
-			System.out.println("NA VARIAVEL: " + idfuncionario);
-
-		} catch (NumberFormatException number) {
-			acao = true;
-			try {
-				adicionafuncionario(request, response);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			System.out.println("NA VARIAVEL: " + idfuncionario);			
+			} catch (Exception number) {
+				acao = true;
+				try {
+					adicionafuncionario(request, response);
+					destino = "WEB-INF/c_funcionario.jsp";
+				} catch (SQLException e) {
+					e.printStackTrace();				
+				}
 			}
-			destino = "WEB-INF/c_funcionario.jsp";
-		}
 
 		if (acao == false) {
 			funcionario.setIdfuncionario(idfuncionario);
 			try {
 				funcionarioDAO.existe(funcionario);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
 				if (funcionarioDAO.existe(funcionario) == true) {
 					editarfuncionario(request, response);
-					destino = "WEB-INF/c_funcionario.jsp";
+					destino = "buscafuncionario";
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-
-		/*
-		 * System.out.println("NA VARIAVEL ACAO: " + acao);
-		 * System.out.println("NO metodo existe " +
-		 * funcionarioDAO.existe(funcionario));
-		 */
 
 		request.setAttribute("message", message);
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
 	}
 
+	protected void popularcombo(HttpServletRequest request,
+		    HttpServletResponse response) throws ServletException, IOException, SQLException {
+		List<Funcionario> funcionario = new ArrayList<Funcionario>(); 
+		try {
+			funcionario = funcionarioDAO.populaCombo();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("listafuncao",funcionario);	
+	}
 	protected void adicionafuncionario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		nome = request.getParameter("nome");
@@ -123,15 +129,6 @@ public class ServletFuncionario extends HttpServlet {
 		matricula = request.getParameter("matricula");
 		email = request.getParameter("email");
 		senha = request.getParameter("senha");
-
-		/*
-		 * System.out.println("no EDITAR: " + idfuncionario);
-		 * System.out.println("no EDITAR: " + nome);
-		 * System.out.println("no EDITAR: " + matricula);
-		 * System.out.println("no EDITAR: " + email);
-		 * System.out.println("no EDITAR: " + funcao);
-		 * System.out.println("no EDITAR: " + senha);
-		 */
 
 		try {
 

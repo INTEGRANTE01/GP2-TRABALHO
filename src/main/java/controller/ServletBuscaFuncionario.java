@@ -6,8 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,53 +37,56 @@ public class ServletBuscaFuncionario extends HttpServlet {
 	private String textopesquisa2; 
 	private String textopesquisa3; 
 
-	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 			
-				
-		
-			acao = request.getParameter("acao");	
-			if(acao!=null){
-				if(acao.equalsIgnoreCase("Consultar")){
-					try {
-						consultareditarfuncionario(request, response);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+			try {
+				popularcombo(request, response);
+				acao = request.getParameter("acao");	
+				if(acao!=null){
+					if(acao.equalsIgnoreCase("Consultar")){
+						consultareditarfuncionario(request, response);						
+					}else if(acao.equalsIgnoreCase("Excluir")){				
+						excluirfuncionario(request,response);						 
 					}
-					RequestDispatcher rd = request.getRequestDispatcher(destino);
-				    rd.forward(request, response); 
-				}else if(acao.equalsIgnoreCase("Excluir")){
-					try {
-						excluirfuncionario(request,response);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					RequestDispatcher rd = request.getRequestDispatcher(destino);
-				    rd.forward(request, response); 
+				}else if (acao==null){				
+						destino ="WEB-INF/c_funcionario.jsp";						
 				}
-			}else if (acao==null){
-				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/c_funcionario.jsp");
-				rd.forward(request, response);
-			}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}						
+			RequestDispatcher rd = request.getRequestDispatcher(destino);
+		    rd.forward(request, response); 
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {	
 			
-			request.setCharacterEncoding("UTF8");
-			try {
-				buscarfuncionario(request, response);
+			request.setCharacterEncoding("UTF8");				
+			
+			try {	
+				popularcombo(request, response);
+				buscarfuncionario(request, response);				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			RequestDispatcher rd = request.getRequestDispatcher(destino);
 	     	rd.forward(request, response);
 		
 	}
+	
+	protected void popularcombo(ServletRequest request,
+		    ServletResponse response) throws ServletException, IOException, SQLException {
+		List<Funcionario> funcionario = new ArrayList<Funcionario>(); 
+		try {
+			funcionario = funcionarioDAO.populaCombo();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("listafuncao",funcionario);	
+	}
+	
+	
 	protected void buscarfuncionario(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 
