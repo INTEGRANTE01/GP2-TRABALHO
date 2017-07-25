@@ -1,4 +1,4 @@
-
+﻿
 Inserir relaçoes para:
 	cidade
 	tipo de Imovel
@@ -7,7 +7,7 @@ Inserir relaçoes para:
 	estagio
 	tipo de larvicida
 
-parametros em visita
+parametros em visita:
 	Estagio
 		ovo
 		larva
