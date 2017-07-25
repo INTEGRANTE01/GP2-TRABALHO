@@ -6,7 +6,7 @@ Projeto Fase 1.
 
 ### Para fazer clone.
 
-`git clone https://github.com/INTEGFRANTE01/GP2-TRABALHO.git`
+`git clone https://github.com/INTEGRANTE01/GP2-TRABALHO.git`
 
 ### Para rodar com o Tomcat.
 
