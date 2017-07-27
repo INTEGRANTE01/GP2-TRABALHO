@@ -14,6 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import model.VisitaDAO;
 import model.Funcionario;
 import model.Visita;
@@ -33,9 +35,9 @@ public class ServletVisita extends HttpServlet {
 	private String bairro;
 	private String rua;
 	private String quadra;
-	private int lote = 0;
+	private int lote;
 	private String numero;
-	private int cep = 0;
+	private int cep;
 	private String cidade;
 	private String latitude;
 	private String longitude;
@@ -49,14 +51,15 @@ public class ServletVisita extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
-			popularcombo(request,response);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 	
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/visita.jsp");
-		rd.forward(request, response);
-		
+						
+			try {
+				capturaNomeUsuario(request, response);
+				popularcombo(request,response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} 	
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/visita.jsp");
+			rd.forward(request, response);		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -64,43 +67,52 @@ public class ServletVisita extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF8");
 		acao = false;
-		//agente = request.getParameter("agente");
 
 		try {
-
 			idvisita = Integer.parseInt(request.getParameter("idvisita"));
-			if (idvisita<=0){
-				acao = true;
-				adicionaVisita(request, response);
-				destino = "buscavisita";
-			}
-			
-		} catch (Exception e) {			
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+			if (idvisita==0)
+				acao = true;				
+		} catch (Exception e) {	
+			e.printStackTrace();			
+		}		
+					
 		if (acao == false) {
 			visita.setIdvisita(idvisita);
 			try {
 				VisitaDAO.existe(visita);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			try {
 				if (VisitaDAO.existe(visita) == true) {
 					editarVisita(request, response);
-					destino = "buscavisita";
+					destino = "buscavisita";			
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		} else if (acao == true){
+			
+			try { 			
+				adicionaVisita(request, response);
+				destino = "buscavisita";				
+			}catch(Exception e){
+				e.printStackTrace();
+			}			
 		}
 
 		request.setAttribute("message", message);
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
 	}
+	
+	protected void capturaNomeUsuario(HttpServletRequest request,
+		    HttpServletResponse response) throws ServletException, IOException, SQLException {
+		Visita visita = new Visita();
+		agente = request.getParameter("agente");			
+		if (agente==null) {			
+			HttpSession sessao = request.getSession();
+			agente = (String) sessao.getAttribute("nome");
+			visita.setAgente(agente);
+			request.setAttribute("visita", visita);
+	}
+}
 	
 	protected void popularcombo(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -122,7 +134,7 @@ public class ServletVisita extends HttpServlet {
 	protected void adicionaVisita(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		
-		  System.out.println(agente = request.getParameter("agente"));
+		  agente = request.getParameter("agente");
 		  data_string = request.getParameter("data_visita");
 		  System.out.println("NO DATA_STRING: "  + data_string);
 		  bairro =  request.getParameter("bairro");
@@ -168,10 +180,7 @@ public class ServletVisita extends HttpServlet {
 			message = "Erro ao Gravar Registro";
 		else
 			message = "Registro Gravado com Sucesso";
-		
-
-
-	}
+		}
 
 	protected void editarVisita(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {

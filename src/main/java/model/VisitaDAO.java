@@ -124,8 +124,7 @@ public class VisitaDAO extends ConectaBanco {
 			pstm.execute();
 		} catch (Exception e) {
 			erro = true;	
-			e.printStackTrace();
-			System.out.println("ERRO AO INSERIR");	
+			//e.printStackTrace();
 		}finally{
 			pstm.close();
 			conexao.close();			
