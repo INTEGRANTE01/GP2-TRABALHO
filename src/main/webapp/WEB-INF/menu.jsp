@@ -23,7 +23,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 20;">
-              <a href="pagina_inicial.jsp" class="site_title"><span class="fa fa-desktop"></span><span>   Endemic Sys</span></a>
+              <a href="index.jsp" class="site_title"><span class="fa fa-desktop"></span><span>   Endemic Sys</span></a>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->
@@ -50,7 +50,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-globe"></i> Mapa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="carregamapa">Mapa de focos </a></li>
+                      <li><a href="mapa_foco.jsp">Mapa de focos </a></li>
                     </ul>
                   </li>                                
                 </ul>

@@ -76,7 +76,7 @@ html, body {
 
 
 								<form class="form-horizontal form-label-left"
-									data-toggle="validator" method="post">
+									data-toggle="validator" method="post" action="mapa_foco.jsp">
 
 									<div class="form-group  col-lg-3 col-xs-12">
 										<label>Bairro </label> <input type="text" name="txtpesquisa1"
@@ -123,7 +123,7 @@ html, body {
 
 
 									<div class="x_content">
-										
+
 										<p class="text-muted font-13 m-b-30">
 											<button type="submit" class="btn btn-warning"
 												data-container="body" data-toggle="popover"
@@ -131,7 +131,7 @@ html, body {
 												<i class="fa fa-globe"></i>
 											</button>
 										</p>
-										
+
 									</div>
 
 								</form>
@@ -180,24 +180,22 @@ html, body {
 										}
 
 										//pontos /// trocar pelos objetos da lista
-										<%@  page 
- 												import="model.VisitaDAO , model.Visita, java.util.List, java.util.ArrayList"
- 											%>
-											<%request.setCharacterEncoding("UTF8");
-				VisitaDAO visitaDAO = new VisitaDAO();
-				List<Visita> listavisita = new ArrayList<Visita>();
-				String textopesquisa1 = request.getParameter("txtpesquisa1");
-				String textopesquisa2 = request.getParameter("txtpesquisa2");
-				String textopesquisa3 = request.getParameter("txtpesquisa3");
-				String textopesquisa4 = request.getParameter("txtpesquisa4");
-				System.out.println(textopesquisa1);
-				System.out.println(textopesquisa2);
-				System.out.println(textopesquisa3);
-				System.out.println(textopesquisa4);
-				listavisita = visitaDAO.listarmapa(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);%>
+										<%@  page import="model.VisitaDAO , model.Visita, java.util.List, java.util.ArrayList"%>
+										<%request.setCharacterEncoding("UTF8");
+										VisitaDAO visitaDAO = new VisitaDAO();
+										List<Visita> listavisita = new ArrayList<Visita>();
+										String textopesquisa1 = request.getParameter("txtpesquisa1");
+										String textopesquisa2 = request.getParameter("txtpesquisa2");
+										String textopesquisa3 = request.getParameter("txtpesquisa3");
+										String textopesquisa4 = request.getParameter("txtpesquisa4");
+										System.out.println(textopesquisa1);
+										System.out.println(textopesquisa2);
+										System.out.println(textopesquisa3);
+										System.out.println(textopesquisa4);
+										listavisita = visitaDAO.listarmapa(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);%>
 										var locations = [ 
 											<%for (Visita v : listavisita) {
-												
+
 					//System.out.println(v.getLatitude() + "," + v.getLongitude() + "},{");%>
 												{lat:<%=v.getLatitude()%>,
 												lng:<%=v.getLongitude()%>

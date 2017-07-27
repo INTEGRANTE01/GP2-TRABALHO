@@ -73,7 +73,7 @@
 		                    </select>			           		    				
 						</div>		
 						<c:if test="${not empty message}">
-							<div class="col-lg-4 col-xs-12">					
+							<div class="col-lg-12 col-xs-12">					
 								<c:if test = "${fn:contains(message, 'Erro')}">
 											<div class="alert alert-danger fade in">
 													<a href="#" class="close" data-dismiss="alert">&times;</a>
