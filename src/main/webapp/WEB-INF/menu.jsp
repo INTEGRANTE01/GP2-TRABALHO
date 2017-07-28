@@ -56,56 +56,77 @@
                 </ul>
               </div>
               <div class="menu_section">
+                <% if (session.getAttribute("funcao").equals("Administrador")) {
+                 %>
                 <h3>INFORMAÇÕES</h3>
-                <ul class="nav side-menu">                	
-                  <% if (session.getAttribute("funcao").equals("Administrador")) {
-                   %>
-                   <li><a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav side-menu">
+                   <li><a><i class="fa fa-edit"></i>Cadastros<span class="fa fa-chevron-down"></span></a>
                    		<ul class="nav child_menu">                   
                     		<li><a href="funcionario">Funcionário</a></li>
                             <li><a href="visita">Visita</a></li>
                            	<li><a href="denuncia">Denúncia</a></li>
                     	</ul> 
-                    </li> 
-                   <li><a><i class="fa fa-search"></i> Busca <span class="fa fa-chevron-down"></span></a>
+                    </li>                       
+                   <li><a><i class="fa fa-search"></i>Busca<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="buscafuncionario">Funcionários</a></li>
                       <li><a href="buscavisita">Visitas</a></li>
                       <li><a href="buscadenuncia">Denúncias</a></li>                      
                     </ul>
-                   </li>      
+                   </li>
+                   	<li><a><i class="fa fa-check-circle"></i>Parametros de Controle<span class="fa fa-chevron-down"></span></a>
+                   		<ul class="nav child_menu">                   
+                    		<li><a href="#">Estágio</a></li>
+                            <li><a href="#">Tipo de Imovel</a></li>
+                           	<li><a href="#">Tipo de Foco</a></li>
+                           	<li><a href="#">Ação Corretiva</a></li>
+                    	</ul>
+                    </li> 
+                   
+                    <li><a><i class="fa fa-check-circle-o"></i>Parametros Auxiliares <span class="fa fa-chevron-down"></span></a>
+                   		<ul class="nav child_menu">                   
+                    		<li><a href="#">Cidades</a></li>
+                    		<li><a href="#">Bairros</a></li>                     		 
+                    	</ul>                    	 
+                    </li>
+                   </ul> 
                     <% 
                     } else if (session.getAttribute("funcao").equals("Atendente")) {                    	
                         	  
                     %>
-                     <li><a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
+                     <h3>INFORMAÇÕES</h3>
+               		 <ul class="nav side-menu">
+                     <li><a><i class="fa fa-edit"></i>Cadastros <span class="fa fa-chevron-down"></span></a>
                      	<ul class="nav child_menu">
                            	<li><a href="denuncia">Denúncia</a></li>
                     	</ul> 
                     </li>
-                    <li><a><i class="fa fa-edit"></i> Busca <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-edit"></i>Busca <span class="fa fa-chevron-down"></span></a>
                      	<ul class="nav child_menu">
                            	<li><a href="buscadenuncia">Denúncia</a></li>
                     	</ul> 
                     </li>
+                     </ul>
                     <%
 					} else if (session.getAttribute("funcao").equals("Agente")) {
 
               		%>
-              		<li><a><i class="fa fa-edit"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
+              		 <h3>INFORMAÇÕES</h3>
+               		 <ul class="nav side-menu">
+              		<li><a><i class="fa fa-edit"></i>Cadastros <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
                            	<li><a href="visita">Visita</a></li>
                    		</ul> 
                     </li>
-                    <li><a><i class="fa fa-edit"></i> Busca <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-edit"></i>Busca <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
                            	<li><a href="buscavisita">Visita</a></li>
                    		</ul> 
-                    </li>			
-              		<%
+                    </li>             		
+                	</ul>                
+                	<%
                     }
                     %>  
-                 </ul>
               </div>   
             </div>
             <!-- /sidebar menu -->
