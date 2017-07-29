@@ -91,6 +91,8 @@ public class Denuncia {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	
 	@Override
 	public String toString() {
 		return "Denuncia [iddencuncia=" + iddenuncia + ", data_denuncia=" + data_denuncia + ", bairro=" + bairro
