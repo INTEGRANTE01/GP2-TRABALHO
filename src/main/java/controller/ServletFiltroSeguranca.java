@@ -23,7 +23,7 @@ import model.Visita;
 //@WebFilter(servletNames = "ServletVisita")
 @WebFilter("/teste.jsp")
 
-public class ServletFiltroSegurança implements Filter {	
+public class ServletFiltroSeguranca implements Filter {	
 		
   public void init(FilterConfig filterConfig) throws ServletException {
   }
