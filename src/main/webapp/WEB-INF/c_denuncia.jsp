@@ -143,7 +143,7 @@
 												</button>
 											</p>
  										<div class="table-responsive">
-											<table class="footable table table-striped jambo_table breakpoint-table" data-page-size="8" data-filter=#filter>
+											<table class="table table-striped jambo_table breakpoint-table" data-page-size="8" data-filter=#filter>
 												<thead>
 													<tr>
 														<th>Denunciante</th>
