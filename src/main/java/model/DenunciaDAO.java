@@ -127,15 +127,16 @@ public class DenunciaDAO extends ConectaBanco {
 			while (rs.next()) {
 				Denuncia denuncia = new Denuncia();
 				denuncia.setIddenuncia(rs.getInt("iddenuncia"));
+				denuncia.setDenunciante(rs.getString("denunciante"));
 				denuncia.setData_denuncia(rs.getTimestamp("data_denuncia"));
 				denuncia.setBairro(rs.getString("bairro"));
 				denuncia.setRua(rs.getString("rua"));
+				denuncia.setQuadra(rs.getString("quadra"));
 				denuncia.setLote(rs.getInt("lote"));
 				denuncia.setNumero(rs.getString("numero"));
 				denuncia.setCidade(rs.getString("cidade"));
 				denuncia.setTp_imovel(rs.getString("tp_imovel"));
 				denuncia.setDesc_den(rs.getString("desc_den"));
-				denuncia.setDenunciante(rs.getString("denunciante"));
 				denuncia.setCep(rs.getString("cep"));
 				lista.add(denuncia);
 			}
@@ -158,15 +159,16 @@ public class DenunciaDAO extends ConectaBanco {
 			while (rs.next()) {
 				Denuncia denuncia = new Denuncia();
 				denuncia.setIddenuncia(rs.getInt("iddenuncia"));
+				denuncia.setDenunciante(rs.getString("denunciante"));
 				denuncia.setData_denuncia(rs.getTimestamp("data_denuncia"));
 				denuncia.setBairro(rs.getString("bairro"));
 				denuncia.setRua(rs.getString("rua"));
+				denuncia.setQuadra(rs.getString("quadra"));
 				denuncia.setLote(rs.getInt("lote"));
 				denuncia.setNumero(rs.getString("numero"));
 				denuncia.setCidade(rs.getString("cidade"));
 				denuncia.setTp_imovel(rs.getString("tp_imovel"));
 				denuncia.setDesc_den(rs.getString("desc_den"));
-				denuncia.setDenunciante(rs.getString("denunciante"));
 				denuncia.setCep(rs.getString("cep"));
 				lista.add(denuncia);
 			}

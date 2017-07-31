@@ -28,22 +28,8 @@
 <!-- Font Awesome -->
 <link href="vendors/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet">
-<!-- Datatables -->
-<link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-	rel="stylesheet">
-
+<!-- Footable -->	
+<link	href="css/footable.bootstrap.min.css" rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -132,7 +118,6 @@
 																<a href="#" class="close" data-dismiss="alert">&times;</a>
 																<p>${message}</p>
 															</div>
-
 														</c:if>
 													</div>
 												</c:if>
@@ -158,25 +143,40 @@
 												</button>
 											</p>
  										<div class="table-responsive">
-											<table class="table table-striped jambo_table">
+											<table class="footable table table-striped jambo_table breakpoint-table" data-page-size="8" data-filter=#filter>
 												<thead>
 													<tr>
 														<th>Denunciante</th>
-														<th>Bairro</th>
+														<th>Data da Denuncia</th>
 														<th>Cidade</th>														
-														<th>Data</th>
+														<th>Tp_imovel</th>														
+														<th data-hide="all">Bairro</th>
+														<th data-hide="all">Rua</th>
+														<th data-hide="all">Quadra</th>
+														<th data-hide="all">Lote</th>
+														<th data-hide="all">Numero</th>
+														<th data-hide="all">Cep</th>
+														<th data-hide="all">Descrição da Denuncia</th>
 														<th>Ações</th>
+														
 													</tr>
 												</thead>
 												<tbody>
 													<c:forEach var="denuncia" items="${listadenuncia}">
 														<tr>
 															<td>${denuncia.denunciante}</td>
-															<td>${denuncia.bairro}</td>
-															<td>${denuncia.cidade}</td>
 															<td><fmt:formatDate
-																	value="${denuncia.data_denuncia}" type="both"
-																	pattern="dd/MM/yyyy hh:mm" dateStyle="full" /></td>
+																value="${denuncia.data_denuncia}" type="both"
+																pattern="dd/MM/yyyy hh:mm" dateStyle="full" /></td>
+															<td>${denuncia.cidade}</td>
+															<td>${denuncia.tp_imovel}</td>
+															<td>${denuncia.bairro}</td>
+															<td>${denuncia.rua}</td>
+															<td>${denuncia.quadra}</td>
+															<td>${denuncia.lote}</td>
+															<td>${denuncia.numero}</td>
+															<td>${denuncia.cep}</td>
+															<td>${denuncia.desc_den}</td>															
 															<td><div class="btn-group">
 																	<button type="button"
 																		class="btn dropdown-toggle btn btn-info btn-sm"
@@ -192,7 +192,8 @@
 																				class="glyphicon glyphicon-remove-sign"></span> Excluir</a></li>
 
 																	</ul>
-																</div></td>
+																</div>
+															</td>
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -205,15 +206,8 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
-			<footer>
-				<div class="pull-center">
-					Trabalho PW2017-1 - Sistema de Controle de Endemias <a
-						href="https://github.com/dougfalves/UFG-PW-TRABALHO">GitHub</a>
-				</div>
-				<div class="clearfix"></div>
-			</footer>
+				<c:import url="rodape.jsp" />
 		</div>
 		<script>
 		    function confirmaexclusao(id) {
@@ -228,33 +222,15 @@
 		<script src="vendors/jquery/dist/jquery.min.js"></script>
 		<!-- Bootstrap -->
 		<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- Datatables -->
-		<script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script src="vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script
-			src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script
-			src="vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-		<script src="vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-		<script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-		<script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script
-			src="vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script
-			src="vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script
-			src="vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script
-			src="vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script
-			src="vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-		<script src="vendors/jszip/dist/jszip.min.js"></script>
-		<script src="vendors/pdfmake/build/pdfmake.min.js"></script>
-		<script src="vendors/pdfmake/build/vfs_fonts.js"></script>
 		<!-- Bootstrap select -->
 		<script src="js/bootstrap-select.min.js"></script>
+		<!-- Footable-->
+		 <script src="vendors/moment/min/moment.min.js"></script>
+		<script src="js/footable.js"></script>
+
 		<!-- Custom Theme Scripts -->
 		<script src="build/js/custom.min.js"></script>
+		
 </body>
 </html>
 <%
