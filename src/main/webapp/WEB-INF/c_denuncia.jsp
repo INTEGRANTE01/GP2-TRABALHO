@@ -21,15 +21,15 @@
 <title>Sistema de Controle de Endemias</title>
 
 <!-- Bootstrap -->
-<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap select -->
+<link href="vendors/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
 <link href="css/bootstrap-select.min.css" rel="stylesheet">
 <!-- Font Awesome -->
-<link href="vendors/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="vendors/font-awesome/css/font-awesome.min.css"	rel="stylesheet">
 <!-- Footable -->	
-<link	href="css/footable.bootstrap.min.css" rel="stylesheet">
+<link href="css/footable.bootstrap.css" rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -143,31 +143,31 @@
 												</button>
 											</p>
  										<div class="table-responsive">
-											<table class="table table-striped jambo_table breakpoint-table" data-page-size="8" data-filter=#filter>
+											<!-- <table class="table table-hover jambo_table" data-toggle-selector=".footable-toggle" data-show-toggle="false" data-toggle-column="first">   -->
+											<table class="table table-hover jambo_table">
 												<thead>
 													<tr>
 														<th>Denunciante</th>
-														<th>Data da Denuncia</th>
+													<!-- <th>Data da Denuncia</th> -->	
 														<th>Cidade</th>														
 														<th>Tp_imovel</th>														
-														<th data-hide="all">Bairro</th>
-														<th data-hide="all">Rua</th>
-														<th data-hide="all">Quadra</th>
-														<th data-hide="all">Lote</th>
-														<th data-hide="all">Numero</th>
-														<th data-hide="all">Cep</th>
-														<th data-hide="all">Descrição da Denuncia</th>
-														<th>Ações</th>
-														
+														<th data-breakpoints="all">Bairro</th>
+														<th data-breakpoints="all">Rua</th>
+														<th data-breakpoints="all">Quadra</th>
+														<th data-breakpoints="all">Lote</th>
+														<th data-breakpoints="all">Numero</th>
+														<th data-breakpoints="all">Cep</th>
+														<th data-breakpoints="all">Descrição da Denuncia</th>
+														<th>Ações</th>														
 													</tr>
 												</thead>
 												<tbody>
 													<c:forEach var="denuncia" items="${listadenuncia}">
-														<tr>
+														<tr>															
 															<td>${denuncia.denunciante}</td>
-															<td><fmt:formatDate
+															<!--<td><fmt:formatDate
 																value="${denuncia.data_denuncia}" type="both"
-																pattern="dd/MM/yyyy hh:mm" dateStyle="full" /></td>
+																pattern="dd/MM/yyyy hh:mm" dateStyle="full" /></td>  -->
 															<td>${denuncia.cidade}</td>
 															<td>${denuncia.tp_imovel}</td>
 															<td>${denuncia.bairro}</td>
@@ -190,7 +190,6 @@
 																		<li><a
 																			onclick="confirmaexclusao(${denuncia.iddenuncia})"><span
 																				class="glyphicon glyphicon-remove-sign"></span> Excluir</a></li>
-
 																	</ul>
 																</div>
 															</td>
@@ -216,21 +215,29 @@
 		   	     if (resposta == true) {
 		   	          window.location.href = "buscadenuncia?acao=Excluir&iddenuncia="+id;
 		   	     }
-		   	}
+		   	}	
+	 </script>		 
+	 <script>	    
+		    jQuery(function($){
+		    	$('.table').footable({
+		    	 "toggleColumn": "first"
+		    	 "toggleSelector": ".footable-toggle"
+		    	 "showToggle": false
+		    	});
+		    });		    
     </script>
 		<!-- jQuery -->
 		<script src="vendors/jquery/dist/jquery.min.js"></script>
 		<!-- Bootstrap -->
 		<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 		<!-- Bootstrap select -->
-		<script src="js/bootstrap-select.min.js"></script>
-		<!-- Footable-->
-		 <script src="vendors/moment/min/moment.min.js"></script>
-		<script src="js/footable.js"></script>
-
+		<script src="js/bootstrap-select.min.js"></script>				
 		<!-- Custom Theme Scripts -->
 		<script src="build/js/custom.min.js"></script>
-		
+		<!-- Footable-->
+		<script src="vendors/moment/min/moment.min.js"></script>	
+		<script src="js/footable.js"></script>
+</div>		
 </body>
 </html>
 <%

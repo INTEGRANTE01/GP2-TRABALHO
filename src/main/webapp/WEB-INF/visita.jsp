@@ -28,6 +28,8 @@
     <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">      
     <!-- bootstrap-daterangepicker -->
     <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="vendors/switchery/switchery.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="css/custom.min.css" rel="stylesheet">	       
      
@@ -153,8 +155,8 @@
                                         <div class="help-block with-errors"></div>
                                         <div class="help">Longitude</div>
                                       </div>                     
-                                    </div>                        
-                        <!--Tipo_Imovel select-->
+                                    </div>
+                        
                           <div class="form-group">
                           <label class="control-label col-md-3" for="tipo">Tipo do Imovel <span class="required">*</span></label>
                             <div class="col-lg-3 col-xs-12">
@@ -170,6 +172,16 @@
                             <div class="help-block with-errors"></div>
                             </div>
                           </div>
+                           <!--Switcher-->
+                   				 	 <div class="form-group">
+                     				 	 <label class="control-label col-md-3"> Foco de Infestação                           					
+                        				 </label>
+                        				 <div class="col-lg-3 col-xs-12">
+                        					  <input type="checkbox" class="js-switch" /> 
+                        				  </div>
+                       				 </div>
+                         		     <div class="ln_solid"></div>                                    
+                        <!--Tipo_Imovel select-->
                         <!--Estagio select-->
                           <div class="form-group">
                           <label class="control-label col-md-3" for="estagio">Estagio do Ciclo </label>
@@ -250,7 +262,8 @@
     <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- bootstrap-VALIDATOR -->
     <script src="js/validator.min.js"></script>
-    
+    <!-- Switchery -->
+    <script src="vendors/switchery/switchery.min.js"></script>
     <script type="text/javascript">
     $(function() {
         $('input[name="data_visita"]').daterangepicker({

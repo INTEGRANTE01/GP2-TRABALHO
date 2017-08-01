@@ -172,8 +172,7 @@
 												</select>
 												<div class="help-block with-errors"></div>
 											</div>
-										</div>
-
+										</div>                    			
 										<!--Tipo_Imovel select-->
 										<div class="form-group">
 											<label class="control-label col-md-3" for="imovel">Tipo
@@ -237,7 +236,7 @@
     <!-- Bootstrap select -->
     <script src="js/bootstrap-select.min.js"></script>
     <!-- FastClick -->
-    <script src="vendors/fastclick/lib/fastclick.js"></script>   
+    <script src="vendors/fastclick/lib/fastclick.js"></script> 
     <!-- bootstrap-daterangepicker -->
     <script src="vendors/moment/min/moment.min.js"></script>
     <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
