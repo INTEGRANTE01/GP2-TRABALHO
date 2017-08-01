@@ -206,7 +206,7 @@
 					</div>
 				</div>
 			</div>
-				<c:import url="rodape.jsp" />
+				<!-- <c:import url="rodape.jsp" /> -->
 		</div>
 		<script>
 		    function confirmaexclusao(id) {
