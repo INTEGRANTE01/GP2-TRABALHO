@@ -19,25 +19,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Sistema de Controle de Endemias</title>
-
 <!-- Bootstrap -->
 <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap select -->
 <link href="css/bootstrap-select.min.css" rel="stylesheet">
 <!-- Font Awesome -->
 <link href="vendors/font-awesome/css/font-awesome.min.css"	rel="stylesheet">
+<!-- Custom Theme Style -->
+<link href="build/css/custom.min.css" rel="stylesheet">
 <!-- Footable -->	
-
-
-<link href="css/footable.core.css" rel="stylesheet">
+<link href="css/footable.standalone.min.css" rel="stylesheet">
 <!--
-<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/2.0.3/css/footable.core.css" rel="stylesheet">
+<link href="css/footable.core.css" rel="stylesheet">
+<link href="css/footable.standalone.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/2.0.3/css/footable.metro.css" rel="stylesheet">
 -->
 
-
-<!-- Custom Theme Style -->
-<link href="build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -148,8 +146,9 @@
 													<i class="fa fa-search"></i>
 												</button>
 											</p>
- 										<div class="table-responsive">
-											<table class="footable table table-striped jambo_table toggle-circle-filled">											
+ 										<div>
+											<table class="table footable toggle-circle-filled table-striped  table-hover" 
+											data-sorting="true" data-show-toggle="true" data-paging-widget="false" >											
 												<thead>
 													<tr>
 														<th data-toggle="true">Denunciante</th>
@@ -163,7 +162,7 @@
 														<th data-breakpoints="all">Numero</th>
 														<th data-breakpoints="all">Cep</th>
 														<th data-breakpoints="all">Descrição da Denuncia</th>
-														<th>Ações</th>														
+														<th data-sorter="false">Ações</th>														
 													</tr>
 												</thead>
 												<tbody>
@@ -172,7 +171,7 @@
 															<td>${denuncia.denunciante}</td>
 															<td><fmt:formatDate
 																value="${denuncia.data_denuncia}" type="both"
-																pattern="dd/MM/yyyy hh:mm" dateStyle="full" /></td>
+																pattern="dd/MM/yyyy HH:mm" dateStyle="full" /></td>
 															<td>${denuncia.cidade}</td>
 															<td>${denuncia.bairro}</td>
 															<td>${denuncia.tp_imovel}</td>
@@ -223,13 +222,23 @@
 		<script src="build/js/custom.min.js"></script>
 		<!-- Footable-->
 		<script src="vendors/moment/min/moment.min.js"></script>	
-		<script src="js/footable.min.js"></script>
+		<script src="js/footable.js"></script>
+		
 		<script type="text/javascript">
-
 		// Instanciar Footable
 			$(function () {
-				$('.footable').footable();
+				$('.footable').footable({
+			
+					"paging": {
+						"enabled": true,											
+						"position": "right",
+						"limit": 3,
+						"size": 8,
+						"countFormat": "Resgitros {PF}-{PL} de {TR} resultados",	
+					}
+				});
 			});
+
 		// Função de Exclusão
 		    function confirmaexclusao(id) {
 		   	     var resposta = confirm("Deseja remover o registro?");
@@ -238,6 +247,7 @@
 		   	     }
 		   	}	
 		</script>
+
 		<c:import url="rodape.jsp" />
 </body>
 </html>

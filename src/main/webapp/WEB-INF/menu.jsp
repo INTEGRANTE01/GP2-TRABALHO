@@ -9,14 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- Bootstrap -->
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap select -->
-  	<link href="css/bootstrap-select.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="css/custom.min.css" rel="stylesheet">	
+
 
   </head>    
    <body>    
@@ -150,7 +143,7 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                     <img src="images/user.png" alt=""><% out.print(session.getAttribute("nome")); %>
                     <span class=" fa fa-angle-down"></span>
                   </a>
