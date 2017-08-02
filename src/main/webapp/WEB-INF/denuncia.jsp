@@ -83,7 +83,7 @@
 											<label class="control-label col-md-3" for="data">Data
 												da Denúncia <span class="required">*</span>
 											</label>
-											<div class="col-lg-4 col-xs-12">
+											<div class="col-lg-2 col-xs-12">
 												<input type="text" id="data_denuncia" name="data_denuncia"
 													value="<fmt:formatDate value="${denuncia.data_denuncia}" pattern="dd/MM/yyyy HH:mm:ss"/>"
 													required="required" class="form-control input-md">
@@ -218,15 +218,7 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
-			<footer>
-				<div class="pull-center">
-					Trabalho PW2017-1 - Sistema de Controle de Endemias <a
-						href="https://github.com/dougfalves/UFG-PW-TRABALHO">GitHub</a>
-				</div>
-				<div class="clearfix"></div>
-			</footer>
 		</div>
 
         <!-- jQuery -->
@@ -248,16 +240,18 @@
         $(function() {
         $('input[name="data_denuncia"]').daterangepicker({            
 	    singleDatePicker: true,
+            singleDatePicker: true,
             timePicker: true,
             timePickerIncrement: 1,
             showMeridian:false,
             timePicker24Hour:true,
             locale: {
-                format: 'DD/MM/YYYY HH:mm A'
+                format: 'DD/MM/YYYY HH:mm'
             }
         });
     });
-    </script>	
+    </script>
+	<c:import url="rodape.jsp" />
 </body>
 </html>
 

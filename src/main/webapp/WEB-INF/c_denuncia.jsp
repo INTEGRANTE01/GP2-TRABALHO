@@ -23,13 +23,19 @@
 <!-- Bootstrap -->
 <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap select -->
-<link href="vendors/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-
 <link href="css/bootstrap-select.min.css" rel="stylesheet">
 <!-- Font Awesome -->
 <link href="vendors/font-awesome/css/font-awesome.min.css"	rel="stylesheet">
 <!-- Footable -->	
-<link href="css/footable.bootstrap.css" rel="stylesheet">
+
+
+<link href="css/footable.core.css" rel="stylesheet">
+<!--
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/2.0.3/css/footable.core.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/2.0.3/css/footable.metro.css" rel="stylesheet">
+-->
+
+
 <!-- Custom Theme Style -->
 <link href="build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -143,15 +149,14 @@
 												</button>
 											</p>
  										<div class="table-responsive">
-											<!-- <table class="table table-hover jambo_table" data-toggle-selector=".footable-toggle" data-show-toggle="false" data-toggle-column="first">   -->
-											<table class="table table-hover jambo_table">
+											<table class="footable table table-striped jambo_table toggle-circle-filled">											
 												<thead>
 													<tr>
-														<th>Denunciante</th>
-													<!-- <th>Data da Denuncia</th> -->	
+														<th data-toggle="true">Denunciante</th>
+													    <th data-breakpoints="xs">Data da Denuncia</th>
 														<th>Cidade</th>														
-														<th>Tp_imovel</th>														
-														<th data-breakpoints="all">Bairro</th>
+														<th data-breakpoints="xs">Bairro</th>
+														<th data-breakpoints="all">Tipo de imovel</th>																												
 														<th data-breakpoints="all">Rua</th>
 														<th data-breakpoints="all">Quadra</th>
 														<th data-breakpoints="all">Lote</th>
@@ -165,12 +170,12 @@
 													<c:forEach var="denuncia" items="${listadenuncia}">
 														<tr>															
 															<td>${denuncia.denunciante}</td>
-															<!--<td><fmt:formatDate
+															<td><fmt:formatDate
 																value="${denuncia.data_denuncia}" type="both"
-																pattern="dd/MM/yyyy hh:mm" dateStyle="full" /></td>  -->
+																pattern="dd/MM/yyyy hh:mm" dateStyle="full" /></td>
 															<td>${denuncia.cidade}</td>
-															<td>${denuncia.tp_imovel}</td>
 															<td>${denuncia.bairro}</td>
+															<td>${denuncia.tp_imovel}</td>
 															<td>${denuncia.rua}</td>
 															<td>${denuncia.quadra}</td>
 															<td>${denuncia.lote}</td>
@@ -206,26 +211,8 @@
 					</div>
 				</div>
 			</div>
-				<!-- <c:import url="rodape.jsp" /> -->
 		</div>
-		<script>
-		    function confirmaexclusao(id) {
-		   	     var resposta = confirm("Deseja remover o registro?");
-		   	 
-		   	     if (resposta == true) {
-		   	          window.location.href = "buscadenuncia?acao=Excluir&iddenuncia="+id;
-		   	     }
-		   	}	
-	 </script>		 
-	 <script>	    
-		    jQuery(function($){
-		    	$('.table').footable({
-		    	 "toggleColumn": "first"
-		    	 "toggleSelector": ".footable-toggle"
-		    	 "showToggle": false
-		    	});
-		    });		    
-    </script>
+		</div>  
 		<!-- jQuery -->
 		<script src="vendors/jquery/dist/jquery.min.js"></script>
 		<!-- Bootstrap -->
@@ -236,8 +223,22 @@
 		<script src="build/js/custom.min.js"></script>
 		<!-- Footable-->
 		<script src="vendors/moment/min/moment.min.js"></script>	
-		<script src="js/footable.js"></script>
-</div>		
+		<script src="js/footable.min.js"></script>
+		<script type="text/javascript">
+
+		// Instanciar Footable
+			$(function () {
+				$('.footable').footable();
+			});
+		// Função de Exclusão
+		    function confirmaexclusao(id) {
+		   	     var resposta = confirm("Deseja remover o registro?");
+		   	     if (resposta == true) {
+		   	          window.location.href = "buscadenuncia?acao=Excluir&iddenuncia="+id;
+		   	     }
+		   	}	
+		</script>
+		<c:import url="rodape.jsp" />
 </body>
 </html>
 <%

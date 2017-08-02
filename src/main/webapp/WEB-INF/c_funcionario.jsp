@@ -169,12 +169,6 @@
               </div>  
           </div>
 		</div>
-		 <footer>
-          <div class="pull-center">
-            Trabalho PW2017-1 - Sistema de Controle de Endemias <a href="https://github.com/dougfalves/UFG-PW-TRABALHO">GitHub</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
     </div>
     </div>
     <script>
@@ -206,7 +200,7 @@
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
     <script src="js/bootstrap-select.min.js"></script>
-	
+					<c:import url="rodape.jsp" />
   </body>
 </html>
 <%

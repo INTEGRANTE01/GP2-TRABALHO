@@ -172,7 +172,7 @@
                             <div class="help-block with-errors"></div>
                             </div>
                           </div>
-                           <!--Switcher-->
+                           <!--Switcher
                    				 	 <div class="form-group">
                      				 	 <label class="control-label col-md-3"> Foco de Infestação                           					
                         				 </label>
@@ -180,7 +180,7 @@
                         					  <input type="checkbox" class="js-switch" /> 
                         				  </div>
                        				 </div>
-                         		     <div class="ln_solid"></div>                                    
+                         		     <div class="ln_solid"></div>-->                                    
                         <!--Tipo_Imovel select-->
                         <!--Estagio select-->
                           <div class="form-group">
@@ -241,13 +241,7 @@
               </div>
 		</div>
 		       </div>
-      <footer>
-          <div class="pull-center">
-            Trabalho PW2017-1 - Sistema de Controle de Endemias <a href="https://github.com/dougfalves/UFG-PW-TRABALHO">GitHub</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-    </div>
+        </div>
     </div>
     <!-- jQuery -->
     <script src="vendors/jquery/dist/jquery.min.js"></script>
@@ -278,6 +272,7 @@
         });
     });
     </script>
+    		<c:import url="rodape.jsp" />
   </body>
 </html>
 <%
