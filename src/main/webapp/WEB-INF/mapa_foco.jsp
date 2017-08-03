@@ -33,7 +33,7 @@
 /* Always set the map height explicitly to define the size of the div
              * element that contains the map. */
 #map {
-	height: 600px;
+	height: 662px;
 	width: 100%;
 	align-content: center
 }
@@ -55,26 +55,21 @@ html, body {
 				<div class="row">
 					<br />
 					<div class="row">
-						<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="col-lg-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-
 									<!-- Mapa-->
 									<h2>
-										Mapa <small></small>
+										Mapa<small>Parametros de Busca </small>
 									</h2>
-
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
 									</ul>
-
-									<div class="clearfix"></div>
+								<div class="clearfix"></div>
 								</div>
-
-
 								<form class="form-horizontal form-label-left"
 									data-toggle="validator" method="post" action="carregamapa">
 
@@ -94,7 +89,6 @@ html, body {
 											<option value="Trindade">Trindade</option>
 										</select>
 									</div>
-
 									<div class="form-group  col-lg-3 col-xs-12">
 										<label>Tipo de Imovel </label> <select name="txtpesquisa3"
 											title="" class="form-control input-md selectpicker"
@@ -107,7 +101,6 @@ html, body {
 											<option value="Loja">Loja</option>
 											<option value="Sala">Sala comercial</option>
 										</select>
-
 									</div>
 									<div class="form-group  col-lg-3 col-xs-12">
 										<label>Estagio</label> <select name="txtpesquisa4" title=""
@@ -120,26 +113,37 @@ html, body {
 											<option value="Mosquito">Mosquito</option>
 										</select>
 									</div>
-
-
-									<div class="x_content">
-										
+									<div class="x_content">										
 										<p class="text-muted font-13 m-b-30">
 											<button type="submit" class="btn btn-warning"
 												data-container="body" data-toggle="popover"
 												data-placement="bottom" title="Visualizar no Mapa">
 												<i class="fa fa-globe"></i>
 											</button>
-										</p>
-										
+										</p>										
 									</div>
-
 								</form>
-
-
+							</div>
+							</div>
+							</div>
+				</div>		
+				<div class="row">
+					<div class="row">
+						<div class="col-lg-6 col-lg-6 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<!-- Mapa-->
+									<h2> Mapa <small>Local dos Focaos</small></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i
+												class="fa fa-chevron-up"></i></a></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+														
 								<!-- Iniciando o mapa -->
-
-
 
 								<div id="map"></div>
 								<script>
@@ -217,8 +221,87 @@ html, body {
 
 							</div>
 						</div>
+						  <div class="col-md-6 col-sm-12 col-xs-12">
+			                <div class="x_panel">
+			                  <div class="x_title">
+			                    <h2>Bar graph <small>Sessions</small></h2>
+			                    <ul class="nav navbar-right panel_toolbox">
+			                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+			                      </li>
+			                      <li class="dropdown">
+			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+			                        <ul class="dropdown-menu" role="menu">
+			                          <li><a href="#">Settings 1</a>
+			                          </li>
+			                          <li><a href="#">Settings 2</a>
+			                          </li>
+			                        </ul>
+			                      </li>
+			                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+			                      </li>
+			                    </ul>
+			                    <div class="clearfix"></div>
+			                  </div>
+			                  <div class="x_content">
+			                    <canvas id="mybarChart"></canvas>
+			                  </div>
+			                </div>
+             			 </div>
+	             		<div class="col-md-6 col-sm-6 col-xs-12">
+	                <div class="x_panel">
+	                  <div class="x_title">
+	                    <h2>Donut Graph <small>Sessions</small></h2>
+	                    <ul class="nav navbar-right panel_toolbox">
+	                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+	                      </li>
+	                      <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+	                        <ul class="dropdown-menu" role="menu">
+	                          <li><a href="#">Settings 1</a>
+	                          </li>
+	                          <li><a href="#">Settings 2</a>
+	                          </li>
+	                        </ul>
+	                      </li>
+	                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+	                      </li>
+	                    </ul>
+	                    <div class="clearfix"></div>
+	                  </div>
+	                  <div class="x_content">
+	                    <canvas id="canvasDoughnut"></canvas>
+	                  </div>
+	                </div>
+	              </div>
+	              
+	              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Line graph<small>Sessions</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="lineChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>            
 					</div>
-				</div>
 			</div>
 		</div>
 		<footer>
