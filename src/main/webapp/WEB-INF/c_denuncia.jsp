@@ -162,7 +162,7 @@
 														<th data-breakpoints="all">Numero</th>
 														<th data-breakpoints="all">Cep</th>
 														<th data-breakpoints="all">Descrição da Denuncia</th>
-														<th data-sorter="false">Ações</th>														
+														<th>Ações</th>														
 													</tr>
 												</thead>
 												<tbody>
@@ -234,7 +234,7 @@
 						"position": "right",
 						"limit": 3,
 						"size": 8,
-						"countFormat": "Resgitros {PF}-{PL} de {TR} resultados",	
+						"countFormat": "Resgitros {PF}-{PL} de {TR} resultados",
 					}
 				});
 			});
