@@ -234,7 +234,7 @@
 						"position": "right",
 						"limit": 3,
 						"size": 8,
-						"countFormat": "Resgitros {PF}-{PL} de {TR} resultados",
+						"countFormat": "Resgitros {PF} a {PL} de {TR} resultados",
 					}
 				});
 			});
