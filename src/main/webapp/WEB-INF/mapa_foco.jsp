@@ -229,7 +229,6 @@ html, body {
 			<div class="clearfix"></div>
 		</footer>
 	</div>
-	</div>
 	<!-- jQuery -->
 	<script src="vendors/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap -->

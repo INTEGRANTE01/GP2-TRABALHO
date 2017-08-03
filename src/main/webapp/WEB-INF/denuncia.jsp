@@ -178,7 +178,7 @@
 											<label class="control-label col-md-3" for="imovel">Tipo
 												do Imovel <span class="required">*</span>
 											</label>
-											<div class="col-lg-4 col-xs-12">
+											<div class="col-lg-3 col-xs-12">
 												<select required id="tp_imovel" name="tp_imovel"
 													title="Selecione item"
 													class="form-control input-md selectpicker"
