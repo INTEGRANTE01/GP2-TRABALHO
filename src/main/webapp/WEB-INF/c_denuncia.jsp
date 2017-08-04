@@ -148,7 +148,7 @@
 											</p>
  										<div>
 											<table class="table footable toggle-circle-filled table-striped  table-hover" 
-											data-sorting="true" data-show-toggle="true" data-paging-widget="false" >											
+											data-sorting="true" data-show-toggle="true">											
 												<thead>
 													<tr>
 														<th data-toggle="true">Denunciante</th>
@@ -227,14 +227,13 @@
 		<script type="text/javascript">
 		// Instanciar Footable
 			$(function () {
-				$('.footable').footable({
-			
+				$('.footable').footable({			
 					"paging": {
 						"enabled": true,											
 						"position": "right",
 						"limit": 3,
 						"size": 8,
-						"countFormat": "Resgitros {PF} a {PL} de {TR} resultados",
+						"countFormat": "Resgitros {PF} a {PL} de {TR} resultados"
 					}
 				});
 			});
