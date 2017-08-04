@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import model.FuncionarioDAO;
 import model.Funcionario;
 
-@WebServlet(name = "ServletLogin", urlPatterns = "/login")
+@WebServlet(name = "ServletLogin", urlPatterns = "/inicio")
 public class ServletLogin extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -31,8 +31,11 @@ public class ServletLogin extends HttpServlet {
 		acao = request.getParameter("acao");
 		if (acao.equals("logout")) {
 			logout(request, response);
+		}else if(acao.equals("inicio")){
+			destino = "WEB-INF/pagina_inicial.jsp";			
 		}
-
+			RequestDispatcher rd = request.getRequestDispatcher(destino);
+			rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -44,6 +47,9 @@ public class ServletLogin extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		RequestDispatcher rd = request.getRequestDispatcher(destino);
+		rd.forward(request, response);
 
 	}
 
@@ -58,14 +64,11 @@ public class ServletLogin extends HttpServlet {
 			sessao.setAttribute("nome", funcionario.getNome());
 			sessao.setAttribute("funcao", funcionario.getFuncao());
 			destino = "WEB-INF/pagina_inicial.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(destino);
-			rd.forward(request, response);		
+	
 		} else {
 			message = "Falha no login, verifique os dados.";
 			request.setAttribute("message", message);
 			destino = "/index.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(destino);
-			rd.forward(request, response);
 		}
 
 	}
@@ -77,10 +80,7 @@ public class ServletLogin extends HttpServlet {
 		sessao.removeAttribute("nome");
 		sessao.removeAttribute("funcao");
 		sessao.invalidate();
-		destino = "/index.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(destino);
-		rd.forward(request, response);
-
+		destino = "/index.jsp";		
 	}
 
 }

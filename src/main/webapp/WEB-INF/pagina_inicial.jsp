@@ -44,7 +44,8 @@
             <div class="page-title">
               <div class="imgcenter" >
                 <h3 ></h3>
-                    <img src="images/logosis.png"  width="400px"/>
+                    <img src="images/logosis.png" class="img-responsive img-circled" width="500px"/>
+                     <!-- <img src="images/logosis.png" class="img-responsive img-thumbnail"/> --> 
               </div>
             </div>
           </div>

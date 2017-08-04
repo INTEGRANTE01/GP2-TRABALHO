@@ -50,7 +50,7 @@
 		<div class="login_wrapper">
 			<div class="animate form login_form" id="formlogin">
 				<section class="login_content">
-					<form method="post" action="login">
+					<form method="post" action="inicio">
 						<div>
 							<img src="images/logosis.png" width="280px" />
 						</div>
