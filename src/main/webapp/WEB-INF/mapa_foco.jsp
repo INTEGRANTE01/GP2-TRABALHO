@@ -33,7 +33,7 @@
 /* Always set the map height explicitly to define the size of the div
              * element that contains the map. */
 #map {
-	height: 662px;
+	height: 326px;
 	width: 100%;
 	align-content: center
 }
@@ -59,9 +59,7 @@ html, body {
 							<div class="x_panel">
 								<div class="x_title">
 									<!-- Mapa-->
-									<h2>
-										Mapa<small>Parametros de Busca </small>
-									</h2>
+									<h2>Mapa<small>Parametros de Busca </small></h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -70,8 +68,9 @@ html, body {
 									</ul>
 								<div class="clearfix"></div>
 								</div>
+								<div class="x_content">	
 								<form class="form-horizontal form-label-left"
-									data-toggle="validator" method="post" action="carregamapa">
+								 data-toggle="validator" method="post" action="carregamapa">
 
 									<div class="form-group  col-lg-3 col-xs-12">
 										<label>Bairro </label> <input type="text" name="txtpesquisa1"
@@ -112,24 +111,24 @@ html, body {
 											<option value="Pupa">Pupa</option>
 											<option value="Mosquito">Mosquito</option>
 										</select>
-									</div>
-									<div class="x_content">										
-										<p class="text-muted font-13 m-b-30">
-											<button type="submit" class="btn btn-warning"
-												data-container="body" data-toggle="popover"
-												data-placement="bottom" title="Visualizar no Mapa">
-												<i class="fa fa-globe"></i>
-											</button>
-										</p>										
+									</div>																		
+										<div class="form-group  col-lg-3 col-xs-12">										
+										<button type="submit" class="btn btn-info"
+											data-container="body" data-toggle="popover"
+											data-placement="bottom" title="Visualizar no Mapa">
+											<i class="fa fa-globe"></i>  Visualizar
+										</button>
+									</div>											
 									</div>
 								</form>
 							</div>
-							</div>
-							</div>
-				</div>		
+						</div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="row">
-						<div class="col-lg-6 col-lg-6 col-sm-12 col-xs-12">
+					<!-- Mapa  -->				
+						<div class="col-lg-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
 									<!-- Mapa-->
@@ -142,7 +141,7 @@ html, body {
 									</ul>
 									<div class="clearfix"></div>
 								</div>
-														
+								<div class="x_content">															
 								<!-- Iniciando o mapa -->
 
 								<div id="map"></div>
@@ -211,32 +210,21 @@ html, body {
 									</script>
 								<script
 									src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-										
-									</script>
+								</script>
 								<script async defer
 									src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDMW1J5J0TVAdNSO0CCSutqo29mKSKQ5A&callback=initMap">
-										
-									</script>
-								<!-- Mapa  -->
-
+								</script>
+								</div>							
 							</div>
-						</div>
+						</div>					
+					  <!-- Grafico em Barras -->
 						  <div class="col-md-6 col-sm-12 col-xs-12">
 			                <div class="x_panel">
 			                  <div class="x_title">
 			                    <h2>Bar graph <small>Sessions</small></h2>
 			                    <ul class="nav navbar-right panel_toolbox">
 			                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-			                      </li>
-			                      <li class="dropdown">
-			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-			                        <ul class="dropdown-menu" role="menu">
-			                          <li><a href="#">Settings 1</a>
-			                          </li>
-			                          <li><a href="#">Settings 2</a>
-			                          </li>
-			                        </ul>
-			                      </li>
+			                      </li>			                      
 			                      <li><a class="close-link"><i class="fa fa-close"></i></a>
 			                      </li>
 			                    </ul>
@@ -247,70 +235,48 @@ html, body {
 			                  </div>
 			                </div>
              			 </div>
+             			 <!-- Grafico em Pizza -->
 	             		<div class="col-md-6 col-sm-6 col-xs-12">
-	                <div class="x_panel">
-	                  <div class="x_title">
-	                    <h2>Donut Graph <small>Sessions</small></h2>
-	                    <ul class="nav navbar-right panel_toolbox">
-	                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-	                      </li>
-	                      <li class="dropdown">
-	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-	                        <ul class="dropdown-menu" role="menu">
-	                          <li><a href="#">Settings 1</a>
-	                          </li>
-	                          <li><a href="#">Settings 2</a>
-	                          </li>
-	                        </ul>
-	                      </li>
-	                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-	                      </li>
-	                    </ul>
-	                    <div class="clearfix"></div>
-	                  </div>
-	                  <div class="x_content">
-	                    <canvas id="canvasDoughnut"></canvas>
-	                  </div>
-	                </div>
-	              </div>
-	              
-	              <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Line graph<small>Sessions</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <canvas id="lineChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>            
-					</div>
+			                <div class="x_panel">
+			                  <div class="x_title">
+			                    <h2>Donut Graph <small>Sessions</small></h2>
+			                    <ul class="nav navbar-right panel_toolbox">
+			                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+			                      </li>
+			                      	<li><a class="close-link"><i class="fa fa-close"></i></a>
+			                      </li>
+			                    </ul>
+			                    <div class="clearfix"></div>
+			                  </div>
+			                  <div class="x_content">
+			                    <canvas id="canvasDoughnut"></canvas>
+			                  </div>
+			                </div>
+	             		 </div>	
+										  
+					
+	             		 <!-- Grafico em Linhas	              
+		              <div class="col-md-12 col-sm-12 col-xs-12">
+		                <div class="x_panel">
+		                  <div class="x_title">
+		                    <h2>Line graph<small>Sessions</small></h2>
+		                    <ul class="nav navbar-right panel_toolbox">
+		                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+		                      </li>		                     
+		                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+		                      </li>
+		                    </ul>
+		                    <div class="clearfix"></div>
+		                  </div>
+		                  <div class="x_content">
+		                    <canvas id="lineChart"></canvas>
+		                  </div>
+	                	</div>
+	              	</div> -->
+            	</div>            
 			</div>
 		</div>
-		<footer>
-			<div class="pull-center">
-				Trabalho PW2017-1 - Sistema de Controle de Endemias <a
-					href="https://github.com/dougfalves/UFG-PW-TRABALHO">GitHub</a>
-			</div>
-			<div class="clearfix"></div>
-		</footer>
+		</div>
 	</div>
 	<!-- jQuery -->
 	<script src="vendors/jquery/dist/jquery.min.js"></script>
@@ -322,6 +288,9 @@ html, body {
 	<script src="build/js/custom.min.js"></script>
 	<!-- bootstrap-VALIDATOR -->
 	<script src="js/validator.min.js"></script>
+	<!-- Chartjs-->
+	<script src="js/chart.min.js"></script>
+		<c:import url="rodape.jsp" />	
 </body>
 </html>
 <%

@@ -147,11 +147,13 @@
 												</button>
 											</p>
  										<div>
+ 										<div class="ln_solid"></div>                                
+ 										
 											<table class="table footable toggle-circle-filled table-striped  table-hover" 
 											data-sorting="true" data-show-toggle="true">											
 												<thead>
 													<tr>
-														<th data-toggle="true">Denunciante</th>
+														<!-- <th data-toggle="true">Denunciante</th>   -->
 													    <th data-breakpoints="xs">Data da Denuncia</th>
 														<th>Cidade</th>														
 														<th data-breakpoints="xs">Bairro</th>
@@ -160,7 +162,7 @@
 														<th data-breakpoints="all">Quadra</th>
 														<th data-breakpoints="all">Lote</th>
 														<th data-breakpoints="all">Numero</th>
-														<th data-breakpoints="all">Cep</th>
+														<!-- <th data-breakpoints="all">Cep</th>   -->
 														<th data-breakpoints="all">Descrição da Denuncia</th>
 														<th>Ações</th>														
 													</tr>
@@ -168,7 +170,7 @@
 												<tbody>
 													<c:forEach var="denuncia" items="${listadenuncia}">
 														<tr>															
-															<td>${denuncia.denunciante}</td>
+														<!-- 	<td>${denuncia.denunciante}</td>   -->
 															<td><fmt:formatDate
 																value="${denuncia.data_denuncia}" type="both"
 																pattern="dd/MM/yyyy HH:mm" dateStyle="full" /></td>
@@ -177,9 +179,9 @@
 															<td>${denuncia.tp_imovel}</td>
 															<td>${denuncia.rua}</td>
 															<td>${denuncia.quadra}</td>
-															<td>${denuncia.lote}</td>
+															<td>${denuncia.lote	}</td>
 															<td>${denuncia.numero}</td>
-															<td>${denuncia.cep}</td>
+															<!--<td>${denuncia.cep}</td>   -->
 															<td>${denuncia.desc_den}</td>															
 															<td><div class="btn-group">
 																	<button type="button"
