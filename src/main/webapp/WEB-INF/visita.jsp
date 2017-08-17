@@ -4,7 +4,7 @@
 	if(session.getAttribute("nome") != null) {
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
@@ -34,7 +34,14 @@
     <link href="css/custom.min.css" rel="stylesheet">	       
      
   </head>
-  <body class="nav-md">
+  <c:choose>         
+         <c:when test="${empty visita.latitude && empty visita.longitude}">
+     		<body onload="getLocation()" class="nav-md">       
+         </c:when>
+         <c:otherwise>
+            <body class="nav-md">
+         </c:otherwise>
+  </c:choose>
     <div class="container body">
       <div class="main_container">
   		<c:import url="menu.jsp" /> 
@@ -99,16 +106,19 @@
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="quadra">Quadra <span class="required">*</span></label>
                                       <div class="col-lg-1 col-xs-12">
-                                        <input type="text" id="quadra" name="quadra" value="${visita.quadra}"required="required" class="form-control input-md">
+                                        <input type="text" id="quadra" name="quadra" value="${visita.quadra} "required="required" class="form-control input-md">                                                                                
                                         <div class="help-block with-errors"></div>
                                       </div>
                                       <label class="control-label col-md-1" for="lote">Lote <span class="required">*</span></label>
                                       <div class="col-lg-1 col-xs-12">
-                                        <input type="text" id="lote" name="lote" value="${visita.lote}"required="required" class="form-control input-md">
+                                        <input type="text" id="lote" name="lote" value="${visita.lote}" required="required" class="form-control input-md">
+                                        <div class="help-block with-errors"></div>
                                       </div>
                                       <label class="control-label col-md-1" for="numero">Nº <span class="required">*</span></label>
                                       <div class="col-lg-1 col-xs-12">
-                                        <input type="text" id="numero" name="numero" value="${visita.numero}"required="required" class="form-control input-md">
+                                        <input type="text" id="numero" name="numero" value="${visita.numero}" required="required" class="form-control input-md" 
+                                        data-error="Preencha este campo">
+                                        <div class="help-block with-errors"></div>
                                       </div>
                                     </div>            
                             <!--Bairro Input-->
@@ -143,20 +153,30 @@
                             </div>
                           </div> 
                         <!--Coordenadas-->
-                                    <div class="form-group">
+                                                                       
+                                      <div class="form-group">
                                       <label class="control-label col-md-3" for="coordenadas">Coordenadas <span class="required">*</span></label>
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="latitude" name="latitude" value="${visita.latitude}"required="required" class="form-control input-md">
+                                        <input type="text" id="latitude" readonly="readonly" name="latitude" value="${visita.latitude}" required="required" class="form-control input-md">
                                         <div class="help-block with-errors"></div>
                                         <div class="help">Latitude</div>
                                       </div>
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="longitude" name="longitude" value="${visita.longitude}"required="required" class="form-control input-md">
+                                        <input type="text" id="longitude" readonly="readonly" name="longitude" value="${visita.longitude}" required="required" class="form-control input-md">
                                         <div class="help-block with-errors"></div>
                                         <div class="help">Longitude</div>
-                                      </div>                     
-                                    </div>
-                        
+                                      </div>                                                          
+                                    </div> 
+	                               <!--  <c:if test="${not empty erro_localiza}">
+	                               </c:if>-->
+	                                 <div class="form-group">
+                                    	<label class="control-label col-md-3"></label>
+                                      	<div class="col-lg-4 col-xs-12">
+                                        <h5 id="msgerro"></h5>                                      				
+										</div>      				    														
+									</div>
+										
+						<!--Tipo_Imovel select-->                        
                           <div class="form-group">
                           <label class="control-label col-md-3" for="tipo">Tipo do Imovel <span class="required">*</span></label>
                             <div class="col-lg-3 col-xs-12">
@@ -181,7 +201,6 @@
                         				  </div>
                        				 </div>
                          		     <div class="ln_solid"></div>-->                                    
-                        <!--Tipo_Imovel select-->
                         <!--Estagio select-->
                           <div class="form-group">
                           <label class="control-label col-md-3" for="estagio">Estagio do Ciclo </label>
@@ -272,6 +291,43 @@
         });
     });
     </script>
+    
+    <script>
+		var lat = document.getElementById("latitude");
+		var log = document.getElementById("longitude");
+		var exibe_erro = document.getElementById("msgerro");
+
+		
+		function getLocation() {
+		    if (navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(capturaPosicao,mostraErro);		        
+		    }
+		}
+		
+		function capturaPosicao(position) {
+		    lat.value = position.coords.latitude;
+		    log.value = position.coords.longitude;
+		    //log.innerHTML = position.coords.longitude;
+		}
+
+		function mostraErro(error) {
+		    switch(error.code) {
+		        case error.PERMISSION_DENIED:
+		        	exibe_erro.innerHTML = "Usuário negou requisição para Geolocalização. Recarregue a página."
+		            break;
+		        case error.POSITION_UNAVAILABLE:
+		        	exibe_erro.innerHTML = "Informação da localizaão está indisponivel."
+		            break;
+		        case error.TIMEOUT:
+		        	exibe_erro.innerHTML = "Requisição para capturar posição excedeu tempo limite."
+		            break;
+		        case error.UNKNOWN_ERROR:
+		        	exibe_erro.innerHTML = "Requisição de Geolocalização gerou erro desconhecido."
+		            break;
+		    }
+		}
+	</script>
+    
     		<c:import url="rodape.jsp" />
   </body>
 </html>

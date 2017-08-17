@@ -147,9 +147,9 @@
 												</button>
 											</p>
  										<div>
- 										<div class="ln_solid"></div>                                
- 										
-											<table class="table footable toggle-circle-filled table-striped  table-hover" 
+ 										<div class="ln_solid"></div>                                										
+											
+											<table id="table" class="table footable toggle-circle-filled table-striped  table-hover" 
 											data-sorting="true" data-show-toggle="true">											
 												<thead>
 													<tr>
@@ -201,7 +201,7 @@
 															</td>
 														</tr>
 													</c:forEach>
-												</tbody>
+												</tbody>												
 											</table>
 											</div>
 										</div>
@@ -228,14 +228,15 @@
 		
 		<script type="text/javascript">
 		// Instanciar Footable
-			$(function () {
+			$(document).ready(function () {
+			//$(function () {
 				$('.footable').footable({			
 					"paging": {
 						"enabled": true,											
 						"position": "right",
 						"limit": 3,
 						"size": 8,
-						"countFormat": "Resgitros {PF} a {PL} de {TR} resultados"
+						"countFormat": "Registros {PF} a {PL} de {TR} resultados"
 					}
 				});
 			});

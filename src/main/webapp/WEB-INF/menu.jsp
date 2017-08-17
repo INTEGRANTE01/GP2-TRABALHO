@@ -1,20 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
    <!-- CSS para retornar aparencia dos componentes bootstrap -->
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    
-
-  </head>    
-   <body>    
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">       
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 20;">
@@ -158,6 +147,4 @@
           </div>
         </div>
         <!-- /top navigation -->      
-</body>
-</html>
         

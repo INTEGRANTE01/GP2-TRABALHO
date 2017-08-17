@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="br">
+<html lang="pt">
   <head>
     <meta http-equiv="Content-Type">
     <!-- Meta, title, CSS, favicons, etc. -->

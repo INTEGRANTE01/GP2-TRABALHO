@@ -151,7 +151,7 @@ public class ServletVisita extends HttpServlet {
 		  tp_larvicida =  request.getParameter("tp_larvicida");
 		  ac_corretiva =  request.getParameter("ac_corretiva");
 		  local_foco =  request.getParameter("local_foco");
-			
+
 		try {
 			
 			visita.setAgente(agente);
