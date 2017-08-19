@@ -42,7 +42,8 @@ public class ServletVisita extends HttpServlet {
 	private String latitude;
 	private String longitude;
 	private String tp_imovel;
-	private String estagio;
+	private String[] estagio;
+	private String concatenaEstagio;
 	private String tp_larvicida;
 	private String ac_corretiva;
 	private String local_foco;			
@@ -133,7 +134,8 @@ public class ServletVisita extends HttpServlet {
 
 	protected void adicionaVisita(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		
+		  
+		  concatenaEstagio="";
 		  agente = request.getParameter("agente");
 		  data_string = request.getParameter("data_visita");
 		  System.out.println("NO DATA_STRING: "  + data_string);
@@ -146,8 +148,8 @@ public class ServletVisita extends HttpServlet {
 		  cidade =  request.getParameter("cidade");
 		  latitude =  request.getParameter("latitude");
 		  longitude =  request.getParameter("longitude");
-		  tp_imovel =  request.getParameter("tp_imovel");;
-		  estagio =  request.getParameter("estagio");;
+		  tp_imovel =  request.getParameter("tp_imovel");
+		  estagio =  request.getParameterValues("estagio");
 		  tp_larvicida =  request.getParameter("tp_larvicida");
 		  ac_corretiva =  request.getParameter("ac_corretiva");
 		  local_foco =  request.getParameter("local_foco");
@@ -168,7 +170,14 @@ public class ServletVisita extends HttpServlet {
 			visita.setLatitude(latitude);
 			visita.setLongitude(longitude);
 			visita.setTp_imovel(tp_imovel);
-			visita.setEstagio(estagio);
+			for (int i=0;i<estagio.length;i++){
+				
+				if(i==estagio.length-1)
+					concatenaEstagio+=estagio[i];						
+				else
+					concatenaEstagio+=estagio[i] + ",";
+			}
+			visita.setEstagio(concatenaEstagio);			
 			visita.setTp_larvicida(tp_larvicida);
 			visita.setAc_corretiva(ac_corretiva);
 			visita.setLocal_foco(local_foco);
@@ -184,7 +193,7 @@ public class ServletVisita extends HttpServlet {
 
 	protected void editarVisita(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-
+		   concatenaEstagio="";
 		   agente = request.getParameter("agente");
 		   data_string = request.getParameter("data_visita");
 		   bairro =  request.getParameter("bairro");
@@ -196,8 +205,8 @@ public class ServletVisita extends HttpServlet {
 		   cidade =  request.getParameter("cidade");
 		   latitude =  request.getParameter("latitude");
 		   longitude =  request.getParameter("longitude");
-		   tp_imovel =  request.getParameter("tp_imovel");;
-		   estagio =  request.getParameter("estagio");;
+		   tp_imovel =  request.getParameter("tp_imovel");
+	       estagio =  request.getParameterValues("estagio");
 		   tp_larvicida =  request.getParameter("tp_larvicida");
 		   ac_corretiva =  request.getParameter("ac_corretiva");
 		   local_foco =  request.getParameter("local_foco");
@@ -219,7 +228,14 @@ public class ServletVisita extends HttpServlet {
 			visita.setLatitude(latitude);
 			visita.setLongitude(longitude);
 			visita.setTp_imovel(tp_imovel);
-			visita.setEstagio(estagio);
+			for (int i=0;i<estagio.length;i++){
+				
+				if(i==estagio.length-1)
+					concatenaEstagio+=estagio[i];						
+				else
+					concatenaEstagio+=estagio[i] + ",";
+			}
+			visita.setEstagio(concatenaEstagio);
 			visita.setTp_larvicida(tp_larvicida);
 			visita.setAc_corretiva(ac_corretiva);
 			visita.setLocal_foco(local_foco);

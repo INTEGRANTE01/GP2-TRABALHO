@@ -143,7 +143,9 @@
                           <label class="control-label col-md-3" for="cidade">Cidade <span class="required">*</span></label>
                             <div class="col-lg-3 col-xs-12">
                             <select required id="cidade" name="cidade" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
-                              <option selected="selected">${visita.cidade}</option>
+                              <c:if test = "${not empty visita.cidade}">											
+                                <option selected="selected">${visita.cidade}</option>
+                              </c:if>
                               <option value="Goiânia">Goiânia</option>
                               <option value="Aparecida de Goiânia">Aparecida de Goiânia</option>
                               <option value="Senador Canedo">Senador Canedo</option>
@@ -181,7 +183,9 @@
                           <label class="control-label col-md-3" for="tipo">Tipo do Imovel <span class="required">*</span></label>
                             <div class="col-lg-3 col-xs-12">
                             <select required id="tp_imovel" name="tp_imovel"  title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
-                              <option selected="selected">${visita.tp_imovel}</option>
+                              <c:if test = "${not empty visita.tp_imovel}">											
+                                <option selected="selected">${visita.tp_imovel}</option>
+                              </c:if>                               
                               <option value="Lote">Lote</option>
                               <option value="Casa">Casa</option>
                               <option value="Apartamento">Apartamento</option>
@@ -205,8 +209,10 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="estagio">Estagio do Ciclo </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select  id="estagio" name="estagio" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
-                              <option selected="selected">${visita.estagio}</option>
+                            <select multiple data-size="5" data-actions-box="true" id="estagio" name="estagio" title="Selecione item(s)" class="form-control input-md selectpicker">
+                              <c:if test = "${not empty visita.estagio}">											
+                              	<option selected>${visita.estagio}</option>
+    		    			  </c:if>	
                               <option value="Ovo">Ovo</option>
                               <option value="Larva">Larva</option>
                               <option value="Pupa">Pupa</option>
@@ -218,8 +224,10 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="tp_larvicida">Larvicida </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select  id="tp_larvicida" name="tp_larvicida" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
-                              <option selected="selected">${visita.tp_larvicida}</option>
+                            <select multiple data-size="5"  id="tp_larvicida" name="tp_larvicida" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
+                              <c:if test = "${not empty visita.tp_larvicida}">											
+                                <option selected="selected">${visita.tp_larvicida}</option>
+                              </c:if>
                               <option value="Tipo 1">Tipo 1</option>
                               <option value="Tipo 2">Tipo 2</option>
                               <option value="Tipo 3">Tipo 3</option>
@@ -230,8 +238,10 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="ac_corretiva">Ação Corretiva </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select  id="ac_corretiva" name="ac_corretiva" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">            
-                              <option selected="selected">${visita.ac_corretiva}</option>
+                            <select multiple data-size="5" id="ac_corretiva" name="ac_corretiva" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">            
+                              <c:if test = "${not empty visita.ac_corretiva}">											
+                                <option selected="selected">${visita.ac_corretiva}</option>
+                              </c:if>
                               <option value="Nebolização">Nebolização</option>
                               <option value="Borrifação">Borrifação</option>
                             </select>

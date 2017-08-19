@@ -48,7 +48,9 @@ public class VisitaDAO extends ConectaBanco {
 			pstmt.execute();
 			}catch (Exception e) {
 				e.printStackTrace();
-				erro = true;					
+				erro = true;
+				System.out.println("ERRO AO ALTERAR");			
+
 			}finally{
 				pstmt.close();
 				conexao.close();			
@@ -67,6 +69,8 @@ public class VisitaDAO extends ConectaBanco {
 		} catch (Exception e) {
 			e.printStackTrace();
 			erro = true;
+			System.out.println("ERRO AO EXCLUIR");			
+
 		}finally{
 			pstm.close();
 			conexao.close();			
@@ -90,7 +94,7 @@ public class VisitaDAO extends ConectaBanco {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("ERRO AO EDITAR");			
+			System.out.println("ERRO AO BUSCAR PARA EDIÇÃO");			
 		}finally{
 			pstm.close();
 			conexao.close();			
@@ -124,7 +128,9 @@ public class VisitaDAO extends ConectaBanco {
 			pstm.execute();
 		} catch (Exception e) {
 			erro = true;	
-			//e.printStackTrace();
+			e.printStackTrace();
+			System.out.println("ERRO AO INSERIR");			
+
 		}finally{
 			pstm.close();
 			conexao.close();			
