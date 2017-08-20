@@ -24,8 +24,6 @@
   	<link href="css/bootstrap-select.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">    
-    <!-- iCheck -->
-    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">      
     <!-- bootstrap-daterangepicker -->
     <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Switchery -->
@@ -174,7 +172,7 @@
 	                                 <div class="form-group">
                                     	<label class="control-label col-md-3"></label>
                                       	<div class="col-lg-4 col-xs-12">
-                                        <h5 id="msgerro"></h5>                                      				
+                                        <p id="msgerro"></p>                                      				
 										</div>      				    														
 									</div>
 										
@@ -209,7 +207,7 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="estagio">Estagio do Ciclo </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select multiple data-size="5" data-actions-box="true" id="estagio" name="estagio" title="Selecione item(s)" class="form-control input-md selectpicker">
+                            <select multiple data-size="5" data-actions-box="false" id="estagio" name="estagio" title="Selecione item(s)" class="form-control input-md selectpicker" data-live-search="true">
                               <c:if test = "${not empty visita.estagio}">											
                               	<option selected>${visita.estagio}</option>
     		    			  </c:if>	
@@ -224,7 +222,7 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="tp_larvicida">Larvicida </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select multiple data-size="5"  id="tp_larvicida" name="tp_larvicida" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
+                            <select multiple data-size="5"  id="tp_larvicida" name="tp_larvicida" title="Selecione item(s)" class="form-control input-md selectpicker" data-live-search="true">
                               <c:if test = "${not empty visita.tp_larvicida}">											
                                 <option selected="selected">${visita.tp_larvicida}</option>
                               </c:if>
@@ -238,7 +236,7 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="ac_corretiva">Ação Corretiva </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select multiple data-size="5" id="ac_corretiva" name="ac_corretiva" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">            
+                            <select multiple data-size="5" id="ac_corretiva" name="ac_corretiva" title="Selecione item(s)" class="form-control input-md selectpicker" data-live-search="true">            
                               <c:if test = "${not empty visita.ac_corretiva}">											
                                 <option selected="selected">${visita.ac_corretiva}</option>
                               </c:if>

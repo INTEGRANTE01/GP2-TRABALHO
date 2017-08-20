@@ -65,8 +65,8 @@
 						</div>					
 						<div class="form-group  col-lg-3 col-xs-12">
 						<label>Função </label> 	  
-			            	<select data-live-search="true" class="form-control placeholder input-md selectpicker" title="" name="txtpesquisa2">			            
-		                        <option selected="selected"></option>
+			            	<select data-live-search="true" class="form-control placeholder input-md selectpicker" 
+			            	title="Selecione uma opção" name="txtpesquisa2">
 		                         <c:forEach var="funcionario" items="${listafuncao}">      
 						       		 <option>${funcionario.funcao}</option>      
 								 </c:forEach> 
@@ -112,7 +112,7 @@
                           <i class="fa fa-search"></i>
                         </button>                   
                     </p>                     
-                    <table id="datatable-responsive" class="table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <table id="datatable-responsive" class="table table-striped table-hover dt-responsive nowrap">
                       <thead>
                         <tr>
                           <th>Matrícula</th>

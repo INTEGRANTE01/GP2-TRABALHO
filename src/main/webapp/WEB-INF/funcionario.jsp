@@ -69,7 +69,7 @@
                               <label class="control-label col-md-3" for="matricula">Matrícula <span class="required">*</span></label>
                               <div class="col-md-2 col-xs-12">
                                 <input type="text" id="matricula" name="matricula" value="${funcionario.matricula}" placeholder="ex: 710001" required="required" class="form-control input-md"
-                                 data-error="Informe um Nº de matricula vlido.">                                
+                                 data-error="Informe uma matricula válido.">                                
                                 <div class="help-block with-errors"></div>
                               </div>
                             </div>			  					  
@@ -86,7 +86,9 @@
                     <label class="control-label col-md-3" for="funcao">Função <span class="required">*</span></label>
                       <div class="col-lg-4 col-xs-12">
                       <select required id="funcao" name="funcao" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
-                        <option selected="selected">${funcionario.funcao}</option>
+                         <c:if test = "${not empty funcionario.funcao}">											
+                        	<option selected="selected">${funcionario.funcao}</option>        
+                         </c:if>                        
                         <c:forEach var="funcionario" items="${listafuncao}">      
 						        <option>${funcionario.funcao}</option>      
 						</c:forEach>  

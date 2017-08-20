@@ -165,9 +165,11 @@
 													title="Selecione item"
 													class="form-control input-md selectpicker"
 													data-live-search="true">
-													<option selected="selected">${denuncia.cidade}</option>
+													 <c:if test = "${not empty denuncia.cidade}">											
+                                					 	<option selected="selected">${denuncia.cidade}</option>
+                              						 </c:if>										
 													 <c:forEach var="combocidade" items="${listacidade}">      
-						      							  <option>${combocidade.cidade}</option>      
+						      							<option>${combocidade.cidade}</option>      
 													 </c:forEach> 
 												</select>
 												<div class="help-block with-errors"></div>
@@ -183,9 +185,11 @@
 													title="Selecione item"
 													class="form-control input-md selectpicker"
 													data-live-search="true">
-													<option selected="selected">${denuncia.tp_imovel}</option>
-													 <c:forEach var="combotipo" items="${listatipo}">      
-						      							  <option>${combotipo.tp_imovel}</option>      
+													<c:if test = "${not empty denuncia.tp_imovel}">											
+                                						<option selected="selected">${denuncia.tp_imovel}</option>
+                              						</c:if>
+													<c:forEach var="combotipo" items="${listatipo}">      
+						      							<option>${combotipo.tp_imovel}</option>      
 													</c:forEach> 
 												</select>
 												<div class="help-block with-errors"></div>

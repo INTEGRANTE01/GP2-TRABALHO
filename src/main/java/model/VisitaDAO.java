@@ -143,23 +143,27 @@ public class VisitaDAO extends ConectaBanco {
 		List<Visita> lista = new ArrayList<Visita>();
 		Connection conexao = getConexao();
 		PreparedStatement pstm = conexao
-				.prepareStatement("Select * from visita where agente like ? and bairro like ? and cidade like ? and tp_imovel like ? and estagio like ? and rua like ? order by bairro asc");
+				.prepareStatement("Select * from visita where agente like ? and bairro like ? and cidade like ? and tp_imovel like ? and estagio like ? and rua like ? order by cidade asc");
 		try {						
 			pstm.setString(1, "%" + agente +"%");
 			pstm.setString(2, par_bairro +"%");
 			pstm.setString(3, par_cidade +"%");
 			pstm.setString(4, "%" + par_tipo +"%");
-			pstm.setString(5, "%" + par_estagio +"%");
+			pstm.setString(5, par_estagio +"%");
 			pstm.setString(6, "%" + par_rua +"%");
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
-				Visita visita = new Visita();
+				Visita visita = new Visita();				
 				visita.setIdvisita(rs.getInt("idvisita"));
 				visita.setAgente(rs.getString("agente"));
-				visita.setBairro(rs.getString("bairro"));
+				visita.setData_visita(rs.getTimestamp("data_visita"));
 				visita.setCidade(rs.getString("cidade"));
+				visita.setBairro(rs.getString("bairro"));	
 				visita.setTp_imovel(rs.getString("tp_imovel"));
-				visita.setEstagio(rs.getString("estagio"));				
+				visita.setEstagio(rs.getString("estagio"));
+				visita.setTp_larvicida(rs.getString("tp_larvicida"));
+				visita.setAc_corretiva(rs.getString("ac_corretiva"));
+				visita.setLocal_foco(rs.getString("local_foco"));
 				lista.add(visita);
 			}
 		} catch (Exception e) {

@@ -20,14 +20,16 @@
 
 <title>Sistema de Controle de Endemias</title>
 <!-- Bootstrap -->
-<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- Bootstrap select -->
 <link href="css/bootstrap-select.min.css" rel="stylesheet">
 <!-- Font Awesome -->
-<link href="vendors/font-awesome/css/font-awesome.min.css"	rel="stylesheet">
+<link href="vendors/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="build/css/custom.min.css" rel="stylesheet">
-<!-- Footable -->	
+<!-- Footable -->
 <link href="css/footable.standalone.min.css" rel="stylesheet">
 <!--
 <link href="css/footable.core.css" rel="stylesheet">
@@ -35,7 +37,6 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/2.0.3/css/footable.metro.css" rel="stylesheet">
 -->
-
 </head>
 
 <body class="nav-md">
@@ -64,40 +65,39 @@
 								<div class="x_content">
 									<form class="form-horizontal form-label-left"
 										data-toggle="validator" method="post" action="buscadenuncia">
-
 										<div class="form-group  col-lg-3 col-xs-12">
 											<label>Denunciante </label> <input type="text"
 												name="txtpesquisa1" class="form-control input-md">
 										</div>
 										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Bairro </label>  <select name="txtpesquisa2"
-												title="" class="form-control input-md selectpicker"
+											<label>Bairro </label> <select name="txtpesquisa2"
+												title="Selecione uma opção"
+												class="form-control input-md selectpicker"
 												data-live-search="true">
-												<option selected="selected"></option>
-												 <c:forEach var="combobairro" items="${listabairro}">      
-						      							  <option>${combobairro.bairro}</option>      
-											     </c:forEach> 
+												<c:forEach var="combobairro" items="${listabairro}">
+													<option>${combobairro.bairro}</option>
+												</c:forEach>
 											</select>
 										</div>
 										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Cidade </label> <select name="txtpesquisa3" title=""
+											<label>Cidade </label> <select name="txtpesquisa3"
+												title="Selecione uma opção"
 												class="form-control input-md selectpicker"
 												data-live-search="true">
-												<option selected="selected"></option>
-												 <c:forEach var="combocidade" items="${listacidade}">      
-						      							  <option>${combocidade.cidade}</option>      
-												 </c:forEach> 
+												<c:forEach var="combocidade" items="${listacidade}">
+													<option>${combocidade.cidade}</option>
+												</c:forEach>
 											</select>
 										</div>
 
 										<div class="form-group  col-lg-3 col-xs-12">
 											<label>Tipo de Imovel </label> <select name="txtpesquisa4"
-												title="" class="form-control input-md selectpicker"
+												title="Selecione uma opção"
+												class="form-control input-md selectpicker"
 												data-live-search="true">
-												<option selected="selected"></option>
-												 <c:forEach var="combotipo" items="${listatipo}">      
-						      							  <option>${combotipo.tp_imovel}</option>      
-											     </c:forEach> 
+												<c:forEach var="combotipo" items="${listatipo}">
+													<option>${combotipo.tp_imovel}</option>
+												</c:forEach>
 											</select>
 										</div>
 										<div class="x_content">
@@ -146,63 +146,62 @@
 													<i class="fa fa-search"></i>
 												</button>
 											</p>
- 										<div>
- 										<div class="ln_solid"></div>                                										
-											
-											<table id="table" class="table footable toggle-circle-filled table-striped  table-hover" 
-											data-sorting="true" data-show-toggle="true">											
-												<thead>
-													<tr>
-														<!-- <th data-toggle="true">Denunciante</th>   -->
-													    <th data-breakpoints="xs">Data da Denuncia</th>
-														<th>Cidade</th>														
-														<th data-breakpoints="xs">Bairro</th>
-														<th data-breakpoints="all">Tipo de imovel</th>																												
-														<th data-breakpoints="all">Rua</th>
-														<th data-breakpoints="all">Quadra</th>
-														<th data-breakpoints="all">Lote</th>
-														<th data-breakpoints="all">Numero</th>
-														<!-- <th data-breakpoints="all">Cep</th>   -->
-														<th data-breakpoints="all">Descrição da Denuncia</th>
-														<th>Ações</th>														
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach var="denuncia" items="${listadenuncia}">
-														<tr>															
-														<!-- 	<td>${denuncia.denunciante}</td>   -->
-															<td><fmt:formatDate
-																value="${denuncia.data_denuncia}" type="both"
-																pattern="dd/MM/yyyy HH:mm" dateStyle="full" /></td>
-															<td>${denuncia.cidade}</td>
-															<td>${denuncia.bairro}</td>
-															<td>${denuncia.tp_imovel}</td>
-															<td>${denuncia.rua}</td>
-															<td>${denuncia.quadra}</td>
-															<td>${denuncia.lote	}</td>
-															<td>${denuncia.numero}</td>
-															<!--<td>${denuncia.cep}</td>   -->
-															<td>${denuncia.desc_den}</td>															
-															<td><div class="btn-group">
-																	<button type="button"
-																		class="btn dropdown-toggle btn btn-info btn-sm"
-																		data-toggle="dropdown">
-																		Opções <span class="caret"></span>
-																	</button>
-																	<ul class="dropdown-menu">
-																		<li><a
-																			href="buscadenuncia?acao=Consultar&iddenuncia=${denuncia.iddenuncia}"><span
-																				class="glyphicon glyphicon-edit"></span> Editar</a></li>
-																		<li><a
-																			onclick="confirmaexclusao(${denuncia.iddenuncia})"><span
-																				class="glyphicon glyphicon-remove-sign"></span> Excluir</a></li>
-																	</ul>
-																</div>
-															</td>
+											<div>
+												<div class="ln_solid"></div>
+												<table id="table"
+													class="table footable toggle-circle-filled table-striped  table-hover"
+													data-sorting="true" data-show-toggle="true">
+													<thead>
+														<tr>
+															<th data-breakpoints="xs">Data da Denuncia</th>
+															<th>Cidade</th>
+															<th data-breakpoints="xs">Bairro</th>
+															<th data-breakpoints="all">Tipo de imovel</th>
+															<th data-breakpoints="all">Rua</th>
+															<th data-breakpoints="all">Quadra</th>
+															<th data-breakpoints="all">Lote</th>
+															<th data-breakpoints="all">Numero</th>
+															<!-- <th data-breakpoints="all">Cep</th>   -->
+															<th data-breakpoints="all">Descrição da Denuncia</th>
+															<th>Ações</th>
 														</tr>
-													</c:forEach>
-												</tbody>												
-											</table>
+													</thead>
+													<tbody>
+														<c:forEach var="denuncia" items="${listadenuncia}">
+															<tr>
+																<!-- 	<td>${denuncia.denunciante}</td>   -->
+																<td><fmt:formatDate
+																		value="${denuncia.data_denuncia}" type="both"
+																		pattern="dd/MM/yyyy HH:mm" dateStyle="full" /></td>
+																<td>${denuncia.cidade}</td>
+																<td>${denuncia.bairro}</td>
+																<td>${denuncia.tp_imovel}</td>
+																<td>${denuncia.rua}</td>
+																<td>${denuncia.quadra}</td>
+																<td>${denuncia.lote	}</td>
+																<td>${denuncia.numero}</td>
+																<!--<td>${denuncia.cep}</td>   -->
+																<td>${denuncia.desc_den}</td>
+																<td><div class="btn-group">
+																		<button type="button"
+																			class="btn dropdown-toggle btn btn-info btn-sm"
+																			data-toggle="dropdown">
+																			Opções <span class="caret"></span>
+																		</button>
+																		<ul class="dropdown-menu">
+																			<li><a
+																				href="buscadenuncia?acao=Consultar&iddenuncia=${denuncia.iddenuncia}"><span
+																					class="glyphicon glyphicon-edit"></span> Editar</a></li>
+																			<li><a
+																				onclick="confirmaexclusao(${denuncia.iddenuncia})"><span
+																					class="glyphicon glyphicon-remove-sign"></span>
+																					Excluir</a></li>
+																		</ul>
+																	</div></td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
 											</div>
 										</div>
 									</form>
@@ -213,20 +212,20 @@
 				</div>
 			</div>
 		</div>
-		</div>  
-		<!-- jQuery -->
-		<script src="vendors/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- Bootstrap select -->
-		<script src="js/bootstrap-select.min.js"></script>				
-		<!-- Custom Theme Scripts -->
-		<script src="build/js/custom.min.js"></script>
-		<!-- Footable-->
-		<script src="vendors/moment/min/moment.min.js"></script>	
-		<script src="js/footable.js"></script>
-		
-		<script type="text/javascript">
+	</div>
+	<!-- jQuery -->
+	<script src="vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Bootstrap select -->
+	<script src="js/bootstrap-select.min.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="build/js/custom.min.js"></script>
+	<!-- Footable-->
+	<script src="vendors/moment/min/moment.min.js"></script>
+	<script src="js/footable.js"></script>
+
+	<script type="text/javascript">
 		// Instanciar Footable
 			$(document).ready(function () {
 			//$(function () {
@@ -249,8 +248,7 @@
 		   	     }
 		   	}	
 		</script>
-
-		<c:import url="rodape.jsp" />
+	<c:import url="rodape.jsp" />
 </body>
 </html>
 <%
