@@ -144,7 +144,7 @@
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
-										<!--Cep Input-->
+										<!--Cep Input
 										<div class="form-group">
 											<label class="control-label col-sm-3" for="cep">CEP <span
 												class="required">*</span></label>
@@ -155,6 +155,7 @@
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
+										-->
 										<!--Cidade select-->
 										<div class="form-group">
 											<label class="control-label col-md-3" for="cidade">Cidade

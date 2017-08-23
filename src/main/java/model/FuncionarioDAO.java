@@ -204,25 +204,4 @@ public List<Funcionario> listar() throws SQLException {
 		}
 		return funcionario;
 	}		
-public List<Funcionario> populaCombo() throws SQLException {
-		
-		List<Funcionario> combofuncao = new ArrayList<Funcionario>();
-		Connection conexao = getConexao();
-		PreparedStatement pstm = conexao.prepareStatement("Select distinct (funcao) from funcionario order by funcao asc");
-		try {		
-			
-			ResultSet rs = pstm.executeQuery();
-			while (rs.next()) {
-				Funcionario funcionario = new Funcionario();
-				funcionario.setFuncao(rs.getString("funcao"));
-				combofuncao.add(funcionario);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			pstm.close();
-			conexao.close();			
-	}
-		return combofuncao;
-	}
 }

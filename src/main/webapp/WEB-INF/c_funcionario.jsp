@@ -67,8 +67,8 @@
 						<label>Função </label> 	  
 			            	<select data-live-search="true" class="form-control placeholder input-md selectpicker" 
 			            	title="Selecione uma opção" name="txtpesquisa2">
-		                         <c:forEach var="funcionario" items="${listafuncao}">      
-						       		 <option>${funcionario.funcao}</option>      
+		                         <c:forEach var="funcao" items="${listafuncao}">      
+						       		 <option>${funcao.nome_funcao}</option>      
 								 </c:forEach> 
 		                    </select>			           		    				
 						</div>		

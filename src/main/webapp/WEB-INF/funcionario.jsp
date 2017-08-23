@@ -89,8 +89,8 @@
                          <c:if test = "${not empty funcionario.funcao}">											
                         	<option selected="selected">${funcionario.funcao}</option>        
                          </c:if>                        
-                        <c:forEach var="funcionario" items="${listafuncao}">      
-						        <option>${funcionario.funcao}</option>      
+                        <c:forEach var="funcao" items="${listafuncao}">      
+						        <option>${funcao.nome_funcao}</option>      
 						</c:forEach>  
                       </select>
                       <div class="help-block with-errors"></div>

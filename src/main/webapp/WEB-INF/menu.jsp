@@ -62,15 +62,16 @@
                    		<ul class="nav child_menu">                   
                     		<li><a href="#">Estágio</a></li>
                             <li><a href="#">Tipo de Imovel</a></li>
-                           	<li><a href="#">Tipo de Foco</a></li>
+                           	<li><a href="#">Larvicida</a></li>
                            	<li><a href="#">Ação Corretiva</a></li>
                     	</ul>
                     </li> 
                    
                     <li><a><i class="fa fa-check-circle-o"></i>Parametros Auxiliares <span class="fa fa-chevron-down"></span></a>
                    		<ul class="nav child_menu">                   
-                    		<li><a href="#">Cidades</a></li>
-                    		<li><a href="#">Bairros</a></li>                     		 
+                    		<li><a href="#">Tipo de Usuário</a></li>
+                    		<li><a href="#">Cidade</a></li>
+                    		<li><a href="#">Bairro</a></li>                     		 
                     	</ul>                    	 
                     </li>
                    </ul> 

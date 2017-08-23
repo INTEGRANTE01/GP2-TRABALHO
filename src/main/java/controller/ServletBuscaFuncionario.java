@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.FuncionarioDAO;
+import model.Funcao;
+import model.FuncaoDAO;
 import model.Funcionario;
 
 @WebServlet(name="ServletBuscaFuncionario", urlPatterns = "/buscafuncionario")
@@ -75,15 +77,16 @@ public class ServletBuscaFuncionario extends HttpServlet {
 		
 	}
 	
-	protected void popularcombo(ServletRequest request,
-		    ServletResponse response) throws ServletException, IOException, SQLException {
-		List<Funcionario> funcionario = new ArrayList<Funcionario>(); 
+	protected void popularcombo(HttpServletRequest request,
+		    HttpServletResponse response) throws ServletException, IOException, SQLException {
+		List<Funcao> funcao = new ArrayList<Funcao>(); 
+		FuncaoDAO funcaoDAO = new FuncaoDAO();
 		try {
-			funcionario = funcionarioDAO.populaCombo();
+			funcao = funcaoDAO.populaComboFuncao();					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("listafuncao",funcionario);	
+		request.setAttribute("listafuncao",funcao);	
 	}
 	
 	
