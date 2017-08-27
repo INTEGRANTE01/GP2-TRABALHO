@@ -1,6 +1,4 @@
-# Endemic Sys
-
-Projeto Fase 1.
+# Projeto Gp2
 
 ## Para rodar o projeto
 
@@ -24,4 +22,4 @@ Para rodar com o Tomcat ignorando as configurações do plugin no `pom.xml`.
 
 A aplicação exige instalação prévia no MySQL e o arquivo de conexão com o banco de dados está em: `GP-TRABALHO\src\main\java\model\ConectaBanco.java`
 
-O script de banco de dados populado está em: `GP2-TRABALHO\src\main\webapp\bd\dbendemic.sql`
+O script de banco de dados populado está em: `GP2-TRABALHO\src\main\webapp\bd\dbendemic2.sql`
