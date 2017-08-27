@@ -14,6 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DenunciaDAO;
+import model.TipoImovel;
+import model.TipoImovelDAO;
+import model.Bairro;
+import model.BairroDAO;
+import model.Cidade;
+import model.CidadeDAO;
 import model.Denuncia;
 
 @WebServlet(name = "ServletBuscaDenuncia", urlPatterns = "/buscadenuncia")
@@ -23,6 +29,7 @@ public class ServletBuscaDenuncia extends HttpServlet {
 
 	private DenunciaDAO denunciaDAO = new DenunciaDAO();
 	private Denuncia denuncia = new Denuncia();
+	private PopulaDenuncia populadenuncia = new PopulaDenuncia();
 	private int iddenuncia;
 	private String destino = "";
 	private String acao;
@@ -72,19 +79,11 @@ public class ServletBuscaDenuncia extends HttpServlet {
 
 	protected void popularcombos(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
-		List<Denuncia> combocidade = new ArrayList<Denuncia>(); 
-		List<Denuncia> combotipo = new ArrayList<Denuncia>();
-		List<Denuncia> combobairro = new ArrayList<Denuncia>();
-		try {
-			combocidade = denunciaDAO.populaComboCidade();
-			combotipo = denunciaDAO.populaComboImovel();
-			combobairro = denunciaDAO.populaComboBairro();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listacidade",combocidade);	
-		request.setAttribute("listatipo",combotipo);
-		request.setAttribute("listabairro",combobairro);
+		
+		populadenuncia.popularCombosDenuncia();
+		request.setAttribute("listacidade",populadenuncia.combocidade);	
+		request.setAttribute("listabairro",populadenuncia.combobairro);
+		request.setAttribute("listaimovel", populadenuncia.combotipoimovel);
 	}
 	
 	protected void buscardenuncia(HttpServletRequest request, HttpServletResponse response)

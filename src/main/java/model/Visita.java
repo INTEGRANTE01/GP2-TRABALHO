@@ -11,9 +11,8 @@ public class Visita {
 	private String bairro;
 	private String rua;
 	private String quadra;
-	private int lote;	
+	private String lote;	
 	private String numero;
-	private int cep;
 	private String cidade;
 	private String latitude;
 	private String longitude;
@@ -22,8 +21,7 @@ public class Visita {
 	private String tp_larvicida;
 	private String ac_corretiva;
 	private String local_foco;
-
-	
+	private boolean verifica_foco;
 	public int getIdvisita() {
 		return idvisita;
 	}
@@ -60,10 +58,10 @@ public class Visita {
 	public void setQuadra(String quadra) {
 		this.quadra = quadra;
 	}
-	public int getLote() {
+	public String getLote() {
 		return lote;
 	}
-	public void setLote(int lote) {
+	public void setLote(String lote) {
 		this.lote = lote;
 	}
 	public String getNumero() {
@@ -71,12 +69,6 @@ public class Visita {
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
-	}
-	public int getCep() {
-		return cep;
-	}
-	public void setCep(int cep) {
-		this.cep = cep;
 	}
 	public String getCidade() {
 		return cidade;
@@ -125,15 +117,20 @@ public class Visita {
 	}
 	public void setLocal_foco(String local_foco) {
 		this.local_foco = local_foco;
-	}	
-
+	}
+	public boolean isVerifica_foco() {
+		return verifica_foco;
+	}
+	public void setVerifica_foco(boolean verifica_foco) {
+		this.verifica_foco = verifica_foco;
+	}
 	
 	@Override
 	public String toString() {
 		return "Visita [idvisita=" + idvisita + ", agente=" + agente + ", data_visita=" + data_visita + ", bairro="
-				+ bairro + ", rua=" + rua + ", quadra=" + quadra + ", lote=" + lote + ", numero=" + numero + ", cep="
-				+ cep + ", cidade=" + cidade + ", latitude=" + latitude + ", longitude=" + longitude + ", tp_imovel="
-				+ tp_imovel + ", estagio=" + estagio + ", tp_larvicida=" + tp_larvicida + ", ac_corretiva="
-				+ ac_corretiva + ", local_foco=" + local_foco + "]";
-	}
+				+ bairro + ", rua=" + rua + ", quadra=" + quadra + ", lote=" + lote + ", numero=" + numero + ", cidade="
+				+ cidade + ", latitude=" + latitude + ", longitude=" + longitude + ", tp_imovel=" + tp_imovel
+				+ ", estagio=" + estagio + ", tp_larvicida=" + tp_larvicida + ", ac_corretiva=" + ac_corretiva
+				+ ", local_foco=" + local_foco + ", verifica_foco=" + verifica_foco + "]";
+	}		
 }

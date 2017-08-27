@@ -133,29 +133,26 @@
 											</div>
 										</div>
 										<!--Bairro Input-->
-										<div class="form-group">
-											<label class="control-label col-md-3" for="bairro">Bairro/Setor
+										
+											<div class="form-group">
+											<label class="control-label col-md-3" for="bairro">Bairro
 												<span class="required">*</span>
 											</label>
 											<div class="col-lg-3 col-xs-12">
-												<input type="text" id="bairro" name="bairro"
-													required="required" class="form-control input-md"
-													value="${denuncia.bairro}">
+												<select required id="cidades" name="bairro"
+													title="Selecione item"
+													class="form-control input-md selectpicker"
+													data-live-search="true">
+													 <c:if test = "${not empty denuncia.bairro}">											
+                                					 	<option selected="selected">${denuncia.bairro}</option>
+                              						 </c:if>										
+													 <c:forEach var="combobairro" items="${listabairro}">      
+						      							<option>${combobairro.nome_bairro}</option>      
+													 </c:forEach> 
+												</select>
 												<div class="help-block with-errors"></div>
 											</div>
-										</div>
-										<!--Cep Input
-										<div class="form-group">
-											<label class="control-label col-sm-3" for="cep">CEP <span
-												class="required">*</span></label>
-											<div class="col-lg-2 col-xs-12">
-												<input type="tel" id="cep" name="cep" required="required"
-													class="form-control input-md" pattern="[0-9]+$"
-													value="${denuncia.cep}">
-												<div class="help-block with-errors"></div>
-											</div>
-										</div>
-										-->
+										</div>																				
 										<!--Cidade select-->
 										<div class="form-group">
 											<label class="control-label col-md-3" for="cidade">Cidade
@@ -170,7 +167,7 @@
                                 					 	<option selected="selected">${denuncia.cidade}</option>
                               						 </c:if>										
 													 <c:forEach var="combocidade" items="${listacidade}">      
-						      							<option>${combocidade.cidade}</option>      
+						      							<option>${combocidade.nome_cidade}</option>      
 													 </c:forEach> 
 												</select>
 												<div class="help-block with-errors"></div>
@@ -189,8 +186,8 @@
 													<c:if test = "${not empty denuncia.tp_imovel}">											
                                 						<option selected="selected">${denuncia.tp_imovel}</option>
                               						</c:if>
-													<c:forEach var="combotipo" items="${listatipo}">      
-						      							<option>${combotipo.tp_imovel}</option>      
+													<c:forEach var="combotipoimovel" items="${listaimovel}">      
+						      							<option>${combotipoimovel.nome_tpimovel}</option>      
 													</c:forEach> 
 												</select>
 												<div class="help-block with-errors"></div>

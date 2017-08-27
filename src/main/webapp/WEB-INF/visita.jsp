@@ -119,24 +119,26 @@
                                         <div class="help-block with-errors"></div>
                                       </div>
                                     </div>            
-                            <!--Bairro Input-->
-                                    <div class="form-group">
-                                      <label class="control-label col-md-3" for="bairro">Bairro/Setor <span class="required">*</span></label>
-                                      <div class="col-lg-3 col-xs-12">
-                                        <input type="text" id="bairro" name="bairro" value="${visita.bairro}" required="required" class="form-control input-md">
-                                         <div class="help-block with-errors"></div>
-                                      </div>
-                                    </div>
-                            <!--Cep Input
-                                    <div class="form-group">
-                                      <label class="control-label col-md-3" for="cep">CEP <span class="required">*</span></label>
-                                      <div class="col-lg-2 col-xs-12">
-                                        <input type="tel" id="cep" name="cep" value="${visita.cep}" required="required" class="form-control input-md" pattern="[0-9]+$" 
-                                         data-error="Informe um CEP somente com numeros.">
-                                         <div class="help-block with-errors"></div>
-                                      </div>
-                                    </div>
-                            -->
+                            <!--Bairro Input-->                                										
+									<div class="form-group">
+									<label class="control-label col-md-3" for="bairro">Bairro
+										<span class="required">*</span>
+									</label>
+									<div class="col-lg-3 col-xs-12">
+										<select required id="bairro" name="bairro"
+											title="Selecione item"
+											class="form-control input-md selectpicker"
+											data-live-search="true">
+											 <c:if test = "${not empty visita.bairro}">											
+                              					 	<option selected="selected">${visita.bairro}</option>
+                            				 </c:if>										
+											 <c:forEach var="combobairro" items="${listabairro}">      
+				      							<option>${combobairro.nome_bairro}</option>      
+											 </c:forEach> 											 
+										</select>
+										<div class="help-block with-errors"></div>
+									</div>
+								</div>
                         <!--Cidade select-->
                           <div class="form-group">
                           <label class="control-label col-md-3" for="cidade">Cidade <span class="required">*</span></label>
@@ -145,10 +147,9 @@
                               <c:if test = "${not empty visita.cidade}">											
                                 <option selected="selected">${visita.cidade}</option>
                               </c:if>
-                              <option value="Goiânia">Goiânia</option>
-                              <option value="Aparecida de Goiânia">Aparecida de Goiânia</option>
-                              <option value="Senador Canedo">Senador Canedo</option>
-                              <option value="Trindade">Trindade</option>
+                              <c:forEach var="combocidade" items="${listacidade}">      
+						     	<option>${combocidade.nome_cidade}</option>      
+							  </c:forEach> 
                             </select>
                              <div class="help-block with-errors"></div>
                             </div>
@@ -185,12 +186,9 @@
                               <c:if test = "${not empty visita.tp_imovel}">											
                                 <option selected="selected">${visita.tp_imovel}</option>
                               </c:if>                               
-                              <option value="Lote">Lote</option>
-                              <option value="Casa">Casa</option>
-                              <option value="Apartamento">Apartamento</option>
-                              <option value="Deposito">Depósito</option>
-                              <option value="Loja">Loja</option>
-                              <option value="Sala">Sala comercial</option>
+                              <c:forEach var="combotipoimovel" items="${listaimovel}">      
+						     	<option>${combotipoimovel.nome_tpimovel}</option>      
+							  </c:forEach>
                             </select>
                             <div class="help-block with-errors"></div>
                             </div>
@@ -212,37 +210,37 @@
                               <c:if test = "${not empty visita.estagio}">											
                               	<option selected>${visita.estagio}</option>
     		    			  </c:if>	
-                              <option value="Ovo">Ovo</option>
-                              <option value="Larva">Larva</option>
-                              <option value="Pupa">Pupa</option>
-                              <option value="Mosquito">Mosquito</option>							  
+                              <c:forEach var="comboestagio" items="${listaestagio}">      
+						     	<option>${comboestagio.nome_estagio}</option>      
+							  </c:forEach>							  
                             </select>
                             </div>
                           </div>	
-                          <!--Larvicida select-->
+                          <!--Tratamento select-->
                           <div class="form-group">
-                          <label class="control-label col-md-3" for="tp_larvicida">Larvicida </label>
+                          <label class="control-label col-md-3" for="tp_larvicida">Tratamento Local </label>
                             <div class="col-lg-3 col-xs-12">
                             <select multiple data-size="5"  id="tp_larvicida" name="tp_larvicida" title="Selecione item(s)" class="form-control input-md selectpicker" data-live-search="true">
                               <c:if test = "${not empty visita.tp_larvicida}">											
                                 <option selected="selected">${visita.tp_larvicida}</option>
                               </c:if>
-                              <option value="Tipo 1">Tipo 1</option>
-                              <option value="Tipo 2">Tipo 2</option>
-                              <option value="Tipo 3">Tipo 3</option>
+                              <c:forEach var="combotratamento" items="${listatratamento}">      
+						     	<option>${combotratamento.nome_tratamento}</option>      
+							  </c:forEach>
                             </select>
                             </div>
                           </div>
-                          <!--Ação select-->
+                          <!--Ação Recomendada select-->
                           <div class="form-group">
-                          <label class="control-label col-md-3" for="ac_corretiva">Ação Corretiva </label>
+                          <label class="control-label col-md-3" for="ac_corretiva">Ação Corretiva Recomendada </label>
                             <div class="col-lg-3 col-xs-12">
                             <select multiple data-size="5" id="ac_corretiva" name="ac_corretiva" title="Selecione item(s)" class="form-control input-md selectpicker" data-live-search="true">            
                               <c:if test = "${not empty visita.ac_corretiva}">											
                                 <option selected="selected">${visita.ac_corretiva}</option>
                               </c:if>
-                              <option value="Nebolização">Nebolização</option>
-                              <option value="Borrifação">Borrifação</option>
+                               <c:forEach var="combocorretiva" items="${listacorretiva}">      
+						     	<option>${combocorretiva.nome_ac_corretiva}</option>      
+							  </c:forEach>
                             </select>
                             </div>
                           </div>						  

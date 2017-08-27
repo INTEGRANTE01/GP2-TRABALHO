@@ -15,7 +15,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.VisitaDAO;
-import model.Denuncia;
+import model.AcaoCorretiva;
+import model.AcaoCorretivaDAO;
+import model.Bairro;
+import model.BairroDAO;
+import model.Cidade;
+import model.CidadeDAO;
+import model.Estagio;
+import model.EstagioDAO;
+import model.TipoImovel;
+import model.TipoImovelDAO;
+import model.Tratamento;
+import model.TratamentoDAO;
 import model.Visita;
 
 @WebServlet(name="ServletBuscaVisita", urlPatterns = "/buscavisita")
@@ -25,6 +36,7 @@ public class ServletBuscaVisita extends HttpServlet {
 	
 	private VisitaDAO visitaDAO = new VisitaDAO();
 	private Visita visita = new Visita();
+	private PopulaVisita populavisita = new PopulaVisita();
 	private int idvisita;
 	private String destino = "";
 	private String acao;
@@ -77,22 +89,14 @@ public class ServletBuscaVisita extends HttpServlet {
 	
 	protected void popularcombos(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
-		List<Visita> combocidade = new ArrayList<Visita>(); 
-		List<Visita> combotipo = new ArrayList<Visita>();
-		List<Visita> combobairro = new ArrayList<Visita>();
-		List<Visita> comboestagio = new ArrayList<Visita>();
-		try {
-			combocidade = visitaDAO.populaComboCidade();
-			combotipo = visitaDAO.populaComboImovel();
-			combobairro = visitaDAO.populaComboBairro();
-			comboestagio = visitaDAO.populaComboEstagio();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listacidade",combocidade);	
-		request.setAttribute("listatipo",combotipo);
-		request.setAttribute("listabairro",combobairro);
-		request.setAttribute("listaestagio",comboestagio);
+		
+		populavisita.popularCombosVisita();		
+		request.setAttribute("listacidade",populavisita.combocidade);	
+		request.setAttribute("listabairro",populavisita.combobairro);
+		request.setAttribute("listaimovel",populavisita.combotipoimovel);
+		request.setAttribute("listaestagio",populavisita.comboestagio);
+		request.setAttribute("listatratamento",populavisita.combotratamento);
+		request.setAttribute("listacorretiva",populavisita.combocorretiva);
 	}
 	protected void buscarvisita(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -124,7 +128,6 @@ public class ServletBuscaVisita extends HttpServlet {
 	 protected void consultareditarvisita(HttpServletRequest request,
 	 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 			 	
-		 		String auxiliar = ""; 	 	
 		 		idvisita = Integer.parseInt(request.getParameter("idvisita")); 			
 				visita.setIdvisita(idvisita);			
 				visita = visitaDAO.consultar_editar(visita);					

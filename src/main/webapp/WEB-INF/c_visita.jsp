@@ -80,7 +80,7 @@
 												class="form-control input-md selectpicker"
 												data-live-search="true">
 												<c:forEach var="combobairro" items="${listabairro}">
-													<option>${combobairro.bairro}</option>
+													<option>${combobairro.nome_bairro}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -90,7 +90,7 @@
 												class="form-control input-md selectpicker"
 												data-live-search="true">
 												<c:forEach var="combocidade" items="${listacidade}">
-													<option>${combocidade.cidade}</option>
+													<option>${combocidade.nome_cidade}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -99,8 +99,8 @@
 												title="Selecione uma opção"
 												class="form-control input-md selectpicker"
 												data-live-search="true">
-												<c:forEach var="combotipo" items="${listatipo}">
-													<option>${combotipo.tp_imovel}</option>
+												<c:forEach var="combotipoimovel" items="${listaimovel}">
+													<option>${combotipoimovel.nome_tpimovel}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -110,7 +110,7 @@
 												class="form-control input-md selectpicker"
 												data-live-search="true">
 												<c:forEach var="comboestagio" items="${listaestagio}">
-													<option>${comboestagio.estagio}</option>
+													<option>${comboestagio.nome_estagio}</option>
 												</c:forEach>
 											</select>
 										</div>

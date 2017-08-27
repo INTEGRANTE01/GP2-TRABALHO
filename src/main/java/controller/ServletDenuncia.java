@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DenunciaDAO;
-import model.Funcionario;
 import model.Denuncia;
 
 @WebServlet(name = "ServletDenuncia", urlPatterns = "/denuncia")
@@ -25,16 +24,16 @@ public class ServletDenuncia extends HttpServlet {
 
 	private DenunciaDAO denunciaDAO = new DenunciaDAO();
 	private Denuncia denuncia = new Denuncia();
+	private PopulaDenuncia populadenuncia = new PopulaDenuncia();
 	private String destino = "";
 	private int iddenuncia;
 	private String denunciante;
-	private String cep;
 	private String data_string;
 	private Date data_denuncia;
 	private String bairro;
 	private String rua;
 	private String quadra;
-	private int lote = 0;
+	private String lote;
 	private String numero;
 	private String cidade;
 	private String tp_imovel;
@@ -94,27 +93,21 @@ public class ServletDenuncia extends HttpServlet {
 	
 	protected void popularcombos(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
-		List<Denuncia> combocidade = new ArrayList<Denuncia>(); 
-		List<Denuncia> combotipo = new ArrayList<Denuncia>();
-		try {
-			combocidade = denunciaDAO.populaComboCidade();
-			combotipo = denunciaDAO.populaComboImovel();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listacidade",combocidade);	
-		request.setAttribute("listatipo",combotipo);
+		
+		populadenuncia.popularCombosDenuncia();
+		request.setAttribute("listacidade",populadenuncia.combocidade);	
+		request.setAttribute("listabairro",populadenuncia.combobairro);
+		request.setAttribute("listaimovel", populadenuncia.combotipoimovel);
 	}
-
+	
 	protected void adicionaDenuncia(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		denunciante = request.getParameter("denunciante");
-		cep = request.getParameter("cep");
 		data_string = request.getParameter("data_denuncia");
 		bairro = request.getParameter("bairro");
 		rua = request.getParameter("rua");
 		quadra = request.getParameter("quadra");
-		lote = Integer.parseInt(request.getParameter("lote"));
+		lote = request.getParameter("lote");
 		numero = request.getParameter("numero");
 		cidade = request.getParameter("cidade");
 		tp_imovel = request.getParameter("tp_imovel");
@@ -130,8 +123,6 @@ public class ServletDenuncia extends HttpServlet {
 				System.out.println("Erro ao formatar data.");
 			}
 			denuncia.setDenunciante(denunciante);
-			denuncia.setCep(cep);
-			denuncia.setBairro(bairro);
 			denuncia.setBairro(bairro);
 			denuncia.setRua(rua);
 			denuncia.setQuadra(quadra);
@@ -155,12 +146,11 @@ public class ServletDenuncia extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 		iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
 		denunciante = request.getParameter("denunciante");
-		cep = request.getParameter("cep");
 		data_string = request.getParameter("data_denuncia");
 		bairro = request.getParameter("bairro");
 		rua = request.getParameter("rua");
 		quadra = request.getParameter("quadra");
-		lote = Integer.parseInt(request.getParameter("lote"));
+		lote = request.getParameter("lote");
 		numero = request.getParameter("numero");
 		cidade = request.getParameter("cidade");
 		tp_imovel = request.getParameter("tp_imovel");
@@ -177,7 +167,6 @@ public class ServletDenuncia extends HttpServlet {
 			}
 			denuncia.setIddenuncia(iddenuncia);
 			denuncia.setDenunciante(denunciante);
-			denuncia.setCep(cep);
 			denuncia.setBairro(bairro);
 			denuncia.setRua(rua);
 			denuncia.setQuadra(quadra);

@@ -24,7 +24,7 @@ public class VisitaDAO extends ConectaBanco {
 		Connection conexao = getConexao();
 		PreparedStatement pstmt = conexao
 				.prepareStatement("Update visita SET agente = ?, data_visita = ?, bairro = ?, rua = ?, quadra = ?, "
-								+ "lote = ?, numero = ?, cep = ?, cidade = ?, latitude = ?, longitude = ?, "
+								+ "lote = ?, numero = ?, cidade = ?, latitude = ?, longitude = ?, "
 								+ "tp_imovel = ?, estagio = ?, tp_larvicida = ?, ac_corretiva = ?, local_foco = ? WHERE idvisita = ? ");
 		boolean erro = false;
 		try {
@@ -33,18 +33,17 @@ public class VisitaDAO extends ConectaBanco {
 			pstmt.setString(3, visita.getBairro());
 			pstmt.setString(4, visita.getRua());
 			pstmt.setString(5, visita.getQuadra());
-			pstmt.setInt(6, visita.getLote());
+			pstmt.setString(6, visita.getLote());
 			pstmt.setString(7, visita.getNumero());
-			pstmt.setInt(8, visita.getCep());
-			pstmt.setString(9, visita.getCidade());
-			pstmt.setString(10, visita.getLatitude());
-			pstmt.setString(11, visita.getLongitude());
-			pstmt.setString(12, visita.getTp_imovel());
-			pstmt.setString(13, visita.getEstagio());
-			pstmt.setString(14, visita.getTp_larvicida());
-			pstmt.setString(15, visita.getAc_corretiva());
-			pstmt.setString(16, visita.getLocal_foco());			
-			pstmt.setInt(17, visita.getIdvisita());
+			pstmt.setString(8, visita.getCidade());
+			pstmt.setString(9, visita.getLatitude());
+			pstmt.setString(10, visita.getLongitude());
+			pstmt.setString(11, visita.getTp_imovel());
+			pstmt.setString(12, visita.getEstagio());
+			pstmt.setString(13, visita.getTp_larvicida());
+			pstmt.setString(14, visita.getAc_corretiva());
+			pstmt.setString(15, visita.getLocal_foco());			
+			pstmt.setInt(16, visita.getIdvisita());
 			pstmt.execute();
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -106,25 +105,24 @@ public class VisitaDAO extends ConectaBanco {
 		boolean erro = false;
 		Connection conexao = getConexao();
 		PreparedStatement pstm = conexao
-				.prepareStatement("Insert into	visita (agente, data_visita, bairro, rua, quadra,lote, numero, cep, cidade, latitude, "
-						+ "longitude,tp_imovel, estagio, tp_larvicida, ac_corretiva, local_foco) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				.prepareStatement("Insert into	visita (agente, data_visita, bairro, rua, quadra,lote, numero, cidade, latitude, "
+						+ "longitude,tp_imovel, estagio, tp_larvicida, ac_corretiva, local_foco) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		try {						
 			pstm.setString(1, visita.getAgente());			
 			pstm.setTimestamp(2,  new java.sql.Timestamp(visita.getData_visita().getTime())); 
 			pstm.setString(3, visita.getBairro());
 			pstm.setString(4, visita.getRua());
 			pstm.setString(5, visita.getQuadra());
-			pstm.setInt(6, visita.getLote());
+			pstm.setString(6, visita.getLote());
 			pstm.setString(7, visita.getNumero());
-			pstm.setInt(8, visita.getCep());
-			pstm.setString(9, visita.getCidade());
-			pstm.setString(10, visita.getLatitude());
-			pstm.setString(11, visita.getLongitude());
-			pstm.setString(12, visita.getTp_imovel());
-			pstm.setString(13, visita.getEstagio());
-			pstm.setString(14, visita.getTp_larvicida());
-			pstm.setString(15, visita.getAc_corretiva());
-			pstm.setString(16, visita.getLocal_foco());	
+			pstm.setString(8, visita.getCidade());
+			pstm.setString(9, visita.getLatitude());
+			pstm.setString(10, visita.getLongitude());
+			pstm.setString(11, visita.getTp_imovel());
+			pstm.setString(12, visita.getEstagio());
+			pstm.setString(13, visita.getTp_larvicida());
+			pstm.setString(14, visita.getAc_corretiva());
+			pstm.setString(15, visita.getLocal_foco());	
 			pstm.execute();
 		} catch (Exception e) {
 			erro = true;	
@@ -273,9 +271,8 @@ public List<Visita> listar() throws SQLException {
 				visita.setBairro(rs.getString("bairro"));
 				visita.setRua(rs.getString("rua"));
 				visita.setQuadra(rs.getString("quadra"));
-				visita.setLote(rs.getInt("lote"));
+				visita.setLote(rs.getString("lote"));
 				visita.setNumero(rs.getString("numero"));
-				visita.setCep(rs.getInt("cep"));
 				visita.setCidade(rs.getString("cidade"));
 				visita.setLatitude(rs.getString("latitude"));
 				visita.setLongitude(rs.getString("longitude"));
@@ -295,6 +292,7 @@ public List<Visita> listar() throws SQLException {
 		}
 		return visita;
 	}
+	
 public List<Visita> populaComboImovel() throws SQLException {
 		
 		List<Visita> combotipo = new ArrayList<Visita>();

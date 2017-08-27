@@ -75,7 +75,7 @@
 												class="form-control input-md selectpicker"
 												data-live-search="true">
 												<c:forEach var="combobairro" items="${listabairro}">
-													<option>${combobairro.bairro}</option>
+													<option>${combobairro.nome_bairro}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -85,7 +85,7 @@
 												class="form-control input-md selectpicker"
 												data-live-search="true">
 												<c:forEach var="combocidade" items="${listacidade}">
-													<option>${combocidade.cidade}</option>
+													<option>${combocidade.nome_cidade}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -95,8 +95,8 @@
 												title="Selecione uma opção"
 												class="form-control input-md selectpicker"
 												data-live-search="true">
-												<c:forEach var="combotipo" items="${listatipo}">
-													<option>${combotipo.tp_imovel}</option>
+												<c:forEach var="combotipoimovel" items="${listaimovel}">
+													<option>${combotipoimovel.nome_tpimovel}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -161,7 +161,6 @@
 															<th data-breakpoints="all">Quadra</th>
 															<th data-breakpoints="all">Lote</th>
 															<th data-breakpoints="all">Numero</th>
-															<!-- <th data-breakpoints="all">Cep</th>   -->
 															<th data-breakpoints="all">Descrição da Denuncia</th>
 															<th>Ações</th>
 														</tr>
@@ -180,7 +179,6 @@
 																<td>${denuncia.quadra}</td>
 																<td>${denuncia.lote	}</td>
 																<td>${denuncia.numero}</td>
-																<!--<td>${denuncia.cep}</td>   -->
 																<td>${denuncia.desc_den}</td>
 																<td><div class="btn-group">
 																		<button type="button"

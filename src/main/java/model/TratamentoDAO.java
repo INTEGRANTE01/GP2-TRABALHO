@@ -7,20 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TipoImovelDAO extends ConectaBanco {
+public class TratamentoDAO extends ConectaBanco {
 	
-public List<TipoImovel> populaComboTipoImovel() throws SQLException {
+public List<Tratamento> populaComboTratamento() throws SQLException {
 		
-		List<TipoImovel> combotpimovel = new ArrayList<TipoImovel>();
+		List<Tratamento> comboTratamento = new ArrayList<Tratamento>();
 		Connection conexao = getConexao();
-		PreparedStatement pstm = conexao.prepareStatement("Select nome_tpimovel from tipoimovel order by nome_tpimovel asc");
+		PreparedStatement pstm = conexao.prepareStatement("Select nome_tratamento from tratamento order by nome_tratamento asc");
 		try {
 			
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
-				TipoImovel tpimovel = new TipoImovel();
-				tpimovel.setNome_tpimovel(rs.getString("nome_tpimovel"));
-				combotpimovel.add(tpimovel);
+				Tratamento tratamento  = new Tratamento();
+				tratamento.setNome_tratamento(rs.getString("nome_tratamento"));
+				comboTratamento.add(tratamento);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -28,17 +28,17 @@ public List<TipoImovel> populaComboTipoImovel() throws SQLException {
 			pstm.close();
 			conexao.close();			
 	}
-		return combotpimovel;
+		return comboTratamento;
 	}
 
-	public boolean existe(TipoImovel tpimovel) throws SQLException {
+	public boolean existe(AcaoCorretiva acaocorretiva) throws SQLException {
 		boolean achou = false;
 		
 		Connection conexao = getConexao();
-		PreparedStatement pstm = conexao.prepareStatement("Select id_imovel from tipoimovel where id_imovel = ?");
+		PreparedStatement pstm = conexao.prepareStatement("Select idac_corretiva from ac_corretiva where idac_corretiva = ?");
 		try {
 			
-			pstm.setInt(1, tpimovel.getId_imovel());
+			pstm.setInt(1, acaocorretiva.getIdac_corretiva());
 			ResultSet rs = pstm.executeQuery();
 			
 			if (rs.next()) {

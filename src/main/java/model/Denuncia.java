@@ -9,14 +9,12 @@ public class Denuncia {
 	private String bairro;
 	private String rua;
 	private String quadra;
-	private int lote;
+	private String lote;
 	private String numero;
 	private String cidade;
 	private String tp_imovel;
 	private String desc_den;
 	private String denunciante;
-	private String cep;
-	
 	
 	public int getIddenuncia() {
 		return iddenuncia;
@@ -48,10 +46,10 @@ public class Denuncia {
 	public void setQuadra(String quadra) {
 		this.quadra = quadra;
 	}
-	public int getLote() {
+	public String getLote() {
 		return lote;
 	}
-	public void setLote(int lote) {
+	public void setLote(String lote) {
 		this.lote = lote;
 	}
 	public String getNumero() {
@@ -78,27 +76,19 @@ public class Denuncia {
 	public void setDesc_den(String desc_den) {
 		this.desc_den = desc_den;
 	}
-	
 	public String getDenunciante() {
 		return denunciante;
 	}
 	public void setDenunciante(String denunciante) {
 		this.denunciante = denunciante;
 	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
 	
 	@Override
 	public String toString() {
-		return "Denuncia [iddencuncia=" + iddenuncia + ", data_denuncia=" + data_denuncia + ", bairro=" + bairro
+		return "Denuncia [iddenuncia=" + iddenuncia + ", data_denuncia=" + data_denuncia + ", bairro=" + bairro
 				+ ", rua=" + rua + ", quadra=" + quadra + ", lote=" + lote + ", numero=" + numero + ", cidade=" + cidade
-				+ ", tp_imovel=" + tp_imovel + ", desc_den=" + desc_den + "]";
+				+ ", tp_imovel=" + tp_imovel + ", desc_den=" + desc_den + ", denunciante=" + denunciante + "]";
 	}
 	
-
+		
 }

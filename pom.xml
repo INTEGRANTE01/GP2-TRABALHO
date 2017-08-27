@@ -5,7 +5,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>Teste</groupId>
+  <groupId>Trabalho-GP2</groupId>
   <artifactId>endemias</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <!-- "war" indica que é um projeto web. -->

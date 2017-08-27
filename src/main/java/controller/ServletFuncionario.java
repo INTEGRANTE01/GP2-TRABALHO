@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.FuncionarioDAO;
-import model.Funcao;
-import model.FuncaoDAO;
 import model.Funcionario;
 
 @WebServlet(name = "ServletFuncionario", urlPatterns = "/funcionario")
@@ -24,6 +22,7 @@ public class ServletFuncionario extends HttpServlet {
 
 	private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 	private Funcionario funcionario = new Funcionario();
+	private PopulaFuncionario populafuncionario = new PopulaFuncionario();
 	private String destino = "";
 	private int idfuncionario;
 	private String nome;
@@ -84,14 +83,9 @@ public class ServletFuncionario extends HttpServlet {
 
 	protected void popularcombo(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
-		List<Funcao> funcao = new ArrayList<Funcao>(); 
-		FuncaoDAO funcaoDAO = new FuncaoDAO();
-		try {
-			funcao = funcaoDAO.populaComboFuncao();					
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listafuncao",funcao);	
+		
+		populafuncionario.popularCombosFuncionario();
+		request.setAttribute("listafuncao",populafuncionario.combofuncao);	
 	}
 	protected void adicionafuncionario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
@@ -104,11 +98,11 @@ public class ServletFuncionario extends HttpServlet {
 
 		try {
 
-			funcionario.setMatricula(matricula);
-			funcionario.setNome(nome);
-			funcionario.setFuncao(funcao);
-			funcionario.setEmail(email);
-			funcionario.setSenha(senha);
+		funcionario.setMatricula(matricula);
+		funcionario.setNome(nome);
+		funcionario.setFuncao(funcao);
+		funcionario.setEmail(email);
+		funcionario.setSenha(senha);
 
 		} catch (Exception e) {
 			System.out.println("Parametro incorreto.");

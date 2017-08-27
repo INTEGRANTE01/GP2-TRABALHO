@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import model.Denuncia;
 
 /**
@@ -23,20 +22,21 @@ public class DenunciaDAO extends ConectaBanco {
 		boolean erro = false;
 		Connection conexao = getConexao();
 		PreparedStatement pstmt = conexao
-				.prepareStatement("Update denuncia SET data_denuncia = ?, bairro = ?, rua = ?, quadra = ?, lote = ?, numero = ?, cidade = ?, tp_imovel = ?, desc_den = ?, denunciante = ?, cep = ? WHERE iddenuncia = ? ");
+				.prepareStatement("Update denuncia SET data_denuncia = ?, bairro = ?, rua = ?, quadra = ?, "
+						+ "lote = ?, numero = ?, cidade = ?, tp_imovel = ?, desc_den = ?, denunciante = ?"
+						+ " WHERE iddenuncia = ? ");
 		try {			
 			pstmt.setTimestamp(1,  new java.sql.Timestamp(denuncia.getData_denuncia().getTime()));  
 			pstmt.setString(2, denuncia.getBairro());
 			pstmt.setString(3, denuncia.getRua());
 			pstmt.setString(4, denuncia.getQuadra());
-			pstmt.setInt(5, denuncia.getLote());
+			pstmt.setString(5, denuncia.getLote());
 			pstmt.setString(6, denuncia.getNumero());
 			pstmt.setString(7, denuncia.getCidade());
 			pstmt.setString(8, denuncia.getTp_imovel());
 			pstmt.setString(9, denuncia.getDesc_den());
 			pstmt.setString(10, denuncia.getDenunciante());
-			pstmt.setString(11, denuncia.getCep());
-			pstmt.setInt(12, denuncia.getIddenuncia());
+			pstmt.setInt(11, denuncia.getIddenuncia());
 			pstmt.execute();
 			}catch (Exception e) {
 				erro = true;					
@@ -90,19 +90,19 @@ public class DenunciaDAO extends ConectaBanco {
 		boolean erro = false;
 		Connection conexao = getConexao();
 		PreparedStatement pstm = conexao
-				.prepareStatement("Insert into	denuncia (data_denuncia, bairro, rua, quadra, lote, numero, cidade, tp_imovel, desc_den, denunciante, cep) values	(?,?,?,?,?,?,?,?,?,?,?)");
+				.prepareStatement("Insert into	denuncia (data_denuncia, bairro, rua, quadra, lote, numero, "
+						+ "cidade, tp_imovel, desc_den, denunciante) values	(?,?,?,?,?,?,?,?,?,?)");
 		try {			
 			pstm.setTimestamp(1,  new java.sql.Timestamp(denuncia.getData_denuncia().getTime()));  
 			pstm.setString(2, denuncia.getBairro());
 			pstm.setString(3, denuncia.getRua());
 			pstm.setString(4, denuncia.getQuadra());
-			pstm.setInt(5, denuncia.getLote());
+			pstm.setString(5, denuncia.getLote());
 			pstm.setString(6, denuncia.getNumero());
 			pstm.setString(7, denuncia.getCidade());
 			pstm.setString(8, denuncia.getTp_imovel());
 			pstm.setString(9, denuncia.getDesc_den());
 			pstm.setString(10, denuncia.getDenunciante());
-			pstm.setString(11, denuncia.getCep());
 			pstm.execute();
 		} catch (Exception e) {
 			erro = true;	
@@ -132,12 +132,11 @@ public class DenunciaDAO extends ConectaBanco {
 				denuncia.setBairro(rs.getString("bairro"));
 				denuncia.setRua(rs.getString("rua"));
 				denuncia.setQuadra(rs.getString("quadra"));
-				denuncia.setLote(rs.getInt("lote"));
+				denuncia.setLote(rs.getString("lote"));
 				denuncia.setNumero(rs.getString("numero"));
 				denuncia.setCidade(rs.getString("cidade"));
 				denuncia.setTp_imovel(rs.getString("tp_imovel"));
 				denuncia.setDesc_den(rs.getString("desc_den"));
-				denuncia.setCep(rs.getString("cep"));
 				lista.add(denuncia);
 			}
 		} catch (Exception e) {
@@ -164,12 +163,11 @@ public class DenunciaDAO extends ConectaBanco {
 				denuncia.setBairro(rs.getString("bairro"));
 				denuncia.setRua(rs.getString("rua"));
 				denuncia.setQuadra(rs.getString("quadra"));
-				denuncia.setLote(rs.getInt("lote"));
+				denuncia.setLote(rs.getString("lote"));
 				denuncia.setNumero(rs.getString("numero"));
 				denuncia.setCidade(rs.getString("cidade"));
 				denuncia.setTp_imovel(rs.getString("tp_imovel"));
 				denuncia.setDesc_den(rs.getString("desc_den"));
-				denuncia.setCep(rs.getString("cep"));
 				lista.add(denuncia);
 			}
 		} catch (Exception e) {
@@ -193,14 +191,13 @@ public class DenunciaDAO extends ConectaBanco {
 				denuncia.setData_denuncia(rs.getTimestamp("data_denuncia"));
 				denuncia.setBairro(rs.getString("bairro"));
 				denuncia.setRua(rs.getString("rua"));
-				denuncia.setLote(rs.getInt("lote"));
+				denuncia.setLote(rs.getString("lote"));
 				denuncia.setQuadra(rs.getString("quadra"));
 				denuncia.setNumero(rs.getString("numero"));
 				denuncia.setCidade(rs.getString("cidade"));
 				denuncia.setTp_imovel(rs.getString("tp_imovel"));
 				denuncia.setDesc_den(rs.getString("desc_den"));
 				denuncia.setDenunciante(rs.getString("denunciante"));
-				denuncia.setCep(rs.getString("cep"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

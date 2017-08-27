@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.VisitaDAO;
-import model.Funcionario;
 import model.Visita;
 
 @WebServlet(name = "ServletVisita", urlPatterns = "/visita")
@@ -27,27 +26,30 @@ public class ServletVisita extends HttpServlet {
 
 	private VisitaDAO VisitaDAO = new VisitaDAO();
 	private Visita visita = new Visita();
+	private PopulaVisita populavisita = new PopulaVisita();
 	private String destino = "";
 	private int idvisita;
 	private String agente;			
 	private String data_string;
 	private Date data_visita;
-	private String bairro;
 	private String rua;
 	private String quadra;
-	private int lote;
+	private String lote;
 	private String numero;
-	private int cep;
-	private String cidade;
 	private String latitude;
 	private String longitude;
+	private String bairro;
+	private String cidade;
 	private String tp_imovel;
-	private String[] estagio;
-	private String concatenaEstagio;
-	private String tp_larvicida;
-	private String ac_corretiva;
+	private String[] estagio;	
+	private String[] tp_larvicida;
+	private String[] ac_corretiva;
 	private String local_foco;			
 	private String message;
+	private String concatenaEstagio;
+	private String concatenaLarvicida;
+	private String concatenaAccorretiva;
+	
 	private boolean acao = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -55,7 +57,7 @@ public class ServletVisita extends HttpServlet {
 						
 			try {
 				capturaNomeUsuario(request, response);
-				popularcombo(request,response);
+				popularcombos(request,response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} 	
@@ -113,45 +115,41 @@ public class ServletVisita extends HttpServlet {
 			visita.setAgente(agente);
 			request.setAttribute("visita", visita);
 	}
-}
-	
-	protected void popularcombo(HttpServletRequest request,
+}	
+
+	protected void popularcombos(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
-		List<Visita> combocidade = new ArrayList<Visita>(); 
-		List<Visita> combotipo = new ArrayList<Visita>();
-		List<Visita> combobairro = new ArrayList<Visita>();
-		try {
-			combocidade = VisitaDAO.populaComboCidade();
-			combotipo = VisitaDAO.populaComboImovel();
-			combobairro = VisitaDAO.populaComboBairro();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listacidade",combocidade);	
-		request.setAttribute("listatipo",combotipo);
-		request.setAttribute("listabairro",combobairro);
+		
+		populavisita.popularCombosVisita();		
+		request.setAttribute("listacidade",populavisita.combocidade);	
+		request.setAttribute("listabairro",populavisita.combobairro);
+		request.setAttribute("listaimovel",populavisita.combotipoimovel);
+		request.setAttribute("listaestagio",populavisita.comboestagio);
+		request.setAttribute("listatratamento",populavisita.combotratamento);
+		request.setAttribute("listacorretiva",populavisita.combocorretiva);
 	}
 
 	protected void adicionaVisita(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		  
 		  concatenaEstagio="";
+		  concatenaLarvicida="";
+		  concatenaAccorretiva="";	
 		  agente = request.getParameter("agente");
 		  data_string = request.getParameter("data_visita");
 		  System.out.println("NO DATA_STRING: "  + data_string);
 		  bairro =  request.getParameter("bairro");
 		  rua =  request.getParameter("rua");
 		  quadra = request.getParameter("quadra");
-		  lote = Integer.parseInt(request.getParameter("lote"));
+		  lote = request.getParameter("lote");
 		  numero =  request.getParameter("numero");
-		  cep = Integer.parseInt(request.getParameter("cep"));
 		  cidade =  request.getParameter("cidade");
 		  latitude =  request.getParameter("latitude");
 		  longitude =  request.getParameter("longitude");
 		  tp_imovel =  request.getParameter("tp_imovel");
 		  estagio =  request.getParameterValues("estagio");
-		  tp_larvicida =  request.getParameter("tp_larvicida");
-		  ac_corretiva =  request.getParameter("ac_corretiva");
+		  tp_larvicida =  request.getParameterValues("tp_larvicida");
+		  ac_corretiva =  request.getParameterValues("ac_corretiva");
 		  local_foco =  request.getParameter("local_foco");
 
 		try {
@@ -165,11 +163,11 @@ public class ServletVisita extends HttpServlet {
 			visita.setQuadra(quadra);
 			visita.setLote(lote);
 			visita.setNumero(numero);
-			visita.setCep(cep);
 			visita.setCidade(cidade);  
 			visita.setLatitude(latitude);
 			visita.setLongitude(longitude);
 			visita.setTp_imovel(tp_imovel);
+			
 			for (int i=0;i<estagio.length;i++){
 				
 				if(i==estagio.length-1)
@@ -177,9 +175,25 @@ public class ServletVisita extends HttpServlet {
 				else
 					concatenaEstagio+=estagio[i] + ",";
 			}
-			visita.setEstagio(concatenaEstagio);			
-			visita.setTp_larvicida(tp_larvicida);
-			visita.setAc_corretiva(ac_corretiva);
+			visita.setEstagio(concatenaEstagio);
+			
+			for (int i=0;i<tp_larvicida.length;i++){
+				
+				if(i==tp_larvicida.length-1)
+					concatenaLarvicida+=tp_larvicida[i];						
+				else
+					concatenaLarvicida+=tp_larvicida[i] + ",";
+			}
+			visita.setTp_larvicida(concatenaLarvicida);
+			
+			for (int i=0;i<ac_corretiva.length;i++){
+				
+				if(i==ac_corretiva.length-1)
+					concatenaAccorretiva+=ac_corretiva[i];						
+				else
+					concatenaAccorretiva+=ac_corretiva[i] + ",";
+			}
+			visita.setAc_corretiva(concatenaAccorretiva);
 			visita.setLocal_foco(local_foco);
 
 		} catch (Exception e) {
@@ -193,22 +207,24 @@ public class ServletVisita extends HttpServlet {
 
 	protected void editarVisita(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
+		
 		   concatenaEstagio="";
+		   concatenaLarvicida="";
+		   concatenaAccorretiva="";		   
 		   agente = request.getParameter("agente");
 		   data_string = request.getParameter("data_visita");
 		   bairro =  request.getParameter("bairro");
 		   rua =  request.getParameter("rua");
 		   quadra = request.getParameter("quadra");
-		   lote = Integer.parseInt(request.getParameter("lote"));
+		   lote = request.getParameter("lote");
 		   numero =  request.getParameter("numero");
-		   cep = Integer.parseInt(request.getParameter("cep"));
 		   cidade =  request.getParameter("cidade");
 		   latitude =  request.getParameter("latitude");
 		   longitude =  request.getParameter("longitude");
 		   tp_imovel =  request.getParameter("tp_imovel");
 	       estagio =  request.getParameterValues("estagio");
-		   tp_larvicida =  request.getParameter("tp_larvicida");
-		   ac_corretiva =  request.getParameter("ac_corretiva");
+		   tp_larvicida =  request.getParameterValues("tp_larvicida");
+		   ac_corretiva =  request.getParameterValues("ac_corretiva");
 		   local_foco =  request.getParameter("local_foco");
 		  
 		try {
@@ -223,11 +239,11 @@ public class ServletVisita extends HttpServlet {
 			visita.setQuadra(quadra);
 			visita.setLote(lote);
 			visita.setNumero(numero);
-			visita.setCep(cep);
 			visita.setCidade(cidade);
 			visita.setLatitude(latitude);
 			visita.setLongitude(longitude);
 			visita.setTp_imovel(tp_imovel);
+			
 			for (int i=0;i<estagio.length;i++){
 				
 				if(i==estagio.length-1)
@@ -236,8 +252,24 @@ public class ServletVisita extends HttpServlet {
 					concatenaEstagio+=estagio[i] + ",";
 			}
 			visita.setEstagio(concatenaEstagio);
-			visita.setTp_larvicida(tp_larvicida);
-			visita.setAc_corretiva(ac_corretiva);
+			
+			for (int i=0;i<tp_larvicida.length;i++){
+				
+				if(i==tp_larvicida.length-1)
+					concatenaLarvicida+=tp_larvicida[i];						
+				else
+					concatenaLarvicida+=tp_larvicida[i] + ",";
+			}
+			visita.setTp_larvicida(concatenaLarvicida);
+			
+			for (int i=0;i<ac_corretiva.length;i++){
+				
+				if(i==ac_corretiva.length-1)
+					concatenaAccorretiva+=ac_corretiva[i];						
+				else
+					concatenaAccorretiva+=ac_corretiva[i] + ",";
+			}
+			visita.setAc_corretiva(concatenaAccorretiva);
 			visita.setLocal_foco(local_foco);
 
 		} catch (Exception e) {

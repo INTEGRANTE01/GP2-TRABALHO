@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.FuncionarioDAO;
-import model.Funcao;
-import model.FuncaoDAO;
 import model.Funcionario;
 
 @WebServlet(name="ServletBuscaFuncionario", urlPatterns = "/buscafuncionario")
@@ -31,6 +29,7 @@ public class ServletBuscaFuncionario extends HttpServlet {
 	
 	private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 	private Funcionario funcionario = new Funcionario();
+	private PopulaFuncionario populafuncionario = new PopulaFuncionario();
 	private int idfuncionario;
 	private String destino = "";
 	private String acao;
@@ -79,14 +78,9 @@ public class ServletBuscaFuncionario extends HttpServlet {
 	
 	protected void popularcombo(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
-		List<Funcao> funcao = new ArrayList<Funcao>(); 
-		FuncaoDAO funcaoDAO = new FuncaoDAO();
-		try {
-			funcao = funcaoDAO.populaComboFuncao();					
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listafuncao",funcao);	
+		
+		populafuncionario.popularCombosFuncionario();
+		request.setAttribute("listafuncao",populafuncionario.combofuncao);		
 	}
 	
 	
