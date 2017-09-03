@@ -112,10 +112,9 @@ CREATE TABLE `denuncia` (
   `tp_imovel` varchar(15) NOT NULL,
   `desc_den` varchar(300) NOT NULL,
   `denunciante` varchar(255) NOT NULL,
-  `cep` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`iddenuncia`),
   UNIQUE KEY `iddenuncia_UNIQUE` (`iddenuncia`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +123,7 @@ CREATE TABLE `denuncia` (
 
 LOCK TABLES `denuncia` WRITE;
 /*!40000 ALTER TABLE `denuncia` DISABLE KEYS */;
-INSERT INTO `denuncia` (`iddenuncia`, `data_denuncia`, `bairro`, `rua`, `quadra`, `lote`, `numero`, `cidade`, `tp_imovel`, `desc_den`, `denunciante`, `cep`) VALUES (1,'2017-06-14 00:45:00','Setor Rodoviario','Rua Antonio Carlos','55','10','1','Aparecida de Goiânia','Loja','A casa dos fundos está com muitos focos de dengue.','Maria Antonieta da Silva 2','75400000'),(2,'2017-07-03 13:00:00','Centro','Rua 1','10','11','2','Goiania','Apartamento','No condomínio, a caixa d\'agua está cheia de larvas.','Leonardo José','74000000'),(3,'2017-07-03 00:00:00','Setor Goiá','Rua X','34','12','1','Goiania','Loja','O vizinho de frente acumula água nos vasos de planta.','João Nascimento','74000000'),(4,'2017-07-04 00:00:00','Leste Vila Nova','Rua X','10','10','10','Goiania','Apartamento','O condomínio possui muitos focos de mosquito da dengue.','Mogli Cunhal','74000000'),(5,'2017-07-13 05:00:00','Nova Vila','Rua A','10','10','10','Goiania','Casa','José Peixoto','José Peixoto','74000000'),(6,'2017-07-05 06:00:00','Setor Alto da Glória','Rua AAA','10','11','50','Goiania','Apartamento','Muitos pneus acumulando água na rua.','Adriana Silveira','74000000'),(7,'2017-07-07 00:00:00','Setor Jaó','AAA','1','1','1','Aparecida de Goiânia','Casa','Muitos focos na rua.','Marcos Daniel da Silva','74850330'),(8,'2017-07-27 00:00:00','Setor Garavelo','Rua 3','14','11','S/N','Aparecida de Goiânia','Apartamento','Teste','Maria Antonieta','74850330'),(9,'2017-07-31 00:00:00','Setor Jao','TESTE','2334','32','33','Goiania','Casa','Teste teste','Jose ','74850330'),(10,'2017-08-02 00:00:00','Setor Serrinha','Rua dos Açores','17','14','1','Goiania','Casa','Testede ','Fulano de Tal','74851474'),(11,'2017-08-02 00:00:00','Setor Oeste','Rua 14','14','14','1','Aparecida de Goiânia','Loja','Fulano de tal Sabe','Jose da Silva','74850330');
+INSERT INTO `denuncia` (`iddenuncia`, `data_denuncia`, `bairro`, `rua`, `quadra`, `lote`, `numero`, `cidade`, `tp_imovel`, `desc_den`, `denunciante`) VALUES (1,'2017-06-14 00:45:00','Setor Sul','Rua Antonio Carlos','55','10','1','Trindade','Casa','A casa dos fundos está com muitos focos de dengue.','Maria Antonieta da Silva 2'),(2,'2017-07-03 13:00:00','Centro','Rua 1','10','11','2','Goiania','Apartamento','No condomínio, a caixa d\'agua está cheia de larvas.','Leonardo José'),(3,'2017-07-03 00:00:00','Setor Goiá','Rua X','34','12','1','Goiania','Loja','O vizinho de frente acumula água nos vasos de planta.','João Nascimento'),(4,'2017-07-04 00:00:00','Leste Vila Nova','Rua X','10','10','10','Goiania','Apartamento','O condomínio possui muitos focos de mosquito da dengue.','Mogli Cunhal'),(5,'2017-07-13 05:00:00','Nova Vila','Rua A','10','10','10','Goiania','Casa','José Peixoto','José Peixoto'),(6,'2017-07-05 06:00:00','Setor Alto da Glória','Rua AAA','10','11','50','Goiania','Apartamento','Muitos pneus acumulando água na rua.','Adriana Silveira'),(7,'2017-07-07 00:00:00','Setor Jaó','AAA','1','1','1','Aparecida de Goiânia','Casa','Muitos focos na rua.','Marcos Daniel da Silva'),(8,'2017-07-27 00:00:00','Setor Garavelo','Rua 3','14','11','S/N','Aparecida de Goiânia','Apartamento','Teste','Maria Antonieta'),(9,'2017-07-31 00:00:00','Setor Jao','TESTE','2334','32','33','Goiania','Casa','Teste teste','Jose '),(10,'2017-08-02 00:00:00','Setor Serrinha','Rua dos Açores','17','14','1','Goiania','Casa','Testede ','Fulano de Tal'),(11,'2017-08-02 00:00:00','Setor Oeste','Rua 14','14','14','1','Aparecida de Goiânia','Loja','Fulano de tal Sabe','Jose da Silva'),(12,'2017-08-27 00:00:00','Setor Central','RUA DOS TESTE','33','23','22','Aparecida de Goiânia','Apartamento','CHEIO DE MOSQUITOS','Thyeres'),(13,'2017-08-27 00:00:00','Setor Central','RUA 10','12','1','ss','Aparecida de Goiânia','Lote','hhhh','Thyeres'),(14,'2017-08-27 00:00:00','Setor Sul','RUA DOS TESTE','12','23','ee','Trindade','Deposito','yyyy','Thyeres');
 /*!40000 ALTER TABLE `denuncia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +205,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` (`idfuncionario`, `matricula`, `nome`, `funcao`, `email`, `senha`) VALUES (1,'admin','Administrador','Administrador','administrador@sysendemic.com','admin'),(2,'100001','Sabrina Carneiro','Atendente','sabrina@sysendemic.com','123'),(3,'100002','Henrique Coimbra','Agente','henrique@sysendemic.com','123'),(4,'100003','Eduardo Braz','Agente','eduardo@sysendemic.com','123'),(5,'100004','Marieta Severo','Atendente','marieta@sysendemic.com','123'),(6,'100005','Lorena Abrahão','Atendente','lorena@sysendemic.com','123'),(7,'100006','Márcio Coimbra','Agente','marcio@sysendemic.com','123'),(8,'100007','Cinara de Jesus','Agente','cinara@sysendemic.com','123'),(9,'100008','Marcos Nascimento Pereira','Agente','marcos@sysendemic.com','123'),(10,'100009','Lourenço Peixoto','Atendente','lourenco@sysendemic.com','123'),(11,'100010','Moisés Assunção','Agente','moises@sysendemic.com','123'),(12,'100011','Maria de Fátima da Silva','Atendente','maria@sysendemic.com','123'),(13,'100012','Carlos Daniel Menezes','Atendente','carlos@sysendemic.com','123'),(14,'100013','Zélia Costa','Agente','zelia@sysendemic.com','123'),(15,'100014','Talita Queróz','Agente','talita@sysendemic.com','123'),(16,'100015','Bruna Nunes','Agente','bruna@sysendemic.com','123'),(17,'101','Thyeres Nahum','Administrador','thyeres@endemic.com','123'),(18,'teste','Usuario Teste','Atendente','usuarioteste@sysendemic.com','123');
+INSERT INTO `funcionario` (`idfuncionario`, `matricula`, `nome`, `funcao`, `email`, `senha`) VALUES (1,'admin','Administrador','Administrador','administrador@sysendemic.com','admin'),(2,'100001','Sabrina Carneiro','Administrador','sabrina@sysendemic.com','123'),(3,'100002','Henrique Coimbra','Agente','henrique@sysendemic.com','123'),(4,'100003','Eduardo Braz','Agente','eduardo@sysendemic.com','123'),(5,'100004','Marieta Severo','Atendente','marieta@sysendemic.com','123'),(6,'100005','Lorena Abrahão','Atendente','lorena@sysendemic.com','123'),(7,'100006','Márcio Coimbra','Agente','marcio@sysendemic.com','123'),(8,'100007','Cinara de Jesus','Agente','cinara@sysendemic.com','123'),(9,'100008','Marcos Nascimento Pereira','Agente','marcos@sysendemic.com','123'),(10,'100009','Lourenço Peixoto','Atendente','lourenco@sysendemic.com','123'),(11,'100010','Moisés Assunção','Agente','moises@sysendemic.com','123'),(12,'100011','Maria de Fátima da Silva','Atendente','maria@sysendemic.com','123'),(13,'100012','Carlos Daniel Menezes','Atendente','carlos@sysendemic.com','123'),(14,'100013','Zélia Costa','Agente','zelia@sysendemic.com','123'),(15,'100014','Talita Queróz','Agente','talita@sysendemic.com','123'),(16,'100015','Bruna Nunes','Agente','bruna@sysendemic.com','123'),(17,'101','Thyeres Nahum','Administrador','thyeres@endemic.com','123'),(18,'teste','Usuario Teste','Atendente','usuarioteste@sysendemic.com','123');
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,13 +243,11 @@ DROP TABLE IF EXISTS `tratamento`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tratamento` (
   `idtratamento` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_tratamento` varchar(30) DEFAULT NULL,
+  `nome_tratamento` varchar(30) NOT NULL,
   `tp_tratamento` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`idtratamento`),
-  UNIQUE KEY `idlarvicida_UNIQUE` (`idtratamento`),
-  UNIQUE KEY `nome_tratamento_UNIQUE` (`nome_tratamento`),
-  UNIQUE KEY `tp_tratamento_UNIQUE` (`tp_tratamento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `idlarvicida_UNIQUE` (`idtratamento`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,6 +256,7 @@ CREATE TABLE `tratamento` (
 
 LOCK TABLES `tratamento` WRITE;
 /*!40000 ALTER TABLE `tratamento` DISABLE KEYS */;
+INSERT INTO `tratamento` (`idtratamento`, `nome_tratamento`, `tp_tratamento`) VALUES (7,'Larvicida 1','Larvicida'),(8,'Larvicida 2','Larvicida'),(9,'Adulticida 1','Adulticida');
 /*!40000 ALTER TABLE `tratamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,19 +276,18 @@ CREATE TABLE `visita` (
   `quadra` varchar(5) NOT NULL,
   `lote` varchar(5) NOT NULL,
   `numero` varchar(5) NOT NULL,
-  `cep` int(11) DEFAULT NULL,
   `cidade` varchar(30) NOT NULL,
-  `latitude` varchar(20) DEFAULT NULL,
-  `longitude` varchar(20) DEFAULT NULL,
+  `latitude` varchar(20) NOT NULL,
+  `longitude` varchar(20) NOT NULL,
   `tp_imovel` varchar(15) NOT NULL,
-  `estagio` varchar(10) NOT NULL,
-  `tp_larvicida` varchar(10) NOT NULL,
-  `ac_corretiva` varchar(15) NOT NULL,
+  `estagio` varchar(25) DEFAULT NULL,
+  `tp_larvicida` varchar(50) DEFAULT NULL,
+  `ac_corretiva` varchar(30) DEFAULT NULL,
   `local_foco` varchar(45) DEFAULT NULL,
   `foco` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`idvisita`),
   UNIQUE KEY `idvisita_UNIQUE` (`idvisita`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,7 +296,7 @@ CREATE TABLE `visita` (
 
 LOCK TABLES `visita` WRITE;
 /*!40000 ALTER TABLE `visita` DISABLE KEYS */;
-INSERT INTO `visita` (`idvisita`, `agente`, `data_visita`, `bairro`, `rua`, `quadra`, `lote`, `numero`, `cep`, `cidade`, `latitude`, `longitude`, `tp_imovel`, `estagio`, `tp_larvicida`, `ac_corretiva`, `local_foco`, `foco`) VALUES (1,'Henrique Coimbra','2017-02-06 00:11:00','Negrão de Lima','Rua Dona','25','2','sn',74650130,'Goiânia','-16.652459','-49.244200','Casa','Pupa','Tipo 2','Borrifacao','garrafas plásticas',0),(2,'Eduardo Braz','2017-03-13 15:00:00','Morada Nova','TEste','20','16','2',756000000,'Senador Canedo','-16.695039','-49.101233','Apartamento','Larva','Tipo 1','Borrifação','caixa d\'agua',0),(3,'Márcio Coimbra','2017-04-11 00:00:00','Setor dos Arcos','Rua Rodriguez Peixoto','10','11','sn',74000000,'Aparecida de Goiânia','-16.824134','-49.253728','Deposito','Mosquito','Tipo 3','Borrifação','espalhado por todo depósito',0),(4,'Cinara de Jesus','2017-07-03 17:00:00','Setor Aeroporto','Avenida Independência','20','12','10',74000000,'Goiânia','-16.669820','-49.276510','Loja','Ovo','Tipo 1','Nebolização','',0),(5,'Marcos Nascimento Pereira','2017-05-09 00:00:00','Setor Jaó','Alameda Couto Paranhos','10','47','sn',74000000,'Goiânia','-16.643337','-49.235922','Sala','Mosquito','Tipo 3','Borrifação','vasos',0),(6,'Moisés Assunção','2017-02-20 00:00:00','Santa Genoveva','Rua Alberto Gonçalez','54','11','2',74001000,'Goiânia','-16.633160','-49.236371','Apartamento','Pupa','Tipo 3','Borrifação','vasos',0),(9,'Bruna Nunes','2017-05-29 00:00:00','Negrão de Lima','Rua das Flores','10','11','12',74000000,'Aparecida de Goiânia','-16.751548','-49.293462','Casa','Pupa','Tipo 2','Nebolização','',0),(11,'Administrador','2017-07-27 00:00:00','Negrão de Lima','Avenida Antonio Alves 33','11','11','1',11111111,'Goiânia','-16.652455','-49.244211','Deposito','Larva','Tipo 1','Nebolização','',0),(12,'Administrador','2017-08-04 08:00:00','Jardim da Luz','Alimrante Barroso','12','12','S/N',74850330,'Goiânia','-16.7291895','-49.2357745','Casa','Larva','Tipo 2','Nebolização','Em toda a casa',0);
+INSERT INTO `visita` (`idvisita`, `agente`, `data_visita`, `bairro`, `rua`, `quadra`, `lote`, `numero`, `cidade`, `latitude`, `longitude`, `tp_imovel`, `estagio`, `tp_larvicida`, `ac_corretiva`, `local_foco`, `foco`) VALUES (1,'Henrique Coimbra','2017-02-06 00:11:00','Negrão de Lima','Rua Dona','25','2','sn','Goiânia','-16.652459','-49.244200','Casa','Pupa','Tipo 2','Borrifacao','garrafas plásticas',0),(2,'Eduardo Braz','2017-03-13 15:00:00','Morada Nova','TEste','20','16','2','Senador Canedo','-16.695039','-49.101233','Apartamento','Larva','Tipo 1','Borrifação','caixa d\'agua',0),(3,'Márcio Coimbra','2017-04-11 00:00:00','Setor dos Arcos','Rua Rodriguez Peixoto','10','11','sn','Aparecida de Goiânia','-16.824134','-49.253728','Deposito','Mosquito','Tipo 3','Borrifação','espalhado por todo depósito',0),(4,'Cinara de Jesus','2017-07-03 17:00:00','Setor Aeroporto','Avenida Independência','20 ','12','10','Goiânia','-16.669820','-49.276510','Loja','Ovo,Larva,Mosquito','Adulticida 1,Larvicida 1,Larvicida 2','Nebolização','',0),(5,'Marcos Nascimento Pereira','2017-05-09 00:00:00','Setor Jaó','Alameda Couto Paranhos','10','47','sn','Goiânia','-16.643337','-49.235922','Sala','Mosquito','Tipo 3','Borrifação','vasos',0),(6,'Moisés Assunção','2017-02-20 00:00:00','Santa Genoveva','Rua Alberto Gonçalez','54','11','2','Goiânia','-16.633160','-49.236371','Apartamento','Pupa','Tipo 3','Borrifação','vasos',0),(9,'Bruna Nunes','2017-05-29 00:00:00','Negrão de Lima','Rua das Flores','10','11','12','Aparecida de Goiânia','-16.751548','-49.293462','Casa','Pupa','Tipo 2','Nebolização','',0),(11,'Administrador','2017-07-27 00:00:00','Negrão de Lima','Avenida Antonio Alves 33','11','11','1','Goiânia','-16.652455','-49.244211','Deposito','Larva','Tipo 1','Nebolização','',0),(12,'Administrador','2017-08-04 08:00:00','Jardim da Luz','Alimrante Barroso','12','12','S/N','Goiânia','-16.7291895','-49.2357745','Casa','Larva','Tipo 2','Nebolização','Em toda a casa',0),(13,'Administrador','2017-08-27 00:00:00','Setor Central','Rua dos Amores','12','1','ss','Goiânia','-16.7537101','-49.208909299999995','nullCasaCasa','Larva,Mosquito','nullAdulticida 1,Larvicida 1','nullBorrifação,Nebolização','',0),(14,'Administrador','2017-08-27 00:00:00','Setor Central','Rua dos Amores','12','1','ss','Aparecida de Goiânia','-16.7537101','-49.208909299999995','tpimovel','Larva','Adulticida 1','Borrifação,Nebolização','',0),(15,'Administrador','2017-08-27 00:00:00','Setor Sul','Rua dos Amores','12','1','ss','Goiânia','-16.7537101','-49.208909299999995','Casa','Larva,Mosquito','Adulticida 1','Borrifação,Nebolização','',0),(16,'Administrador','2017-08-27 00:00:00','Setor Sul','Rua dos Amores','12','ee','ee','Aparecida de Goiânia','-16.7537101','-49.208909299999995','Deposito','Mosquito,Ovo','Adulticida 1,Larvicida 1','Borrifação,Nebolização','',0),(17,'Administrador','2017-08-27 00:00:00','Setor Central','RUA DOS TESTE','12','1','44','Goiânia','-16.7537101','-49.208909299999995','Casa','Mosquito,Ovo','Adulticida 1,Larvicida 1','Borrifação,Nebolização','Teste Teste',0),(18,'Administrador','2017-08-28 10:00:00','Setor Sul','Rua 23','10 ','14','10','Aparecida de Goiânia','-16.686891199999998','-49.2647943','Loja','Larva,Mosquito,Ovo','Adulticida 1','Borrifação','Teste',0);
 /*!40000 ALTER TABLE `visita` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -312,4 +309,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-25 13:02:25
+-- Dump completed on 2017-08-28 16:45:54
