@@ -36,16 +36,6 @@ public class ServletCidade extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {			
 		
-		pesquisa = request.getParameter("txtpesquisa1");			
-		
-		if (pesquisa!="" || pesquisa!=null){
-			try {
-				buscarcidade(request, response);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}	
-		
 		try {
 			acao = request.getParameter("acao");
 				if (acao != null) {
@@ -63,22 +53,10 @@ public class ServletCidade extends HttpServlet {
 				try {
 					buscarcidade(request, response);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}				
 			}
 		
-					if (acao.equalsIgnoreCase("Consultar")) {				
-						consultareditarcidade(request, response);						
-					} else if (acao.equalsIgnoreCase("Excluir")) {				
-						excluircidade(request, response);
-					}				
-				}
-			}catch (Exception e){
-				e.printStackTrace();
-		}	
-		
-		destino ="WEB-INF/cidade.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
 		
@@ -112,7 +90,6 @@ public class ServletCidade extends HttpServlet {
 				e.printStackTrace();
 			}			
 		}			
-		}
 		
 		request.setAttribute("message", message);
 		destino ="WEB-INF/cidade.jsp";
@@ -151,13 +128,7 @@ public class ServletCidade extends HttpServlet {
 		List<Cidade> listacidade = new ArrayList<Cidade>();
 		listacidade = cidadeDAO.listar(textopesquisa1);
 		request.setAttribute("listacidade", listacidade);
-		destino ="WEB-INF/cidade.jsp";
 
-
-		List<Cidade> listacidade = new ArrayList<Cidade>();
-		textopesquisa1 = request.getParameter("txtpesquisa1");
-		listacidade = cidadeDAO.listar(textopesquisa1);
-		request.setAttribute("listacidade", listacidade);
 	}
 
 	protected void consultareditarcidade(HttpServletRequest request, HttpServletResponse response)
@@ -182,6 +153,7 @@ public class ServletCidade extends HttpServlet {
 		else
 			message = "Registro Excluido com Sucesso";
 		request.setAttribute("message", message);
-		buscarcidade(request,response);
+		destino ="WEB-INF/cidade.jsp";
+
 	}
 }
