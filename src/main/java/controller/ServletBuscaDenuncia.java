@@ -124,7 +124,6 @@ public class ServletBuscaDenuncia extends HttpServlet {
 
 		iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
 		denuncia.setIddenuncia(iddenuncia);
-		request.setAttribute("denuncia", denuncia);
 		denunciaDAO.excluir(denuncia);
 		List<Denuncia> listadenuncia = new ArrayList<Denuncia>();
 		listadenuncia = denunciaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);

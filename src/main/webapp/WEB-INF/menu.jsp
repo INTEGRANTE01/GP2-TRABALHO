@@ -70,8 +70,8 @@
                     <li><a><i class="fa fa-check-circle-o"></i>Parametros Auxiliares <span class="fa fa-chevron-down"></span></a>
                    		<ul class="nav child_menu">                   
                     		<li><a href="#">Tipo de Usuário</a></li>
-                    		<li><a href="#">Cidade</a></li>
-                    		<li><a href="#">Bairro</a></li>                     		 
+                    		<li><a href="cidade">Cidade</a></li>
+                    		<li><a href="bairro">Bairro</a></li>                     		 
                     	</ul>                    	 
                     </li>
                    </ul> 

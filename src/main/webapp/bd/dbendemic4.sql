@@ -53,9 +53,10 @@ DROP TABLE IF EXISTS `bairro`;
 CREATE TABLE `bairro` (
   `idbairro` int(11) NOT NULL AUTO_INCREMENT,
   `nome_bairro` varchar(45) NOT NULL,
+  `nome_cidade` varchar(40) NOT NULL,
   PRIMARY KEY (`idbairro`),
   UNIQUE KEY `idbairro_UNIQUE` (`idbairro`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +65,7 @@ CREATE TABLE `bairro` (
 
 LOCK TABLES `bairro` WRITE;
 /*!40000 ALTER TABLE `bairro` DISABLE KEYS */;
-INSERT INTO `bairro` VALUES (1,'Setor Central'),(2,'Setor Sul');
+INSERT INTO `bairro` VALUES (1,'Setor Central','Goiânia'),(2,'Setor Sul','Goiânia'),(3,'Setor Monte Sinai','Trindade'),(4,'Vila Roberto Monteiro','Trindade'),(5,'Jardim Novo Horizonte','Trindade'),(6,'Setor Serra Dourada','Trindade'),(7,'Jardim Imperial','Trindade'),(8,'Morada do Bosque','Trindade'),(9,'Setor Comercial','Senador Canedo'),(10,'Conjunto Uirapuru','Senador Canedo'),(11,'Vila São sebastião ','Senador Canedo'),(12,'São francisco','Senador Canedo'),(13,'Vila Matinha','Senador Canedo');
 /*!40000 ALTER TABLE `bairro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,21 +274,21 @@ CREATE TABLE `visita` (
   `data_visita` datetime NOT NULL,
   `bairro` varchar(30) NOT NULL,
   `rua` varchar(45) NOT NULL,
-  `quadra` varchar(5) NOT NULL,
-  `lote` varchar(5) NOT NULL,
-  `numero` varchar(5) NOT NULL,
+  `quadra` varchar(5) DEFAULT NULL,
+  `lote` varchar(5) DEFAULT NULL,
+  `numero` varchar(5) DEFAULT NULL,
   `cidade` varchar(30) NOT NULL,
   `latitude` varchar(20) NOT NULL,
   `longitude` varchar(20) NOT NULL,
   `tp_imovel` varchar(15) NOT NULL,
-  `estagio` varchar(25) NOT NULL,
-  `tp_larvicida` varchar(50) NOT NULL,
-  `ac_corretiva` varchar(30) NOT NULL,
+  `estagio` varchar(25) DEFAULT NULL,
+  `tp_larvicida` varchar(50) DEFAULT NULL,
+  `ac_corretiva` varchar(30) DEFAULT NULL,
   `local_foco` varchar(45) DEFAULT NULL,
   `foco` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`idvisita`),
   UNIQUE KEY `idvisita_UNIQUE` (`idvisita`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,9 +297,129 @@ CREATE TABLE `visita` (
 
 LOCK TABLES `visita` WRITE;
 /*!40000 ALTER TABLE `visita` DISABLE KEYS */;
-INSERT INTO `visita` VALUES (1,'Henrique Coimbra','2017-02-06 00:11:00','Negrão de Lima','Rua Dona','25','2','sn','Goiânia','-16.652459','-49.244200','Casa','Pupa','Tipo 2','Borrifacao','garrafas plásticas',0),(2,'Eduardo Braz','2017-03-13 15:00:00','Morada Nova','TEste','20','16','2','Senador Canedo','-16.695039','-49.101233','Apartamento','Larva','Tipo 1','Borrifação','caixa d\'agua',0),(3,'Márcio Coimbra','2017-04-11 00:00:00','Setor dos Arcos','Rua Rodriguez Peixoto','10','11','sn','Aparecida de Goiânia','-16.824134','-49.253728','Deposito','Mosquito','Tipo 3','Borrifação','espalhado por todo depósito',0),(4,'Cinara de Jesus','2017-07-03 17:00:00','Setor Aeroporto','Avenida Independência','20 ','12','10','Goiânia','-16.669820','-49.276510','Loja','Ovo,Larva,Mosquito','Adulticida 1,Larvicida 1,Larvicida 2','Nebolização','',0),(5,'Marcos Nascimento Pereira','2017-05-09 00:00:00','Setor Jaó','Alameda Couto Paranhos','10','47','sn','Goiânia','-16.643337','-49.235922','Sala','Mosquito','Tipo 3','Borrifação','vasos',0),(6,'Moisés Assunção','2017-02-20 00:00:00','Santa Genoveva','Rua Alberto Gonçalez','54','11','2','Goiânia','-16.633160','-49.236371','Apartamento','Pupa','Tipo 3','Borrifação','vasos',0),(9,'Bruna Nunes','2017-05-29 00:00:00','Negrão de Lima','Rua das Flores','10','11','12','Aparecida de Goiânia','-16.751548','-49.293462','Casa','Pupa','Tipo 2','Nebolização','',0),(11,'Administrador','2017-07-27 00:00:00','Negrão de Lima','Avenida Antonio Alves 33','11','11','1','Goiânia','-16.652455','-49.244211','Deposito','Larva','Tipo 1','Nebolização','',0),(12,'Administrador','2017-08-04 08:00:00','Jardim da Luz','Alimrante Barroso','12','12','S/N','Goiânia','-16.7291895','-49.2357745','Casa','Larva','Tipo 2','Nebolização','Em toda a casa',0),(13,'Administrador','2017-08-27 00:00:00','Setor Central','Rua dos Amores','12','1','ss','Goiânia','-16.7537101','-49.208909299999995','nullCasaCasa','Larva,Mosquito','nullAdulticida 1,Larvicida 1','nullBorrifação,Nebolização','',0),(14,'Administrador','2017-08-27 00:00:00','Setor Central','Rua dos Amores','12','1','ss','Aparecida de Goiânia','-16.7537101','-49.208909299999995','tpimovel','Larva','Adulticida 1','Borrifação,Nebolização','',0),(15,'Administrador','2017-08-27 00:00:00','Setor Sul','Rua dos Amores','12','1','ss','Goiânia','-16.7537101','-49.208909299999995','Casa','Larva,Mosquito','Adulticida 1','Borrifação,Nebolização','',0),(16,'Administrador','2017-08-27 00:00:00','Setor Sul','Rua dos Amores','12','ee','ee','Aparecida de Goiânia','-16.7537101','-49.208909299999995','Deposito','Mosquito,Ovo','Adulticida 1,Larvicida 1','Borrifação,Nebolização','',0),(17,'Administrador','2017-08-27 00:00:00','Setor Central','RUA DOS TESTE','12','1','44','Goiânia','-16.7537101','-49.208909299999995','Casa','Mosquito,Ovo','Adulticida 1,Larvicida 1','Borrifação,Nebolização','Teste Teste',0);
+INSERT INTO `visita` VALUES (1,'Henrique Coimbra','2017-02-06 00:11:00','Negrão de Lima','Rua Dona','25','2','sn','Goiânia','-16.652459','-49.244200','Casa','Pupa','Tipo 2','Borrifacao','garrafas plásticas',0),(2,'Eduardo Braz','2017-03-13 15:00:00','Morada Nova','TEste','20','16','2','Senador Canedo','-16.695039','-49.101233','Apartamento','Larva','Tipo 1','Borrifação','caixa d\'agua',0),(3,'Márcio Coimbra','2017-04-11 00:00:00','Setor dos Arcos','Rua Rodriguez Peixoto','10','11','sn','Aparecida de Goiânia','-16.824134','-49.253728','Deposito','Mosquito','Tipo 3','Borrifação','espalhado por todo depósito',0),(4,'Cinara de Jesus','2017-07-03 17:00:00','Setor Aeroporto','Avenida Independência','20 ','12','10','Goiânia','-16.669820','-49.276510','Loja','Ovo,Larva,Mosquito','Adulticida 1,Larvicida 1,Larvicida 2','Nebolização','',0),(5,'Marcos Nascimento Pereira','2017-05-09 00:00:00','Setor Jaó','Alameda Couto Paranhos','10','47','sn','Goiânia','-16.643337','-49.235922','Sala','Mosquito','Tipo 3','Borrifação','vasos',0),(6,'Moisés Assunção','2017-02-20 00:00:00','Santa Genoveva','Rua Alberto Gonçalez','54','11','2','Goiânia','-16.633160','-49.236371','Apartamento','Pupa','Tipo 3','Borrifação','vasos',0),(9,'Bruna Nunes','2017-05-29 00:00:00','Negrão de Lima','Rua das Flores','10','11','12','Aparecida de Goiânia','-16.751548','-49.293462','Casa','Pupa','Tipo 2','Nebolização','',0),(11,'Administrador','2017-07-27 00:00:00','Negrão de Lima','Avenida Antonio Alves 33','11','11','1','Goiânia','-16.652455','-49.244211','Deposito','Larva','Tipo 1','Nebolização','',0),(12,'Administrador','2017-08-04 08:00:00','Jardim da Luz','Alimrante Barroso','12','12','S/N','Goiânia','-16.7291895','-49.2357745','Casa','Larva','Tipo 2','Nebolização','Em toda a casa',0),(13,'Administrador','2017-08-27 00:00:00','Setor Central','Rua dos Amores','12','1','ss','Goiânia','-16.7537101','-49.208909299999995','nullCasaCasa','Larva,Mosquito','nullAdulticida 1,Larvicida 1','nullBorrifação,Nebolização','',0),(14,'Administrador','2017-08-27 00:00:00','Setor Central','Rua dos Amores','12','1','ss','Aparecida de Goiânia','-16.7537101','-49.208909299999995','tpimovel','Larva','Adulticida 1','Borrifação,Nebolização','',0),(15,'Administrador','2017-08-27 00:00:00','Setor Sul','Rua dos Amores','12','1','ss','Goiânia','-16.7537101','-49.208909299999995','Casa','Larva,Mosquito','Adulticida 1','Borrifação,Nebolização','',0),(16,'Administrador','2017-08-27 00:00:00','Setor Sul','Rua dos Amores','12','ee','ee','Aparecida de Goiânia','-16.7537101','-49.208909299999995','Deposito','Mosquito,Ovo','Adulticida 1,Larvicida 1','Borrifação,Nebolização','',0),(17,'Administrador','2017-08-27 00:00:00','Setor Central','RUA DOS TESTE','12','1','44','Goiânia','-16.7537101','-49.208909299999995','Casa','Mosquito,Ovo','Adulticida 1,Larvicida 1','Borrifação,Nebolização','Teste Teste',0),(18,'Administrador','2017-08-28 10:00:00','Setor Sul','Rua 23','10 ','14','10','Aparecida de Goiânia','-16.686891199999998','-49.2647943','Loja','Larva,Mosquito,Ovo','Adulticida 1','Borrifação','Teste',0);
 /*!40000 ALTER TABLE `visita` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'dbendemic'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `procedure_grafico` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `procedure_grafico`(
+OUT Janeiro int,
+OUT Fevereiro int,
+OUT Março int,
+OUT Abril int,
+OUT Maio int,
+OUT Junho int,
+OUT Julho int,
+OUT Agosto int,
+OUT Setembro int,
+OUT Outubro int,
+OUT Novembro int,
+OUT Dezembro int)
+begin
+
+-- Janeiro
+select count(data_visita) into Janeiro
+	from
+		visita 	
+	where
+		data_visita between '2017-01-01' and '2017-01-31';
+
+-- Fevereiro
+select count(data_visita) into Fevereiro
+	from
+		visita 	
+	where
+		data_visita between '2017-02-01' and '2017-02-31';
+
+
+-- Março
+select count(data_visita) into Março
+	from
+		visita 	
+	where
+		data_visita between '2017-03-01' and '2017-03-31';
+
+-- Abril
+select count(data_visita) into Abril
+	from
+		visita 	
+	where
+		data_visita between '2017-04-01' and '2017-04-30';
+
+-- Maio
+select count(data_visita) into Maio	
+	from
+		visita 	
+	where
+		data_visita between '2017-05-01' and '2017-05-31';
+
+-- Junho
+select count(data_visita) into Junho
+	from
+		visita 	
+	where
+		data_visita between '2017-06-01' and '2017-06-30';
+
+-- Julho
+select count(data_visita) into Julho
+	from
+		visita 	
+	where
+		data_visita between '2017-07-01' and '2017-07-31';
+
+-- Agosto
+select count(data_visita) into Agosto
+	from
+		visita 	
+	where
+		data_visita between '2017-08-01' and '2017-08-31';
+
+
+-- Setembro
+select count(data_visita) into Setembro
+	from
+		visita 	
+	where
+		data_visita between '2017-09-01' and '2017-09-30';
+
+-- Outubro
+select count(data_visita) into Outubro
+	from
+		visita 	
+	where
+		data_visita between '2017-10-01' and '2017-10-31';
+
+-- Novembro
+select count(data_visita) into Novembro
+	from
+		visita 	
+	where
+		data_visita between '2017-11-01' and '2017-11-30';
+
+-- Dezembro
+select count(data_visita) into Dezembro
+	from
+		visita 	
+	where
+		data_visita between '2017-12-01' and '2017-01-31';
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -309,4 +430,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-27 20:55:44
+-- Dump completed on 2017-08-28 22:36:25

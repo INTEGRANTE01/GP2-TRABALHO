@@ -129,35 +129,7 @@ public class FuncionarioDAO extends ConectaBanco {
 		return lista;
 	}
 	
-public List<Funcionario> listar() throws SQLException {
-		
-		List<Funcionario> lista = new ArrayList<Funcionario>();
-		Connection conexao = getConexao();
-		PreparedStatement pstm = conexao.prepareStatement("Select * from funcionario order by nome asc");
-		try {
-			/*Statement stm = conexao.createStatement();*/
-			
-			ResultSet rs = pstm.executeQuery();
-			while (rs.next()) {
-				Funcionario funcionario = new Funcionario();
-				funcionario.setIdfuncionario(rs.getInt("idfuncionario"));
-				funcionario.setMatricula(rs.getString("matricula"));
-				funcionario.setNome(rs.getString("nome"));
-				funcionario.setFuncao(rs.getString("funcao"));
-				funcionario.setEmail(rs.getString("email"));
-				funcionario.setSenha(rs.getString("senha"));
-				lista.add(funcionario);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			pstm.close();
-			conexao.close();			
-	}
-		return lista;
-	}
-
-	public Funcionario consultar_editar(Funcionario funcionario) throws SQLException {
+public Funcionario consultar_editar(Funcionario funcionario) throws SQLException {
 		Connection conexao = getConexao();
 		PreparedStatement pstm = conexao
 				.prepareStatement("Select * from funcionario where idfuncionario = ?");
@@ -181,7 +153,7 @@ public List<Funcionario> listar() throws SQLException {
 		return funcionario;
 	}
 	
-	public Funcionario buscarPorMatricula(String matricula) throws SQLException {
+public Funcionario buscarPorMatricula(String matricula) throws SQLException {
 		Funcionario funcionario = new Funcionario();
 		Connection conexao = getConexao();
 		PreparedStatement pstm = conexao.prepareStatement("Select * from funcionario where matricula = ?");
