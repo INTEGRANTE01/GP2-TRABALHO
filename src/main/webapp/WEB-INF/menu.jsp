@@ -71,11 +71,7 @@
                    		<ul class="nav child_menu">                   
                     		<li><a href="#">Tipo de Usuário</a></li>
                     		<li><a href="cidade">Cidade</a></li>
-<<<<<<< HEAD
                     		<li><a href="bairro">Bairro</a></li>                     		 
-=======
-                    		<li><a href="#">Bairro</a></li>                     		 
->>>>>>> 600aed1c8e7a262bfefb1095878c3f94cd41aa47
                     	</ul>                    	 
                     </li>
                    </ul> 
