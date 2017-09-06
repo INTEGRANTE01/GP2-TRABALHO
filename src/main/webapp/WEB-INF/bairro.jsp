@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn"%>
@@ -5,6 +6,17 @@
 <c:set var="nome" value="${sessionScope.nome}"/>
 <c:choose>
 <c:when test="${not empty nome}">
+=======
+
+<%
+	// verificando se tem um atributo login na sessao
+	// se tiver vai continuar e mostrar o menu
+	if (session.getAttribute("nome") != null) {
+%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -68,12 +80,21 @@
 										<!--IDbanco Input-->
 										<div class="form-group">
 											<div class="col-md-2 col-xs-12">
+<<<<<<< HEAD
 												<input type = "hidden"readonly="readonly" type="text"
+=======
+												<input type="hidden" readonly="readonly" type="text"
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 													id="idbairro" name="idbairro" value="${bairro.idbairro}"
 													class="form-control input-md">
 											</div>
 										</div>
+<<<<<<< HEAD
 										<!--Bairro Input-->															
+=======
+										<!--Bairro Input-->
+															
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 										<div class="form-group">
 											<label class="control-label col-md-3" for="nome">Nome
 												<span class="required">*</span>
@@ -84,7 +105,12 @@
 													required="required" class="form-control input-md">
 												<div class="help-block with-errors"></div>
 											</div>
+<<<<<<< HEAD
 										</div>										
+=======
+										</div>
+										
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 										<!-- Cidade -->										
 											<div class="form-group">
 												<label class="control-label col-md-3" for="bairro">Cidade
@@ -95,8 +121,13 @@
 														title="Selecione item"
 														class="form-control input-md selectpicker"
 														data-live-search="true">
+<<<<<<< HEAD
 														 <c:if test = "${not empty bairro.nome_cidade}">											
 			                              					 	<option selected="selected">${bairro.nome_cidade}</option>
+=======
+														 <c:if test = "${not empty cidade.nome_cidade}">											
+			                              					 	<option selected="selected">${cidade.nome_cidade}</option>
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 			                            				 </c:if>										
 														 <c:forEach var="combocidade" items="${listacidade}">      
 							      							<option>${combocidade.nome_cidade}</option>      
@@ -104,7 +135,12 @@
 													</select>
 													<div class="help-block with-errors"></div>
 												</div>
+<<<<<<< HEAD
 											</div>										
+=======
+											</div>
+										
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 										<!--Botões-->
 										<div class="form-group">
 											<div class="col-md-6 col-md-offset-3">
@@ -133,6 +169,10 @@
 								</div>
 							</div>
 						</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 						<!-- Busca Bairro -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
@@ -147,6 +187,7 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
+<<<<<<< HEAD
 								<form class="form-horizontal form-label-left"
 										data-toggle="validator" method="post" action="buscabairro">
 										<div class="form-group  col-lg-3 col-xs-12">
@@ -222,6 +263,65 @@
 													</tbody>
 												</table>
 											</div>
+=======
+									<form class="form-horizontal form-label-left"
+										data-toggle="validator" method="get" action="bairro">
+										<div class="form-group">
+											<label class="control-label col-md-3" for="nome"></label>
+											<div class="input-group col-lg-6 col-xs-12">
+												<input type="text" name="txtpesquisa1"
+													class="form-control input-md" placeholder="Buscar Bairro">
+												<div class="input-group-btn">
+													<a href="bairro">
+														<button type="submit" class="btn btn-dark"
+															data-container="body" data-toggle="popover"
+															data-placement="bottom" title="Buscar">
+															<i class="fa fa-search"></i>
+														</button>
+													</a>
+												</div>
+											</div>
+										</div>
+										<div>
+											<table id="table"
+												class="table footable toggle-circle-filled table-striped  table-hover"
+												data-sorting="true" data-show-toggle="true">
+												<thead>
+													<tr>
+														<th>Bairro</th>
+														<th>Cidade</th>
+														<th>Ações</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="bairro" items="${listabairro}">
+														<tr>
+															<td>${bairro.nome_bairro}</td>
+															<td>${cidade.nome_cidade}</td>
+															<td>
+															
+																<div class="btn-group">
+																	<button type="submit"
+																		class="btn dropdown-toggle btn btn-info btn-sm"
+																		data-toggle="dropdown">
+																		Opções <span class="caret"></span>
+																	</button>
+																	<ul class="dropdown-menu">
+																		<li><a
+																			href="bairro?acao=Consultar&idbairro=${bairro.idbairro}"><span
+																				class="glyphicon glyphicon-edit"></span> Editar</a></li>
+																		<li><a
+																			onclick="confirmaexclusao(${bairro.idbairro})"><span
+																				class="glyphicon glyphicon-remove-sign"></span>
+																				Excluir</a></li>
+																	</ul>
+																</div>
+															</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 										</div>
 									</form>
 								</div>
@@ -263,7 +363,11 @@
 	   	     var resposta = confirm("Deseja remover o registro?");
 	   	 
 	   	     if (resposta == true) {
+<<<<<<< HEAD
 	   	          window.location.href = "buscabairro?acao=Excluir&idbairro="+id;
+=======
+	   	          window.location.href = "bairro?acao=Excluir&idbairro="+id;
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 	   	     }
 	   	}
 	    
@@ -271,8 +375,20 @@
 		<c:import url="rodape.jsp" />
 </body>
 </html>
+<<<<<<< HEAD
 </c:when>
 <c:otherwise>
 	<jsp:forward page="index.jsp"></jsp:forward>
 </c:otherwise>
 </c:choose>
+=======
+<%
+	// se não existir um login na sessao, 
+		// vai enviar para a página de login novamente
+	} else {
+%>
+<jsp:forward page="index.jsp"></jsp:forward>
+<%
+	}
+%>
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10

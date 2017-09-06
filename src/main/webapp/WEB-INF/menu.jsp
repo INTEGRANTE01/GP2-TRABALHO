@@ -70,7 +70,11 @@
                    
                     <li><a><i class="fa fa-check-circle-o"></i>Parametros Auxiliares <span class="fa fa-chevron-down"></span></a>
                    		<ul class="nav child_menu">                   
+<<<<<<< HEAD
                     		<li><a href="tipofuncao">Função</a></li>
+=======
+                    		<li><a href="#">Tipo de Usuário</a></li>
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
                     		<li><a href="cidade">Cidade</a></li>
                     		<li><a href="bairro">Bairro</a></li>                     		 
                     	</ul>                    	 

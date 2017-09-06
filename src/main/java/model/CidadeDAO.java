@@ -67,6 +67,10 @@ public class CidadeDAO extends ConectaBanco {
 		PreparedStatement pstm = conexao
 				.prepareStatement("Select * from cidade where nome_cidade like ? order by nome_cidade asc");		
 		try {
+<<<<<<< HEAD
+=======
+			/*Statement stm = conexao.createStatement();*/			
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 			pstm.setString(1, "%" + par_nome +"%");			
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {

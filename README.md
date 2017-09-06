@@ -1,6 +1,4 @@
-# Endemic Sys
-
-Projeto Fase 1.
+# Projeto Gp2
 
 ## Para rodar o projeto
 
@@ -8,13 +6,12 @@ Projeto Fase 1.
 
 `git clone https://github.com/INTEGRANTE01/GP2-TRABALHO.git`
 
-### Para rodar com o Tomcat.
+### Para executar a aplicação
 
 `mvnw tomcat7:run`
+### Para executar a aplicação no Eclipse
 
-Para rodar com o Tomcat ignorando as configurações do plugin no `pom.xml`.
-
-`mvnw org.apache.tomcat.maven:tomcat7-maven-plugin:run`
+`Importa aplicação cmo projeto maven e inserir parametro tomcat7:run no MavenBuild...`
 
 ## Para acessar a aplicação
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn"%>
@@ -5,6 +6,18 @@
 <c:set var="nome" value="${sessionScope.nome}"/>
 <c:choose>
 <c:when test="${not empty nome}">
+=======
+
+<%
+	// verificando se tem um atributo login na sessao
+	// se tiver vai continuar e mostrar o menu
+	if (session.getAttribute("nome") != null) {
+%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -29,6 +42,10 @@
 <!-- Footable -->
 <link href="css/footable.standalone.min.css" rel="stylesheet">
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 </head>
 <body class="nav-md">
 	<div class="container body">
@@ -74,7 +91,11 @@
 										</div>
 										<!--Cidade Input-->
 										<div class="form-group">
+<<<<<<< HEAD
 											<label class="control-label col-md-3">Nome
+=======
+											<label class="control-label col-md-3" for="nome">Nome
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 												<span class="required">*</span>
 											</label>
 											<div class="col-lg-6 col-xs-12">
@@ -128,7 +149,11 @@
 								</div>
 								<div class="x_content">
 									<form class="form-horizontal form-label-left"
+<<<<<<< HEAD
 										data-toggle="validator" method="get" action="buscacidade">
+=======
+										data-toggle="validator" method="get" action="cidade">
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 										<div class="form-group">
 											<label class="control-label col-md-3" for="nome"></label>
 											<div class="input-group col-lg-6 col-xs-12">
@@ -136,7 +161,11 @@
 													class="form-control input-md" placeholder="Buscar Cidade">
 												<div class="input-group-btn">
 													<a href="cidade">
+<<<<<<< HEAD
 														<button type="submit" class="btn btn-primary"
+=======
+														<button type="submit" class="btn btn-dark"
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 															data-container="body" data-toggle="popover"
 															data-placement="bottom" title="Buscar">
 															<i class="fa fa-search"></i>
@@ -168,7 +197,11 @@
 																	</button>
 																	<ul class="dropdown-menu">
 																		<li><a
+<<<<<<< HEAD
 																			href="buscacidade?acao=Consultar&idcidade=${cidade.idcidade}"><span
+=======
+																			href="cidade?acao=Consultar&idcidade=${cidade.idcidade}"><span
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 																				class="glyphicon glyphicon-edit"></span> Editar</a></li>
 																		<li><a
 																			onclick="confirmaexclusao(${cidade.idcidade})"><span
@@ -222,7 +255,11 @@
 	   	     var resposta = confirm("Deseja remover o registro?");
 	   	 
 	   	     if (resposta == true) {
+<<<<<<< HEAD
 	   	          window.location.href = "buscacidade?acao=Excluir&idcidade="+id;
+=======
+	   	          window.location.href = "cidade?acao=Excluir&idcidade="+id;
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 	   	     }
 	   	}
 	    
@@ -230,8 +267,20 @@
 		<c:import url="rodape.jsp" />
 </body>
 </html>
+<<<<<<< HEAD
 </c:when>
 <c:otherwise>
 	<jsp:forward page="index.jsp"></jsp:forward>
 </c:otherwise>
 </c:choose>
+=======
+<%
+	// se não existir um login na sessao, 
+		// vai enviar para a página de login novamente
+	} else {
+%>
+<jsp:forward page="index.jsp"></jsp:forward>
+<%
+	}
+%>
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10

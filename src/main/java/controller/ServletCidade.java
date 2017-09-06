@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Cidade;
 import model.CidadeDAO;
+<<<<<<< HEAD
+=======
+import model.Denuncia;
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 
 @WebServlet(name = "ServletCidade", urlPatterns = "/cidade")
 public class ServletCidade extends HttpServlet {
@@ -27,13 +31,47 @@ public class ServletCidade extends HttpServlet {
 	private String nome_cidade;
 	private boolean estado = false;
 	private String message;
+<<<<<<< HEAD
+=======
+	private String textopesquisa1;
+	private String acao;
+	private String pesquisa;
+
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {			
 		
+<<<<<<< HEAD
 		destino ="WEB-INF/cidade.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);		
+=======
+		try {
+			acao = request.getParameter("acao");
+				if (acao != null) {
+					if (acao.equalsIgnoreCase("Consultar")) {		
+						consultareditarcidade(request, response);
+					} else if (acao.equalsIgnoreCase("Excluir")) {
+						excluircidade(request, response);
+					}				
+				}else if(acao==null){
+					destino ="WEB-INF/cidade.jsp";
+				}
+			}catch (Exception e){
+				e.printStackTrace();
+			}finally{
+				try {
+					buscarcidade(request, response);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+			}
+		
+		RequestDispatcher rd = request.getRequestDispatcher(destino);
+		rd.forward(request, response);
+		
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -56,13 +94,21 @@ public class ServletCidade extends HttpServlet {
 		if (estado == false) {
 			cidade.setIdcidade(idcidade);
 			try {
+<<<<<<< HEAD
+=======
+				System.out.println(cidadeDAO.existe(cidade));
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 				if (cidadeDAO.existe(cidade) == true) {
 					editarCidade(request, response);
 				}
 			} catch (SQLException e) {			
 				e.printStackTrace();
 			}			
+<<<<<<< HEAD
 		}	
+=======
+		}			
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 		
 		request.setAttribute("message", message);
 		destino ="WEB-INF/cidade.jsp";
@@ -94,4 +140,42 @@ public class ServletCidade extends HttpServlet {
 		else
 			message = "Registro Alterado com Sucesso";
 	}
+<<<<<<< HEAD
+=======
+	
+	protected void buscarcidade(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+		textopesquisa1 = request.getParameter("txtpesquisa1");
+		List<Cidade> listacidade = new ArrayList<Cidade>();
+		listacidade = cidadeDAO.listar(textopesquisa1);
+		request.setAttribute("listacidade", listacidade);
+
+	}
+
+	protected void consultareditarcidade(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+
+		idcidade = Integer.parseInt(request.getParameter("idcidade"));
+		cidade.setIdcidade(idcidade);
+		cidade = cidadeDAO.consultar_editar(cidade);
+		request.setAttribute("cidade", cidade);
+		destino ="WEB-INF/cidade.jsp";
+	}
+
+	protected void excluircidade(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+
+		idcidade = Integer.parseInt(request.getParameter("idcidade"));
+		cidade.setIdcidade(idcidade);
+		cidadeDAO.excluir(cidade);
+		destino ="WEB-INF/cidade.jsp";
+		if (cidadeDAO.excluir(cidade) == true)
+			message = "Erro ao Excluir Registro";
+		else
+			message = "Registro Excluido com Sucesso";
+		request.setAttribute("message", message);
+		destino ="WEB-INF/cidade.jsp";
+
+	}
+>>>>>>> 2ebdb3b9ada6476b315da4554beee34c8c278b10
 }
