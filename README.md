@@ -6,13 +6,12 @@
 
 `git clone https://github.com/INTEGRANTE01/GP2-TRABALHO.git`
 
-### Para rodar com o Tomcat.
+### Para executar a aplicação
 
 `mvnw tomcat7:run`
+### Para executar a aplicação no Eclipse
 
-Para rodar com o Tomcat ignorando as configurações do plugin no `pom.xml`.
-
-`mvnw org.apache.tomcat.maven:tomcat7-maven-plugin:run`
+`Importa aplicação cmo projeto maven e inserir parametro tomcat7:run no MavenBuild...`
 
 ## Para acessar a aplicação
 
@@ -22,4 +21,4 @@ Para rodar com o Tomcat ignorando as configurações do plugin no `pom.xml`.
 
 A aplicação exige instalação prévia no MySQL e o arquivo de conexão com o banco de dados está em: `GP-TRABALHO\src\main\java\model\ConectaBanco.java`
 
-O script de banco de dados populado está em: `GP2-TRABALHO\src\main\webapp\bd\dbendemic2.sql`
+O script de banco de dados populado está em: `GP2-TRABALHO\src\main\webapp\bd\dbendemic.sql`
