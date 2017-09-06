@@ -2,10 +2,10 @@ package model;
 
 import java.util.Date;
 
-public class Denuncia {
+public class Notificacao {
 	
-	private int iddenuncia;
-	private Date data_denuncia;
+	private int idnotificacao;
+	private Date data_notificacao;
 	private String bairro;
 	private String rua;
 	private String quadra;
@@ -13,20 +13,19 @@ public class Denuncia {
 	private String numero;
 	private String cidade;
 	private String tp_imovel;
-	private String desc_den;
-	private String denunciante;
+	private String desc_notificacao;
 	
-	public int getIddenuncia() {
-		return iddenuncia;
+	public int getIdnotificacao() {
+		return idnotificacao;
 	}
-	public void setIddenuncia(int iddenuncia) {
-		this.iddenuncia = iddenuncia;
+	public void setIdnotificacao(int idnotificacao) {
+		this.idnotificacao = idnotificacao;
 	}
-	public Date getData_denuncia() {
-		return data_denuncia;
+	public Date getData_notificacao() {
+		return data_notificacao;
 	}
-	public void setData_denuncia(Date data_denuncia) {
-		this.data_denuncia = data_denuncia;
+	public void setData_notificacao(Date data_notificacao) {
+		this.data_notificacao = data_notificacao;
 	}
 	public String getBairro() {
 		return bairro;
@@ -70,25 +69,20 @@ public class Denuncia {
 	public void setTp_imovel(String tp_imovel) {
 		this.tp_imovel = tp_imovel;
 	}
-	public String getDesc_den() {
-		return desc_den;
+	public String getDesc_notificacao() {
+		return desc_notificacao;
 	}
-	public void setDesc_den(String desc_den) {
-		this.desc_den = desc_den;
-	}
-	public String getDenunciante() {
-		return denunciante;
-	}
-	public void setDenunciante(String denunciante) {
-		this.denunciante = denunciante;
+	public void setDesc_notificacao(String desc_notificacao) {
+		this.desc_notificacao = desc_notificacao;
 	}
 	
 	@Override
 	public String toString() {
-		return "Denuncia [iddenuncia=" + iddenuncia + ", data_denuncia=" + data_denuncia + ", bairro=" + bairro
-				+ ", rua=" + rua + ", quadra=" + quadra + ", lote=" + lote + ", numero=" + numero + ", cidade=" + cidade
-				+ ", tp_imovel=" + tp_imovel + ", desc_den=" + desc_den + ", denunciante=" + denunciante + "]";
+		return "Notificacao [idnotificacao=" + idnotificacao + ", data_notificacao=" + data_notificacao + ", bairro="
+				+ bairro + ", rua=" + rua + ", quadra=" + quadra + ", lote=" + lote + ", numero=" + numero + ", cidade="
+				+ cidade + ", tp_imovel=" + tp_imovel + ", desc_notificacao=" + desc_notificacao + "]";
 	}
 	
-		
+	
+	
 }

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -7,7 +8,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 20;">
-              <a href="index.jsp" class="site_title"><span class="fa fa-desktop"></span><span>   Endemic Sys</span></a>
+              <a href="index.jsp" class="site_title"><span class="fa fa-desktop"></span><span> EndemicSyS</span></a>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->
@@ -17,9 +18,9 @@
               </div>
               <div class="profile_info">
                 <span>Bem-vindo,</span>
-                <h2><% out.print(session.getAttribute("nome")); %></h2>
+               <h2><c:out value="${sessionScope.nome}"/></h2>
                 <span>Função</span>
-                <h2><% out.print(session.getAttribute("funcao")); %></h2>
+                <h2><c:out value="${sessionScope.funcao}"/></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -48,14 +49,14 @@
                    		<ul class="nav child_menu">                   
                     		<li><a href="funcionario">Funcionário</a></li>
                             <li><a href="visita">Visita</a></li>
-                           	<li><a href="denuncia">Denúncia</a></li>
+                           	<li><a href="notificacao">Notificação</a></li>
                     	</ul> 
                     </li>                       
                    <li><a><i class="fa fa-search"></i>Busca<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="buscafuncionario">Funcionários</a></li>
                       <li><a href="buscavisita">Visitas</a></li>
-                      <li><a href="buscadenuncia">Denúncias</a></li>                      
+                      <li><a href="buscanotificacao">Notificações</a></li>                      
                     </ul>
                    </li>
                    	<li><a><i class="fa fa-check-circle"></i>Parametros de Controle<span class="fa fa-chevron-down"></span></a>
@@ -69,9 +70,9 @@
                    
                     <li><a><i class="fa fa-check-circle-o"></i>Parametros Auxiliares <span class="fa fa-chevron-down"></span></a>
                    		<ul class="nav child_menu">                   
-                    		<li><a href="#">Tipo de Usuário</a></li>
-                    		<li><a href="#">Cidade</a></li>
-                    		<li><a href="#">Bairro</a></li>                     		 
+                    		<li><a href="tipofuncao">Função</a></li>
+                    		<li><a href="cidade">Cidade</a></li>
+                    		<li><a href="bairro">Bairro</a></li>                     		 
                     	</ul>                    	 
                     </li>
                    </ul> 
@@ -83,12 +84,12 @@
                		 <ul class="nav side-menu">
                      <li><a><i class="fa fa-edit"></i>Cadastros <span class="fa fa-chevron-down"></span></a>
                      	<ul class="nav child_menu">
-                           	<li><a href="denuncia">Denúncia</a></li>
+                           	<li><a href="notificacao">Denúncia</a></li>
                     	</ul> 
                     </li>
                     <li><a><i class="fa fa-edit"></i>Busca <span class="fa fa-chevron-down"></span></a>
                      	<ul class="nav child_menu">
-                           	<li><a href="buscadenuncia">Denúncia</a></li>
+                           	<li><a href="buscanotificacao">Denúncia</a></li>
                     	</ul> 
                     </li>
                      </ul>
@@ -136,7 +137,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                    <img src="images/user.png" alt=""><% out.print(session.getAttribute("nome")); %>
+                    <img src="images/user.png" alt=""><c:out value="${sessionScope.nome}"/>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

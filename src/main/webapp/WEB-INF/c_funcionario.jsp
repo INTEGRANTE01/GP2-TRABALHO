@@ -1,12 +1,10 @@
-<%
-	// verificando se tem um atributo login na sessao
-	// se tiver vai continuar e mostrar o menu
-	if(session.getAttribute("nome") != null) {
-%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
+<c:set var="nome" value="${sessionScope.nome}"/>
+<c:choose>
+<c:when test="${not empty nome}">
 <!DOCTYPE html>
 <html lang="pt">
   <head>
@@ -31,6 +29,8 @@
     <link href="css/bootstrap-select.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
+    <!-- Footable -->
+<link href="css/footable.standalone.min.css" rel="stylesheet">
   </head>
   <body class="nav-md">
     <div class="container body">
@@ -112,15 +112,18 @@
                           <i class="fa fa-search"></i>
                         </button>                   
                     </p>                     
-                    <table id="datatable-responsive" class="table table-striped table-hover dt-responsive nowrap">
-                      <thead>
-                        <tr>
-                          <th>Matrícula</th>
-                          <th>Nome</th>
-                          <th>E-mail</th>
-                          <th>Função</th>
-                          <th>Ações</th>
-                        </tr>
+                    <div class="ln_solid"></div>
+						<table id="table"
+							class="table footable toggle-circle-filled table-striped  table-hover"
+							data-sorting="true" data-show-toggle="true">
+							<thead>
+								<tr>
+		                          <th>Matrícula</th>
+		                          <th data-breakpoints="xs">Nome</th>
+		                          <th data-breakpoints="xs">E-mail</th>
+		                          <th>Função</th>
+		                          <th>Ações</th>    
+	                        	</tr>
                       </thead>
                       	<tbody> 
                       	<c:forEach var="funcionario" items="${listafuncionario}">
@@ -132,8 +135,8 @@
 					<td><div class="btn-group">
 					  <button type="button" class="btn dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown">Opções <span class="caret"></span></button>
 					  <ul class="dropdown-menu">
-					    <li><a href="buscafuncionario?acao=Consultar&idfuncionario=${funcionario.idfuncionario}"><span class="glyphicon glyphicon-pencil"></span> Editar</a></li>
-					    <li><a onclick="confirmaexclusao(${funcionario.idfuncionario})"><span class="glyphicon glyphicon-trash"></span> Excluir</a></li>					   				 
+					    <li><a href="buscafuncionario?acao=Consultar&idfuncionario=${funcionario.idfuncionario}"><span class="glyphicon glyphicon-edit"></span> Editar</a></li>
+					    <li><a onclick="confirmaexclusao(${funcionario.idfuncionario})"><span class="glyphicon glyphicon-remove-sign"></span> Excluir</a></li>					   				 
 					  </ul>
 					</div>
 					</td>				
@@ -171,7 +174,32 @@
 		</div>
     </div>
     </div>
-    <script>
+   
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+   	<!-- Footable-->
+	<script src="vendors/moment/min/moment.min.js"></script>
+	<script src="js/footable.js"></script>
+	
+	<script type="text/javascript">
+		// Instanciar Footable
+			$(document).ready(function () {
+			//$(function () {
+				$('.footable').footable({			
+					"paging": {
+						"enabled": true,											
+						"position": "right",
+						"limit": 3,
+						"size": 8,
+						"countFormat": "Registros {PF} a {PL} de {TR} resultados"
+					}
+				});
+			});
     function confirmaexclusao(id) {
    	     var resposta = confirm("Deseja remover o registro?");
    	 
@@ -179,36 +207,12 @@
    	          window.location.href = "buscafuncionario?acao=Excluir&idfuncionario="+id;
    	     }
    	}
-    </script>
-    <!-- jQuery -->
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- Datatables -->
-    <script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="build/js/custom.min.js"></script>
-    <script src="js/bootstrap-select.min.js"></script>
-					<c:import url="rodape.jsp" />
+    </script>   
+	<c:import url="rodape.jsp" />
   </body>
 </html>
-<%
-	// se não existir um login na sessao, 
-	// vai enviar para a página de login novamente
-	} else {
-%>
+</c:when>
+<c:otherwise>
 	<jsp:forward page="index.jsp"></jsp:forward>
-<%
-}
-%>
+</c:otherwise>
+</c:choose>

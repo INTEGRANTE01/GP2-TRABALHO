@@ -13,7 +13,7 @@ import model.CidadeDAO;
 import model.TipoImovel;
 import model.TipoImovelDAO;
 
-public class PopulaDenuncia {
+public class PopulaNotificacao {
 	
 	List<Bairro> combobairro = new ArrayList<Bairro>();
 	List<Cidade> combocidade = new ArrayList<Cidade>();
@@ -22,7 +22,7 @@ public class PopulaDenuncia {
 	CidadeDAO cidadeDAO = new CidadeDAO();
 	TipoImovelDAO imovelDAO = new TipoImovelDAO();
 		
-public void  popularCombosDenuncia() {
+public void  popularCombosNotificacao() {
 	
 		try {
 			combobairro = bairroDAO.populaComboBairro();

@@ -44,13 +44,11 @@ public class ServletLogin extends HttpServlet {
 		try {
 			login(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
-
 	}
 
 	protected void login(HttpServletRequest request, HttpServletResponse response)
@@ -68,7 +66,7 @@ public class ServletLogin extends HttpServlet {
 		} else {
 			message = "Falha no login, verifique os dados.";
 			request.setAttribute("message", message);
-			destino = "/index.jsp";
+			destino = "WEB-INF/index.jsp";
 		}
 
 	}
@@ -80,7 +78,7 @@ public class ServletLogin extends HttpServlet {
 		sessao.removeAttribute("nome");
 		sessao.removeAttribute("funcao");
 		sessao.invalidate();
-		destino = "/index.jsp";		
+		destino = "WEB-INF/index.jsp";		
 	}
 
 }

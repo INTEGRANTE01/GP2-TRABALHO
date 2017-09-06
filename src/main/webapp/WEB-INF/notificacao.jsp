@@ -1,13 +1,10 @@
-
-<%
-	// verificando se tem um atributo login na sessao
-	// se tiver vai continuar e mostrar o menu
-	if (session.getAttribute("nome") != null) {
-%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="nome" value="${sessionScope.nome}"/>
+<c:choose>
+<c:when test="${not empty nome}">
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -52,7 +49,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Denúncia</h2>
+									<h2>Notificação</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -63,7 +60,7 @@
 								</div>
 								<div class="x_content">
 									<form class="form-horizontal form-label-left"
-										data-toggle="validator" method="post" action="denuncia">
+										data-toggle="validator" method="post" action="notificacao">
 										<p>
 											Atenção aos campos requeridos
 											<code>*</code>
@@ -72,44 +69,31 @@
 										<!--IDbanco Input-->
 										<div class="form-group">
 											<div class="col-md-2 col-xs-12">
-												<input type="hidden" readonly="readonly" type="text"
-													id="iddenuncia" name="iddenuncia"
-													value="${denuncia.iddenuncia}"
+												<input  readonly="readonly" type="text"
+													id="idnotificacao" name="idnotificacao"
+													value="${notificacao.idnotificacao}"
 													class="form-control input-md">
 											</div>
 										</div>
-										<!--Data_denuncia Input-->
+										<!--Data_notificacao Input-->
 										<div class="form-group">
 											<label class="control-label col-md-3" for="data">Data
 												da Denúncia <span class="required">*</span>
 											</label>
 											<div class="col-lg-2 col-xs-12">
-												<input type="text" id="data_denuncia" name="data_denuncia"
-													value="<fmt:formatDate value="${denuncia.data_denuncia}" pattern="dd/MM/yyyy HH:mm:ss"/>"
+												<input type="text" id="data_notificacao" name="data_notificacao"
+													value="<fmt:formatDate value="${notificacao.data_notificacao}" pattern="dd/MM/yyyy HH:mm:ss"/>"
 													required="required" class="form-control input-md">
 												<div class="help-block with-errors"></div>
 											</div>
-										</div>
-										<!--Denunciante Input-->
-										<div class="form-group">
-											<label class="control-label col-md-3" for="nome">Denunciante
-												<span class="required">*</span>
-											</label>
-											<div class="col-lg-6 col-xs-12">
-												<input type="text" id="denunciante" name="denunciante"
-													placeholder="ex: Joao da Silva"
-													value="${denuncia.denunciante}" required="required"
-													class="form-control input-md">
-												<div class="help-block with-errors"></div>
-											</div>
-										</div>
+										</div>									
 										<!--Rua Input-->
 										<div class="form-group">
 											<label class="control-label col-md-3" for="rua">Rua <span
 												class="required">*</span></label>
 											<div class="col-lg-5 col-xs-12">
 												<input type="text" id="rua" name="rua" required="required"
-													class="form-control input-md" value="${denuncia.rua}">
+													class="form-control input-md" value="${notificacao.rua}">
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
@@ -118,18 +102,18 @@
 											<label class="control-label col-md-3" for="quadra">Quadra</label>
 											<div class="col-lg-1 col-xs-12">
 												<input type="text" id="quadra" name="quadra"
-													class="form-control input-md" value="${denuncia.quadra}">
+													class="form-control input-md" value="${notificacao.quadra}">
 											</div>
 											<label class="control-label col-md-1" for="lote">Lote</label>
 											<div class="col-lg-1 col-xs-12">
 												<input type="text" id="lote" name="lote"
-													class="form-control input-md" value="${denuncia.lote}">
+													class="form-control input-md" value="${notificacao.lote}">
 											</div>
 											<label class="control-label col-md-1" for="numero">Nº
 											</label>
 											<div class="col-lg-1 col-xs-12">
 												<input type="text" id="numero" name="numero"
-													class="form-control input-md" value="${denuncia.numero}">
+													class="form-control input-md" value="${notificacao.numero}">
 											</div>
 										</div>
 										<!--Bairro Input-->
@@ -139,12 +123,12 @@
 												<span class="required">*</span>
 											</label>
 											<div class="col-lg-3 col-xs-12">
-												<select required id="cidades" name="bairro"
+												<select required id="bairro" name="bairro"
 													title="Selecione item"
 													class="form-control input-md selectpicker"
 													data-live-search="true">
-													 <c:if test = "${not empty denuncia.bairro}">											
-                                					 	<option selected="selected">${denuncia.bairro}</option>
+													 <c:if test = "${not empty notificacao.bairro}">											
+                                					 	<option selected="selected">${notificacao.bairro}</option>
                               						 </c:if>										
 													 <c:forEach var="combobairro" items="${listabairro}">      
 						      							<option>${combobairro.nome_bairro}</option>      
@@ -159,12 +143,12 @@
 												<span class="required">*</span>
 											</label>
 											<div class="col-lg-3 col-xs-12">
-												<select required id="cidades" name="cidade"
+												<select required id="cidade" name="cidade"
 													title="Selecione item"
 													class="form-control input-md selectpicker"
 													data-live-search="true">
-													 <c:if test = "${not empty denuncia.cidade}">											
-                                					 	<option selected="selected">${denuncia.cidade}</option>
+													 <c:if test = "${not empty notificacao.cidade}">											
+                                					 	<option selected="selected">${notificacao.cidade}</option>
                               						 </c:if>										
 													 <c:forEach var="combocidade" items="${listacidade}">      
 						      							<option>${combocidade.nome_cidade}</option>      
@@ -183,8 +167,8 @@
 													title="Selecione item"
 													class="form-control input-md selectpicker"
 													data-live-search="true">
-													<c:if test = "${not empty denuncia.tp_imovel}">											
-                                						<option selected="selected">${denuncia.tp_imovel}</option>
+													<c:if test = "${not empty notificacao.tp_imovel}">											
+                                						<option selected="selected">${notificacao.tp_imovel}</option>
                               						</c:if>
 													<c:forEach var="combotipoimovel" items="${listaimovel}">      
 						      							<option>${combotipoimovel.nome_tpimovel}</option>      
@@ -196,12 +180,12 @@
 										<!--Descrição Input-->
 
 										<div class="form-group">
-											<label class="control-label col-md-3" for="denuncia">Descrição
-												da Denuncia <span class="required">*</span>
+											<label class="control-label col-md-3" for="notificacao">Descrição
+												da Notificação <span class="required">*</span>
 											</label>
 											<div class="col-lg-6 col-xs-12">
-												<textarea id="desc_den" name="desc_den" required="required"
-													class="form-control">${denuncia.desc_den}</textarea>
+												<textarea id="desc_notificacao" name="desc_notificacao" required="required"
+													class="form-control">${notificacao.desc_notificacao}</textarea>
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
@@ -240,7 +224,7 @@
     <script src="js/validator.min.js"></script>
     <script>	 
         $(function() {
-        $('input[name="data_denuncia"]').daterangepicker({            
+        $('input[name="data_notificacao"]').daterangepicker({            
 	    singleDatePicker: true,
             singleDatePicker: true,
             timePicker: true,
@@ -256,13 +240,8 @@
 	<c:import url="rodape.jsp" />
 </body>
 </html>
-
-<%
-	// se não existir um login na sessao, 
-		// vai enviar para a página de login novamente
-	} else {
-%>
-<jsp:forward page="index.jsp"></jsp:forward>
-<%
-	}
-%>
+</c:when>
+<c:otherwise>
+	<jsp:forward page="index.jsp"></jsp:forward>
+</c:otherwise>
+</c:choose>

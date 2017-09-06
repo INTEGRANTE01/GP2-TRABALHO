@@ -12,27 +12,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Funcao;
-import model.FuncaoDAO;
+import model.Cidade;
+import model.CidadeDAO;
 
-@WebServlet(name = "ServletFuncao", urlPatterns = "/tipofuncao")
-public class ServletFuncao extends HttpServlet {
+@WebServlet(name = "ServletCidade", urlPatterns = "/cidade")
+public class ServletCidade extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private FuncaoDAO funcaoDAO = new FuncaoDAO();
-	private Funcao funcoes = new Funcao();	
+	private CidadeDAO cidadeDAO = new CidadeDAO();
+	private Cidade cidade = new Cidade();	
 	private String destino = "";
-	private int idfuncao;
-	private String nome_funcao;
+	private int idcidade;
+	private String nome_cidade;
 	private boolean estado = false;
 	private String message;
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {			
 		
-		destino ="WEB-INF/funcao.jsp";
+		destino ="WEB-INF/cidade.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);		
 	}
@@ -44,21 +43,21 @@ public class ServletFuncao extends HttpServlet {
 		estado = false;
 
 		try {
-			idfuncao = Integer.parseInt(request.getParameter("idfuncao"));
+			idcidade = Integer.parseInt(request.getParameter("idcidade"));
 			} catch (NumberFormatException number) {
 				estado = true;
 				try {
-					adicionafuncao(request, response);
+					adicionaCidade(request, response);
 				  } catch (SQLException e) {			
 					e.printStackTrace();
 				}
 			}
 
 		if (estado == false) {
-			funcoes.setIdfuncao(idfuncao);
+			cidade.setIdcidade(idcidade);
 			try {
-				if (funcaoDAO.existe(funcoes) == true) {
-					editarfuncao(request, response);
+				if (cidadeDAO.existe(cidade) == true) {
+					editarCidade(request, response);
 				}
 			} catch (SQLException e) {			
 				e.printStackTrace();
@@ -66,31 +65,31 @@ public class ServletFuncao extends HttpServlet {
 		}	
 		
 		request.setAttribute("message", message);
-		destino ="WEB-INF/funcao.jsp";
+		destino ="WEB-INF/cidade.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
 	}
 
-	protected void adicionafuncao(HttpServletRequest request, HttpServletResponse response)
+	protected void adicionaCidade(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 			
-		nome_funcao = request.getParameter("nome_funcao");
-		funcoes.setNome_funcao(nome_funcao);
-		if (funcaoDAO.inserir(funcoes) == true)
+		nome_cidade = request.getParameter("cidade");
+		cidade.setNome_cidade(nome_cidade);
+		if (cidadeDAO.inserir(cidade) == true)
 			message = "Erro ao Gravar Registro";
 		else
 			message = "Registro Gravado com Sucesso";
 
 	}
 
-	protected void editarfuncao(HttpServletRequest request, HttpServletResponse response)
+	protected void editarCidade(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
-		idfuncao = Integer.parseInt(request.getParameter("idfuncao"));
-		nome_funcao = request.getParameter("nome_funcao");
-		funcoes.setIdfuncao(idfuncao);
-		funcoes.setNome_funcao(nome_funcao);		
-		if (funcaoDAO.alterar(funcoes) == true)
+		idcidade = Integer.parseInt(request.getParameter("idcidade"));
+		nome_cidade = request.getParameter("cidade");
+		cidade.setIdcidade(idcidade);
+		cidade.setNome_cidade(nome_cidade);		
+		if (cidadeDAO.alterar(cidade) == true)
 			message = "Erro ao Alterar Registro";
 		else
 			message = "Registro Alterado com Sucesso";

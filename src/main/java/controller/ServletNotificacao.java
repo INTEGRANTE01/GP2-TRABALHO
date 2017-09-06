@@ -14,22 +14,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DenunciaDAO;
-import model.Denuncia;
+import model.NotificacaoDAO;
+import model.Notificacao;
 
-@WebServlet(name = "ServletDenuncia", urlPatterns = "/denuncia")
-public class ServletDenuncia extends HttpServlet {
+@WebServlet(name = "ServletNotificacao", urlPatterns = "/notificacao")
+public class ServletNotificacao extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private DenunciaDAO denunciaDAO = new DenunciaDAO();
-	private Denuncia denuncia = new Denuncia();
-	private PopulaDenuncia populadenuncia = new PopulaDenuncia();
+	private NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
+	private Notificacao notificacao = new Notificacao();
+	private PopulaNotificacao populanotificacao = new PopulaNotificacao();
 	private String destino = "";
-	private int iddenuncia;
-	private String denunciante;
+	private int idnotificacao;
 	private String data_string;
-	private Date data_denuncia;
+	private Date data_notificacao;
 	private String bairro;
 	private String rua;
 	private String quadra;
@@ -37,7 +36,7 @@ public class ServletDenuncia extends HttpServlet {
 	private String numero;
 	private String cidade;
 	private String tp_imovel;
-	private String desc_den;
+	private String desc_notificacao;
 	private String message;
 	private boolean acao = false;
 
@@ -47,10 +46,9 @@ public class ServletDenuncia extends HttpServlet {
 		try {
 			popularcombos(request,response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/denuncia.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/notificacao.jsp");
 		rd.forward(request, response);
 
 	}
@@ -62,24 +60,24 @@ public class ServletDenuncia extends HttpServlet {
 		acao = false;
 
 		try {
-			iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
+			idnotificacao = Integer.parseInt(request.getParameter("idnotificacao"));
 			} catch (NumberFormatException number) {
 				acao = true;
 				try {
-					adicionaDenuncia(request, response);
-					destino = "buscadenuncia";
+					adicionaNotificacao(request, response);
+					destino = "buscanotificacao";
 				  } catch (SQLException e) {			
 					e.printStackTrace();
 				}
 			}
 
 		if (acao == false) {
-			denuncia.setIddenuncia(iddenuncia);
+			notificacao.setIdnotificacao(idnotificacao);
 			try {
-				denunciaDAO.existe(denuncia);				
-				if (denunciaDAO.existe(denuncia) == true) {
-					editarDenuncia(request, response);
-					destino = "buscadenuncia";
+				notificacaoDAO.existe(notificacao);				
+				if (notificacaoDAO.existe(notificacao) == true) {
+					editarNotificacao(request, response);
+					destino = "buscanotificacao";
 				}
 			} catch (SQLException e) {			
 				e.printStackTrace();
@@ -94,16 +92,15 @@ public class ServletDenuncia extends HttpServlet {
 	protected void popularcombos(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 		
-		populadenuncia.popularCombosDenuncia();
-		request.setAttribute("listacidade",populadenuncia.combocidade);	
-		request.setAttribute("listabairro",populadenuncia.combobairro);
-		request.setAttribute("listaimovel", populadenuncia.combotipoimovel);
+		populanotificacao.popularCombosNotificacao();
+		request.setAttribute("listacidade",populanotificacao.combocidade);	
+		request.setAttribute("listabairro",populanotificacao.combobairro);
+		request.setAttribute("listaimovel", populanotificacao.combotipoimovel);
 	}
 	
-	protected void adicionaDenuncia(HttpServletRequest request, HttpServletResponse response)
+	protected void adicionaNotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		denunciante = request.getParameter("denunciante");
-		data_string = request.getParameter("data_denuncia");
+		data_string = request.getParameter("data_notificacao");
 		bairro = request.getParameter("bairro");
 		rua = request.getParameter("rua");
 		quadra = request.getParameter("quadra");
@@ -111,42 +108,40 @@ public class ServletDenuncia extends HttpServlet {
 		numero = request.getParameter("numero");
 		cidade = request.getParameter("cidade");
 		tp_imovel = request.getParameter("tp_imovel");
-		desc_den = request.getParameter("desc_den");
+		desc_notificacao = request.getParameter("desc_notificacao");
 
 		try {
 
 			try {
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-				data_denuncia = (Date) formato.parse(data_string);
-				denuncia.setData_denuncia(data_denuncia);
+				data_notificacao = (Date) formato.parse(data_string);
+				notificacao.setData_notificacao(data_notificacao);
 			} catch (Exception e) {
 				System.out.println("Erro ao formatar data.");
 			}
-			denuncia.setDenunciante(denunciante);
-			denuncia.setBairro(bairro);
-			denuncia.setRua(rua);
-			denuncia.setQuadra(quadra);
-			denuncia.setLote(lote);
-			denuncia.setNumero(numero);
-			denuncia.setCidade(cidade);
-			denuncia.setTp_imovel(tp_imovel);
-			denuncia.setDesc_den(desc_den);
+			notificacao.setBairro(bairro);
+			notificacao.setRua(rua);
+			notificacao.setQuadra(quadra);
+			notificacao.setLote(lote);
+			notificacao.setNumero(numero);
+			notificacao.setCidade(cidade);
+			notificacao.setTp_imovel(tp_imovel);
+			notificacao.setDesc_notificacao(desc_notificacao);
 
 		} catch (Exception e) {
 			System.out.println("Parametro incorreto.");
 		}
-		if (denunciaDAO.inserir(denuncia) == true)
+		if (notificacaoDAO.inserir(notificacao) == true)
 			message = "Erro ao Gravar Registro";
 		else
 			message = "Registro Gravado com Sucesso";
 
 	}
 
-	protected void editarDenuncia(HttpServletRequest request, HttpServletResponse response)
+	protected void editarNotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
-		denunciante = request.getParameter("denunciante");
-		data_string = request.getParameter("data_denuncia");
+		idnotificacao = Integer.parseInt(request.getParameter("idnotificacao"));
+		data_string = request.getParameter("data_notificacao");
 		bairro = request.getParameter("bairro");
 		rua = request.getParameter("rua");
 		quadra = request.getParameter("quadra");
@@ -154,34 +149,32 @@ public class ServletDenuncia extends HttpServlet {
 		numero = request.getParameter("numero");
 		cidade = request.getParameter("cidade");
 		tp_imovel = request.getParameter("tp_imovel");
-		desc_den = request.getParameter("desc_den");
+		desc_notificacao = request.getParameter("desc_notificacao");
 
 		try {
 
 			try {
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-				data_denuncia = (Date) formato.parse(data_string);
-				denuncia.setData_denuncia(data_denuncia);
+				data_notificacao = (Date) formato.parse(data_string);
+				notificacao.setData_notificacao(data_notificacao);
 			} catch (Exception e) {
 				System.out.println("Erro ao formatar data.");
 			}
-			denuncia.setIddenuncia(iddenuncia);
-			denuncia.setDenunciante(denunciante);
-			denuncia.setBairro(bairro);
-			denuncia.setRua(rua);
-			denuncia.setQuadra(quadra);
-			denuncia.setLote(lote);
-			denuncia.setNumero(numero);
-			denuncia.setCidade(cidade);
-			denuncia.setTp_imovel(tp_imovel);
-			denuncia.setDesc_den(desc_den);
-			
+			notificacao.setIdnotificacao(idnotificacao);
+			notificacao.setBairro(bairro);
+			notificacao.setRua(rua);
+			notificacao.setQuadra(quadra);
+			notificacao.setLote(lote);
+			notificacao.setNumero(numero);
+			notificacao.setCidade(cidade);
+			notificacao.setTp_imovel(tp_imovel);
+			notificacao.setDesc_notificacao(desc_notificacao);			
 
 		} catch (Exception e) {
 			System.out.println("Parametro incorreto.");
 		}
 
-		if (denunciaDAO.alterar(denuncia) == true)
+		if (notificacaoDAO.alterar(notificacao) == true)
 			message = "Erro ao Alterar Registro";
 		else
 			message = "Registro Alterado com Sucesso";

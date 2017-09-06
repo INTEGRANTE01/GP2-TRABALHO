@@ -1,14 +1,11 @@
-
-<%
-	// verificando se tem um atributo login na sessao
-	// se tiver vai continuar e mostrar o menu
-	if (session.getAttribute("nome") != null) {
-%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<c:set var="nome" value="${sessionScope.nome}"/>
+<c:choose>
+<c:when test="${not empty nome}">
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -52,7 +49,7 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
-										Denúncias <small>Endemic Sys</small>
+										Notificações <small>Endemic Sys</small>
 									</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
@@ -64,13 +61,9 @@
 								</div>
 								<div class="x_content">
 									<form class="form-horizontal form-label-left"
-										data-toggle="validator" method="post" action="buscadenuncia">
-										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Denunciante </label> <input type="text"
-												name="txtpesquisa1" class="form-control input-md">
-										</div>
-										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Bairro </label> <select name="txtpesquisa2"
+										data-toggle="validator" method="post" action="buscanotificacao">										
+										<div class="form-group  col-lg-4 col-xs-12">
+											<label>Bairro </label> <select name="txtpesquisa1"
 												title="Selecione uma opção"
 												class="form-control input-md selectpicker"
 												data-live-search="true">
@@ -79,8 +72,8 @@
 												</c:forEach>
 											</select>
 										</div>
-										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Cidade </label> <select name="txtpesquisa3"
+										<div class="form-group  col-lg-4 col-xs-12">
+											<label>Cidade </label> <select name="txtpesquisa2"
 												title="Selecione uma opção"
 												class="form-control input-md selectpicker"
 												data-live-search="true">
@@ -90,8 +83,8 @@
 											</select>
 										</div>
 
-										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Tipo de Imovel </label> <select name="txtpesquisa4"
+										<div class="form-group  col-lg-4 col-xs-12">
+											<label>Tipo de Imovel </label> <select name="txtpesquisa3"
 												title="Selecione uma opção"
 												class="form-control input-md selectpicker"
 												data-live-search="true">
@@ -127,13 +120,13 @@
 												</c:if>
 											</div>
 											<p class="text-muted font-13 m-b-30">
-												<a href="denuncia">
+												<a href="notificacao">
 													<button type="button" class="btn btn-success"
 														data-container="body" data-toggle="popover"
-														data-placement="bottom" title="Incluir Nova Denúncia">
+														data-placement="bottom" title="Incluir Nova Notificação">
 														<i class="fa fa-plus-circle"></i>
 													</button>
-												</a> <a href="buscadenuncia">
+												</a> <a href="buscanotificacao">
 													<button type="button" class="btn btn-primary"
 														data-container="body" data-toggle="popover"
 														data-placement="bottom" title="Limpar Listagem">
@@ -153,7 +146,7 @@
 													data-sorting="true" data-show-toggle="true">
 													<thead>
 														<tr>
-															<th data-breakpoints="xs">Data da Denuncia</th>
+															<th data-breakpoints="xs">Data da Notificação</th>
 															<th>Cidade</th>
 															<th data-breakpoints="xs">Bairro</th>
 															<th data-breakpoints="all">Tipo de imovel</th>
@@ -161,25 +154,24 @@
 															<th data-breakpoints="all">Quadra</th>
 															<th data-breakpoints="all">Lote</th>
 															<th data-breakpoints="all">Numero</th>
-															<th data-breakpoints="all">Descrição da Denuncia</th>
+															<th data-breakpoints="all">Descrição da Notificação</th>
 															<th>Ações</th>
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="denuncia" items="${listadenuncia}">
+														<c:forEach var="notificacao" items="${listanotificacao}">
 															<tr>
-																<!-- 	<td>${denuncia.denunciante}</td>   -->
 																<td><fmt:formatDate
-																		value="${denuncia.data_denuncia}" type="both"
+																		value="${notificacao.data_notificacao}" type="both"
 																		pattern="dd/MM/yyyy HH:mm" dateStyle="full" /></td>
-																<td>${denuncia.cidade}</td>
-																<td>${denuncia.bairro}</td>
-																<td>${denuncia.tp_imovel}</td>
-																<td>${denuncia.rua}</td>
-																<td>${denuncia.quadra}</td>
-																<td>${denuncia.lote	}</td>
-																<td>${denuncia.numero}</td>
-																<td>${denuncia.desc_den}</td>
+																<td>${notificacao.cidade}</td>
+																<td>${notificacao.bairro}</td>
+																<td>${notificacao.tp_imovel}</td>
+																<td>${notificacao.rua}</td>
+																<td>${notificacao.quadra}</td>
+																<td>${notificacao.lote	}</td>
+																<td>${notificacao.numero}</td>
+																<td>${notificacao.desc_notificacao}</td>
 																<td><div class="btn-group">
 																		<button type="button"
 																			class="btn dropdown-toggle btn btn-info btn-sm"
@@ -188,10 +180,10 @@
 																		</button>
 																		<ul class="dropdown-menu">
 																			<li><a
-																				href="buscadenuncia?acao=Consultar&iddenuncia=${denuncia.iddenuncia}"><span
+																				href="buscanotificacao?acao=Consultar&idnotificacao=${notificacao.idnotificacao}"><span
 																					class="glyphicon glyphicon-edit"></span> Editar</a></li>
 																			<li><a
-																				onclick="confirmaexclusao(${denuncia.iddenuncia})"><span
+																				onclick="confirmaexclusao(${notificacao.idnotificacao})"><span
 																					class="glyphicon glyphicon-remove-sign"></span>
 																					Excluir</a></li>
 																		</ul>
@@ -242,19 +234,15 @@
 		    function confirmaexclusao(id) {
 		   	     var resposta = confirm("Deseja remover o registro?");
 		   	     if (resposta == true) {
-		   	          window.location.href = "buscadenuncia?acao=Excluir&iddenuncia="+id;
+		   	          window.location.href = "buscanotificacao?acao=Excluir&idnotificacao="+id;
 		   	     }
 		   	}	
 		</script>
 	<c:import url="rodape.jsp" />
 </body>
 </html>
-<%
-	// se não existir um login na sessao, 
-		// vai enviar para a página de login novamente
-	} else {
-%>
-<jsp:forward page="index.jsp"></jsp:forward>
-<%
-	}
-%>
+</c:when>
+<c:otherwise>
+	<jsp:forward page="index.jsp"></jsp:forward>
+</c:otherwise>
+</c:choose>

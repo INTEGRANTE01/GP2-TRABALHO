@@ -13,31 +13,30 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DenunciaDAO;
+import model.NotificacaoDAO;
 import model.TipoImovel;
 import model.TipoImovelDAO;
 import model.Bairro;
 import model.BairroDAO;
 import model.Cidade;
 import model.CidadeDAO;
-import model.Denuncia;
+import model.Notificacao;
 
-@WebServlet(name = "ServletBuscaDenuncia", urlPatterns = "/buscadenuncia")
-public class ServletBuscaDenuncia extends HttpServlet {
+@WebServlet(name = "ServletBuscaNotificacao", urlPatterns = "/buscanotificacao")
+public class ServletBuscaNotificacao extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private DenunciaDAO denunciaDAO = new DenunciaDAO();
-	private Denuncia denuncia = new Denuncia();
-	private PopulaDenuncia populadenuncia = new PopulaDenuncia();
-	private int iddenuncia;
+	private NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
+	private Notificacao notificacao = new Notificacao();
+	private PopulaNotificacao populanotificacao = new PopulaNotificacao();
+	private int idnotificacao;
 	private String destino = "";
 	private String acao;
 	private String message;
 	private String textopesquisa1;
 	private String textopesquisa2;
 	private String textopesquisa3;
-	private String textopesquisa4;
 	private Date data_formatada;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,12 +47,12 @@ public class ServletBuscaDenuncia extends HttpServlet {
 			acao = request.getParameter("acao");
 				if (acao != null) {
 					if (acao.equalsIgnoreCase("Consultar")) {				
-						consultareditardenuncia(request, response);						
+						consultareditarnotificacao(request, response);						
 					} else if (acao.equalsIgnoreCase("Excluir")) {				
-						excluirdenuncia(request, response);
+						excluirnotificacao(request, response);
 					}
 				}else if (acao==null){				
-					destino ="WEB-INF/c_denuncia.jsp";
+					destino ="WEB-INF/c_notificacao.jsp";
 				}
 			}catch (Exception e){
 				e.printStackTrace();
@@ -68,7 +67,7 @@ public class ServletBuscaDenuncia extends HttpServlet {
 		request.setCharacterEncoding("UTF8");
 		try {
 			popularcombos(request,response);
-			buscardenuncia(request, response);
+			buscarnotificacao(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -80,55 +79,53 @@ public class ServletBuscaDenuncia extends HttpServlet {
 	protected void popularcombos(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 		
-		populadenuncia.popularCombosDenuncia();
-		request.setAttribute("listacidade",populadenuncia.combocidade);	
-		request.setAttribute("listabairro",populadenuncia.combobairro);
-		request.setAttribute("listaimovel", populadenuncia.combotipoimovel);
+		populanotificacao.popularCombosNotificacao();
+		request.setAttribute("listacidade",populanotificacao.combocidade);	
+		request.setAttribute("listabairro",populanotificacao.combobairro);
+		request.setAttribute("listaimovel", populanotificacao.combotipoimovel);
 	}
 	
-	protected void buscardenuncia(HttpServletRequest request, HttpServletResponse response)
+	protected void buscarnotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		List<Denuncia> listadenuncia = new ArrayList<Denuncia>();
+		List<Notificacao> listanotificacao = new ArrayList<Notificacao>();
 
 		textopesquisa1 = request.getParameter("txtpesquisa1");
 		textopesquisa2 = request.getParameter("txtpesquisa2");
 		textopesquisa3 = request.getParameter("txtpesquisa3");
-		textopesquisa4 = request.getParameter("txtpesquisa4");
 
 	//	if ((textopesquisa1 != "" && textopesquisa1 != null) || (textopesquisa2 != "" && textopesquisa2 != null)
 	//			|| (textopesquisa3 != "" && textopesquisa3 != null)
 	//			|| (textopesquisa4 != "" && textopesquisa4 != null)) {
 
-			listadenuncia = denunciaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);
+			listanotificacao = notificacaoDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3);
 	//	} else {
-	//		listadenuncia = denunciaDAO.listar();
+	//		listanotificacao = notificacaoDAO.listar();
 
 	//	}
-		request.setAttribute("listadenuncia", listadenuncia);
-		destino = "WEB-INF/c_denuncia.jsp";
+		request.setAttribute("listanotificacao", listanotificacao);
+		destino = "WEB-INF/c_notificacao.jsp";
 	}
 
-	protected void consultareditardenuncia(HttpServletRequest request, HttpServletResponse response)
+	protected void consultareditarnotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
 		String auxiliar = "";
-		iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
-		denuncia.setIddenuncia(iddenuncia);
-		denuncia = denunciaDAO.consultar_editar(denuncia);
-		request.setAttribute("denuncia", denuncia);
-		destino = "WEB-INF/denuncia.jsp";
+		idnotificacao = Integer.parseInt(request.getParameter("idnotificacao"));
+		notificacao.setIdnotificacao(idnotificacao);
+		notificacao = notificacaoDAO.consultar_editar(notificacao);
+		request.setAttribute("notificacao", notificacao);
+		destino = "WEB-INF/notificacao.jsp";
 	}
 
-	protected void excluirdenuncia(HttpServletRequest request, HttpServletResponse response)
+	protected void excluirnotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
-		iddenuncia = Integer.parseInt(request.getParameter("iddenuncia"));
-		denuncia.setIddenuncia(iddenuncia);
-		request.setAttribute("denuncia", denuncia);
-		denunciaDAO.excluir(denuncia);
-		List<Denuncia> listadenuncia = new ArrayList<Denuncia>();
-		listadenuncia = denunciaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);
-		request.setAttribute("listadenuncia", listadenuncia);
-		destino = "WEB-INF/c_denuncia.jsp";
+		idnotificacao = Integer.parseInt(request.getParameter("idnotificacao"));
+		notificacao.setIdnotificacao(idnotificacao);
+		notificacaoDAO.excluir(notificacao);
+		List<Notificacao> listanotificacao = new ArrayList<Notificacao>();
+		listanotificacao = notificacaoDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3);
+		request.setAttribute("listanotificacao", listanotificacao);
+		destino = "WEB-INF/c_notificacao.jsp";
 	}
 }
