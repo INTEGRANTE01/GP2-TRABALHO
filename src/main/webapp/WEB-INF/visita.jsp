@@ -158,12 +158,12 @@
                                       <div class="form-group">
                                       <label class="control-label col-md-3" for="coordenadas">Coordenadas <span class="required">*</span></label>
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="latitude"  name="latitude" value="${visita.latitude}" required="required" class="form-control input-md">
+                                        <input type="text" id="latitude" readonly="readonly" name="latitude" value="${visita.latitude}" required="required" class="form-control input-md">
                                         <div class="help-block with-errors"></div>
                                         <div class="help">Latitude</div>
                                       </div>
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="longitude"  name="longitude" value="${visita.longitude}" required="required" class="form-control input-md">
+                                        <input type="text" id="longitude" readonly="readonly" name="longitude" value="${visita.longitude}" required="required" class="form-control input-md">
                                         <div class="help-block with-errors"></div>
                                         <div class="help">Longitude</div>
                                       </div>                                                          
