@@ -11,7 +11,7 @@
 `mvnw tomcat7:run`
 ### Para executar a aplicação no Eclipse
 
-`Importa aplicação cmo projeto maven e inserir parametro tomcat7:run no MavenBuild...`
+`Importa aplicação com projeto maven e inserir parametro tomcat7:run no MavenBuild...`
 
 ## Para acessar a aplicação
 
@@ -20,5 +20,7 @@
 ## Banco de Dados
 
 A aplicação exige instalação prévia no MySQL e o arquivo de conexão com o banco de dados está em: `GP-TRABALHO\src\main\java\model\ConectaBanco.java`
+
+*Atenção ao usuario root e sua senha
 
 O script de banco de dados populado está em: `GP2-TRABALHO\src\main\webapp\bd\dbendemic.sql`
