@@ -1,4 +1,4 @@
-# Projeto Gp2
+# Projeto GP2
 
 ## Para rodar o projeto
 
@@ -6,12 +6,13 @@
 
 `git clone https://github.com/INTEGRANTE01/GP2-TRABALHO.git`
 
-### Para executar a aplicação
+### Para executar a aplicação via console (necessario Maven instalado)
 
-`mvnw tomcat7:run`
+`mvn tomcat7:run`
+
 ### Para executar a aplicação no Eclipse
 
-`Importa aplicação com projeto maven e inserir parametro tomcat7:run no MavenBuild...`
+`Importa aplicação como projeto maven e inserir parametro tomcat7:run no MavenBuild...`
 
 ## Para acessar a aplicação
 
