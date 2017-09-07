@@ -1,6 +1,4 @@
-# Endemic Sys
-
-Projeto Fase 1.
+# Projeto GP2
 
 ## Para rodar o projeto
 
@@ -8,13 +6,13 @@ Projeto Fase 1.
 
 `git clone https://github.com/INTEGRANTE01/GP2-TRABALHO.git`
 
-### Para rodar com o Tomcat.
+### Para executar a aplicação via console (necessario Maven instalado)
 
-`mvnw tomcat7:run`
+`mvn tomcat7:run`
 
-Para rodar com o Tomcat ignorando as configurações do plugin no `pom.xml`.
+### Para executar a aplicação no Eclipse
 
-`mvnw org.apache.tomcat.maven:tomcat7-maven-plugin:run`
+`Importa aplicação como projeto maven e inserir parametro tomcat7:run no MavenBuild...`
 
 ## Para acessar a aplicação
 
@@ -23,5 +21,7 @@ Para rodar com o Tomcat ignorando as configurações do plugin no `pom.xml`.
 ## Banco de Dados
 
 A aplicação exige instalação prévia no MySQL e o arquivo de conexão com o banco de dados está em: `GP-TRABALHO\src\main\java\model\ConectaBanco.java`
+
+*Atenção ao usuario root e sua senha
 
 O script de banco de dados populado está em: `GP2-TRABALHO\src\main\webapp\bd\dbendemic.sql`
