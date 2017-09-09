@@ -115,6 +115,5 @@ public class ServletBuscaBairro extends HttpServlet {
 			message = "Erro ao Excluir Registro";
 		else
 			message = "Registro Excluido com Sucesso";
-		request.setAttribute("message", message);
 	}
 }

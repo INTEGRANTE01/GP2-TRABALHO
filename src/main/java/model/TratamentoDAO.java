@@ -97,8 +97,10 @@ public class TratamentoDAO extends ConectaBanco {
 			if (rs.next()) {		
 				
 				tratamento.setIdtratamento(rs.getInt("idtratamento"));
-				tratamento.setNome_tratamento(rs.getString("nome_tratamento"));				
+				tratamento.setNome_tratamento(rs.getString("nome_tratamento"));
+				tratamento.setTp_tratamento(rs.getString("tp_tratamento"));
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{

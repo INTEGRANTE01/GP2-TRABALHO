@@ -17,17 +17,17 @@
 <title>Sistema de Controle de Endemias</title>
 
 <!-- Bootstrap -->
-<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap select -->
 <link href="css/bootstrap-select.min.css" rel="stylesheet">
 <!-- Font Awesome -->
-<link href="vendors/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="vendors/font-awesome/css/font-awesome.min.css"	rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="css/custom.min.css" rel="stylesheet">
 <!-- Footable -->
 <link href="css/footable.standalone.min.css" rel="stylesheet">
+<!-- BootstrapDialog -->
+<link href="css/bootstrap-dialog.min.css" rel="stylesheet">
 
 </head>
 <body class="nav-md">
@@ -94,8 +94,8 @@
 														title="Selecione item"
 														class="form-control input-md selectpicker"
 														data-live-search="true">
-														 <c:if test = "${not empty tratamento.tipo_tratamento}">											
-			                              					 	<option selected="selected">${tratamento.tipo_tratamento}</option>
+														 <c:if test = "${not empty tratamento.tp_tratamento}">											
+			                              					 	<option selected="selected">${tratamento.tp_tratamento}</option>
 			                            				 </c:if>										
 							      							<option value="Larvicida">Larvicida</option>
 							      							<option value="Adulticida">Adulticida</option>      
@@ -224,6 +224,8 @@
 		<!-- Footable-->
 		<script src="vendors/moment/min/moment.min.js"></script>
 		<script src="js/footable.js"></script>
+		<!-- Bootstrap Dialog -->
+		<script src="js/bootstrap-dialog.min.js"></script>
 		<script>
   
 	//Instanciar Footable
@@ -240,11 +242,18 @@
 			});
 		});
 	    function confirmaexclusao(id) {
-	   	     var resposta = confirm("Deseja remover o registro?");
-	   	 
-	   	     if (resposta == true) {
-	   	          window.location.href = "buscatratamento?acao=Excluir&idtratamento="+id;
-	   	     }
+	    	BootstrapDialog.confirm({
+	    		title: 'Confirmação',
+	            type: BootstrapDialog.TYPE_PRIMARY,	
+	            size: BootstrapDialog.SIZE_SMALL,
+	            message: 'Deseja remover o registro?',
+	            btnCancelLabel: 'Cancelar',                
+	            callback: function(resposta){
+	            	 if (resposta) {
+	   	   	          window.location.href = "buscatratamento?acao=Excluir&idtratamento="+id;
+	    	     	}   	
+	            }        		           
+	   		});		
 	   	}
 	    
     </script>

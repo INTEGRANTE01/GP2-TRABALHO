@@ -29,7 +29,8 @@
 <link href="css/custom.min.css" rel="stylesheet">
 <!-- Footable -->
 <link href="css/footable.standalone.min.css" rel="stylesheet">
-
+<!-- BootstrapDialog -->
+<link href="css/bootstrap-dialog.min.css" rel="stylesheet">
 </head>
 <body class="nav-md">
 	<div class="container body">
@@ -201,6 +202,8 @@
 		<!-- Footable-->
 		<script src="vendors/moment/min/moment.min.js"></script>
 		<script src="js/footable.js"></script>
+		<!-- Bootstrap Dialog -->
+		<script src="js/bootstrap-dialog.min.js"></script>
 		<script>
   
 	//Instanciar Footable
@@ -217,14 +220,20 @@
 			});
 		});
 	    function confirmaexclusao(id) {
-	   	     var resposta = confirm("Deseja remover o registro?");
-	   	 
-	   	     if (resposta == true) {
-	   	          window.location.href = "buscatipofuncao?acao=Excluir&idfuncao="+id;
-	   	     }
-	   	}
-	    
-    </script>
+	    	BootstrapDialog.confirm({
+	    		title: 'Confirmação',
+	            type: BootstrapDialog.TYPE_PRIMARY,	
+	            size: BootstrapDialog.SIZE_SMALL,
+	            message: 'Deseja remover o registro?',
+	            btnCancelLabel: 'Cancelar',                
+	            callback: function(resposta){
+	            	 if (resposta) {
+	   	   	          window.location.href = "buscatipofuncao?acao=Excluir&idfuncao="+id;
+	    	     	}   	
+	            }        		           
+	   		});	   	 
+	   	}	    
+    	</script>
 		<c:import url="rodape.jsp" />
 </body>
 </html>
