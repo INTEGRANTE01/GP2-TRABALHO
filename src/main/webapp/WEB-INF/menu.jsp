@@ -61,9 +61,9 @@
                    </li>
                    	<li><a><i class="fa fa-check-circle"></i>Parametros de Controle<span class="fa fa-chevron-down"></span></a>
                    		<ul class="nav child_menu">                   
-                    		<li><a href="#">Estágio</a></li>
+                    		<li><a href="estagio">Estágio</a></li>
                             <li><a href="#">Tipo de Imovel</a></li>
-                           	<li><a href="#">Larvicida</a></li>
+                           	<li><a href="tratamento">Tratamento</a></li>
                            	<li><a href="#">Ação Corretiva</a></li>
                     	</ul>
                     </li> 

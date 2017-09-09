@@ -81,7 +81,7 @@ CREATE TABLE `cidade` (
   `nome_cidade` varchar(40) NOT NULL,
   PRIMARY KEY (`idcidade`),
   UNIQUE KEY `idcidade_UNIQUE` (`idcidade`)
-) ENGINE=InnoDB AUTO_INCREMENT=1733 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,7 @@ CREATE TABLE `estagio` (
   PRIMARY KEY (`idestagio`),
   UNIQUE KEY `idnew_table_UNIQUE` (`idestagio`),
   UNIQUE KEY `nome_estagio_UNIQUE` (`nome_estagio`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `funcao` (
   PRIMARY KEY (`idfuncao`),
   UNIQUE KEY `idfuncao_UNIQUE` (`idfuncao`),
   UNIQUE KEY `nome_funcao_UNIQUE` (`nome_funcao`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +163,7 @@ CREATE TABLE `funcionario` (
   PRIMARY KEY (`idfuncionario`),
   UNIQUE KEY `matricula_UNIQUE` (`matricula`),
   UNIQUE KEY `idfuncionario_UNIQUE` (`idfuncionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +196,7 @@ CREATE TABLE `notificacao` (
   `desc_notificacao` varchar(300) NOT NULL,
   PRIMARY KEY (`idnotificacao`),
   UNIQUE KEY `iddenuncia_UNIQUE` (`idnotificacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,7 +205,7 @@ CREATE TABLE `notificacao` (
 
 LOCK TABLES `notificacao` WRITE;
 /*!40000 ALTER TABLE `notificacao` DISABLE KEYS */;
-INSERT INTO `notificacao` VALUES (4,'2017-07-04 00:00:00','Leste Vila Nova','Rua X','10','10','10','íaiá','Apartamento','teste'),(5,'2017-07-13 05:00:00','Nova Vila','Rua A','10','10','10','Goiânia','Casa','teste'),(6,'2017-07-05 06:00:00','Setor Alto da Glória','Rua AAA','10','11','50','Goiânia','Apartamento','teste'),(7,'2017-07-07 00:00:00','Setor Jaó','RUA BBB','1','1','1','Aparecida de Goiânia','Casa','teste'),(8,'2017-07-27 00:00:00','Setor Garavelo','Rua 3','14','11','S/N','Aparecida de Goiânia','Apartamento','teste'),(10,'2017-08-02 00:00:00','Setor Serrinha','Rua dos Açores','17','14','1','Goiânia','Casa','teste'),(11,'2017-08-02 00:00:00','Setor Oeste','Rua 14','14','14','1','Aparecida de Goiânia','Loja','teste'),(12,'2017-08-27 00:00:00','Setor Central','RUA DOS TESTE','33','23','22','Aparecida de Goiânia','Apartamento','teste'),(14,'2017-09-06 10:12:00','Setor Central','Rua 23','10','10','11','Goiânia','Deposito','teste');
+INSERT INTO `notificacao` VALUES (5,'2017-07-13 05:00:00','Nova Vila','Rua A','10','10','10','Goiânia','Casa','teste'),(6,'2017-07-05 06:00:00','Setor Alto da Glória','Rua AAA','10','11','50','Goiânia','Apartamento','teste'),(7,'2017-07-07 00:00:00','Setor Jaó','RUA BBB','1','1','1','Aparecida de Goiânia','Casa','teste'),(8,'2017-07-27 00:00:00','Setor Garavelo','Rua 3','14','11','S/N','Aparecida de Goiânia','Apartamento','teste'),(10,'2017-08-02 00:00:00','Setor Serrinha','Rua dos Açores','17','14','1','Goiânia','Casa','teste'),(11,'2017-08-02 00:00:00','Setor Oeste','Rua 14','14','14','1','Aparecida de Goiânia','Loja','teste'),(12,'2017-08-27 00:00:00','Setor Central','RUA DOS TESTE','33','23','22','Aparecida de Goiânia','Apartamento','teste'),(14,'2017-09-06 10:12:00','Setor Central','Rua 23','10','10','11','Goiânia','Deposito','teste');
 /*!40000 ALTER TABLE `notificacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +247,7 @@ CREATE TABLE `tratamento` (
   `tp_tratamento` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`idtratamento`),
   UNIQUE KEY `idlarvicida_UNIQUE` (`idtratamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -256,7 +256,7 @@ CREATE TABLE `tratamento` (
 
 LOCK TABLES `tratamento` WRITE;
 /*!40000 ALTER TABLE `tratamento` DISABLE KEYS */;
-INSERT INTO `tratamento` VALUES (7,'Larvicida 1','Larvicida'),(8,'Larvicida 2','Larvicida'),(9,'Adulticida 1','Adulticida');
+INSERT INTO `tratamento` VALUES (10,'Biovech','Larvicida'),(11,'Pyriproxyfen','Larvicida'),(12,'Malathion','Adulticida'),(13,'Bendiocarb','Adulticida');
 /*!40000 ALTER TABLE `tratamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +296,7 @@ CREATE TABLE `visita` (
 
 LOCK TABLES `visita` WRITE;
 /*!40000 ALTER TABLE `visita` DISABLE KEYS */;
-INSERT INTO `visita` VALUES (19,'Administrador','2017-09-06 00:00:00','São francisco','FRANCISCA MAIA DA SILVEIRA','4','6','S/N','Senador Canedo','-16.700155099331496','-49.080993088498204','Casa','Larva,Mosquito','Adulticida 1,Larvicida 1',NULL,NULL,0),(20,'Administrador','2017-09-06 00:00:00','Vila Matinha','Rua 8',' 19','6','S/N','Senador Canedo','-16.635573599163052','-49.136737325053005','Apartamento','Ovo','Larvicida 1','Nebolização','',0),(21,'Administrador','2017-09-06 00:00:00','Vila São sebastião','Presidente Getulio Vargas',' 45','21','S/N','Senador Canedo','-16.72069752','-49.08506706','Sala Comercial','Mosquito,Ovo','Adulticida 1,Larvicida 2','Borrifação','',0),(22,'Administrador','2017-09-06 00:00:00','Jardim Imperial','Av. Sumaré','40','30','S/N','Trindade','-16.651024469996052','-49.516455060004006','Lote','Larva,Mosquito','Adulticida 1','Borrifação,Nebolização','',0),(23,'Administrador','2017-09-06 00:00:00','Morada do Bosque','JOSE MANOEL DA SILVEIRA',' 6','5','S/N','Trindade','-16.64511799498515','-49.431106980006646','Loja','Pupa','Larvicida 1','Borrifação,Nebolização','',0);
+INSERT INTO `visita` VALUES (19,'Administrador','2017-09-06 00:00:00','São francisco','FRANCISCA MAIA DA SILVEIRA','4 ','6','S/N','Senador Canedo','-16.700155099331496','-49.080993088498204','Casa','Larva,Mosquito','Malathion,Pyriproxyfen','Nebolização','',0),(20,'Administrador','2017-09-06 00:00:00','Vila Matinha','Rua 8',' 19 ','6','S/N','Senador Canedo','-16.635573599163052','-49.136737325053005','Apartamento','Ovo','Pyriproxyfen','Nebolização','',0),(21,'Administrador','2017-09-06 00:00:00','Vila São sebastião','Presidente Getulio Vargas',' 45 ','21','S/N','Senador Canedo','-16.72069752','-49.08506706','Sala Comercial','Mosquito,Ovo','Malathion','Borrifação','',0),(22,'Administrador','2017-09-06 00:00:00','Jardim Imperial','Av. Sumaré','40 ','30','S/N','Trindade','-16.651024469996052','-49.516455060004006','Lote','Larva,Mosquito','Bendiocarb,Biovech','Borrifação,Nebolização','',0),(23,'Administrador','2017-09-06 00:00:00','Morada do Bosque','JOSE MANOEL DA SILVEIRA',' 6 ','5','S/N','Trindade','-16.64511799498515','-49.431106980006646','Loja','Pupa','Biovech','Borrifação,Nebolização','',0);
 /*!40000 ALTER TABLE `visita` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -429,4 +429,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-06 21:11:16
+-- Dump completed on 2017-09-08 21:31:15

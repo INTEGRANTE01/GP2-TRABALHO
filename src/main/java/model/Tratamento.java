@@ -2,15 +2,14 @@ package model;
 
 public class Tratamento {
 	
-	private int idtratemento;	
+	private int idtratamento;	
 	private String nome_tratamento;
 	private String tp_tratamento;
-	
-	public int getIdtratemento() {
-		return idtratemento;
+	public int getIdtratamento() {
+		return idtratamento;
 	}
-	public void setIdtratemento(int idtratemento) {
-		this.idtratemento = idtratemento;
+	public void setIdtratamento(int idtratamento) {
+		this.idtratamento = idtratamento;
 	}
 	public String getNome_tratamento() {
 		return nome_tratamento;
@@ -24,10 +23,11 @@ public class Tratamento {
 	public void setTp_tratamento(String tp_tratamento) {
 		this.tp_tratamento = tp_tratamento;
 	}
-	
 	@Override
 	public String toString() {
-		return "Tratamento [idtratemento=" + idtratemento + ", nome_tratamento=" + nome_tratamento + ", tp_tratamento="
+		return "Tratamento [idtratamento=" + idtratamento + ", nome_tratamento=" + nome_tratamento + ", tp_tratamento="
 				+ tp_tratamento + "]";
-	}	
+	}
+
+	
 }

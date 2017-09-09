@@ -35,7 +35,8 @@ public class ServletBuscaBairro extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {			
-			
+		
+		message = "";
 		doPost(request, response);
 		
 	}

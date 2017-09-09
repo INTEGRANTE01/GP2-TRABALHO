@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Cidade;
-import model.CidadeDAO;
+import model.Estagio;
+import model.EstagioDAO;
 
-@WebServlet(name = "ServletBuscaCidade", urlPatterns = "/buscacidade")
-public class ServletBuscaCidade extends HttpServlet {
+@WebServlet(name = "ServletBuscaEstagio", urlPatterns = "/buscaestagio")
+public class ServletBuscaEstagio extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private CidadeDAO cidadeDAO = new CidadeDAO();
-	private Cidade cidade = new Cidade();	
+	private EstagioDAO estagioDAO = new EstagioDAO();
+	private Estagio estagio = new Estagio();	
 	private String destino = "";
-	private int idcidade;
-	private String nome_cidade;
+	private int idestagio;
+	private String nome_estagio;
 	private boolean estado = false;
 	private String message;
 	private String textopesquisa1;
@@ -33,6 +33,7 @@ public class ServletBuscaCidade extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {			
+		
 		message = "";
 		doPost(request, response);
 		
@@ -48,18 +49,18 @@ public class ServletBuscaCidade extends HttpServlet {
 			acao = request.getParameter("acao");
 				if (acao != null) {
 					if (acao.equalsIgnoreCase("Consultar")) {		
-						consultareditarcidade(request, response);
+						consultareditarestagio(request, response);
 					} else if (acao.equalsIgnoreCase("Excluir")) {
-						excluircidade(request, response);
+						excluirestagio(request, response);
 					}				
 				}else if(acao==null){
-					destino ="WEB-INF/cidade.jsp";
+					destino ="WEB-INF/estagio.jsp";
 				}
 			}catch (Exception e){
 				e.printStackTrace();
 			}finally{
 				try {
-					buscarcidade(request, response);
+					buscarestagio(request, response);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}				
@@ -67,38 +68,40 @@ public class ServletBuscaCidade extends HttpServlet {
 			
 		
 		request.setAttribute("message", message);
-		destino ="WEB-INF/cidade.jsp";
+		destino ="WEB-INF/estagio.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
 	}
 
 	
-	protected void buscarcidade(HttpServletRequest request, HttpServletResponse response)
+	protected void buscarestagio(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		textopesquisa1 = request.getParameter("txtpesquisa1");
-		List<Cidade> listacidade = new ArrayList<Cidade>();
-		listacidade = cidadeDAO.listar(textopesquisa1);
-		request.setAttribute("listacidade", listacidade);
+		List<Estagio> listaestagio = new ArrayList<Estagio>();
+		listaestagio = estagioDAO.listar(textopesquisa1);
+		request.setAttribute("listaestagio", listaestagio);
+		destino ="WEB-INF/estagio.jsp";
 
 	}
 
-	protected void consultareditarcidade(HttpServletRequest request, HttpServletResponse response)
+	protected void consultareditarestagio(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
-		idcidade = Integer.parseInt(request.getParameter("idcidade"));
-		cidade.setIdcidade(idcidade);
-		cidade = cidadeDAO.consultar_editar(cidade);
-		request.setAttribute("cidade", cidade);
+		idestagio = Integer.parseInt(request.getParameter("idestagio"));
+		estagio.setIdestagio(idestagio);
+		estagio = estagioDAO.consultar_editar(estagio);
+		request.setAttribute("estagio", estagio);
+		destino ="WEB-INF/estagio.jsp";
 	}
 
-	protected void excluircidade(HttpServletRequest request, HttpServletResponse response)
+	protected void excluirestagio(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
-		idcidade = Integer.parseInt(request.getParameter("idcidade"));
-		cidade.setIdcidade(idcidade);
-		cidadeDAO.excluir(cidade);
-		destino ="WEB-INF/cidade.jsp";
-		if (cidadeDAO.excluir(cidade) == true)
+		idestagio = Integer.parseInt(request.getParameter("idestagio"));
+		estagio.setIdestagio(idestagio);
+		estagioDAO.excluir(estagio);
+		destino ="WEB-INF/estagio.jsp";
+		if (estagioDAO.excluir(estagio) == true)
 			message = "Erro ao Excluir Registro";
 		else
 			message = "Registro Excluido com Sucesso";

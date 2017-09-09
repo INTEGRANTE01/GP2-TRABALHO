@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Cidade;
-import model.CidadeDAO;
+import model.Tratamento;
+import model.TratamentoDAO;
 
-@WebServlet(name = "ServletBuscaCidade", urlPatterns = "/buscacidade")
-public class ServletBuscaCidade extends HttpServlet {
+@WebServlet(name = "ServletBuscaTratamento", urlPatterns = "/buscatratamento")
+public class ServletBuscaTratamento extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private CidadeDAO cidadeDAO = new CidadeDAO();
-	private Cidade cidade = new Cidade();	
+	private TratamentoDAO tratamentoDAO = new TratamentoDAO();
+	private Tratamento tratamento = new Tratamento();	
 	private String destino = "";
-	private int idcidade;
-	private String nome_cidade;
+	private int idtratamento;
+	private String nome_tratamento;
 	private boolean estado = false;
 	private String message;
 	private String textopesquisa1;
@@ -33,6 +33,7 @@ public class ServletBuscaCidade extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {			
+		
 		message = "";
 		doPost(request, response);
 		
@@ -48,18 +49,18 @@ public class ServletBuscaCidade extends HttpServlet {
 			acao = request.getParameter("acao");
 				if (acao != null) {
 					if (acao.equalsIgnoreCase("Consultar")) {		
-						consultareditarcidade(request, response);
+						consultareditartratamento(request, response);
 					} else if (acao.equalsIgnoreCase("Excluir")) {
-						excluircidade(request, response);
+						excluirtratamento(request, response);
 					}				
 				}else if(acao==null){
-					destino ="WEB-INF/cidade.jsp";
+					destino ="WEB-INF/tratamento.jsp";
 				}
 			}catch (Exception e){
 				e.printStackTrace();
 			}finally{
 				try {
-					buscarcidade(request, response);
+					buscartratamento(request, response);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}				
@@ -67,38 +68,40 @@ public class ServletBuscaCidade extends HttpServlet {
 			
 		
 		request.setAttribute("message", message);
-		destino ="WEB-INF/cidade.jsp";
+		destino ="WEB-INF/tratamento.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
 	}
 
 	
-	protected void buscarcidade(HttpServletRequest request, HttpServletResponse response)
+	protected void buscartratamento(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		textopesquisa1 = request.getParameter("txtpesquisa1");
-		List<Cidade> listacidade = new ArrayList<Cidade>();
-		listacidade = cidadeDAO.listar(textopesquisa1);
-		request.setAttribute("listacidade", listacidade);
+		List<Tratamento> listatratamento = new ArrayList<Tratamento>();
+		listatratamento = tratamentoDAO.listar(textopesquisa1);
+		request.setAttribute("listatratamento", listatratamento);
+		destino ="WEB-INF/tratamento.jsp";
 
 	}
 
-	protected void consultareditarcidade(HttpServletRequest request, HttpServletResponse response)
+	protected void consultareditartratamento(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
-		idcidade = Integer.parseInt(request.getParameter("idcidade"));
-		cidade.setIdcidade(idcidade);
-		cidade = cidadeDAO.consultar_editar(cidade);
-		request.setAttribute("cidade", cidade);
+		idtratamento = Integer.parseInt(request.getParameter("idtratamento"));
+		tratamento.setIdtratamento(idtratamento);
+		tratamento = tratamentoDAO.consultar_editar(tratamento);
+		request.setAttribute("tratamento", tratamento);
+		destino ="WEB-INF/tratamento.jsp";
 	}
 
-	protected void excluircidade(HttpServletRequest request, HttpServletResponse response)
+	protected void excluirtratamento(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
-		idcidade = Integer.parseInt(request.getParameter("idcidade"));
-		cidade.setIdcidade(idcidade);
-		cidadeDAO.excluir(cidade);
-		destino ="WEB-INF/cidade.jsp";
-		if (cidadeDAO.excluir(cidade) == true)
+		idtratamento = Integer.parseInt(request.getParameter("idtratamento"));
+		tratamento.setIdtratamento(idtratamento);
+		tratamentoDAO.excluir(tratamento);
+		destino ="WEB-INF/tratamento.jsp";
+		if (tratamentoDAO.excluir(tratamento) == true)
 			message = "Erro ao Excluir Registro";
 		else
 			message = "Registro Excluido com Sucesso";

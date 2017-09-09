@@ -34,6 +34,7 @@ public class ServletBuscaFuncao extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {			
 		
+		message = "";
 		doPost(request, response);
 		
 	}
@@ -79,7 +80,6 @@ public class ServletBuscaFuncao extends HttpServlet {
 		List<Funcao> listafuncao = new ArrayList<Funcao>();
 		listafuncao = funcaoDAO.listar(textopesquisa1);
 		request.setAttribute("listafuncoes", listafuncao);
-		destino ="WEB-INF/funcao.jsp";
 
 	}
 
@@ -90,7 +90,6 @@ public class ServletBuscaFuncao extends HttpServlet {
 		funcoes.setIdfuncao(idfuncao);
 		funcoes = funcaoDAO.consultar_editar(funcoes);
 		request.setAttribute("funcoes", funcoes);
-		destino ="WEB-INF/funcao.jsp";
 	}
 
 	protected void excluirfuncao(HttpServletRequest request, HttpServletResponse response)
