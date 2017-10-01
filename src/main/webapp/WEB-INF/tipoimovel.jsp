@@ -17,18 +17,19 @@
 <title>Sistema de Controle de Endemias</title>
 
 <!-- Bootstrap -->
-<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- Bootstrap select -->
 <link href="css/bootstrap-select.min.css" rel="stylesheet">
 <!-- Font Awesome -->
-<link href="vendors/font-awesome/css/font-awesome.min.css"	rel="stylesheet">
+<link href="vendors/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="css/custom.min.css" rel="stylesheet">
 <!-- Footable -->
 <link href="css/footable.standalone.min.css" rel="stylesheet">
 <!-- BootstrapDialog -->
 <link href="css/bootstrap-dialog.min.css" rel="stylesheet">
-
 </head>
 <body class="nav-md">
 	<div class="container body">
@@ -46,7 +47,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Tratamento</h2>
+									<h2>Imovel</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -57,7 +58,7 @@
 								</div>
 								<div class="x_content">
 									<form class="form-horizontal form-label-left"
-										data-toggle="validator" method="post" action="tratamento">
+										data-toggle="validator" method="post" action="imovel">
 										<p>
 											Atenção aos campos requeridos
 											<code>*</code>
@@ -68,41 +69,22 @@
 										<div class="form-group">
 											<div class="col-md-2 col-xs-12">
 												<input type="hidden" readonly="readonly" type="text"
-													id="idtratamento" name="idtratamento" value="${tratamento.idtratamento}"
+													id="idimovel" name="idimovel" value="${tipoimovel.id_imovel}"
 													class="form-control input-md">
 											</div>
 										</div>
-										<!--Tratamento Input-->
+										<!--Tipoimovel Input-->
 										<div class="form-group">
 											<label class="control-label col-md-3">Nome
 												<span class="required">*</span>
 											</label>
 											<div class="col-lg-6 col-xs-12">
-												<input type="text" id="tratamento" name="tratamento"
-													value="${tratamento.nome_tratamento}" placeholder="ex: Larvicida 1"
+												<input type="text" id="nome_tipoimovel" name="nome_tipoimovel"
+													value="${tipoimovel.nome_tpimovel}" placeholder="ex: Apartamento"
 													required="required" class="form-control input-md">
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
-										<!-- Tipo de Tratamento -->										
-											<div class="form-group">
-												<label class="control-label col-md-3" for="bairro">Tipo de Tratamento
-													<span class="required">*</span>
-												</label>
-												<div class="col-lg-3 col-xs-12">
-													<select required id="tipo_tratamento" name="tipo_tratamento"
-														title="Selecione item"
-														class="form-control input-md selectpicker"
-														data-live-search="true">
-														 <c:if test = "${not empty tratamento.tp_tratamento}">											
-			                              					 	<option selected="selected">${tratamento.tp_tratamento}</option>
-			                            				 </c:if>										
-							      							<option value="Larvicida">Larvicida</option>
-							      							<option value="Adulticida">Adulticida</option>      
-													</select>
-													<div class="help-block with-errors"></div>
-												</div>
-											</div>
 										<!--Botões-->
 										<div class="form-group">
 											<div class="col-md-6 col-md-offset-3">
@@ -132,11 +114,11 @@
 							</div>
 						</div>
 
-						<!-- Busca Tratamento -->
+						<!-- Busca Cidade -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Tratamentos Cadastrados</h2>
+									<h2>Tipos Cadastrados</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -147,20 +129,18 @@
 								</div>
 								<div class="x_content">
 									<form class="form-horizontal form-label-left"
-										data-toggle="validator" method="get" action="buscatratamento">
+										data-toggle="validator" method="get" action="buscaimovel">
 										<div class="form-group">
 											<label class="control-label col-md-3" for="nome"></label>
 											<div class="input-group col-lg-6 col-xs-12">
 												<input type="text" name="txtpesquisa1"
-													class="form-control input-md" placeholder="Buscar Tratamento">
+													class="form-control input-md" placeholder="Buscar Tipo de Imovel">
 												<div class="input-group-btn">
-													<a href="tratamento">
 														<button type="submit" class="btn btn-primary"
 															data-container="body" data-toggle="popover"
 															data-placement="bottom" title="Buscar">
 															<i class="fa fa-search"></i>
 														</button>
-													</a>
 												</div>
 											</div>
 										</div>
@@ -170,17 +150,15 @@
 												data-sorting="true" data-show-toggle="true">
 												<thead>
 													<tr>
-														<th>Nome</th>
 														<th>Tipo</th>
 														<th>Ações</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="tratamento" items="${listatratamento}">
+													<c:forEach var= "tipoimovel" items="${listaimovel}">
 														<tr>
-															<td>${tratamento.nome_tratamento}</td>
-															<td>${tratamento.tp_tratamento}</td>
-															<td>															
+															<td>${tipoimovel.nome_tpimovel}</td>
+															<td>
 																<div class="btn-group">
 																	<button type="submit"
 																		class="btn dropdown-toggle btn btn-info btn-sm"
@@ -189,10 +167,10 @@
 																	</button>
 																	<ul class="dropdown-menu">
 																		<li><a
-																			href="buscatratamento?acao=Consultar&idtratamento=${tratamento.idtratamento}"><span
+																			href="buscaimovel?acao=Consultar&idimovel=${tipoimovel.id_imovel}"><span
 																				class="glyphicon glyphicon-edit"></span> Editar</a></li>
 																		<li><a
-																			onclick="confirmaexclusao(${tratamento.idtratamento})"><span
+																			onclick="confirmaexclusao(${tipoimovel.id_imovel})"><span
 																				class="glyphicon glyphicon-remove-sign"></span>
 																				Excluir</a></li>
 																	</ul>
@@ -225,38 +203,38 @@
 		<script src="vendors/moment/min/moment.min.js"></script>
 		<script src="js/footable.js"></script>
 		<!-- Bootstrap Dialog -->
-		<script src="js/bootstrap-dialog.min.js"></script>
+		<script src="js/bootstrap-dialog.min.js"></script>	
 		<script>
   
-	//Instanciar Footable
-		$(document).ready(function () {
-		//$(function () {
-			$('.footable').footable({			
-				"paging": {
-					"enabled": true,											
-					"position": "left",
-					"limit": 3,
-					"size": 8,
-					"countFormat": "Registros {PF} a {PL} de {TR} resultados"
-				}
+		//Instanciar Footable
+			$(document).ready(function () {
+			//$(function () {
+				$('.footable').footable({			
+					"paging": {
+						"enabled": true,											
+						"position": "left",
+						"limit": 3,
+						"size": 8,
+						"countFormat": "Registros {PF} a {PL} de {TR} resultados"
+					}
+				});
 			});
-		});
-	    function confirmaexclusao(id) {
-	    	BootstrapDialog.confirm({
-	    		title: 'Confirmação',
-	            type: BootstrapDialog.TYPE_PRIMARY,	
-	            size: BootstrapDialog.SIZE_SMALL,
-	            message: 'Deseja remover o registro?',
-	            btnCancelLabel: 'Cancelar',                
-	            callback: function(resposta){
-	            	 if (resposta) {
-	   	   	          window.location.href = "buscatratamento?acao=Excluir&idtratamento="+id;
-	    	     	}   	
-	            }        		           
-	   		});		
-	   	}
-	    
-    </script>
+		    function confirmaexclusao(id) {
+		    	BootstrapDialog.confirm({
+		    		title: 'Confirmação',
+		            type: BootstrapDialog.TYPE_PRIMARY,	
+		            size: BootstrapDialog.SIZE_SMALL,
+		            message: 'Deseja remover o registro?',
+		            btnCancelLabel: 'Cancelar',                
+		            callback: function(resposta){
+		            	 if (resposta) {
+				   	          window.location.href = "buscaimovel?acao=Excluir&idimovel="+id;
+		    	     	}   	
+		            }        		           
+		   		});
+		   	}
+		    
+		</script>
 		<c:import url="rodape.jsp" />
 </body>
 </html>

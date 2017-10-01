@@ -124,7 +124,7 @@
 										<span class="required">*</span>
 									</label>
 									<div class="col-lg-3 col-xs-12">
-										<select required id="bairro" name="bairro"
+										<select required data-size="5" id="bairro" name="bairro"
 											title="Selecione item"
 											class="form-control input-md selectpicker"
 											data-live-search="true">
@@ -142,7 +142,7 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="cidade">Cidade <span class="required">*</span></label>
                             <div class="col-lg-3 col-xs-12">
-                            <select required id="cidade" name="cidade" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
+                            <select required data-size="5" id="cidade" name="cidade" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
                               <c:if test = "${not empty visita.cidade}">											
                                 <option selected="selected">${visita.cidade}</option>
                               </c:if>
@@ -181,8 +181,8 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="tipo">Tipo do Imovel <span class="required">*</span></label>
                             <div class="col-lg-3 col-xs-12">
-                            <select required id="tp_imovel" name="tp_imovel"  title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
-                              <c:if test = "${not empty visita.tp_imovel}">											
+                            <select required data-size="5" id="tp_imovel" name="tp_imovel"  title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
+                             <c:if test = "${not empty visita.tp_imovel}">											
                                 <option selected="selected">${visita.tp_imovel}</option>
                               </c:if>                               
                               <c:forEach var="combotipoimovel" items="${listaimovel}">      
@@ -207,7 +207,7 @@
                             <div class="col-lg-3 col-xs-12">
                             <select multiple data-size="5" data-actions-box="false" id="estagio" name="estagio" title="Selecione item(s)" class="form-control input-md selectpicker" data-live-search="true">
                               <c:if test = "${not empty visita.estagio}">											
-                              	<option selected>${visita.estagio}</option>
+                              	<option selected="selected">${visita.estagio}</option>
     		    			  </c:if>	
                               <c:forEach var="comboestagio" items="${listaestagio}">      
 						     	<option>${comboestagio.nome_estagio}</option>      

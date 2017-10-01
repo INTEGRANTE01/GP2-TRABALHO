@@ -80,7 +80,7 @@
 											</label>
 											<div class="col-lg-6 col-xs-12">
 												<input type="text" id="estagio" name="estagio"
-													value="${estagio.nome_estagio}" placeholder="ex: Trindade"
+													value="${estagio.nome_estagio}" placeholder="ex: Larva"
 													required="required" class="form-control input-md">
 												<div class="help-block with-errors"></div>
 											</div>
