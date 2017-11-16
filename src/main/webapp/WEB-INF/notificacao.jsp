@@ -69,7 +69,7 @@
 										<!--IDbanco Input-->
 										<div class="form-group">
 											<div class="col-md-2 col-xs-12">
-												<input  readonly="readonly" type="text"
+												<input type="hidden" readonly="readonly" type="text"
 													id="idnotificacao" name="idnotificacao"
 													value="${notificacao.idnotificacao}"
 													class="form-control input-md">

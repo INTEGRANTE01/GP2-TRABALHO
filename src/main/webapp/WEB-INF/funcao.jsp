@@ -79,7 +79,7 @@
 											</label>
 											<div class="col-lg-6 col-xs-12">
 												<input type="text" id="nome_funcao" name="nome_funcao"
-													 placeholder="ex: Trindade" value="${funcoes.nome_funcao}" 
+													 placeholder="ex: Agente" value="${funcoes.nome_funcao}" 
 													required="required" class="form-control input-md">
 												<div class="help-block with-errors"></div>
 											</div>

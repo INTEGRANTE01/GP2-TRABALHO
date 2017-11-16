@@ -82,7 +82,7 @@
 											</label>
 											<div class="col-lg-6 col-xs-12">
 												<input type="text" id="bairro" name="bairro"
-													value="${bairro.nome_bairro}" placeholder="ex: Trindade"
+													value="${bairro.nome_bairro}" placeholder="ex: Setor Sul"
 													required="required" class="form-control input-md">
 												<div class="help-block with-errors"></div>
 											</div>
@@ -175,13 +175,11 @@
 									<div class="x_content">
 									<div>
 									<label></label>
-											<a href="bairro">
 												<button type="submit" class="btn btn-primary btn-sm"
 													data-container="body" data-toggle="popover"
 													data-placement="bottom" title="Buscar">
 													<i class="fa fa-search"></i> Buscar
 												</button>
-											</a>
 									<div class="ln_solid"></div>								
 									</div>
 											<div>											
