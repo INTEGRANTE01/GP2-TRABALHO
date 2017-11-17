@@ -30,6 +30,8 @@
 <link href="css/footable.standalone.min.css" rel="stylesheet">
 <!-- BootstrapDialog -->
 <link href="css/bootstrap-dialog.min.css" rel="stylesheet">
+ <!-- iCheck -->
+<link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 <!--
 <link href="css/footable.core.css" rel="stylesheet">
 <link href="css/footable.standalone.css" rel="stylesheet">
@@ -95,6 +97,11 @@
 												</c:forEach>
 											</select>
 										</div>
+										<div class="form-group  col-lg-4 col-xs-12">											
+											<input type="checkbox" id="txtpesquisa4" name="txtpesquisa4" class="flat">
+											<label>Verificado</label>											
+										</div>
+										
 										<div class="x_content">
 											<div class="row">
 												<c:if test="${not empty message}">
@@ -148,6 +155,7 @@
 													data-sorting="true" data-show-toggle="true">
 													<thead>
 														<tr>
+															<!-- <th data-breakpoints="xs">Status</th>   -->
 															<th data-breakpoints="xs">Data da Notificação</th>
 															<th>Cidade</th>
 															<th data-breakpoints="xs">Bairro</th>
@@ -163,6 +171,10 @@
 													<tbody>
 														<c:forEach var="notificacao" items="${listanotificacao}">
 															<tr>
+																<!--<td>
+																<input type="checkbox" id="check" class="flat">
+																</td>-->
+																
 																<td><fmt:formatDate
 																		value="${notificacao.data_notificacao}" type="both"
 																		pattern="dd/MM/yyyy HH:mm" dateStyle="full" /></td>
@@ -180,14 +192,26 @@
 																			data-toggle="dropdown">
 																			Opções <span class="caret"></span>
 																		</button>
-																		<ul class="dropdown-menu">
-																			<li><a
-																				href="buscanotificacao?acao=Consultar&idnotificacao=${notificacao.idnotificacao}"><span
-																					class="glyphicon glyphicon-edit"></span> Editar</a></li>
-																			<li><a
-																				onclick="confirmaexclusao(${notificacao.idnotificacao})"><span
-																					class="glyphicon glyphicon-remove-sign"></span>
-																					Excluir</a></li>
+																		<ul class="dropdown-menu">																																																												
+																				
+																				 <%if (session.getAttribute("funcao").equals("Atendente") || session.getAttribute("funcao").equals("Administrador")){%>
+																					 <li><a		
+																					 href="buscanotificacao?acao=Consultar&idnotificacao=${notificacao.idnotificacao}"><span
+																					class="glyphicon glyphicon-edit"></span> Editar</a></li>			
+																				 <%}%>
+																				
+																				 <%if (session.getAttribute("funcao").equals("Agente") || session.getAttribute("funcao").equals("Administrador")){%>
+																					 <li><a		
+																					 href="envianotificacao?acao=Verificar&idnotificacao=${notificacao.idnotificacao}"><span
+																					class="glyphicon glyphicon-edit"></span> Verificar</a></li>			
+																				 <%}%>
+																			 	
+																			 	<%if (session.getAttribute("funcao").equals("Atendente") || session.getAttribute("funcao").equals("Administrador")){%>
+																					 <li><a
+																						onclick="confirmaexclusao(${notificacao.idnotificacao})"><span
+																						class="glyphicon glyphicon-remove-sign"></span>
+																						Excluir</a></li>
+																				<%}%>
 																		</ul>
 																	</div></td>
 															</tr>
@@ -218,6 +242,8 @@
 	<script src="js/footable.js"></script>
 	<!-- Bootstrap Dialog -->
 	<script src="js/bootstrap-dialog.min.js"></script>
+	<!--Icheck-->
+	<script src="vendors/iCheck/icheck.min.js"></script>
 	
 	<script type="text/javascript">
 		// Instanciar Footable

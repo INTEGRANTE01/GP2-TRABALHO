@@ -84,12 +84,12 @@
                		 <ul class="nav side-menu">
                      <li><a><i class="fa fa-edit"></i>Cadastros <span class="fa fa-chevron-down"></span></a>
                      	<ul class="nav child_menu">
-                           	<li><a href="notificacao">Denúncia</a></li>
+                           	<li><a href="notificacao">Notificação</a></li>
                     	</ul> 
                     </li>
                     <li><a><i class="fa fa-edit"></i>Busca <span class="fa fa-chevron-down"></span></a>
                      	<ul class="nav child_menu">
-                           	<li><a href="buscanotificacao">Denúncia</a></li>
+                           	<li><a href="buscanotificacao">Notificação</a></li>
                     	</ul> 
                     </li>
                      </ul>
@@ -102,11 +102,13 @@
               		<li><a><i class="fa fa-edit"></i>Cadastros <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
                            	<li><a href="visita">Visita</a></li>
-                   		</ul> 
+                           	<li><a href="notificacao">Notificação</a></li>                           	
+                   		</ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i>Busca <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
                            	<li><a href="buscavisita">Visita</a></li>
+                           	<li><a href="buscanotificacao">Notificação</a></li>
                    		</ul> 
                     </li>             		
                 	</ul>                

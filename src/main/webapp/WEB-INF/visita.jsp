@@ -75,6 +75,12 @@
                                             <input  type="hidden" readonly="readonly" type="text" id="idvisita" name="idvisita" value="${visita.idvisita}" class="form-control input-md">
                                         </div>
                               </div>
+                          <!--IDnotifica Input-->
+                              <div class="form-group">
+                                        <div class="col-md-2 col-xs-12">
+                                            <input  readonly="readonly" type="text" id="idnotificacao" name="idnotificacao" value="${visita.idnotificacao}" class="form-control input-md">
+                                        </div>
+                              </div>    
                           <!--Nome Input-->
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="agente">Agente <span class="required">*</span></label>

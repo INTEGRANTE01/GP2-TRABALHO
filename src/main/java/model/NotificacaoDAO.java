@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Notificacao;
+import model.Visita;
 
 /**
  * 
@@ -111,15 +112,16 @@ public class NotificacaoDAO extends ConectaBanco {
 		return erro;
 	}
 
-	public List<Notificacao> listar(String par_bairro, String par_cidade, String par_tp_imovel) throws SQLException {
+	public List<Notificacao> listar(String par_bairro, String par_cidade, String par_tp_imovel, int par_verificado) throws SQLException {
 		List<Notificacao> lista = new ArrayList<Notificacao>();
 		Connection conexao = getConexao();
 		PreparedStatement pstm = conexao
-				.prepareStatement("Select * from notificacao where bairro like ? and cidade like ? and tp_imovel like ? order by data_notificacao asc");
+				.prepareStatement("Select * from notificacao where bairro like ? and cidade like ? and tp_imovel like ? and verificado like ? order by data_notificacao asc");
 		try {					
 			pstm.setString(1, "%" + par_bairro +"%");
 			pstm.setString(2, "%" + par_cidade +"%");
 			pstm.setString(3, "%" + par_tp_imovel +"%");
+			pstm.setInt(4,  par_verificado);
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
 				Notificacao notificacao = new Notificacao();
@@ -170,6 +172,32 @@ public class NotificacaoDAO extends ConectaBanco {
 			conexao.close();			
 	}
 		return notificacao;
+	}
+	
+	public Visita verificar(Visita visita) throws SQLException {
+		Connection conexao = getConexao();
+		PreparedStatement pstm = conexao
+				.prepareStatement("Select * from notificacao where idnotificacao = ?");
+		try {			
+			pstm.setInt(1, visita.getIdnotificacao());
+			ResultSet rs = pstm.executeQuery();
+			if (rs.next()) {
+				visita.setIdnotificacao(rs.getInt("idnotificacao"));
+				visita.setBairro(rs.getString("bairro"));
+				visita.setRua(rs.getString("rua"));
+				visita.setLote(rs.getString("lote"));
+				visita.setQuadra(rs.getString("quadra"));
+				visita.setNumero(rs.getString("numero"));
+				visita.setCidade(rs.getString("cidade"));
+				visita.setTp_imovel(rs.getString("tp_imovel"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			pstm.close();
+			conexao.close();			
+	}
+		return visita;
 	}
 	
 }

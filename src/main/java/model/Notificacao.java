@@ -14,6 +14,7 @@ public class Notificacao {
 	private String cidade;
 	private String tp_imovel;
 	private String desc_notificacao;
+	private boolean verifcacao;
 	
 	public int getIdnotificacao() {
 		return idnotificacao;
@@ -75,14 +76,19 @@ public class Notificacao {
 	public void setDesc_notificacao(String desc_notificacao) {
 		this.desc_notificacao = desc_notificacao;
 	}
+	public boolean isVerifcacao() {
+		return verifcacao;
+	}
+	public void setVerifcacao(boolean verifcacao) {
+		this.verifcacao = verifcacao;
+	}
 	
 	@Override
 	public String toString() {
 		return "Notificacao [idnotificacao=" + idnotificacao + ", data_notificacao=" + data_notificacao + ", bairro="
 				+ bairro + ", rua=" + rua + ", quadra=" + quadra + ", lote=" + lote + ", numero=" + numero + ", cidade="
-				+ cidade + ", tp_imovel=" + tp_imovel + ", desc_notificacao=" + desc_notificacao + "]";
+				+ cidade + ", tp_imovel=" + tp_imovel + ", desc_notificacao=" + desc_notificacao + ", verifcacao="
+				+ verifcacao + "]";
 	}
-	
-	
 	
 }
