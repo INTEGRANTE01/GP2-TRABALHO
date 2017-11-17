@@ -6,6 +6,7 @@ import java.util.Date;
 public class Visita {
 	
 	private int idvisita;
+	private int idnotificacao;
 	private String agente;
 	private Date data_visita;
 	private String bairro;
@@ -27,6 +28,12 @@ public class Visita {
 	}
 	public void setIdvisita(int idvisita) {
 		this.idvisita = idvisita;
+	}
+	public int getIdnotificacao() {
+		return idnotificacao;
+	}
+	public void setIdnotificacao(int idnotificacao) {
+		this.idnotificacao = idnotificacao;
 	}
 	public String getAgente() {
 		return agente;
@@ -124,13 +131,14 @@ public class Visita {
 	public void setVerifica_foco(boolean verifica_foco) {
 		this.verifica_foco = verifica_foco;
 	}
-	
 	@Override
 	public String toString() {
-		return "Visita [idvisita=" + idvisita + ", agente=" + agente + ", data_visita=" + data_visita + ", bairro="
-				+ bairro + ", rua=" + rua + ", quadra=" + quadra + ", lote=" + lote + ", numero=" + numero + ", cidade="
-				+ cidade + ", latitude=" + latitude + ", longitude=" + longitude + ", tp_imovel=" + tp_imovel
-				+ ", estagio=" + estagio + ", tp_larvicida=" + tp_larvicida + ", ac_corretiva=" + ac_corretiva
-				+ ", local_foco=" + local_foco + ", verifica_foco=" + verifica_foco + "]";
-	}		
+		return "Visita [idvisita=" + idvisita + ", idnotificacao=" + idnotificacao + ", agente=" + agente
+				+ ", data_visita=" + data_visita + ", bairro=" + bairro + ", rua=" + rua + ", quadra=" + quadra
+				+ ", lote=" + lote + ", numero=" + numero + ", cidade=" + cidade + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", tp_imovel=" + tp_imovel + ", estagio=" + estagio + ", tp_larvicida="
+				+ tp_larvicida + ", ac_corretiva=" + ac_corretiva + ", local_foco=" + local_foco + ", verifica_foco="
+				+ verifica_foco + "]";
+	}	
+	
 }

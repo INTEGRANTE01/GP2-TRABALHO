@@ -30,6 +30,10 @@
 <link href="css/footable.standalone.min.css" rel="stylesheet">
 <!-- BootstrapDialog -->
 <link href="css/bootstrap-dialog.min.css" rel="stylesheet">
+ <!-- iCheck -->
+<link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<link href="vendors/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+
 <!--
 <link href="css/footable.core.css" rel="stylesheet">
 <link href="css/footable.standalone.css" rel="stylesheet">
@@ -95,6 +99,17 @@
 												</c:forEach>
 											</select>
 										</div>
+										<!--
+										
+											<input id="txtpesquisa4" name="txtpesquisa4" type="checkbox" checked="checked" data-size="small"
+											data-on-text="Visitados" data-off-text="A Visitar">
+																						
+											<input type="checkbox" id="txtpesquisa4" name="txtpesquisa4" class="flat">
+											<label>Verificado</label>
+											<input id="txtpesquisa4" name="txtpesquisa4" data-size="small" unchecked data-toggle="toggle" data-on="Verificado" data-off="Não Verificado" 
+											data-onstyle="primary" type="checkbox">	
+																																	
+										 -->																				
 										<div class="x_content">
 											<div class="row">
 												<c:if test="${not empty message}">
@@ -121,6 +136,12 @@
 													</div>
 												</c:if>
 											</div>
+											<div class="pull-right">
+												<input id="txtpesquisa4" name="txtpesquisa4" type="checkbox" checked="checked" data-size="normal"
+												data-on-text="Sim" data-off-text="Não">
+												<div class="help">Visitados</div>
+												
+											</div>
 											<p class="text-muted font-13 m-b-30">
 												<a href="notificacao">
 													<button type="button" class="btn btn-success"
@@ -140,14 +161,17 @@
 													data-placement="bottom" title="Buscar">
 													<i class="fa fa-search"></i>
 												</button>
-											</p>
+												<label> </label>
+												
+											</p>											
+											<div class="ln_solid"></div>										
 											<div>
-												<div class="ln_solid"></div>
 												<table id="table"
 													class="table footable toggle-circle-filled table-striped  table-hover"
 													data-sorting="true" data-show-toggle="true">
 													<thead>
 														<tr>
+															<!-- <th data-breakpoints="xs">Status</th>   -->
 															<th data-breakpoints="xs">Data da Notificação</th>
 															<th>Cidade</th>
 															<th data-breakpoints="xs">Bairro</th>
@@ -163,6 +187,10 @@
 													<tbody>
 														<c:forEach var="notificacao" items="${listanotificacao}">
 															<tr>
+																<!--<td>
+																<input type="checkbox" id="check" class="flat">
+																</td>-->
+																
 																<td><fmt:formatDate
 																		value="${notificacao.data_notificacao}" type="both"
 																		pattern="dd/MM/yyyy HH:mm" dateStyle="full" /></td>
@@ -180,14 +208,26 @@
 																			data-toggle="dropdown">
 																			Opções <span class="caret"></span>
 																		</button>
-																		<ul class="dropdown-menu">
-																			<li><a
-																				href="buscanotificacao?acao=Consultar&idnotificacao=${notificacao.idnotificacao}"><span
-																					class="glyphicon glyphicon-edit"></span> Editar</a></li>
-																			<li><a
-																				onclick="confirmaexclusao(${notificacao.idnotificacao})"><span
-																					class="glyphicon glyphicon-remove-sign"></span>
-																					Excluir</a></li>
+																		<ul class="dropdown-menu">																																																												
+																				
+																				 <%if (session.getAttribute("funcao").equals("Atendente") || session.getAttribute("funcao").equals("Administrador")){%>
+																					 <li><a		
+																					 href="buscanotificacao?acao=Consultar&idnotificacao=${notificacao.idnotificacao}"><span
+																					class="glyphicon glyphicon-edit"></span> Editar</a></li>			
+																				 <%}%>
+																				
+																				 <%if (session.getAttribute("funcao").equals("Agente") || session.getAttribute("funcao").equals("Administrador")){%>
+																					 <li><a		
+																					 href="envianotificacao?acao=Verificar&idnotificacao=${notificacao.idnotificacao}"><span
+																					class="glyphicon glyphicon-edit"></span> Verificar</a></li>			
+																				 <%}%>
+																			 	
+																			 	<%if (session.getAttribute("funcao").equals("Atendente") || session.getAttribute("funcao").equals("Administrador")){%>
+																					 <li><a
+																						onclick="confirmaexclusao(${notificacao.idnotificacao})"><span
+																						class="glyphicon glyphicon-remove-sign"></span>
+																						Excluir</a></li>
+																				<%}%>
 																		</ul>
 																	</div></td>
 															</tr>
@@ -218,6 +258,10 @@
 	<script src="js/footable.js"></script>
 	<!-- Bootstrap Dialog -->
 	<script src="js/bootstrap-dialog.min.js"></script>
+	<!--Icheck-->
+	<script src="vendors/iCheck/icheck.min.js"></script>
+	<!-- Slider -->
+	<script src="vendors/bootstrap-switch-master/dist/js/bootstrap-switch.min.js"></script>
 	
 	<script type="text/javascript">
 		// Instanciar Footable
@@ -248,7 +292,10 @@
 		    	     	}   	
 		            }        		           
 		   		});
-		   	}	
+		   	}
+		
+		// Switxh
+		$("[name='txtpesquisa4']").bootstrapSwitch();
 		</script>
 	<c:import url="rodape.jsp" />
 </body>

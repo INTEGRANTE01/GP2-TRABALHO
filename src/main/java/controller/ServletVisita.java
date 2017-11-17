@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.VisitaDAO;
+import model.Notificacao;
+import model.NotificacaoDAO;
 import model.Visita;
 
 @WebServlet(name = "ServletVisita", urlPatterns = "/visita")
@@ -26,9 +28,12 @@ public class ServletVisita extends HttpServlet {
 
 	private VisitaDAO VisitaDAO = new VisitaDAO();
 	private Visita visita = new Visita();
+	private NotificacaoDAO NotificacaoDAO = new NotificacaoDAO();
+	private Notificacao notificacao = new Notificacao();
 	private PopulaVisita populavisita = new PopulaVisita();
 	private String destino = "";
 	private int idvisita;
+	private int idnotificacao;
 	private String agente;			
 	private String data_string;
 	private Date data_visita;
@@ -134,7 +139,12 @@ public class ServletVisita extends HttpServlet {
 		  
 		  concatenaEstagio="";
 		  concatenaLarvicida="";
-		  concatenaAccorretiva="";	
+		  concatenaAccorretiva="";
+		  try {
+				idnotificacao = Integer.parseInt(request.getParameter("idnotificacao"));				
+		  } catch (Exception e) {	
+				e.printStackTrace();			
+		  }	
 		  agente = request.getParameter("agente");
 		  data_string = request.getParameter("data_visita");
 		  System.out.println("NO DATA_STRING: "  + data_string);
@@ -154,6 +164,7 @@ public class ServletVisita extends HttpServlet {
 
 		try {
 			
+			visita.setIdnotificacao(idnotificacao);
 			visita.setAgente(agente);
           	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
             data_visita = (Date) formato.parse(data_string);                   
@@ -167,6 +178,7 @@ public class ServletVisita extends HttpServlet {
 			visita.setLatitude(latitude);
 			visita.setLongitude(longitude);
 			visita.setTp_imovel(tp_imovel);
+			notificacao.setIdnotificacao(idnotificacao);
 			
 			for (int i=0;i<estagio.length;i++){
 				
@@ -203,7 +215,14 @@ public class ServletVisita extends HttpServlet {
 			message = "Erro ao Gravar Registro";
 		else
 			message = "Registro Gravado com Sucesso";
-		}
+		
+		if (VisitaDAO.alterarnotificacao(notificacao) == true) {
+			message = "Erro ao Validadar Notificacao";
+		}				
+		System.out.println(notificacao.getIdnotificacao());			
+
+	}
+	    
 
 	protected void editarVisita(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {

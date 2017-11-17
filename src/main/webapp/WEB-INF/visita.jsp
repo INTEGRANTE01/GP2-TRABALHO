@@ -28,7 +28,10 @@
     <!-- Switchery -->
     <link href="vendors/switchery/switchery.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="css/custom.min.css" rel="stylesheet">	       
+    <link href="css/custom.min.css" rel="stylesheet">
+    <!-- Switch -->
+    <link href="vendors/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    	       
      
   </head>
   <c:choose>         
@@ -75,6 +78,12 @@
                                             <input  type="hidden" readonly="readonly" type="text" id="idvisita" name="idvisita" value="${visita.idvisita}" class="form-control input-md">
                                         </div>
                               </div>
+                          <!--IDnotifica Input-->
+                              <div class="form-group">
+                                        <div class="col-md-2 col-xs-12">
+                                            <input  readonly="readonly" type="text" id="idnotificacao" name="idnotificacao" value="${visita.idnotificacao}" class="form-control input-md">
+                                        </div>
+                              </div>    
                           <!--Nome Input-->
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="agente">Agente <span class="required">*</span></label>
@@ -242,7 +251,105 @@
 							  </c:forEach>
                             </select>
                             </div>
-                          </div>						  
+                          </div>
+                          
+			  
+  							<div class="form-group">
+                               <label class="control-label col-md-3" for="coordenadas">Depositos(s) <span class="required">*</span></label>
+                               <div class="col-lg-2 col-xs-12">
+                   				<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                                 <div class="help">Caixa d'Água</div>                                    
+                               </div>
+                               <div class="col-lg-1">
+	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+                                 	<div class="help">Quantidade</div>
+                               </div>
+                             </div>
+
+                             <div class="form-group">
+                              <label class="control-label col-md-3"></label>
+                              	 <div class="col-lg-2 col-xs-12">
+                   				<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                                 <div class="help">Pequenos Depositos imoveis</div>                                        
+                                 
+                               </div>
+                               <div class="col-lg-1">
+	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+                                 	<div class="help">Quantidade</div>
+                               </div>                                                                                                
+                             </div>
+                             
+                              <div class="form-group">
+                              <label class="control-label col-md-3"></label>
+                              	 <div class="col-lg-2 col-xs-12">
+                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                                	 <div class="help">Outros Depositos Arm. Água</div>                                        
+                                 
+                               </div>
+                               <div class="col-lg-1">
+	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+                                 	<div class="help">Quantidade</div>
+                               </div>                                                                                                
+                             </div>  
+                             
+                               <div class="form-group">
+                              <label class="control-label col-md-3"></label>
+                              	 <div class="col-lg-2 col-xs-12">
+                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                                	 <div class="help">Pneus e Outros Mat. Rodantes</div>                                        
+                                 
+                               </div>
+                               <div class="col-lg-1">
+	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+                                 	<div class="help">Quantidade</div>
+                               </div>                                                                                                
+                             </div> 
+                             
+                               <div class="form-group">
+                              <label class="control-label col-md-3"></label>
+                              	 <div class="col-lg-2 col-xs-12">
+                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                                	 <div class="help">Depositos Fixos</div>                                        
+                                 
+                               </div>
+                               <div class="col-lg-1">
+	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+                                 	<div class="help">Quantidade</div>
+                               </div>                                                                                                
+                             </div> 
+                             
+                               <div class="form-group">
+                              <label class="control-label col-md-3"></label>
+                              	 <div class="col-lg-2 col-xs-12">
+                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                                	 <div class="help">Depositos Naturais</div>                                        
+                                 
+                               </div>
+                               <div class="col-lg-1">
+	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+                                 	<div class="help">Quantidade</div>
+                               </div>                                                                                                
+                             </div> 
+                             
+                               <div class="form-group">
+                              <label class="control-label col-md-3"></label>
+                              	 <div class="col-lg-2 col-xs-12">
+                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                                	 <div class="help">Lixo (recipientes plasticos, latas, entulhos)</div>                                        
+                                 
+                               </div>
+                               <div class="col-lg-1">
+	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+                                 	<div class="help">Quantidade</div>
+                               </div>                                                                                                
+                             </div> 
+
+  						  
+  						  <p><input type="checkbox" name="check-categoria" onclick="document.getElementById('categoria').disabled = !this.checked;"> Categoria:</p>
+  						  <p><input type="text" name="categoria" id="categoria" size="40" disabled="disabled"> </p>  						  
+                          
+                                
+                          
                           <!--Local input-->
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="local_foco">Local do Foco </label>
@@ -283,6 +390,8 @@
     <script src="js/validator.min.js"></script>
     <!-- Switchery -->
     <script src="vendors/switchery/switchery.min.js"></script>
+    <!-- Switch -->
+	<script src="vendors/bootstrap-switch-master/dist/js/bootstrap-switch.min.js"></script>
     <script type="text/javascript">
     $(function() {
         $('input[name="data_visita"]').daterangepicker({
@@ -295,7 +404,9 @@
                 format: 'DD/MM/YYYY HH:mm'
             }
         });
-    });
+    });    
+ 	// Switch
+	$("[name='t-p1']").bootstrapSwitch();
     </script>
     
     <script>

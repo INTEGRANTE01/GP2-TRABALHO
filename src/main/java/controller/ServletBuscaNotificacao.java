@@ -37,7 +37,9 @@ public class ServletBuscaNotificacao extends HttpServlet {
 	private String textopesquisa1;
 	private String textopesquisa2;
 	private String textopesquisa3;
+	private String textopesquisa4;
 	private Date data_formatada;
+	private int verificado = 0;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -88,16 +90,28 @@ public class ServletBuscaNotificacao extends HttpServlet {
 	protected void buscarnotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		List<Notificacao> listanotificacao = new ArrayList<Notificacao>();
-
+		verificado = 0;
 		textopesquisa1 = request.getParameter("txtpesquisa1");
 		textopesquisa2 = request.getParameter("txtpesquisa2");
-		textopesquisa3 = request.getParameter("txtpesquisa3");
+		textopesquisa3 = request.getParameter("txtpesquisa3");		
+		try {
+			textopesquisa4 = request.getParameter("txtpesquisa4");
+			if (textopesquisa4.equals("on"))
+				verificado = 1;
+			else if (textopesquisa4==(null))
+				verificado = 0;	
+		}catch(NullPointerException e){
+			e.printStackTrace();
+		}
+			
+		System.out.println(textopesquisa4);
+		System.out.println(verificado);
 
 	//	if ((textopesquisa1 != "" && textopesquisa1 != null) || (textopesquisa2 != "" && textopesquisa2 != null)
 	//			|| (textopesquisa3 != "" && textopesquisa3 != null)
 	//			|| (textopesquisa4 != "" && textopesquisa4 != null)) {
 
-			listanotificacao = notificacaoDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3);
+			listanotificacao = notificacaoDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, verificado);
 	//	} else {
 	//		listanotificacao = notificacaoDAO.listar();
 
@@ -105,7 +119,7 @@ public class ServletBuscaNotificacao extends HttpServlet {
 		request.setAttribute("listanotificacao", listanotificacao);
 		destino = "WEB-INF/c_notificacao.jsp";
 	}
-
+	
 	protected void consultareditarnotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
@@ -116,7 +130,7 @@ public class ServletBuscaNotificacao extends HttpServlet {
 		request.setAttribute("notificacao", notificacao);
 		destino = "WEB-INF/notificacao.jsp";
 	}
-
+	
 	protected void excluirnotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
@@ -124,7 +138,7 @@ public class ServletBuscaNotificacao extends HttpServlet {
 		notificacao.setIdnotificacao(idnotificacao);
 		notificacaoDAO.excluir(notificacao);
 		List<Notificacao> listanotificacao = new ArrayList<Notificacao>();
-		listanotificacao = notificacaoDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3);
+		listanotificacao = notificacaoDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, verificado);
 		request.setAttribute("listanotificacao", listanotificacao);
 		destino = "WEB-INF/c_notificacao.jsp";
 	}

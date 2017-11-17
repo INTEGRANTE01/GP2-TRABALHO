@@ -56,6 +56,26 @@ public class VisitaDAO extends ConectaBanco {
 		}
 		return erro;
 	}
+	
+	public boolean alterarnotificacao(Notificacao notificacao ) throws SQLException {
+		Connection conexao = getConexao();
+		PreparedStatement pstmt = conexao
+				.prepareStatement("update notificacao set verificado = true WHERE idnotificacao = ?");
+		boolean erro = false;
+		try {
+			pstmt.setInt(1, notificacao.getIdnotificacao());					
+			pstmt.execute();
+			}catch (Exception e) {
+				e.printStackTrace();
+				erro = true;
+				System.out.println("ERRO AO ALTERAR NOTIFICAÇÃO");			
+
+			}finally{
+				pstmt.close();
+				conexao.close();			
+		}
+		return erro;
+	}
 
 	public boolean excluir(Visita visita) throws SQLException {
 		boolean erro = false;
@@ -106,7 +126,7 @@ public class VisitaDAO extends ConectaBanco {
 		Connection conexao = getConexao();
 		PreparedStatement pstm = conexao
 				.prepareStatement("Insert into	visita (agente, data_visita, bairro, rua, quadra,lote, numero, cidade, latitude, "
-						+ "longitude,tp_imovel, estagio, tp_larvicida, ac_corretiva, local_foco) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+						+ "longitude,tp_imovel, estagio, tp_larvicida, ac_corretiva, local_foco, idnotificacao) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");		
 		try {						
 			pstm.setString(1, visita.getAgente());			
 			pstm.setTimestamp(2,  new java.sql.Timestamp(visita.getData_visita().getTime())); 
@@ -123,6 +143,7 @@ public class VisitaDAO extends ConectaBanco {
 			pstm.setString(13, visita.getTp_larvicida());
 			pstm.setString(14, visita.getAc_corretiva());
 			pstm.setString(15, visita.getLocal_foco());	
+			pstm.setInt(16, visita.getIdnotificacao());
 			pstm.execute();
 		} catch (Exception e) {
 			erro = true;	
@@ -135,7 +156,8 @@ public class VisitaDAO extends ConectaBanco {
 		}
 		return erro;
 	}
-
+	
+	
 	public List<Visita> listar(String agente, String par_bairro, String par_cidade, String par_tipo, String par_estagio,  String par_rua) throws SQLException {
 		
 		List<Visita> lista = new ArrayList<Visita>();
@@ -147,7 +169,7 @@ public class VisitaDAO extends ConectaBanco {
 			pstm.setString(2, par_bairro +"%");
 			pstm.setString(3, par_cidade +"%");
 			pstm.setString(4, "%" + par_tipo +"%");
-			pstm.setString(5, par_estagio +"%");
+			pstm.setString(5, "%" + par_estagio +"%");
 			pstm.setString(6, "%" + par_rua +"%");
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
