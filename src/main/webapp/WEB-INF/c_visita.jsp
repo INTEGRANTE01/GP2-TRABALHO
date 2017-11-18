@@ -168,32 +168,37 @@
 													data-sorting="true" data-show-toggle="true">
 													<thead>
 														<tr>
-															<th data-breakpoints="all">Agente</th>
+																													
 															<th data-breakpoints="xs">Data da Visita</th>
 															<th>Cidade</th>
 															<th data-breakpoints="xs">Bairro</th>
-															<th data-breakpoints="all">Tipo de imovel</th>
-															<th data-breakpoints="all">Estagio</th>
-															<th data-breakpoints="all">Larvicida</th>
+															<th data-breakpoints="all">Rua</th>
+															<th data-breakpoints="all">Quadra</th>
+															<th data-breakpoints="all">Lote</th>															
 															<th data-breakpoints="all">Ação Corretiva</th>
-															<th data-breakpoints="all">Local do Foco</th>
+															<th data-breakpoints="all">Tipo de Imovel</th>
+															<th data-breakpoints="all">Estagio</th>	
+															<th data-breakpoints="all">Agente</th>
+															
 															<th>Ações</th>
 														</tr>
 													</thead>
 													<tbody>
 														<c:forEach var="visita" items="${listavisita}">
 															<tr>
-																<td>${visita.agente}</td>
+																																															
 																<td><fmt:formatDate value="${visita.data_visita}"
 																		type="both" pattern="dd/MM/yyyy HH:mm"
 																		dateStyle="full" /></td>
 																<td>${visita.cidade}</td>
 																<td>${visita.bairro}</td>
+																<td>${visita.rua}</td>
+																<td>${visita.quadra}</td>
+																<td>${visita.lote}</td>																
+																<td>${visita.ac_corretiva}</td>
 																<td>${visita.tp_imovel}</td>
 																<td>${visita.estagio}</td>
-																<td>${visita.tp_larvicida}</td>
-																<td>${visita.ac_corretiva}</td>
-																<td>${visita.local_foco}</td>
+																<td>${visita.agente}</td>																	
 
 																<td><div class="btn-group">
 																		<button type="button"

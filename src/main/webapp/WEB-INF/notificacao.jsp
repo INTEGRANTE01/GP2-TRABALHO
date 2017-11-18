@@ -99,21 +99,26 @@
 										</div>
 										<!--Quadra Lote Numero Input-->
 										<div class="form-group">
-											<label class="control-label col-md-3" for="quadra">Quadra</label>
+											<label class="control-label col-md-3" for="quadra">Quadra
+											<span class="required">*</span></label>
 											<div class="col-lg-1 col-xs-12">
-												<input type="text" id="quadra" name="quadra"
+												<input type="text" id="quadra" name="quadra" required="required"
 													class="form-control input-md" value="${notificacao.quadra}">
+													<div class="help-block with-errors"></div>
 											</div>
-											<label class="control-label col-md-1" for="lote">Lote</label>
+											<label class="control-label col-md-1" for="lote">Lote
+											<span class="required">*</span></label>
 											<div class="col-lg-1 col-xs-12">
-												<input type="text" id="lote" name="lote"
+												<input type="text" id="lote" name="lote" required="required"
 													class="form-control input-md" value="${notificacao.lote}">
+													<div class="help-block with-errors"></div>
 											</div>
 											<label class="control-label col-md-1" for="numero">Nº
-											</label>
+											<span class="required">*</span></label>
 											<div class="col-lg-1 col-xs-12">
-												<input type="text" id="numero" name="numero"
+												<input type="text" id="numero" name="numero" required="required"
 													class="form-control input-md" value="${notificacao.numero}">
+													<div class="help-block with-errors"></div>
 											</div>
 										</div>
 										<!--Bairro Input-->

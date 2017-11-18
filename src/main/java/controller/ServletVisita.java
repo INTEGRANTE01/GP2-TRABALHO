@@ -136,7 +136,8 @@ public class ServletVisita extends HttpServlet {
 
 	protected void adicionaVisita(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		  
+		
+		  Visita visita = new Visita();
 		  concatenaEstagio="";
 		  concatenaLarvicida="";
 		  concatenaAccorretiva="";
@@ -187,8 +188,8 @@ public class ServletVisita extends HttpServlet {
 				else
 					concatenaEstagio+=estagio[i] + ",";
 			}
-			visita.setEstagio(concatenaEstagio);
-			
+			visita.setEstagio(concatenaEstagio);			
+
 			for (int i=0;i<tp_larvicida.length;i++){
 				
 				if(i==tp_larvicida.length-1)
