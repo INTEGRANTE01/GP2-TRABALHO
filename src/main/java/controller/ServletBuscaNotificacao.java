@@ -98,9 +98,9 @@ public class ServletBuscaNotificacao extends HttpServlet {
 			textopesquisa4 = request.getParameter("txtpesquisa4");
 			if (textopesquisa4.equals("on"))
 				verificado = 1;
-			else if (textopesquisa4==(null))
+			else 
 				verificado = 0;	
-		}catch(NullPointerException e){
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 			

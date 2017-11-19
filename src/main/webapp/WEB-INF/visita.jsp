@@ -257,11 +257,11 @@
   							<div class="form-group">
                                <label class="control-label col-md-3" for="coordenadas">Depositos(s) <span class="required">*</span></label>
                                <div class="col-lg-2 col-xs-12">
-                   				<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                   				<input id="c1" name="c1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
                                  <div class="help">Caixa d'Água</div>                                    
                                </div>
                                <div class="col-lg-1">
-	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+	  								<input id="qt1" name="qt1" type="tel" size="9" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>
                              </div>
@@ -269,12 +269,12 @@
                              <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-12">
-                   				<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                   				<input id="c2" name="c2" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
                                  <div class="help">Pequenos Depositos imoveis</div>                                        
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+	  								<input id="qt2" name="qt2" type="tel" size="9" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div>
@@ -282,12 +282,12 @@
                               <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-12">
-                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
-                                	 <div class="help">Outros Depositos Arm. Água</div>                                        
+                   					<input id="c3" name="c3" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                                	 <div class="help">Outros depositos de armazenamnto de água</div>                                        
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+	  								<input id="qt3" name="qt3" type="tel" size="9" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div>  
@@ -295,12 +295,12 @@
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-12">
-                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                   					<input id="c4" name="c4" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
                                 	 <div class="help">Pneus e Outros Mat. Rodantes</div>                                        
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+	  								<input id="qt4" name="qt4" type="tel" size="9" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
@@ -308,12 +308,12 @@
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-12">
-                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                   					<input id="c5" name="c5" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
                                 	 <div class="help">Depositos Fixos</div>                                        
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+	  								<input id="qt5" name="qt5" type="tel" size="9" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
@@ -321,12 +321,12 @@
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-12">
-                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                   					<input id="c6" name="c6" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
                                 	 <div class="help">Depositos Naturais</div>                                        
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+	  								<input id="qt6" name="qt6" type="tel" size="9" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
@@ -334,12 +334,12 @@
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-12">
-                   					<input id="t-p1" name="t-p1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                   					<input id="c7" name="c7" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
                                 	 <div class="help">Lixo (recipientes plasticos, latas, entulhos)</div>                                        
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="p1" name="p1" type="text" size="9" class="form-control input-sm">
+	  								<input id="qt7" name="qt7" type="tel" size="9" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
@@ -406,7 +406,14 @@
         });
     });    
  	// Switch
-	$("[name='t-p1']").bootstrapSwitch();
+	$("[name='c1']").bootstrapSwitch();
+	$("[name='c2']").bootstrapSwitch();
+	$("[name='c3']").bootstrapSwitch();
+	$("[name='c4']").bootstrapSwitch();
+	$("[name='c5']").bootstrapSwitch();
+	$("[name='c6']").bootstrapSwitch();
+	$("[name='c7']").bootstrapSwitch();
+	
     </script>
     
     <script>
