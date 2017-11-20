@@ -71,19 +71,37 @@
                     <div class="x_content">
                    <form class="form-horizontal form-label-left" data-toggle="validator" method="post" action="visita">				 
                             <p>Atenção aos campos requeridos<code>*</code></p>
-                                    <!-- <span class="section">Dados do Agente</span>-->					  
-                           <!--IDbanco Input-->
-                              <div class="form-group">
-                                        <div class="col-md-2 col-xs-12">
-                                            <input  type="hidden" readonly="readonly" type="text" id="idvisita" name="idvisita" value="${visita.idvisita}" class="form-control input-md">
-                                        </div>
-                              </div>
-                          <!--IDnotifica Input-->
-                              <div class="form-group">
-                                        <div class="col-md-2 col-xs-12">
-                                            <input  readonly="readonly" type="text" id="idnotificacao" name="idnotificacao" value="${visita.idnotificacao}" class="form-control input-md">
-                                        </div>
-                              </div>    
+                                    <!-- <span class="section">Dados do Agente</span>-->		
+                                    			  
+	                           <!--IDbanco Input-->
+	                              <div class="form-group">
+	                                    <div class="col-md-2 col-xs-12">
+	                                        <input  type="hidden" readonly="readonly" type="text" id="idvisita" name="idvisita" value="${visita.idvisita}" class="form-control input-md">
+	                                    </div>
+	                              </div>
+                               <!--IDnotificação-->
+	                              <div class="form-group">
+	                                    <div class="col-md-2 col-xs-12">
+	                                        <input  type="hidden" readonly="readonly" type="text" id="idnotificacao" name="idnotificacao" value="${visita.idnotificacao}" class="form-control input-md">
+	                                    </div>
+	                              </div>                                 
+                               <!--Situalção Input-->                                										
+									<div class="form-group">
+									<label class="control-label col-md-3" for="bairro">Situação
+										<span class="required">*</span>
+									</label>
+									<div class="col-lg-3 col-xs-12">
+										<select required data-size="5" id="situacao" name="situacao"
+											title="Selecione item"
+											class="form-control input-md selectpicker">
+                              					<option value="recusado">Recusado</option>      
+												<option value="fechado">Fechado</option>      
+												<option value="visitado">Visitado</option>											 											 
+										</select>
+										<div class="help-block with-errors"></div>
+									</div>
+								</div>
+                                 
                           <!--Nome Input-->
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="agente">Agente <span class="required">*</span></label>
@@ -127,6 +145,21 @@
                                         <div class="help-block with-errors"></div>
                                       </div>
                                     </div>            
+                                <!--Cidade select-->
+		                          <div class="form-group">
+		                          <label class="control-label col-md-3" for="cidade">Cidade <span class="required">*</span></label>
+		                            <div class="col-lg-3 col-xs-12">
+		                            <select required data-size="5" id="cidade" name="cidade" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
+		                              <c:if test = "${not empty visita.cidade}">											
+		                                <option selected="selected">${visita.cidade}</option>
+		                              </c:if>
+		                              <c:forEach var="combocidade" items="${listacidade}">      
+								     	<option>${combocidade.nome_cidade}</option>      
+									  </c:forEach> 
+		                            </select>
+		                             <div class="help-block with-errors"></div>
+		                            </div>
+		                          </div>                             
                             <!--Bairro Input-->                                										
 									<div class="form-group">
 									<label class="control-label col-md-3" for="bairro">Bairro
@@ -146,24 +179,8 @@
 										</select>
 										<div class="help-block with-errors"></div>
 									</div>
-								</div>
-                        <!--Cidade select-->
-                          <div class="form-group">
-                          <label class="control-label col-md-3" for="cidade">Cidade <span class="required">*</span></label>
-                            <div class="col-lg-3 col-xs-12">
-                            <select required data-size="5" id="cidade" name="cidade" title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
-                              <c:if test = "${not empty visita.cidade}">											
-                                <option selected="selected">${visita.cidade}</option>
-                              </c:if>
-                              <c:forEach var="combocidade" items="${listacidade}">      
-						     	<option>${combocidade.nome_cidade}</option>      
-							  </c:forEach> 
-                            </select>
-                             <div class="help-block with-errors"></div>
-                            </div>
-                          </div> 
-                        <!--Coordenadas-->
-                                                                       
+								</div>                    
+                        <!--Coordenadas-->                                                                       
                                       <div class="form-group">
                                       <label class="control-label col-md-3" for="coordenadas">Coordenadas <span class="required">*</span></label>
                                       <div class="col-lg-2 col-xs-12">
@@ -184,13 +201,12 @@
                                       	<div class="col-lg-4 col-xs-12">
                                         <p id="msgerro"></p>                                      				
 										</div>      				    														
-									</div>
-										
+									</div>										
 						<!--Tipo_Imovel select-->                        
                           <div class="form-group">
                           <label class="control-label col-md-3" for="tipo">Tipo do Imovel <span class="required">*</span></label>
                             <div class="col-lg-3 col-xs-12">
-                            <select required data-size="5" id="tp_imovel" name="tp_imovel"  title="Selecione item" class="form-control input-md selectpicker" data-live-search="true">
+                            <select required data-size="5" id="tp_imovel" name="tp_imovel"  title="Selecione item" class="form-control input-md selectpicker">
                              <c:if test = "${not empty visita.tp_imovel}">											
                                 <option selected="selected">${visita.tp_imovel}</option>
                               </c:if>                               
@@ -214,7 +230,7 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="estagio">Estagio do Ciclo </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select multiple data-size="5" data-actions-box="false" id="estagio" name="estagio" title="Selecione item(s)" class="form-control input-md selectpicker" data-live-search="true">
+                            <select multiple data-size="5" data-actions-box="false" id="estagio" name="estagio" title="Selecione item(s)" class="form-control input-md selectpicker">
                               <c:if test = "${not empty visita.estagio}">											
                               	<option selected="selected">${visita.estagio}</option>
     		    			  </c:if>	
@@ -228,7 +244,7 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="tp_larvicida">Tratamento Local </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select multiple data-size="5"  id="tp_larvicida" name="tp_larvicida" title="Selecione item(s)" class="form-control input-md selectpicker" data-live-search="true">
+                            <select multiple data-size="5"  id="tp_larvicida" name="tp_larvicida" title="Selecione item(s)" class="form-control input-md selectpicker">
                               <c:if test = "${not empty visita.tp_larvicida}">											
                                 <option selected="selected">${visita.tp_larvicida}</option>
                               </c:if>
@@ -242,7 +258,7 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="ac_corretiva">Ação Corretiva Recomendada </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select multiple data-size="5" id="ac_corretiva" name="ac_corretiva" title="Selecione item(s)" class="form-control input-md selectpicker" data-live-search="true">            
+                            <select multiple data-size="5" id="ac_corretiva" name="ac_corretiva" title="Selecione item(s)" class="form-control input-md selectpicker">            
                               <c:if test = "${not empty visita.ac_corretiva}">											
                                 <option selected="selected">${visita.ac_corretiva}</option>
                               </c:if>
@@ -255,91 +271,125 @@
                           
 			  			 <!-- Depositos -->
   							<div class="form-group">
-                               <label class="control-label col-md-3" for="coordenadas">Depositos(s) <span class="required">*</span></label>
-                               <div class="col-lg-2 col-xs-12">
-                   				<input id="c1" name="c1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+                               <label class="control-label col-md-3">Depositos(s) <span class="required">*</span></label>
+                            </div>
+                            <div class="form-group">
+                               <label class="control-label col-md-3"></label>                            
+                               <div class="col-lg-2 col-xs-6">
+	                   				<c:if test = "${visita.dp1==1}">
+	                   					<input id="c1" name="c1" type="checkbox" data-size="normal" checked data-on-text="Sim" data-off-text="Não">                          
+	                                </c:if>
+	                                <c:if test = "${visita.dp1==0}">
+	                                 	<input id="c1" name="c1" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+	                                </c:if> 
                                  <div class="help">Caixa d'Água</div>                                    
                                </div>
-                               <div class="col-lg-1">
-	  								<input id="qt1" name="qt1" type="tel" size="9" value="${visita.qt1}" class="form-control input-sm">
+								<div class="col-lg-1">                                
+	  								<input id="qt1" name="qt1" type="tel" size="5" value="${visita.qt1}" class="form-control input-md">
+	  							
                                  	<div class="help">Quantidade</div>
                                </div>
                              </div>
 
                              <div class="form-group">
                               <label class="control-label col-md-3"></label>
-                              	 <div class="col-lg-2 col-xs-12">
-                   				<input id="c2" name="c2" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+	                              	 <div class="col-lg-2 col-xs-6">
+	                   				<c:if test = "${visita.dp2==1}">                   				
+	                   					<input id="c2" name="c2" type="checkbox" data-size="normal" checked data-on-text="Sim" data-off-text="Não">                          
+	                   				</c:if>
+	                   				<c:if test = "${visita.dp2==0}">
+	                   				<input id="c2" name="c2" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">
+	                   				</c:if>
                                  <div class="help">Pequenos Depositos imoveis</div>                                        
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt2" name="qt2" type="tel" size="9" value="${visita.qt2}" class="form-control input-sm">
+	  								<input id="qt2" name="qt2" type="tel" size="5" value="${visita.qt2}" class="form-control input-md">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div>
                              
                               <div class="form-group">
                               <label class="control-label col-md-3"></label>
-                              	 <div class="col-lg-2 col-xs-12">
-                   					<input id="c3" name="c3" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
-                                	 <div class="help">Outros depositos de armazenamnto de água</div>                                        
-                                 
+                              	 <div class="col-lg-2 col-xs-6">
+                   					<c:if test = "${visita.dp3==1}">
+                   						<input id="c3" name="c3" type="checkbox" data-size="normal" checked data-on-text="Sim" data-off-text="Não">
+                   					</c:if>                   				
+                   					<c:if test = "${visita.dp3==0}">
+                   						<input id="c3" name="c3" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">
+                   					</c:if>                   						                          
+                                	 <div class="help">Outros depositos de armazenamnto de água</div>
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt3" name="qt3" type="tel" size="9" value="${visita.qt3}" class="form-control input-sm">
+	  								<input id="qt3" name="qt3" type="tel" size="5" value="${visita.qt3}" class="form-control input-md">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div>  
                              
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
-                              	 <div class="col-lg-2 col-xs-12">
-                   					<input id="c4" name="c4" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
-                                	 <div class="help">Pneus e Outros Mat. Rodantes</div>                                        
-                                 
+                              	 <div class="col-lg-2 col-xs-6">
+                   					<c:if test = "${visita.dp4==1}">
+										<input id="c4" name="c4" type="checkbox" data-size="normal" checked data-on-text="Sim" data-off-text="Não">
+                   					</c:if>
+                   					<c:if test = "${visita.dp4==0}">
+	                   					<input id="c4" name="c4" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                   					
+                   					</c:if>                   					                          
+                                	 <div class="help">Pneus e Outros Mat. Rodantes</div>
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt4" name="qt4" type="tel" size="9" value="${visita.qt4}" class="form-control input-sm">
+	  								<input id="qt4" name="qt4" type="tel" size="5" value="${visita.qt4}" class="form-control input-md">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
                              
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
-                              	 <div class="col-lg-2 col-xs-12">
-                   					<input id="c5" name="c5" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
-                                	 <div class="help">Depositos Fixos</div>                                        
-                                 
+                              	 <div class="col-lg-2 col-xs-6">
+	                              	 <c:if test = "${visita.dp5==1}">
+	                              	 	<input id="c5" name="c5" type="checkbox" data-size="normal" checked data-on-text="Sim" data-off-text="Não">
+	                              	 </c:if>
+	                              	 <c:if test = "${visita.dp5==0}">
+	                              	 	<input id="c5" name="c5" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">
+	                              	 </c:if>                      
+                               	 	<div class="help">Depositos Fixos</div>   
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt5" name="qt5" type="tel" size="9" value="${visita.qt5}" class="form-control input-sm">
+	  								<input id="qt5" name="qt5" type="tel" size="5" value="${visita.qt5}" class="form-control input-md">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
                              
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
-                              	 <div class="col-lg-2 col-xs-12">
-                   					<input id="c6" name="c6" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
-                                	 <div class="help">Depositos Naturais</div>                                        
-                                 
+                              	 <div class="col-lg-2 col-xs-6">
+                   					<c:if test = "${visita.dp6==1}">
+                   						<input id="c6" name="c6" type="checkbox" data-size="normal" checked data-on-text="Sim" data-off-text="Não">
+                   					</c:if>
+                  					<c:if test = "${visita.dp6==0}">
+                  						<input id="c6" name="c6" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">
+                   					</c:if>                   
+                                	<div class="help">Depositos Naturais</div>  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt6" name="qt6" type="tel" size="9" value="${visita.qt6}" class="form-control input-sm">
+	  								<input id="qt6" name="qt6" type="tel" size="5" value="${visita.qt6}" class="form-control input-md">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
                              
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
-                              	 <div class="col-lg-2 col-xs-12">
-                   					<input id="c7" name="c7" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
-                                	 <div class="help">Lixo (recipientes plasticos, latas, entulhos)</div>                                        
-                                 
+                              	 <div class="col-lg-2 col-xs-6">
+                   					<c:if test = "${visita.dp7==1}">
+                   						<input id="c7" name="c7" type="checkbox" data-size="normal" checked data-on-text="Sim" data-off-text="Não">                          
+                  					</c:if>
+                   					<c:if test = "${visita.dp7==0}">
+	                   					<input id="c7" name="c7" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">                          
+		           					</c:if>                   					
+                                	 <div class="help">Lixo (recipientes plasticos, latas, entulhos)</div> 
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt7" name="qt7" type="tel" size="9" value="${visita.qt7}" class="form-control input-sm">
+	  								<input id="qt7" name="qt7" type="tel" size="5" value="${visita.qt7}" class="form-control input-md">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
@@ -450,8 +500,7 @@
 		            break;
 		    }
 		}
-	</script>
-    
+	</script>    
     		<c:import url="rodape.jsp" />
   </body>
 </html>

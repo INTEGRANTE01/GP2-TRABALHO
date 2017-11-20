@@ -152,7 +152,8 @@ html, body {
 															.getElementById('map'),
 													{
 														zoom : 13,
-														center : locations[0]
+														center : locations[0],
+														
 													});
 
 											// Criar uma matriz de caracteres alfabéticos usados para rotular os marcadores.
@@ -166,6 +167,7 @@ html, body {
 													.map(function(location, i) {
 														return new google.maps.Marker(
 																{
+																	icon: 'images/icon.png',
 																	position : location,
 																	label : labels[i
 																			% labels.length]

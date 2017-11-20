@@ -45,21 +45,22 @@ public class VisitaDAO extends ConectaBanco {
 			pstmt.setString(13, visita.getTp_larvicida());
 			pstmt.setString(14, visita.getAc_corretiva());
 			pstmt.setString(15, visita.getLocal_foco());			
-			pstmt.setInt(16, visita.getIdvisita());
-			pstmt.setInt(17, visita.getDp1());
-			pstmt.setInt(18, visita.getDp2());
-			pstmt.setInt(19, visita.getDp3());
-			pstmt.setInt(20, visita.getDp4());
-			pstmt.setInt(21, visita.getDp5());
-			pstmt.setInt(22, visita.getDp6());
-			pstmt.setInt(23, visita.getDp7());
-			pstmt.setInt(24, visita.getQt1());
-			pstmt.setInt(25, visita.getQt2());
-			pstmt.setInt(26, visita.getQt3());
-			pstmt.setInt(27, visita.getQt4());
-			pstmt.setInt(28, visita.getQt5());
-			pstmt.setInt(29, visita.getQt6());
-			pstmt.setInt(30, visita.getQt7());			
+			pstmt.setInt(16, visita.getDp1());
+			pstmt.setInt(17, visita.getDp2());
+			pstmt.setInt(18, visita.getDp3());
+			pstmt.setInt(19, visita.getDp4());
+			pstmt.setInt(20, visita.getDp5());
+			pstmt.setInt(21, visita.getDp6());
+			pstmt.setInt(22, visita.getDp7());
+			pstmt.setInt(23, visita.getQt1());
+			pstmt.setInt(24, visita.getQt2());
+			pstmt.setInt(25, visita.getQt3());
+			pstmt.setInt(26, visita.getQt4());
+			pstmt.setInt(27, visita.getQt5());
+			pstmt.setInt(28, visita.getQt6());
+			pstmt.setInt(29, visita.getQt7());	
+			pstmt.setInt(30, visita.getIdvisita());
+			
 			pstmt.execute();
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -286,19 +287,19 @@ public Visita consultar_editar(Visita visita) throws SQLException {
 				visita.setAc_corretiva(rs.getString("ac_corretiva"));
 				visita.setLocal_foco(rs.getString("local_foco"));
 				visita.setDp1(rs.getInt("dp1"));
-				/*visita.setDp2(rs.getInt("dp2"));
+				visita.setDp2(rs.getInt("dp2"));
 				visita.setDp3(rs.getInt("dp3"));
 				visita.setDp4(rs.getInt("dp4"));
 				visita.setDp5(rs.getInt("dp5"));
 				visita.setDp6(rs.getInt("dp6"));
-				visita.setDp7(rs.getInt("dp7"));*/
+				visita.setDp7(rs.getInt("dp7"));
 				visita.setQt1(rs.getInt("qt1"));
-				/*visita.setQt2(rs.getInt("qt2"));
+				visita.setQt2(rs.getInt("qt2"));
 				visita.setQt3(rs.getInt("qt3"));
 				visita.setQt4(rs.getInt("qt4"));
 				visita.setQt5(rs.getInt("qt5"));
 				visita.setQt6(rs.getInt("qt6"));
-				visita.setQt7(rs.getInt("qt7"));*/				
+				visita.setQt7(rs.getInt("qt7"));				
 			}
 
 		} catch (Exception e) {

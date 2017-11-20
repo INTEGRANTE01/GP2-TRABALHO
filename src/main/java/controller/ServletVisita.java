@@ -283,7 +283,7 @@ public class ServletVisita extends HttpServlet {
 		   ac_corretiva =  request.getParameterValues("ac_corretiva");
 		   local_foco =  request.getParameter("local_foco");
 		  
-		/*   try {			  
+		   try {			  
 				  for (int i=0;i<7;i++){
 					  if ("on".equals(request.getParameter("c"+(i+1))) && request.getParameter("c"+(i+1))!= null)
 							dp[i]=1;
@@ -302,7 +302,7 @@ public class ServletVisita extends HttpServlet {
 				    
 			  }catch (Exception e){
 				  e.printStackTrace();
-			 }*/
+			 }
 		  
 		try {
 			
@@ -320,7 +320,7 @@ public class ServletVisita extends HttpServlet {
 			visita.setLatitude(latitude);
 			visita.setLongitude(longitude);
 			visita.setTp_imovel(tp_imovel);
-		/*	visita.setDp1(dp[0]);	
+			visita.setDp1(dp[0]);	
 			visita.setDp2(dp[1]);
 			visita.setDp3(dp[2]);
 			visita.setDp4(dp[3]);
@@ -333,7 +333,7 @@ public class ServletVisita extends HttpServlet {
 			visita.setQt4(qt[3]);
 			visita.setQt5(qt[4]);
 			visita.setQt6(qt[5]);
-			visita.setQt7(qt[6]);	*/
+			visita.setQt7(qt[6]);	
 			
 			for (int i=0;i<estagio.length;i++){
 				
@@ -364,8 +364,8 @@ public class ServletVisita extends HttpServlet {
 			visita.setLocal_foco(local_foco);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Parametro incorreto.");
+			/*e.printStackTrace();
+			System.out.println("Parametro incorreto.");*/
 		}
 
 		if (VisitaDAO.alterar(visita) == true)
