@@ -140,6 +140,7 @@ public class ServletNotificacao extends HttpServlet {
 
 	protected void editarNotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
+		
 		idnotificacao = Integer.parseInt(request.getParameter("idnotificacao"));
 		data_string = request.getParameter("data_notificacao");
 		bairro = request.getParameter("bairro");

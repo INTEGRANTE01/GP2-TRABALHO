@@ -94,9 +94,8 @@ public class ServletBuscaNotificacao extends HttpServlet {
 		textopesquisa1 = request.getParameter("txtpesquisa1");
 		textopesquisa2 = request.getParameter("txtpesquisa2");
 		textopesquisa3 = request.getParameter("txtpesquisa3");		
-		try {
-			textopesquisa4 = request.getParameter("txtpesquisa4");
-			if (textopesquisa4.equals("on"))
+		try {			
+			if ("on".equals(request.getParameter("txtpesquisa4")) && request.getParameter("txtpesquisa4")!= null)
 				verificado = 1;
 			else 
 				verificado = 0;	

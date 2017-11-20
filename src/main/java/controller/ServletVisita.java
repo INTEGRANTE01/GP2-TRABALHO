@@ -138,7 +138,6 @@ public class ServletVisita extends HttpServlet {
 	protected void adicionaVisita(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		
-		  Visita visita = new Visita();
 		  concatenaEstagio="";
 		  concatenaLarvicida="";
 		  concatenaAccorretiva="";
@@ -149,7 +148,6 @@ public class ServletVisita extends HttpServlet {
 		  }	
 		  agente = request.getParameter("agente");
 		  data_string = request.getParameter("data_visita");
-		 // System.out.println("NO DATA_STRING: "  + data_string);
 		  bairro =  request.getParameter("bairro");
 		  rua =  request.getParameter("rua");
 		  quadra = request.getParameter("quadra");
@@ -172,12 +170,7 @@ public class ServletVisita extends HttpServlet {
 						dp[i]=0;		  
 				  System.out.println("DP"+i+"depois: " + dp[i]);  
 			  }
-			    
-		  }catch (Exception e){
-			  e.printStackTrace();
-		  }
-		  
-		  try {			  
+	  
 			  for (int i=0;i<7;i++){					
 				  	if (!"".equals(request.getParameter("qt"+(i+1))) && request.getParameter("qt"+(i+1))!= null)
 				  		qt[i]=Integer.parseInt(request.getParameter("qt"+(i+1)));				  	
@@ -252,6 +245,7 @@ public class ServletVisita extends HttpServlet {
 			visita.setLocal_foco(local_foco);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Parametro incorreto.");
 		}
 		if (VisitaDAO.inserir(visita) == true)
@@ -289,6 +283,27 @@ public class ServletVisita extends HttpServlet {
 		   ac_corretiva =  request.getParameterValues("ac_corretiva");
 		   local_foco =  request.getParameter("local_foco");
 		  
+		/*   try {			  
+				  for (int i=0;i<7;i++){
+					  if ("on".equals(request.getParameter("c"+(i+1))) && request.getParameter("c"+(i+1))!= null)
+							dp[i]=1;
+						else 
+							dp[i]=0;		  
+					  System.out.println("DP"+i+"depois: " + dp[i]);  
+				  }
+		  
+				  for (int i=0;i<7;i++){					
+					  	if (!"".equals(request.getParameter("qt"+(i+1))) && request.getParameter("qt"+(i+1))!= null)
+					  		qt[i]=Integer.parseInt(request.getParameter("qt"+(i+1)));				  	
+					  	else 
+					  		qt[i]=0;				  	
+					  System.out.println("QT"+i+"depois: " + qt[i]);  
+				  }
+				    
+			  }catch (Exception e){
+				  e.printStackTrace();
+			 }*/
+		  
 		try {
 			
 			visita.setAgente(agente);
@@ -305,6 +320,20 @@ public class ServletVisita extends HttpServlet {
 			visita.setLatitude(latitude);
 			visita.setLongitude(longitude);
 			visita.setTp_imovel(tp_imovel);
+		/*	visita.setDp1(dp[0]);	
+			visita.setDp2(dp[1]);
+			visita.setDp3(dp[2]);
+			visita.setDp4(dp[3]);
+			visita.setDp5(dp[4]);
+			visita.setDp6(dp[5]);
+			visita.setDp7(dp[6]);
+			visita.setQt1(qt[0]);
+			visita.setQt2(qt[1]);
+			visita.setQt3(qt[2]);
+			visita.setQt4(qt[3]);
+			visita.setQt5(qt[4]);
+			visita.setQt6(qt[5]);
+			visita.setQt7(qt[6]);	*/
 			
 			for (int i=0;i<estagio.length;i++){
 				
@@ -335,6 +364,7 @@ public class ServletVisita extends HttpServlet {
 			visita.setLocal_foco(local_foco);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Parametro incorreto.");
 		}
 

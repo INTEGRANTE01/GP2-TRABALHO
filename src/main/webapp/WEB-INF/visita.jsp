@@ -87,7 +87,7 @@
                           <!--Nome Input-->
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="agente">Agente <span class="required">*</span></label>
-                                      <div class="col-lg-6 col-xs-12">
+                                      <div class="col-lg-2 col-xs-12">
                                         <input type="text"   id="agente" readonly="readonly" name="agente" value="${visita.agente}" placeholder="ex: Joao da Silva" required="required" class="form-control input-md">                                        
                                         <div class="help-block with-errors"></div>
                                       </div>
@@ -112,7 +112,7 @@
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="quadra">Quadra <span class="required">*</span></label>
                                       <div class="col-lg-1 col-xs-12">
-                                        <input type="text" id="quadra" name="quadra" value="${visita.quadra} "required="required" class="form-control input-md">                                                                                
+                                        <input type="text" id="quadra" name="quadra" value="${visita.quadra}" required="required" class="form-control input-md">                                                                                
                                         <div class="help-block with-errors"></div>
                                       </div>
                                       <label class="control-label col-md-1" for="lote">Lote <span class="required">*</span></label>
@@ -253,7 +253,7 @@
                             </div>
                           </div>
                           
-			  
+			  			 <!-- Depositos -->
   							<div class="form-group">
                                <label class="control-label col-md-3" for="coordenadas">Depositos(s) <span class="required">*</span></label>
                                <div class="col-lg-2 col-xs-12">
@@ -261,7 +261,7 @@
                                  <div class="help">Caixa d'Água</div>                                    
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt1" name="qt1" type="tel" size="9" class="form-control input-sm">
+	  								<input id="qt1" name="qt1" type="tel" size="9" value="${visita.qt1}" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>
                              </div>
@@ -274,7 +274,7 @@
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt2" name="qt2" type="tel" size="9" class="form-control input-sm">
+	  								<input id="qt2" name="qt2" type="tel" size="9" value="${visita.qt2}" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div>
@@ -287,7 +287,7 @@
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt3" name="qt3" type="tel" size="9" class="form-control input-sm">
+	  								<input id="qt3" name="qt3" type="tel" size="9" value="${visita.qt3}" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div>  
@@ -300,7 +300,7 @@
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt4" name="qt4" type="tel" size="9" class="form-control input-sm">
+	  								<input id="qt4" name="qt4" type="tel" size="9" value="${visita.qt4}" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
@@ -313,7 +313,7 @@
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt5" name="qt5" type="tel" size="9" class="form-control input-sm">
+	  								<input id="qt5" name="qt5" type="tel" size="9" value="${visita.qt5}" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
@@ -326,7 +326,7 @@
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt6" name="qt6" type="tel" size="9" class="form-control input-sm">
+	  								<input id="qt6" name="qt6" type="tel" size="9" value="${visita.qt6}" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
@@ -339,7 +339,7 @@
                                  
                                </div>
                                <div class="col-lg-1">
-	  								<input id="qt7" name="qt7" type="tel" size="9" class="form-control input-sm">
+	  								<input id="qt7" name="qt7" type="tel" size="9" value="${visita.qt7}" class="form-control input-sm">
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 

@@ -21,12 +21,14 @@ import model.Visita;
 public class VisitaDAO extends ConectaBanco {
 	
 	public boolean alterar(Visita visita) throws SQLException {
+		boolean erro = false;
 		Connection conexao = getConexao();
 		PreparedStatement pstmt = conexao
 				.prepareStatement("Update visita SET agente = ?, data_visita = ?, bairro = ?, rua = ?, quadra = ?, "
 								+ "lote = ?, numero = ?, cidade = ?, latitude = ?, longitude = ?, "
-								+ "tp_imovel = ?, estagio = ?, tp_larvicida = ?, ac_corretiva = ?, local_foco = ? WHERE idvisita = ? ");
-		boolean erro = false;
+								+ "tp_imovel = ?, estagio = ?, tp_larvicida = ?, ac_corretiva = ?, local_foco = ?, "
+								+ "dp1 = ?, dp2 = ?, dp3 = ?, dp4 = ?, dp5 = ?, dp6 = ?, dp7 = ?, "
+								+ "qt1 = ?, qt2 = ?, qt3 = ?, qt4 = ?, qt5 = ?, qt6 = ?, qt7 = ? WHERE idvisita = ? ");
 		try {
 			pstmt.setString(1, visita.getAgente());			
 			pstmt.setTimestamp(2,  new java.sql.Timestamp(visita.getData_visita().getTime()));  
@@ -44,6 +46,20 @@ public class VisitaDAO extends ConectaBanco {
 			pstmt.setString(14, visita.getAc_corretiva());
 			pstmt.setString(15, visita.getLocal_foco());			
 			pstmt.setInt(16, visita.getIdvisita());
+			pstmt.setInt(17, visita.getDp1());
+			pstmt.setInt(18, visita.getDp2());
+			pstmt.setInt(19, visita.getDp3());
+			pstmt.setInt(20, visita.getDp4());
+			pstmt.setInt(21, visita.getDp5());
+			pstmt.setInt(22, visita.getDp6());
+			pstmt.setInt(23, visita.getDp7());
+			pstmt.setInt(24, visita.getQt1());
+			pstmt.setInt(25, visita.getQt2());
+			pstmt.setInt(26, visita.getQt3());
+			pstmt.setInt(27, visita.getQt4());
+			pstmt.setInt(28, visita.getQt5());
+			pstmt.setInt(29, visita.getQt6());
+			pstmt.setInt(30, visita.getQt7());			
 			pstmt.execute();
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -68,7 +84,7 @@ public class VisitaDAO extends ConectaBanco {
 			}catch (Exception e) {
 				e.printStackTrace();
 				erro = true;
-				System.out.println("ERRO AO ALTERAR NOTIFICAÇÃO");			
+				System.out.println("ERRO AO ALTERAR NOTIFICACAO");			
 
 			}finally{
 				pstmt.close();
@@ -113,7 +129,7 @@ public class VisitaDAO extends ConectaBanco {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("ERRO AO BUSCAR PARA EDIÇÃO");			
+			System.out.println("ERRO AO BUSCAR PARA EDICAO");			
 		}finally{
 			pstm.close();
 			conexao.close();			
@@ -269,9 +285,22 @@ public Visita consultar_editar(Visita visita) throws SQLException {
 				visita.setTp_larvicida(rs.getString("tp_larvicida"));
 				visita.setAc_corretiva(rs.getString("ac_corretiva"));
 				visita.setLocal_foco(rs.getString("local_foco"));
+				visita.setDp1(rs.getInt("dp1"));
+				/*visita.setDp2(rs.getInt("dp2"));
+				visita.setDp3(rs.getInt("dp3"));
+				visita.setDp4(rs.getInt("dp4"));
+				visita.setDp5(rs.getInt("dp5"));
+				visita.setDp6(rs.getInt("dp6"));
+				visita.setDp7(rs.getInt("dp7"));*/
+				visita.setQt1(rs.getInt("qt1"));
+				/*visita.setQt2(rs.getInt("qt2"));
+				visita.setQt3(rs.getInt("qt3"));
+				visita.setQt4(rs.getInt("qt4"));
+				visita.setQt5(rs.getInt("qt5"));
+				visita.setQt6(rs.getInt("qt6"));
+				visita.setQt7(rs.getInt("qt7"));*/				
 			}
-			pstm.close();
-			conexao.close();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{

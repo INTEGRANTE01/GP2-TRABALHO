@@ -89,6 +89,7 @@ public class ServletFuncionario extends HttpServlet {
 	}
 	protected void adicionafuncionario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
+		
 		nome = request.getParameter("nome");
 		System.out.println("Nome: " + nome);
 		funcao = request.getParameter("funcao");

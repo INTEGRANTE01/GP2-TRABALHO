@@ -46,7 +46,7 @@ public List<AcaoCorretiva> populaComboCorretiva() throws SQLException {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("ERRO AO BUSCAR PARA EDIÇÃO");			
+			System.out.println("ERRO AO BUSCAR PARA EDICAO");			
 		}finally{
 			pstm.close();
 			conexao.close();			
