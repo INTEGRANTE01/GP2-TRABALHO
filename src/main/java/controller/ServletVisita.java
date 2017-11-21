@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import model.VisitaDAO;
 import model.Notificacao;
 import model.NotificacaoDAO;
 import model.Visita;
+import controller.CapturaDataHora;
 
 @WebServlet(name = "ServletVisita", urlPatterns = "/visita")
 public class ServletVisita extends HttpServlet {
@@ -31,6 +33,7 @@ public class ServletVisita extends HttpServlet {
 	private NotificacaoDAO NotificacaoDAO = new NotificacaoDAO();
 	private Notificacao notificacao = new Notificacao();
 	private PopulaVisita populavisita = new PopulaVisita();
+	private CapturaDataHora capturadatahora = new CapturaDataHora();
 	private String destino = "";
 	private int idvisita;
 	private int idnotificacao;
@@ -60,7 +63,9 @@ public class ServletVisita extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-						
+		
+			request.setAttribute("data_visita", capturadatahora.getDateTime());
+			
 			try {
 				capturaNomeUsuario(request, response);
 				popularcombos(request,response);
@@ -76,7 +81,9 @@ public class ServletVisita extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF8");
 		acao = false;
+      
 
+			
 		try {
 			idvisita = Integer.parseInt(request.getParameter("idvisita"));
 			if (idvisita==0)
@@ -147,8 +154,8 @@ public class ServletVisita extends HttpServlet {
 				e.printStackTrace();			
 		  }	
 		  agente = request.getParameter("agente");
-		  data_string = request.getParameter("data_visita");
 		  bairro =  request.getParameter("bairro");
+		   //data_string = request.getParameter("data_visita");
 		  rua =  request.getParameter("rua");
 		  quadra = request.getParameter("quadra");
 		  lote = request.getParameter("lote");
@@ -188,8 +195,10 @@ public class ServletVisita extends HttpServlet {
 			
 			visita.setIdnotificacao(idnotificacao);
 			visita.setAgente(agente);
-          	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-            data_visita = (Date) formato.parse(data_string);                   
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			Date date = new Date();
+			data_string = dateFormat.format(date);		
+			data_visita = (Date) dateFormat.parse(data_string);
             visita.setData_visita(data_visita); 
             visita.setBairro(bairro);						
 			visita.setRua(rua);
@@ -268,7 +277,7 @@ public class ServletVisita extends HttpServlet {
 		   concatenaLarvicida="";
 		   concatenaAccorretiva="";		   
 		   agente = request.getParameter("agente");
-		   data_string = request.getParameter("data_visita");
+		   //data_string = request.getParameter("data_visita");
 		   bairro =  request.getParameter("bairro");
 		   rua =  request.getParameter("rua");
 		   quadra = request.getParameter("quadra");
@@ -307,8 +316,10 @@ public class ServletVisita extends HttpServlet {
 		try {
 			
 			visita.setAgente(agente);
-	        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-	        data_visita = (Date) formato.parse(data_string);                   
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			Date date = new Date();
+			data_string = dateFormat.format(date);		
+			data_visita = (Date) dateFormat.parse(data_string);
 	        visita.setData_visita(data_visita);     		
 			visita.setIdvisita(idvisita);
 			visita.setBairro(bairro);					

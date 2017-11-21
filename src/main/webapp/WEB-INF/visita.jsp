@@ -114,10 +114,18 @@
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="data_visita">Data da visita <span class="required">*</span></label>
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="data_visita" name="data_visita" value="<fmt:formatDate value="${visita.data_visita}" pattern="dd/MM/yyyy HH:mm:ss"/>" required="required" class="form-control input-md">
-                                         <div class="help-block with-errors"></div>
+                                      <c:if test = "${visita.data_visita!=null}">
+                                      		<input type="text" id="data_visita" readonly="readonly" name="data_visita" value="<fmt:formatDate value="${visita.data_visita}" pattern="dd/MM/yyyy HH:mm"/>" required="required" class="form-control input-md">                                        
+                                      </c:if>
+                                      <c:if test = "${visita.data_visita==null}">
+                                    		<input type="text" id="data_visita" readonly="readonly" name="data_visita" value="${data_visita}"  required="required" class="form-control input-md">
+                                      </c:if>
+                                      	<div class="help-block with-errors"></div>
                                       </div>
                                     </div>
+                                    
+                                      
+                                    
                         <!--Rua Input-->
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="rua">Rua <span class="required">*</span></label>
@@ -443,7 +451,7 @@
     <!-- Switch -->
 	<script src="vendors/bootstrap-switch-master/dist/js/bootstrap-switch.min.js"></script>
     <script type="text/javascript">
-    $(function() {
+   	/* $(function() {
         $('input[name="data_visita"]').daterangepicker({
             singleDatePicker: true,
             timePicker: true,
@@ -454,7 +462,7 @@
                 format: 'DD/MM/YYYY HH:mm'
             }
         });
-    });    
+    });*/    
  	// Switch
 	$("[name='c1']").bootstrapSwitch();
 	$("[name='c2']").bootstrapSwitch();
