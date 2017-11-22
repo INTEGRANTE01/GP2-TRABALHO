@@ -145,8 +145,8 @@ public class VisitaDAO extends ConectaBanco {
 				.prepareStatement("Insert into	visita (agente, data_visita, bairro, rua, quadra,lote, numero, cidade, latitude, "
 						+ "longitude,tp_imovel, estagio, tp_larvicida, ac_corretiva, local_foco, idnotificacao, "
 						+ "dp1, dp2, dp3, dp4, dp5, dp6, dp7,"
-						+ "qt1, qt2, qt3, qt4, qt5, qt6, qt7)"
-						+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");		
+						+ "qt1, qt2, qt3, qt4, qt5, qt6, qt7, status)"
+						+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");		
 		try {						
 			pstm.setString(1, visita.getAgente());			
 			pstm.setTimestamp(2,  new java.sql.Timestamp(visita.getData_visita().getTime())); 
@@ -179,7 +179,8 @@ public class VisitaDAO extends ConectaBanco {
 			pstm.setInt(27, visita.getQt4());
 			pstm.setInt(28, visita.getQt5());
 			pstm.setInt(29, visita.getQt6());
-			pstm.setInt(30, visita.getQt7());		
+			pstm.setInt(30, visita.getQt7());
+			pstm.setString(31, visita.getStatus());
 			
 			pstm.execute();
 		} catch (Exception e) {
@@ -222,6 +223,7 @@ public class VisitaDAO extends ConectaBanco {
 				visita.setTp_imovel(rs.getString("tp_imovel"));
 				visita.setEstagio(rs.getString("estagio"));
 				visita.setAc_corretiva(rs.getString("ac_corretiva"));
+				visita.setStatus(rs.getString("status"));
 				lista.add(visita);
 			}
 		} catch (Exception e) {
@@ -299,7 +301,8 @@ public Visita consultar_editar(Visita visita) throws SQLException {
 				visita.setQt4(rs.getInt("qt4"));
 				visita.setQt5(rs.getInt("qt5"));
 				visita.setQt6(rs.getInt("qt6"));
-				visita.setQt7(rs.getInt("qt7"));				
+				visita.setQt7(rs.getInt("qt7"));
+				visita.setStatus(rs.getString("status"));
 			}
 
 		} catch (Exception e) {

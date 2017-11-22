@@ -17,6 +17,8 @@
 
     <title>Sistema de Controle de Endemias</title>
 
+ 	<!-- iCheck -->
+	<link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap select -->
@@ -90,17 +92,28 @@
 									<label class="control-label col-md-3" for="bairro">Situação
 										<span class="required">*</span>
 									</label>
-									<div class="col-lg-3 col-xs-12">
-										<select required data-size="5" id="situacao" name="situacao"
-											title="Selecione item"
-											class="form-control input-md selectpicker">
-                              					<option value="recusado">Recusado</option>      
-												<option value="fechado">Fechado</option>      
-												<option value="visitado">Visitado</option>											 											 
-										</select>
-										<div class="help-block with-errors"></div>
+									<div class="col-lg-3 col-xs-12">																		
+					                      <p>					                        
+					                       <c:if test = "${visita.status==null}">
+					                        <input type="radio" class="flat" name="status" readonly="readonly" id="recusado" value="Recusado" required /> Recusado
+					                        <input type="radio" class="flat" name="status" readonly="readonly" id="fechado" value="Fechado" /> Fechado
+					                        <input type="radio" class="flat" name="status" readonly="readonly" id="visitado" value="Visitado" /> Visitado					                      
+					                       </c:if>
+					                       <c:if test = "${visita.status!=null}">
+					                        <c:if test = "${visita.status=='Recusado'}">
+					                        	<input type="radio" class="flat" name="status" id="recusado" checked value="Recusado" required /> Recusado
+					                        </c:if>
+					                        <c:if test = "${visita.status=='Fechado'}">
+					                        	<input type="radio" class="flat" name="status" id="fechado" checked value="Fechado" /> Fechado
+					                        </c:if>
+					                        <c:if test = "${visita.status=='Visitado'}">
+					                        	<input type="radio" class="flat" name="status" id="visitado" checked value="Visitado" /> Visitado
+					                        </c:if>					                      
+					                       </c:if>
+					                       </p>
+											<div class="help-block with-errors"></div>
+										</div>
 									</div>
-								</div>
                                  
                           <!--Nome Input-->
                                     <div class="form-group">
@@ -114,10 +127,18 @@
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="data_visita">Data da visita <span class="required">*</span></label>
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="data_visita" name="data_visita" value="<fmt:formatDate value="${visita.data_visita}" pattern="dd/MM/yyyy HH:mm:ss"/>" required="required" class="form-control input-md">
-                                         <div class="help-block with-errors"></div>
+                                      <c:if test = "${visita.data_visita!=null}">
+                                      		<input type="text" id="data_visita" readonly="readonly" name="data_visita" value="<fmt:formatDate value="${visita.data_visita}" pattern="dd/MM/yyyy HH:mm"/>" required="required" class="form-control input-md">                                        
+                                      </c:if>
+                                      <c:if test = "${visita.data_visita==null}">
+                                    		<input type="text" id="data_visita" readonly="readonly" name="data_visita" value="${data_visita}"  required="required" class="form-control input-md">
+                                      </c:if>
+                                      	<div class="help-block with-errors"></div>
                                       </div>
                                     </div>
+                                    
+                                      
+                                    
                         <!--Rua Input-->
                                     <div class="form-group">
                                       <label class="control-label col-md-3" for="rua">Rua <span class="required">*</span></label>
@@ -442,8 +463,10 @@
     <script src="vendors/switchery/switchery.min.js"></script>
     <!-- Switch -->
 	<script src="vendors/bootstrap-switch-master/dist/js/bootstrap-switch.min.js"></script>
+	<!--Icheck-->
+	<script src="vendors/iCheck/icheck.min.js"></script>
     <script type="text/javascript">
-    $(function() {
+   	/* $(function() {
         $('input[name="data_visita"]').daterangepicker({
             singleDatePicker: true,
             timePicker: true,
@@ -454,7 +477,7 @@
                 format: 'DD/MM/YYYY HH:mm'
             }
         });
-    });    
+    });*/    
  	// Switch
 	$("[name='c1']").bootstrapSwitch();
 	$("[name='c2']").bootstrapSwitch();

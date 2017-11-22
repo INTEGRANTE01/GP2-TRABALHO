@@ -8,6 +8,7 @@ public class Visita {
 	
 	private int idvisita;
 	private int idnotificacao;
+	private String status;
 	private String agente;
 	private Date data_visita;
 	private String bairro;
@@ -49,6 +50,12 @@ public class Visita {
 	}
 	public void setIdnotificacao(int idnotificacao) {
 		this.idnotificacao = idnotificacao;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public String getAgente() {
 		return agente;
@@ -232,8 +239,8 @@ public class Visita {
 	}
 	@Override
 	public String toString() {
-		return "Visita [idvisita=" + idvisita + ", idnotificacao=" + idnotificacao + ", agente=" + agente
-				+ ", data_visita=" + data_visita + ", bairro=" + bairro + ", rua=" + rua + ", quadra=" + quadra
+		return "Visita [idvisita=" + idvisita + ", idnotificacao=" + idnotificacao + ", status=" + status + ", agente="
+				+ agente + ", data_visita=" + data_visita + ", bairro=" + bairro + ", rua=" + rua + ", quadra=" + quadra
 				+ ", lote=" + lote + ", numero=" + numero + ", cidade=" + cidade + ", latitude=" + latitude
 				+ ", longitude=" + longitude + ", tp_imovel=" + tp_imovel + ", estagio=" + estagio + ", tp_larvicida="
 				+ tp_larvicida + ", ac_corretiva=" + ac_corretiva + ", local_foco=" + local_foco + ", dp1=" + dp1
@@ -241,6 +248,7 @@ public class Visita {
 				+ ", qt1=" + qt1 + ", qt2=" + qt2 + ", qt3=" + qt3 + ", qt4=" + qt4 + ", qt5=" + qt5 + ", qt6=" + qt6
 				+ ", qt7=" + qt7 + ", verifica_foco=" + verifica_foco + "]";
 	}
+	
 	
 		
 }

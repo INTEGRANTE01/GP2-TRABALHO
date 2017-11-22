@@ -24,6 +24,8 @@ import model.Cidade;
 import model.CidadeDAO;
 import model.Notificacao;
 import model.Visita;
+import controller.CapturaDataHora;
+
 
 @WebServlet(name = "ServletEnviaNotificacao", urlPatterns = "/envianotificacao")
 public class ServletEnviaNotificacao extends HttpServlet {
@@ -34,6 +36,7 @@ public class ServletEnviaNotificacao extends HttpServlet {
 	private Notificacao notificacao = new Notificacao();
 	private Visita visita = new Visita();
 	private PopulaVisita populavisita = new PopulaVisita();
+	private CapturaDataHora capturadatahora = new CapturaDataHora();
 	private int idnotificacao;
 	private String agente;			
 	private String destino = "";
@@ -47,6 +50,8 @@ public class ServletEnviaNotificacao extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		request.setAttribute("data_visita", capturadatahora.getDateTime());
+
 		try {
 			popularcombos(request,response);
 			acao = request.getParameter("acao");

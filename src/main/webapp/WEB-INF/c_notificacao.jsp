@@ -30,8 +30,7 @@
 <link href="css/footable.standalone.min.css" rel="stylesheet">
 <!-- BootstrapDialog -->
 <link href="css/bootstrap-dialog.min.css" rel="stylesheet">
- <!-- iCheck -->
-<link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- Switch -->
 <link href="vendors/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
 
 <!--

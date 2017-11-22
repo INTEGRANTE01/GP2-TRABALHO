@@ -81,7 +81,7 @@ CREATE TABLE `cidade` (
   `nome_cidade` varchar(40) NOT NULL,
   PRIMARY KEY (`idcidade`),
   UNIQUE KEY `idcidade_UNIQUE` (`idcidade`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,7 @@ CREATE TABLE `estagio` (
   PRIMARY KEY (`idestagio`),
   UNIQUE KEY `idnew_table_UNIQUE` (`idestagio`),
   UNIQUE KEY `nome_estagio_UNIQUE` (`nome_estagio`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +197,7 @@ CREATE TABLE `notificacao` (
   `verificado` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`idnotificacao`),
   UNIQUE KEY `iddenuncia_UNIQUE` (`idnotificacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +206,15 @@ CREATE TABLE `notificacao` (
 
 LOCK TABLES `notificacao` WRITE;
 /*!40000 ALTER TABLE `notificacao` DISABLE KEYS */;
-INSERT INTO `notificacao` VALUES (4,'2017-07-04 00:00:00','Leste Vila Nova','Rua X','10','10','10','íaiá','Apartamento','O condomínio possui muitos focos de mosquito da dengue.',1),(5,'2017-07-13 05:00:00','Nova Vila','Rua A','10','10','10','Goiânia','Casa','José Peixoto',1),(6,'2017-07-05 06:00:00','Setor Alto da Glória','Rua AAA','10','11','50','Goiânia','Apartamento','Muitos pneus acumulando água na rua.',1),(7,'2017-07-07 00:00:00','Setor Jaó','AAA','1','1','1','Aparecida de Goiânia','Casa','Muitos focos na rua.',1),(8,'2017-11-19 00:00:00','Setor Garavelo','Rua 3','14','11','S/N','Aparecida de Goiânia','Sala Comercial','Teste',1),(10,'2017-08-02 00:00:00','Setor Serrinha','Rua dos Açores','17','14','1','Goiânia','Casa','Testede ',1),(11,'2017-08-02 00:00:00','Setor Oeste','Rua 14','14','14','1','Aparecida de Goiânia','Loja','Fulano de tal Sabe',1),(12,'2017-08-27 00:00:00','Setor Central','RUA DOS TESTE','33','23','22','Aparecida de Goiânia','Apartamento','CHEIO DE MOSQUITOS',1),(14,'2017-09-06 10:12:00','Setor Central','Rua 23','10','10','11','Goiânia','Deposito','teste',1),(15,'2017-11-17 00:00:00','Morada do Bosque','Rua dos Açoeres','12','11','1125','Goiânia','Deposito','Teste',1),(16,'2017-11-18 00:00:00','São francisco','Rua dos teste','666','1','333','Goiânia','Casa','Teste',1),(17,'2017-11-29 00:00:00','Conjunto Uirapuru','Ruas dos Teste','14','25','74','Aparecida de Goiânia','Deposito','ttt',1);
+INSERT INTO `notificacao` VALUES (4,'2017-07-04 00:00:00','Leste Vila Nova','Rua X','10','10','10','íaiá','Apartamento','O condomínio possui muitos focos de mosquito da dengue.',1);
+INSERT INTO `notificacao` VALUES (5,'2017-07-13 05:00:00','Nova Vila','Rua A','10','10','10','Goiânia','Casa','José Peixoto',0);
+INSERT INTO `notificacao` VALUES (6,'2017-07-05 06:00:00','Setor Alto da Glória','Rua AAA','10','11','50','Goiânia','Apartamento','Muitos pneus acumulando água na rua.',1);
+INSERT INTO `notificacao` VALUES (7,'2017-07-07 00:00:00','Setor Jaó','AAA','1','1','1','Aparecida de Goiânia','Casa','Muitos focos na rua.',1);
+INSERT INTO `notificacao` VALUES (8,'2017-07-27 00:00:00','Setor Garavelo','Rua 3','14','11','S/N','Aparecida de Goiânia','Apartamento','Teste',0);
+INSERT INTO `notificacao` VALUES (10,'2017-08-02 00:00:00','Setor Serrinha','Rua dos Açores','17','14','1','Goiânia','Casa','Testede ',1);
+INSERT INTO `notificacao` VALUES (11,'2017-08-02 00:00:00','Setor Oeste','Rua 14','14','14','1','Aparecida de Goiânia','Loja','Fulano de tal Sabe',1);
+INSERT INTO `notificacao` VALUES (12,'2017-08-27 00:00:00','Setor Central','RUA DOS TESTE','33','23','22','Aparecida de Goiânia','Apartamento','CHEIO DE MOSQUITOS',0);
+INSERT INTO `notificacao` VALUES (14,'2017-09-06 10:12:00','Setor Central','Rua 23','10','10','11','Goiânia','Deposito','teste',0);
 /*!40000 ALTER TABLE `notificacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +279,6 @@ DROP TABLE IF EXISTS `visita`;
 CREATE TABLE `visita` (
   `idvisita` int(11) NOT NULL AUTO_INCREMENT,
   `idnotificacao` int(11) DEFAULT NULL,
-  `status` varchar(15) NOT NULL,
   `agente` varchar(60) NOT NULL,
   `data_visita` datetime NOT NULL,
   `bairro` varchar(30) NOT NULL,
@@ -283,28 +290,14 @@ CREATE TABLE `visita` (
   `latitude` varchar(20) NOT NULL,
   `longitude` varchar(20) NOT NULL,
   `tp_imovel` varchar(15) NOT NULL,
-  `estagio` varchar(25) DEFAULT 'Não encontrado',
+  `estagio` varchar(25) DEFAULT NULL,
   `tp_larvicida` varchar(50) DEFAULT NULL,
   `ac_corretiva` varchar(30) DEFAULT NULL,
   `local_foco` varchar(45) DEFAULT NULL,
   `foco` tinyint(4) DEFAULT '0',
-  `dp1` tinyint(4) DEFAULT '0',
-  `dp2` tinyint(4) DEFAULT '0',
-  `dp3` tinyint(4) DEFAULT '0',
-  `dp4` tinyint(4) DEFAULT '0',
-  `dp5` tinyint(4) DEFAULT '0',
-  `dp6` tinyint(4) DEFAULT '0',
-  `dp7` tinyint(4) DEFAULT '0',
-  `qt1` int(4) DEFAULT '0',
-  `qt2` int(4) DEFAULT '0',
-  `qt3` int(4) DEFAULT '0',
-  `qt4` int(4) DEFAULT '0',
-  `qt5` int(4) DEFAULT '0',
-  `qt6` int(4) DEFAULT '0',
-  `qt7` int(4) DEFAULT '0',
   PRIMARY KEY (`idvisita`),
   UNIQUE KEY `idvisita_UNIQUE` (`idvisita`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,9 +306,129 @@ CREATE TABLE `visita` (
 
 LOCK TABLES `visita` WRITE;
 /*!40000 ALTER TABLE `visita` DISABLE KEYS */;
-INSERT INTO `visita` VALUES (19,NULL,'Visitado','Administrador','2017-09-06 00:00:00','São francisco','FRANCISCA MAIA DA SILVEIRA','4 ','6','S/N','Senador Canedo','-16.700155099331496','-49.080993088498204','Casa','Larva,Mosquito','Malathion,Pyriproxyfen','Nebolização','',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(20,NULL,'Visitado','Administrador','2017-09-06 00:00:00','Vila Matinha','Rua 8',' 19 ','6','S/N','Senador Canedo','-16.635573599163052','-49.136737325053005','Apartamento','Ovo','Pyriproxyfen','Nebolização','',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(21,NULL,'Visitado','Administrador','2017-09-06 00:00:00','Vila São sebastião','Presidente Getulio Vargas',' 45 ','21','S/N','Senador Canedo','-16.72069752','-49.08506706','Sala Comercial','Mosquito,Ovo','Malathion','Borrifação','',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(22,NULL,'Visitado','Administrador','2017-09-06 00:00:00','Jardim Imperial','Av. Sumaré','40 ','30','S/N','Trindade','-16.651024469996052','-49.516455060004006','Lote','Larva,Mosquito',NULL,NULL,NULL,0,1,1,0,0,1,0,1,88,44,0,0,44,0,44),(82,0,'Visitado','Bruna Nunes','2017-11-20 00:00:00','Setor Serra Dourada','Ruas dos Teste','14','44','586','Goiânia','-16.686891199999998','-49.2647943','Casa','Larva,Mosquito','Bendiocarb,Biovech','Borrifação,Nebolização','',0,1,0,1,0,0,1,0,4,0,11,0,0,10,0),(83,0,'Visitado','Bruna Nunes','2017-11-22 13:49:00','Conjunto Uirapuru','Ruas dos Teste','47','44','1','Goiânia','-16.686891199999998','-49.2647943','Casa','Não encontrado',NULL,NULL,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(84,0,'Recusado','Bruna Nunes','2017-11-22 16:11:00','Jardim Imperial','Ruas dos Teste','ff','25','74','Goiânia','-16.686891199999998','-49.2647943','Apartamento','Não encontrado',NULL,NULL,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(85,0,'Fechado','Bruna Nunes','2017-11-22 16:16:00','Setor Serra Dourada','Ruas dos Teste','11','25','25','Goiânia','-16.686891199999998','-49.2647943','Casa','Não encontrado',NULL,NULL,NULL,0,0,0,0,1,1,0,0,0,0,0,10,11,0,0),(86,17,'Fechado','Bruna Nunes','2017-11-22 16:53:00','Conjunto Uirapuru','Ruas dos Teste','14','25','74','Aparecida de Goiânia','-16.686891199999998','-49.2647943','Deposito','Não encontrado',NULL,NULL,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(87,17,'Recusado','Bruna Nunes','2017-11-22 16:54:00','Conjunto Uirapuru','Ruas dos Teste','14','25','74','Aparecida de Goiânia','-16.686891199999998','-49.2647943','Deposito','Não encontrado',NULL,NULL,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(88,17,'Visitado','Bruna Nunes','2017-11-22 16:58:00','Conjunto Uirapuru','Ruas dos Teste','14','25','74','Aparecida de Goiânia','-16.686891199999998','-49.2647943','Deposito','Não encontrado',NULL,NULL,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+INSERT INTO `visita` VALUES (19,NULL,'Administrador','2017-09-06 00:00:00','São francisco','FRANCISCA MAIA DA SILVEIRA','4 ','6','S/N','Senador Canedo','-16.700155099331496','-49.080993088498204','Casa','Larva,Mosquito','Malathion,Pyriproxyfen','Nebolização','',0),(20,NULL,'Administrador','2017-09-06 00:00:00','Vila Matinha','Rua 8',' 19 ','6','S/N','Senador Canedo','-16.635573599163052','-49.136737325053005','Apartamento','Ovo','Pyriproxyfen','Nebolização','',0),(21,NULL,'Administrador','2017-09-06 00:00:00','Vila São sebastião','Presidente Getulio Vargas',' 45 ','21','S/N','Senador Canedo','-16.72069752','-49.08506706','Sala Comercial','Mosquito,Ovo','Malathion','Borrifação','',0),(22,NULL,'Administrador','2017-09-06 00:00:00','Jardim Imperial','Av. Sumaré','40 ','30','S/N','Trindade','-16.651024469996052','-49.516455060004006','Lote','Larva,Mosquito','Bendiocarb,Biovech','Borrifação,Nebolização','',0),(23,NULL,'Administrador','2017-09-06 00:00:00','Morada do Bosque','JOSE MANOEL DA SILVEIRA',' 6 ','5','S/N','Trindade','-16.64511799498515','-49.431106980006646','Loja','Pupa','Biovech','Borrifação,Nebolização','',0);
 /*!40000 ALTER TABLE `visita` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'dbendemic'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `procedure_grafico` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `procedure_grafico`(
+OUT Janeiro int,
+OUT Fevereiro int,
+OUT Março int,
+OUT Abril int,
+OUT Maio int,
+OUT Junho int,
+OUT Julho int,
+OUT Agosto int,
+OUT Setembro int,
+OUT Outubro int,
+OUT Novembro int,
+OUT Dezembro int)
+begin
+
+-- Janeiro
+select count(data_visita) into Janeiro
+	from
+		visita 	
+	where
+		data_visita between '2017-01-01' and '2017-01-31';
+
+-- Fevereiro
+select count(data_visita) into Fevereiro
+	from
+		visita 	
+	where
+		data_visita between '2017-02-01' and '2017-02-31';
+
+
+-- Março
+select count(data_visita) into Março
+	from
+		visita 	
+	where
+		data_visita between '2017-03-01' and '2017-03-31';
+
+-- Abril
+select count(data_visita) into Abril
+	from
+		visita 	
+	where
+		data_visita between '2017-04-01' and '2017-04-30';
+
+-- Maio
+select count(data_visita) into Maio	
+	from
+		visita 	
+	where
+		data_visita between '2017-05-01' and '2017-05-31';
+
+-- Junho
+select count(data_visita) into Junho
+	from
+		visita 	
+	where
+		data_visita between '2017-06-01' and '2017-06-30';
+
+-- Julho
+select count(data_visita) into Julho
+	from
+		visita 	
+	where
+		data_visita between '2017-07-01' and '2017-07-31';
+
+-- Agosto
+select count(data_visita) into Agosto
+	from
+		visita 	
+	where
+		data_visita between '2017-08-01' and '2017-08-31';
+
+
+-- Setembro
+select count(data_visita) into Setembro
+	from
+		visita 	
+	where
+		data_visita between '2017-09-01' and '2017-09-30';
+
+-- Outubro
+select count(data_visita) into Outubro
+	from
+		visita 	
+	where
+		data_visita between '2017-10-01' and '2017-10-31';
+
+-- Novembro
+select count(data_visita) into Novembro
+	from
+		visita 	
+	where
+		data_visita between '2017-11-01' and '2017-11-30';
+
+-- Dezembro
+select count(data_visita) into Dezembro
+	from
+		visita 	
+	where
+		data_visita between '2017-12-01' and '2017-01-31';
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -326,4 +439,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-22 17:09:23
+-- Dump completed on 2017-09-08 21:31:15
