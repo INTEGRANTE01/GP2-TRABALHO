@@ -17,17 +17,17 @@
 <title>Sistema de Controle de Endemias</title>
 
 <!-- Bootstrap -->
-<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap select -->
 <link href="css/bootstrap-select.min.css" rel="stylesheet">
 <!-- Font Awesome -->
-<link href="vendors/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="vendors/font-awesome/css/font-awesome.min.css" 	rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="css/custom.min.css" rel="stylesheet">
 <!-- Mapa Style -->
 <style>
+
+
 /* Always set the map height explicitly to define the size of the div
              * element that contains the map. */
 #map {
@@ -148,30 +148,25 @@ html, body {
 										function initMap() {
 
 											var map = new google.maps.Map(
-													document
-															.getElementById('map'),
+													document.getElementById('map'),
 													{
 														zoom : 13,
 														center : locations[0],
-														
 													});
-
-											// Criar uma matriz de caracteres alfabéticos usados para rotular os marcadores.
 											var labels = '+';
-
 											// Adicione alguns marcadores ao mapa.
 											// Nota: O código usa o método JavaScript Array.prototype.map () para
 											// cria uma matriz de marcadores com base em um array de "locais".
 											// O método map () aqui não tem nada a ver com a API do Google Maps.
-											var markers = locations
-													.map(function(location, i) {
+											var markers = locations.map(function(location, i)
+													{
 														return new google.maps.Marker(
-																{
-																	icon: 'images/icon.png',
-																	position : location,
-																	label : labels[i
-																			% labels.length]
-																});
+															{
+																icon: 'images/icon.png',
+																position : location,
+																label : labels[i
+																		% labels.length]
+															});
 													});
 
 											// Adicione um marcador de cluster para gerenciar os marcadores.
@@ -184,25 +179,29 @@ html, body {
 										}
 
 										//pontos /// trocar pelos objetos da lista
-										<%@  page 
- 												import="model.VisitaDAO , model.Visita, java.util.List, java.util.ArrayList"
- 											%>
-											<%request.setCharacterEncoding("UTF8");
-				VisitaDAO visitaDAO = new VisitaDAO();
-				List<Visita> listavisita = new ArrayList<Visita>();
-				String textopesquisa1 = request.getParameter("txtpesquisa1");
-				String textopesquisa2 = request.getParameter("txtpesquisa2");
-				String textopesquisa3 = request.getParameter("txtpesquisa3");
-				String textopesquisa4 = request.getParameter("txtpesquisa4");
-
-				listavisita = visitaDAO.listarmapa(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);%>
-										var locations = [ 
-											<%for (Visita v : listavisita) {
-												
-					//System.out.println(v.getLatitude() + "," + v.getLongitude() + "},{");%>
-												{lat:<%=v.getLatitude()%>,
-												lng:<%=v.getLongitude()%>
-											},
+										<%@page import="model.VisitaDAO"%>
+										<%@page	import="model.Visita"%>
+										<%@page	import="java.util.List"%>
+										<%@page	import="java.util.ArrayList"%>
+											
+										<%		request.setCharacterEncoding("UTF8");
+												VisitaDAO visitaDAO = new VisitaDAO();
+												Visita visita = new Visita();
+												List<Visita> listavisita = new ArrayList<Visita>();
+												String textopesquisa1 = request.getParameter("txtpesquisa1");
+												String textopesquisa2 = request.getParameter("txtpesquisa2");
+												String textopesquisa3 = request.getParameter("txtpesquisa3");
+												String textopesquisa4 = request.getParameter("txtpesquisa4");
+												listavisita = visitaDAO.listarmapa(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);
+										%>
+												var locations = [ 
+												<%
+													for (Visita v : listavisita) {												
+												//System.out.println(v.getLatitude() + "," + v.getLongitude() + "},{");%>
+													{
+														lat:<%=v.getLatitude()%>,
+														lng:<%=v.getLongitude()%>
+													},
 												<%}%>
 										]
 									</script>
@@ -215,7 +214,7 @@ html, body {
 								</div>							
 							</div>
 						</div>					
-					  <!-- Grafico em Barras -->
+					 <!--  Grafico em Barras 
 						  <div class="col-md-6 col-sm-12 col-xs-12">
 			                <div class="x_panel">
 			                  <div class="x_title">
@@ -233,7 +232,7 @@ html, body {
 			                  </div>
 			                </div>
              			 </div>
-             			 <!-- Grafico em Pizza -->
+             			Grafico em Pizza
 	             		<div class="col-md-6 col-sm-6 col-xs-12">
 			                <div class="x_panel">
 			                  <div class="x_title">
@@ -251,7 +250,8 @@ html, body {
 			                  </div>
 			                </div>
 	             		 </div>	
-										  
+					  
+					  -->					  
 					
 	             		 <!-- Grafico em Linhas	              
 		              <div class="col-md-12 col-sm-12 col-xs-12">
@@ -286,8 +286,8 @@ html, body {
 	<script src="build/js/custom.min.js"></script>
 	<!-- bootstrap-VALIDATOR -->
 	<script src="js/validator.min.js"></script>
-	<!-- Chartjs-->
-	<script src="js/chart.min.js"></script>
+	<!-- Chartjs
+	<script src="js/chart.min.js"></script> -->
 		<c:import url="rodape.jsp" />	
 </body>
 </html>

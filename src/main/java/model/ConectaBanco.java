@@ -17,9 +17,9 @@ public class ConectaBanco {
 		String nomeBancoDados = "dbendemic";
 
 		try {
-			/*String para sistemas antigos
-				Class.forName("com.mysql.jdbc.Driver");
-			*/
+			//String para sistemas antigos
+				Class.forName("com.mysql.jdbc.Driver");			
+			//DriverManager.registerDriver(new com.mysql.jdbc.Driver());	
 			conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + nomeBancoDados, usuario, senha);
 		} catch (Exception e) {
 			 e.printStackTrace();
