@@ -35,15 +35,15 @@
     <link href="vendors/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
     	       
      
-  </head>
-  <c:choose>         
+</head>   
+ <c:choose>         
          <c:when test="${empty visita.latitude && empty visita.longitude}">
      		<body onload="getLocation()" class="nav-md">       
          </c:when>
          <c:otherwise>
-            <body class="nav-md">
-         </c:otherwise>
-  </c:choose>
+             <body class="nav-md">
+ </c:otherwise>
+ </c:choose>
     <div class="container body">
       <div class="main_container">
   		<c:import url="menu.jsp" /> 
@@ -205,12 +205,12 @@
                                       <div class="form-group">
                                       <label class="control-label col-md-3" for="coordenadas">Coordenadas <span class="required">*</span></label>
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="latitude" readonly="readonly" name="latitude" value="${visita.latitude}" required="required" class="form-control input-md">
+                                        <input type="text" id="latitude"  name="latitude" value="${visita.latitude}" required="required" class="form-control input-md">
                                         <div class="help-block with-errors"></div>
                                         <div class="help">Latitude</div>
                                       </div>
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="longitude" readonly="readonly" name="longitude" value="${visita.longitude}" required="required" class="form-control input-md">
+                                        <input type="text" id="longitude"  name="longitude" value="${visita.longitude}" required="required" class="form-control input-md">
                                         <div class="help-block with-errors"></div>
                                         <div class="help">Longitude</div>
                                       </div>                                                          
@@ -495,7 +495,7 @@
 		var exibe_erro = document.getElementById("msgerro");
 
 		
-		function getLocation() {
+	/*	function getLocation() {
 		    if (navigator.geolocation) {
 		        navigator.geolocation.getCurrentPosition(capturaPosicao,mostraErro);		        
 		    }
@@ -523,6 +523,7 @@
 		            break;
 		    }
 		}
+		*/
 	</script>    
     		<c:import url="rodape.jsp" />
   </body>
