@@ -55,9 +55,16 @@ public class ServletVisita extends HttpServlet {
 	private String message;
 	private String concatenaEstagio;
 	private String concatenaLarvicida;
-	private String concatenaAccorretiva;
 	private int[] dp = new int[7];
 	private int[] qt = new int[7];	
+	private String n_ini;
+	private String n_fim;
+	private String n_tubitos;
+	private String qt_larv1;
+	private String qt_larv2;	
+	private String qt_adult1;
+	private String qt_adult2;
+	private String qt_focostratados;
 	private boolean acao = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -143,7 +150,6 @@ public class ServletVisita extends HttpServlet {
 		
 		  concatenaEstagio="";
 		  concatenaLarvicida="";
-		  concatenaAccorretiva="";
 		  try {
 				idnotificacao = Integer.parseInt(request.getParameter("idnotificacao"));				
 		  } catch (Exception e) {	
@@ -164,6 +170,15 @@ public class ServletVisita extends HttpServlet {
 		  tp_imovel =  request.getParameter("tp_imovel");
 		  estagio =  request.getParameterValues("estagio");
 		  tp_larvicida =  request.getParameterValues("tp_larvicida");
+		  n_ini = request.getParameter("n_ini");
+		  n_fim = request.getParameter("n_fim");
+		  n_tubitos = request.getParameter("n_tubitos");
+		  qt_larv1 = request.getParameter("qt_larv1");
+		  qt_larv2 = request.getParameter("qt_larv2");
+		  qt_adult1 = request.getParameter("qt_adult1");
+		  qt_adult2 = request.getParameter("qt_adult2");
+		  qt_focostratados = request.getParameter("qt_focostratados");
+
 		  
 		  try {			  
 			  for (int i=0;i<7;i++){
@@ -171,7 +186,7 @@ public class ServletVisita extends HttpServlet {
 						dp[i]=1;
 					else 
 						dp[i]=0;		  
-				  System.out.println("DP"+i+"depois: " + dp[i]);  
+				 // System.out.println("DP"+i+"depois: " + dp[i]);  
 			  }
 	  
 			  for (int i=0;i<7;i++){					
@@ -179,7 +194,7 @@ public class ServletVisita extends HttpServlet {
 				  		qt[i]=Integer.parseInt(request.getParameter("qt"+(i+1)));				  	
 				  	else 
 				  		qt[i]=0;				  	
-				  System.out.println("QT"+i+"depois: " + qt[i]);  
+				  //System.out.println("QT"+i+"depois: " + qt[i]);  
 			  }
 			    
 		  }catch (Exception e){
@@ -219,26 +234,45 @@ public class ServletVisita extends HttpServlet {
 			visita.setQt4(qt[3]);
 			visita.setQt5(qt[4]);
 			visita.setQt6(qt[5]);
-			visita.setQt7(qt[6]);			
+			visita.setQt7(qt[6]);	
+			visita.setN_ini(Integer.parseInt(n_ini));			
+			visita.setN_fim(Integer.parseInt(n_fim));
+			visita.setN_tubitos(Integer.parseInt(n_tubitos));
+			visita.setQt_larv1(Integer.parseInt(qt_larv1));
+			visita.setQt_larv2(Integer.parseInt(qt_larv2));
+			visita.setQt_adult1(Integer.parseInt(qt_adult1));
+			visita.setQt_adult2(Integer.parseInt(qt_adult2));
+			visita.setQt_focostratados(Integer.parseInt(qt_focostratados));		
 			notificacao.setIdnotificacao(idnotificacao);
 			
-			
-			for (int i=0;i<estagio.length;i++){				
-				if(i==estagio.length-1)
-					concatenaEstagio+=estagio[i];						
-				else
-					concatenaEstagio+=estagio[i] + ",";
-			}			
-			visita.setEstagio(concatenaEstagio);
-
-			for (int i=0;i<tp_larvicida.length;i++){
-				
-				if(i==tp_larvicida.length-1)
-					concatenaLarvicida+=tp_larvicida[i];						
-				else
-					concatenaLarvicida+=tp_larvicida[i] + ",";
+						
+			try {
+				for (int i=0;i<estagio.length;i++){
+					
+					if(i==estagio.length-1)
+						concatenaEstagio+=estagio[i];						
+					else
+						concatenaEstagio+=estagio[i] + ",";
+				}			
+			}catch(Exception erro){
+				concatenaEstagio = "Não Encontrado";
 			}
-			visita.setTp_larvicida(concatenaLarvicida);			
+			
+			visita.setEstagio(concatenaEstagio);			
+		
+			try {
+				for (int i=0;i<tp_larvicida.length;i++){
+					
+					if(i==tp_larvicida.length-1)
+						concatenaLarvicida+=tp_larvicida[i];						
+					else
+					concatenaLarvicida+=tp_larvicida[i] + ",";
+				}	
+			}catch(Exception erro){
+				concatenaLarvicida = "Não Encontrado";
+			}
+			
+			visita.setTp_larvicida(concatenaLarvicida);		
 
 		} catch (Exception e) {
 		}
@@ -262,7 +296,6 @@ public class ServletVisita extends HttpServlet {
 		
 		   concatenaEstagio="";
 		   concatenaLarvicida="";
-		   concatenaAccorretiva="";		   
 		   agente = request.getParameter("agente");
 		   //data_string = request.getParameter("data_visita");
 		   bairro =  request.getParameter("bairro");
@@ -273,9 +306,17 @@ public class ServletVisita extends HttpServlet {
 		   cidade =  request.getParameter("cidade");
 		   latitude =  request.getParameter("latitude");
 		   longitude =  request.getParameter("longitude");
-		   tp_imovel =  request.getParameter("tp_imovel");
+		   tp_imovel =  request.getParameter("tp_imovel");		  
 	       estagio =  request.getParameterValues("estagio");
 		   tp_larvicida =  request.getParameterValues("tp_larvicida");
+		   n_ini = request.getParameter("n_ini");
+		   n_fim = request.getParameter("n_fim");
+		   n_tubitos = request.getParameter("n_tubitos");
+		   qt_larv1 = request.getParameter("qt_larv1");
+		   qt_larv2 = request.getParameter("qt_larv2");
+		   qt_adult1 = request.getParameter("qt_adult1");
+		   qt_adult2 = request.getParameter("qt_adult2");
+		   qt_focostratados = request.getParameter("qt_focostratados");
 	  
 		   try {			  
 				  for (int i=0;i<7;i++){
@@ -329,31 +370,43 @@ public class ServletVisita extends HttpServlet {
 			visita.setQt4(qt[3]);
 			visita.setQt5(qt[4]);
 			visita.setQt6(qt[5]);
-			visita.setQt7(qt[6]);	
+			visita.setQt7(qt[6]);
+			visita.setN_ini(Integer.parseInt(n_ini));			
+			visita.setN_fim(Integer.parseInt(n_fim));
+			visita.setN_tubitos(Integer.parseInt(n_tubitos));
+			visita.setQt_larv1(Integer.parseInt(qt_larv1));
+			visita.setQt_larv2(Integer.parseInt(qt_larv2));
+			visita.setQt_adult1(Integer.parseInt(qt_adult1));
+			visita.setQt_adult2(Integer.parseInt(qt_adult2));
+			visita.setQt_focostratados(Integer.parseInt(qt_focostratados));
 			
 			
-			for (int i=0;i<estagio.length;i++){
-				
-				if(i==estagio.length-1)
-					concatenaEstagio+=estagio[i];						
-				else
-					concatenaEstagio+=estagio[i] + ",";
+			try {
+				for (int i=0;i<estagio.length;i++){
+					
+					if(i==estagio.length-1)
+						concatenaEstagio+=estagio[i];						
+					else
+						concatenaEstagio+=estagio[i] + ",";
+				}			
+			}catch(Exception erro){
+				concatenaEstagio = "Não Encontrado";
 			}
 			
-			if (visita.getEstagio() == null || visita.getEstagio().equals("")) 
-				visita.setEstagio("Não encontrado");	
-			visita.setEstagio(concatenaEstagio);
-			
-			for (int i=0;i<tp_larvicida.length;i++){
-				
-				if(i==tp_larvicida.length-1)
-					concatenaLarvicida+=tp_larvicida[i];						
-				else
+			visita.setEstagio(concatenaEstagio);			
+		
+			try {
+				for (int i=0;i<tp_larvicida.length;i++){
+					
+					if(i==tp_larvicida.length-1)
+						concatenaLarvicida+=tp_larvicida[i];						
+					else
 					concatenaLarvicida+=tp_larvicida[i] + ",";
+				}	
+			}catch(Exception erro){
+				concatenaLarvicida = "Não Encontrado";
 			}
 			
-			if (visita.getTp_larvicida() == null || visita.getTp_larvicida().equals("")) 
-				visita.setTp_larvicida("Não encontrado");
 			visita.setTp_larvicida(concatenaLarvicida);
 				
 		} catch (Exception e) {

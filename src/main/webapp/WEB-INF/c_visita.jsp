@@ -59,9 +59,7 @@
 									</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
+												class="fa fa-chevron-up"></i></a></li>									
 									</ul>
 									<div class="clearfix"></div>
 								</div>
@@ -184,9 +182,27 @@
 													data-placement="bottom" title="Buscar">
 													<i class="fa fa-search"></i>
 												</button>
-											</p>											
-											<div>
-												<div class="ln_solid"></div>
+											</p>
+										</div>
+									</form>
+								
+								</div>
+							</div>
+						</div>
+						
+						 <div class="col-md-12 col-sm-12 col-xs-12">
+			                <div class="x_panel">
+			                  <div class="x_title">
+			                    <small>Registros encontrados</small>
+			                    <ul class="nav navbar-right panel_toolbox">
+			                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+			                      </li>	
+			                    </ul>
+			                    <div class="clearfix"></div>
+			                  </div>
+			                  <div class="x_content">
+			                  <div>
+												<!--<div class="ln_solid"></div>  -->
 												<table
 													class="table footable toggle-circle-filled table-striped  table-hover"
 													data-sorting="true" data-show-toggle="true">
@@ -237,10 +253,10 @@
 																				onclick="confirmaexclusao(${visita.idvisita})"><span
 																					class="glyphicon glyphicon-remove-sign"></span>
 																					Excluir</a></li>
-																			<li><a data-target="#visualizar"
+																			<!--<li><a data-target="#visualizar"
 																				data-toggle="modal"><span
 																					class="glyphicon glyphicon-globe"></span>
-																					Visualizar no Mapa</a></li>
+																					Visualizar no Mapa</a></li>  -->
 																		</ul>
 																	</div></td>
 															</tr>
@@ -248,11 +264,10 @@
 													</tbody>
 												</table>
 											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
+				                  </div>
+			                </div>
+             			 </div>
+						
 					</div>
 				</div>
 			</div>
@@ -281,8 +296,8 @@
 			$('.footable').footable({			
 				"paging": {
 					"enabled": true,											
-					"position": "right",
-					"limit": 4,
+					"position": "center",
+					"limit": 1,
 					"size": 8,
 					"countFormat": "Registros {PF} a {PL} de {TR} resultados"
 				}

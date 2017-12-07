@@ -166,8 +166,26 @@
 												</button>
 												<label> </label>
 												
-											</p>											
-											<div class="ln_solid"></div>										
+											</p>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						
+						 <div class="col-md-12 col-sm-12 col-xs-12">
+			                <div class="x_panel">
+			                  <div class="x_title">
+			                    <small>Registros encontrados</small>
+			                    <ul class="nav navbar-right panel_toolbox">
+			                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+			                      </li>			                      
+			                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+			                      </li>
+			                    </ul>
+			                    <div class="clearfix"></div>
+			                  </div>
+			                  <div class="x_content">																			
 											<div>
 												<table id="table"
 													class="table footable toggle-circle-filled table-striped  table-hover"
@@ -243,12 +261,9 @@
 														</c:forEach>
 													</tbody>
 												</table>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
+											</div>			                  </div>
+			                </div>
+             			 </div>
 					</div>
 				</div>
 			</div>
@@ -279,8 +294,8 @@
 				$('.footable').footable({			
 					"paging": {
 						"enabled": true,											
-						"position": "right",
-						"limit": 4,
+						"position": "center",
+						"limit": 1,
 						"size": 8,
 						"countFormat": "Registros {PF} a {PL} de {TR} resultados"
 					}

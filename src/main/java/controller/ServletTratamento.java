@@ -25,7 +25,7 @@ public class ServletTratamento extends HttpServlet {
 	private String destino = "";
 	private int idtratamento;
 	private String nome_tratamento;
-	private String tipo_tratamento;
+	private String tp_tratamento;
 	private boolean estado = false;
 	
 
@@ -77,9 +77,9 @@ public class ServletTratamento extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 			
 		nome_tratamento = request.getParameter("tratamento");
-		tipo_tratamento = request.getParameter("tipo_tratamento");
+		tp_tratamento = request.getParameter("tp_tratamento");
 		tratamento.setNome_tratamento(nome_tratamento);
-		tratamento.setTp_tratamento("tipo_tratamento");
+		tratamento.setTp_tratamento(tp_tratamento);
 		if (tratamentoDAO.inserir(tratamento) == true)
 			message = "Erro ao Gravar Registro";
 		else
@@ -92,10 +92,10 @@ public class ServletTratamento extends HttpServlet {
 
 		idtratamento = Integer.parseInt(request.getParameter("idtratamento"));
 		nome_tratamento = request.getParameter("tratamento");
-		tipo_tratamento = request.getParameter("tipo_tratamento");
+		tp_tratamento = request.getParameter("tp_tratamento");
 		tratamento.setIdtratamento(idtratamento);
 		tratamento.setNome_tratamento(nome_tratamento);
-		tratamento.setTp_tratamento(tipo_tratamento);
+		tratamento.setTp_tratamento(tp_tratamento);
 		if (tratamentoDAO.alterar(tratamento) == true)
 			message = "Erro ao Alterar Registro";
 		else

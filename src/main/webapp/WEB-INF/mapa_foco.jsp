@@ -131,7 +131,7 @@ html, body {
 										</button>
 									</div>											
 									</div>
-								</form>
+								</form>									
 							</div>
 						</div>
 					</div>
@@ -217,7 +217,11 @@ html, body {
 														lng:<%=v.getLongitude()%>
 													},
 												<%}%>
-										]
+										]	
+											function tamanho(){
+													document.getElementById("reg").innerHTML = locations.lenght/2;	
+											}
+												
 									</script>
 								<script
 									src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
@@ -225,9 +229,11 @@ html, body {
 								<script async defer
 									src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDMW1J5J0TVAdNSO0CCSutqo29mKSKQ5A&callback=initMap">
 								</script>
-								</div>							
+								</div>
 							</div>
-						</div>					
+						</div>				
+														<p id = "reg"></p>							
+							
 					 <!--  Grafico em Barras 
 						  <div class="col-md-6 col-sm-12 col-xs-12">
 			                <div class="x_panel">
@@ -285,6 +291,7 @@ html, body {
 		                  </div>
 	                	</div>
 	              	</div> -->
+	              	
             	</div>            
 			</div>
 		</div>

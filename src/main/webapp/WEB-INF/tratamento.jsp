@@ -86,19 +86,21 @@
 										</div>
 										<!-- Tipo de Tratamento -->										
 											<div class="form-group">
-												<label class="control-label col-md-3" for="bairro">Tipo de Tratamento
+												<label class="control-label col-md-3">Tipo de Tratamento
 													<span class="required">*</span>
 												</label>
 												<div class="col-lg-3 col-xs-12">
-													<select required id="tipo_tratamento" name="tipo_tratamento"
+													<select required id="tipo_tratamento" name="tp_tratamento"
 														title="Selecione item"
 														class="form-control input-md selectpicker"
 														data-live-search="true">
 														 <c:if test = "${not empty tratamento.tp_tratamento}">											
 			                              					 	<option selected="selected">${tratamento.tp_tratamento}</option>
 			                            				 </c:if>										
-							      							<option value="Larvicida">Larvicida</option>
-							      							<option value="Adulticida">Adulticida</option>      
+							      							<option value="Larvicida 1">Larvicida 1</option>
+							      							<option value="Larvicida 2">Larvicida 2</option>
+							      							<option value="Adulticida 1">Adulticida 1</option>      
+							      							<option value="Adulticida 2">Adulticida 2</option>
 													</select>
 													<div class="help-block with-errors"></div>
 												</div>

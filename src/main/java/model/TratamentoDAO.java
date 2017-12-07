@@ -16,8 +16,8 @@ public class TratamentoDAO extends ConectaBanco {
 				.prepareStatement("Update tratamento SET nome_tratamento = ?,tp_tratamento = ? WHERE idtratamento = ? ");
 		try {			
 			pstmt.setString(1, tratamento.getNome_tratamento());
-			pstmt.setInt(2, tratamento.getIdtratamento());
-			pstmt.setString(3, tratamento.getTp_tratamento());
+			pstmt.setString(2, tratamento.getTp_tratamento());
+			pstmt.setInt(3, tratamento.getIdtratamento());
 			pstmt.execute();			
 			}catch (Exception e) {
 				erro = true;

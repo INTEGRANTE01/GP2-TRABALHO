@@ -3594,9 +3594,9 @@
 	/**
 	 * A string to display when there are no rows in the table.
 	 * @type {string}
-	 * @default "No results"
+	 * @default "Sem resultados"
 	 */
-	F.Defaults.prototype.empty = 'No results';
+	F.Defaults.prototype.empty = 'Sem resultados';
 
 	/**
 	 * Whether or not the toggle is appended to each row.

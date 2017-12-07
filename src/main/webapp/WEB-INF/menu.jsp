@@ -59,23 +59,16 @@
                       <li><a href="buscanotificacao">Notificações</a></li>                      
                     </ul>
                    </li>
-                   	<li><a><i class="fa fa-check-circle"></i>Parametros de Controle<span class="fa fa-chevron-down"></span></a>
+                   	<li><a><i class="fa fa-check-circle"></i>Parametros Auxiliares<span class="fa fa-chevron-down"></span></a>
                    		<ul class="nav child_menu">                   
                     		<li><a href="estagio">Estágio</a></li>
                             <li><a href="imovel">Tipo de Imovel</a></li>
                            	<li><a href="tratamento">Tratamento</a></li>
-                           	<li><a href="#">Ação Corretiva</a></li>
-                    	</ul>
-                    </li> 
-                   
-                    <li><a><i class="fa fa-check-circle-o"></i>Parametros Auxiliares <span class="fa fa-chevron-down"></span></a>
-                   		<ul class="nav child_menu">                   
-                    		<li><a href="tipofuncao">Função</a></li>
+                           	<li><a href="tipofuncao">Função</a></li>
                     		<li><a href="cidade">Cidade</a></li>
-                    		<li><a href="bairro">Bairro</a></li>                     		 
-                    	</ul>                    	 
+                    		<li><a href="bairro">Bairro</a></li>
+                    	</ul>
                     </li>
-                   </ul> 
                     <% 
                     } else if (session.getAttribute("funcao").equals("Atendente")) {                    	
                         	  
@@ -102,7 +95,6 @@
               		<li><a><i class="fa fa-edit"></i>Cadastros <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
                            	<li><a href="visita">Visita</a></li>
-                           	<li><a href="notificacao">Notificação</a></li>                           	
                    		</ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i>Busca <span class="fa fa-chevron-down"></span></a>

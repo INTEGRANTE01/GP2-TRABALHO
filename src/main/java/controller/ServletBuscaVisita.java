@@ -151,7 +151,13 @@ public class ServletBuscaVisita extends HttpServlet {
 		 		idvisita = Integer.parseInt(request.getParameter("idvisita"));
 				visita.setIdvisita(idvisita);			
 				request.setAttribute("visita", visita);
-				visitaDAO.excluir(visita);
+				
+				if (visitaDAO.excluir(visita)==true) 
+					message = "Erro ao Alterar Registro";
+				else
+					message = "Registro Excluido com Sucesso";
+				request.setAttribute("message", message);
+
 				List<Visita> listavisita = new ArrayList<Visita>();
 				listavisita = visitaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4,
 						  textopesquisa5, textopesquisa6, textopesquisa7, textopesquisa8, textopesquisa9,

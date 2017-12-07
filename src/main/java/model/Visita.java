@@ -36,6 +36,14 @@ public class Visita {
 	private int qt5;
 	private int qt6;
 	private int qt7;
+	private int n_ini;
+	private int n_fim;
+	private int n_tubitos;
+	private int qt_larv1;
+	private int qt_larv2;	
+	private int qt_adult1;
+	private int qt_adult2;
+	private int qt_focostratados;	
 	private boolean verifica_foco;
 	public int getIdvisita() {
 		return idvisita;
@@ -217,6 +225,54 @@ public class Visita {
 	public void setQt7(int qt7) {
 		this.qt7 = qt7;
 	}
+	public int getN_ini() {
+		return n_ini;
+	}
+	public void setN_ini(int n_ini) {
+		this.n_ini = n_ini;
+	}
+	public int getN_fim() {
+		return n_fim;
+	}
+	public void setN_fim(int n_fim) {
+		this.n_fim = n_fim;
+	}
+	public int getN_tubitos() {
+		return n_tubitos;
+	}
+	public void setN_tubitos(int n_tubitos) {
+		this.n_tubitos = n_tubitos;
+	}
+	public int getQt_larv1() {
+		return qt_larv1;
+	}
+	public void setQt_larv1(int qt_larv1) {
+		this.qt_larv1 = qt_larv1;
+	}
+	public int getQt_larv2() {
+		return qt_larv2;
+	}
+	public void setQt_larv2(int qt_larv2) {
+		this.qt_larv2 = qt_larv2;
+	}
+	public int getQt_adult1() {
+		return qt_adult1;
+	}
+	public void setQt_adult1(int qt_adult1) {
+		this.qt_adult1 = qt_adult1;
+	}
+	public int getQt_adult2() {
+		return qt_adult2;
+	}
+	public void setQt_adult2(int qt_adult2) {
+		this.qt_adult2 = qt_adult2;
+	}
+	public int getQt_focostratados() {
+		return qt_focostratados;
+	}
+	public void setQt_focostratados(int qt_focostratados) {
+		this.qt_focostratados = qt_focostratados;
+	}
 	public boolean isVerifica_foco() {
 		return verifica_foco;
 	}
@@ -231,7 +287,9 @@ public class Visita {
 				+ ", longitude=" + longitude + ", tp_imovel=" + tp_imovel + ", estagio=" + estagio + ", tp_larvicida="
 				+ tp_larvicida + ", dp1=" + dp1 + ", dp2=" + dp2 + ", dp3=" + dp3 + ", dp4=" + dp4 + ", dp5=" + dp5
 				+ ", dp6=" + dp6 + ", dp7=" + dp7 + ", qt1=" + qt1 + ", qt2=" + qt2 + ", qt3=" + qt3 + ", qt4=" + qt4
-				+ ", qt5=" + qt5 + ", qt6=" + qt6 + ", qt7=" + qt7 + ", verifica_foco=" + verifica_foco + "]";
-	}
-	
+				+ ", qt5=" + qt5 + ", qt6=" + qt6 + ", qt7=" + qt7 + ", n_ini=" + n_ini + ", n_fim=" + n_fim
+				+ ", n_tubitos=" + n_tubitos + ", qt_larv1=" + qt_larv1 + ", qt_larv2=" + qt_larv2 + ", qt_adult1="
+				+ qt_adult1 + ", qt_adult2=" + qt_adult2 + ", qt_focostratados=" + qt_focostratados + ", verifica_foco="
+				+ verifica_foco + "]";
+	}		
 }

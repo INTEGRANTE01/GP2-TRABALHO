@@ -235,7 +235,7 @@
                             </div>
                           </div>                          
                           <div class="x_title">
-		                      <h2>Dados da Coleta</h2>
+		                      <h2>Visita<small>Dados da Visita</small></h2>
 		                      <ul class="nav navbar-right panel_toolbox">		                       		                        
 		                      </ul>
 		                      <div class="clearfix"></div>		                      
@@ -255,8 +255,8 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="estagio">Estagio do Ciclo </label>
                             <div class="col-lg-3 col-xs-12">
-                            <select multiple data-size="5" data-actions-box="false" id="estagio" name="estagio" title="Selecione item(s)" class="form-control input-md selectpicker">
-                              <c:if test = "${visita.estagio!='Não encontrado'}">											
+                            <select multiple data-size="5" data-actions-box="true"  id="estagio" name="estagio" title="Selecione item(s)" class="form-control input-md selectpicker">
+                              <c:if test = "${not empty visita.estagio}">
                               	<option selected="selected">${visita.estagio}</option>
     		    			  </c:if>	
                               <c:forEach var="comboestagio" items="${listaestagio}">      
@@ -269,17 +269,17 @@
                           <div class="form-group">                          
                           <label class="control-label col-md-3" for="quant_larvicida">Coleta de Amostras</label>
                             <div class="col-lg-1 col-xs-12">
-                             <input type="tel" id="num_ini" name="num_ini" value="" class="form-control input-md">                            
+                             <input type="tel" id="n_ini" name="n_ini" value="${visita.n_ini}" class="form-control input-md">                            
                              <div class="help">Nº Inicial</div>
                             </div>
                             <label class="control-label col-md-1"></label>
                              <div class="col-lg-1 col-xs-12">                              
-                             <input type="tel" id="num_fim" name="num_fim" value="" class="form-control input-md">
+                             <input type="tel" id="n_fim" name="n_fim" value="${visita.n_fim}" class="form-control input-md">
                              <div class="help">Nº Final</div>                             
                             </div>
                             <label class="control-label col-md-1"></label>
                              <div class="col-lg-1 col-xs-12">                              
-                             <input type="tel" id="tubitos" name=""tubitos"" value="" class="form-control input-md">
+                             <input type="tel" id="n_tubitos" name="n_tubitos" value="${visita.n_tubitos}" class="form-control input-md">
                              <div class="help">Quantidade de Tubitos</div>                             
                             </div>
                           </div>
@@ -301,12 +301,12 @@
                           <div class="form-group">
                           <label class="control-label col-md-3" for="quant_larvicida">Quantidade Usada (g)</label>
                             <div class="col-lg-1 col-xs-12">
-                             <input type="tel" id="larvicida1" name="larvicida1" value="" class="form-control input-md">
+                             <input type="tel" id="qt_larv1" name="qt_larv1" value="${visita.qt_larv1}" class="form-control input-md">
                              <div class="help">Larvicida 1</div>
                              </div>
                              <label class="control-label col-md-1"></label>                                                    
                              <div class="col-lg-1 col-xs-12">
-                             <input type="tel" id="larvicida2" name="larvicida2" value="" class="form-control input-md">
+                             <input type="tel" id="qt_larv2" name="qt_larv2" value="${visita.qt_larv2}" class="form-control input-md">
                              <div class="help">Larvicida 2</div>                             
                             </div>
                           </div>
@@ -314,16 +314,24 @@
                           <div class="form-group">                          
                           <label class="control-label col-md-3" for="quant_larvicida">Quantidade Usada (carga)</label>
                             <div class="col-lg-1 col-xs-12">
-                             <input type="tel" id="Adulticida1" name="Adulticida1" value="" class="form-control input-md">                            
+                             <input type="tel" id="qt_adult1" name="qt_adult1" value="${visita.qt_adult1}" class="form-control input-md">                            
                              <div class="help">Adulticida 1</div>
                             </div>
                             <label class="control-label col-md-1"></label>
                              <div class="col-lg-1 col-xs-12">                              
-                             <input type="tel" id="Adulticida2" name="Adulticida2" value="" class="form-control input-md">
+                             <input type="tel" id="qt_adult2" name="qt_adult2" value="${visita.qt_adult2}" class="form-control input-md">
                              <div class="help">Adulticida 2</div>                             
                             </div>
-                          </div>                     
-                          
+                          </div>
+                         <!-- Focos tratadosDepositos -->    
+                          <div class="form-group">
+                          <label class="control-label col-md-3" for="quant_larvicida">Focos tratados</label>
+                            <div class="col-lg-1 col-xs-12">
+                             <input type="tel" id="qt_focostratados" name="qt_focostratados" value="${visita.qt_focostratados}" class="form-control input-md">
+                             <div class="help">Total</div>                             
+                             
+                             </div>                             
+                          </div> 
 			  			 <!-- Depositos -->
   							<div class="form-group">
                                <label class="control-label col-md-3">Depositos(s) </label>

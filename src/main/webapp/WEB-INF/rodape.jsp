@@ -4,8 +4,8 @@
 <html lang="pt">
          
    		<footer>
-				<div class="pull-center">
-				GP2-Trabalho - Sistema de Controle de Endemias <a href="https://github.com/integrante01/GP2-TRABALHO">GitHub</a>
+				<div class="pull-right">
+				Sistema de Controle de Endemias - Versão 0.01beta	
 				</div>
 				<div class="clearfix"></div>
 			</footer>

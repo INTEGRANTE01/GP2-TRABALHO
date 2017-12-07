@@ -67,8 +67,7 @@
 						<div class="separator">
 							<div>
 								<p>
-									Trabalho de Gerencia de Projetos 2: <a
-										href="https://github.com/integrante01/GP2-Trabalho">Github</a>
+									Sistema de Controle de Endemias - Versão 0.01beta
 								</p>
 							</div>
 							<div class="clearfix"></div>

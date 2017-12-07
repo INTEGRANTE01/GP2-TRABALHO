@@ -28,7 +28,10 @@ public class VisitaDAO extends ConectaBanco {
 								+ "lote = ?, numero = ?, cidade = ?, latitude = ?, longitude = ?, "
 								+ "tp_imovel = ?, estagio = ?, tp_larvicida = ?, "
 								+ "dp1 = ?, dp2 = ?, dp3 = ?, dp4 = ?, dp5 = ?, dp6 = ?, dp7 = ?, "
-								+ "qt1 = ?, qt2 = ?, qt3 = ?, qt4 = ?, qt5 = ?, qt6 = ?, qt7 = ? WHERE idvisita = ? ");
+								+ "qt1 = ?, qt2 = ?, qt3 = ?, qt4 = ?, qt5 = ?, qt6 = ?, qt7 = ?, "
+								+ "n_ini = ?, n_fim = ?, n_tubitos = ?, qt_larv1 = ?, qt_larv2 = ?, "
+								+ "qt_adult1 = ?, qt_adult2 = ?, qt_focostratados = ?"
+								+ " WHERE idvisita = ? ");
 		try {
 			pstmt.setString(1, visita.getAgente());			
 			pstmt.setTimestamp(2,  new java.sql.Timestamp(visita.getData_visita().getTime()));  
@@ -41,7 +44,7 @@ public class VisitaDAO extends ConectaBanco {
 			pstmt.setString(9, visita.getLatitude());
 			pstmt.setString(10, visita.getLongitude());
 			pstmt.setString(11, visita.getTp_imovel());
-			if (visita.getEstagio() == null || visita.getEstagio().equals("")) 
+			if (visita.getEstagio().equals(null) || visita.getEstagio().equals("")) 
 				visita.setEstagio("Não encontrado");						
 			pstmt.setString(12, visita.getEstagio());
 			if (visita.getTp_larvicida() == null || visita.getTp_larvicida().equals("")) 
@@ -60,8 +63,16 @@ public class VisitaDAO extends ConectaBanco {
 			pstmt.setInt(24, visita.getQt4());
 			pstmt.setInt(25, visita.getQt5());
 			pstmt.setInt(26, visita.getQt6());
-			pstmt.setInt(27, visita.getQt7());	
-			pstmt.setInt(28, visita.getIdvisita());
+			pstmt.setInt(27, visita.getQt7());
+			pstmt.setInt(28,  visita.getN_ini());
+			pstmt.setInt(29,  visita.getN_fim());
+			pstmt.setInt(30,  visita.getN_tubitos());
+			pstmt.setInt(31,  visita.getQt_larv1());
+			pstmt.setInt(32,  visita.getQt_larv2());
+			pstmt.setInt(33,  visita.getQt_adult1());
+			pstmt.setInt(34,  visita.getQt_adult2());
+			pstmt.setInt(35,  visita.getQt_focostratados());
+			pstmt.setInt(36, visita.getIdvisita());
 			
 			pstmt.execute();
 			}catch (Exception e) {
@@ -148,8 +159,9 @@ public class VisitaDAO extends ConectaBanco {
 				.prepareStatement("Insert into	visita (agente, data_visita, bairro, rua, quadra,lote, numero, cidade, latitude, "
 						+ "longitude,tp_imovel, estagio, tp_larvicida, idnotificacao, "
 						+ "dp1, dp2, dp3, dp4, dp5, dp6, dp7,"
-						+ "qt1, qt2, qt3, qt4, qt5, qt6, qt7, status)"
-						+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");		
+						+ "qt1, qt2, qt3, qt4, qt5, qt6, qt7, status,"
+						+ "n_ini, n_fim, n_tubitos, qt_larv1, qt_larv2, qt_adult1, qt_adult2, qt_focostratados)"
+						+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");		
 		try {						
 			pstm.setString(1, visita.getAgente());			
 			pstm.setTimestamp(2,  new java.sql.Timestamp(visita.getData_visita().getTime())); 
@@ -184,7 +196,15 @@ public class VisitaDAO extends ConectaBanco {
 			pstm.setInt(27, visita.getQt6());
 			pstm.setInt(28, visita.getQt7());
 			pstm.setString(29, visita.getStatus());
-			
+			pstm.setInt(30, visita.getN_ini());			
+			pstm.setInt(31, visita.getN_fim());
+			pstm.setInt(32, visita.getN_tubitos());
+			pstm.setInt(33, visita.getQt_larv1());
+			pstm.setInt(34, visita.getQt_larv2());
+			pstm.setInt(35, visita.getQt_adult1());
+			pstm.setInt(36, visita.getQt_adult2());
+			pstm.setInt(37, visita.getQt_focostratados());	
+
 			pstm.execute();
 		} catch (Exception e) {
 			erro = true;	
@@ -309,7 +329,15 @@ public Visita consultar_editar(Visita visita) throws SQLException {
 				visita.setQt5(rs.getInt("qt5"));
 				visita.setQt6(rs.getInt("qt6"));
 				visita.setQt7(rs.getInt("qt7"));
-				visita.setStatus(rs.getString("status"));
+				visita.setStatus(rs.getString("status"));				
+				visita.setN_ini(rs.getInt("n_ini"));
+				visita.setN_fim(rs.getInt("n_fim"));
+				visita.setN_tubitos(rs.getInt("n_tubitos"));
+				visita.setQt_larv1(rs.getInt("qt_larv1"));
+				visita.setQt_larv2(rs.getInt("qt_larv2"));
+				visita.setQt_adult1(rs.getInt("qt_adult1"));
+				visita.setQt_adult2(rs.getInt("qt_adult2"));
+				visita.setQt_focostratados(rs.getInt("qt_focostratados"));
 			}
 
 		} catch (Exception e) {
