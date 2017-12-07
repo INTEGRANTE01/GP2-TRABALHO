@@ -52,8 +52,6 @@ public class ServletVisita extends HttpServlet {
 	private String tp_imovel;
 	private String[] estagio;	
 	private String[] tp_larvicida;
-	private String[] ac_corretiva;
-	private String local_foco;			
 	private String message;
 	private String concatenaEstagio;
 	private String concatenaLarvicida;
@@ -138,7 +136,6 @@ public class ServletVisita extends HttpServlet {
 		request.setAttribute("listaimovel",populavisita.combotipoimovel);
 		request.setAttribute("listaestagio",populavisita.comboestagio);
 		request.setAttribute("listatratamento",populavisita.combotratamento);
-		request.setAttribute("listacorretiva",populavisita.combocorretiva);
 	}
 
 	protected void adicionaVisita(HttpServletRequest request, HttpServletResponse response)
@@ -154,6 +151,7 @@ public class ServletVisita extends HttpServlet {
 		  }
 		  status = request.getParameter("status");
 		  agente = request.getParameter("agente");
+		  System.out.println(agente);
 		  bairro =  request.getParameter("bairro");
 		   //data_string = request.getParameter("data_visita");
 		  rua =  request.getParameter("rua");
@@ -166,8 +164,6 @@ public class ServletVisita extends HttpServlet {
 		  tp_imovel =  request.getParameter("tp_imovel");
 		  estagio =  request.getParameterValues("estagio");
 		  tp_larvicida =  request.getParameterValues("tp_larvicida");
-		  ac_corretiva =  request.getParameterValues("ac_corretiva");
-		  local_foco =  request.getParameter("local_foco");
 		  
 		  try {			  
 			  for (int i=0;i<7;i++){
@@ -226,14 +222,14 @@ public class ServletVisita extends HttpServlet {
 			visita.setQt7(qt[6]);			
 			notificacao.setIdnotificacao(idnotificacao);
 			
-			for (int i=0;i<estagio.length;i++){
-				
+			
+			for (int i=0;i<estagio.length;i++){				
 				if(i==estagio.length-1)
 					concatenaEstagio+=estagio[i];						
 				else
 					concatenaEstagio+=estagio[i] + ",";
-			}
-			visita.setEstagio(concatenaEstagio);			
+			}			
+			visita.setEstagio(concatenaEstagio);
 
 			for (int i=0;i<tp_larvicida.length;i++){
 				
@@ -242,21 +238,9 @@ public class ServletVisita extends HttpServlet {
 				else
 					concatenaLarvicida+=tp_larvicida[i] + ",";
 			}
-			visita.setTp_larvicida(concatenaLarvicida);
-			
-			for (int i=0;i<ac_corretiva.length;i++){
-				
-				if(i==ac_corretiva.length-1)
-					concatenaAccorretiva+=ac_corretiva[i];						
-				else
-					concatenaAccorretiva+=ac_corretiva[i] + ",";
-			}
-			visita.setAc_corretiva(concatenaAccorretiva);
-			visita.setLocal_foco(local_foco);
+			visita.setTp_larvicida(concatenaLarvicida);			
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Parametro incorreto.");
 		}
 		
 		if (VisitaDAO.inserir(visita) == true)
@@ -266,13 +250,10 @@ public class ServletVisita extends HttpServlet {
 				message = "Registro Gravado com Sucesso";
 		
 		if (status.equalsIgnoreCase("Visitado")){
-
+			notificacao.setData_visita(data_visita);
 			if (VisitaDAO.alterarnotificacao(notificacao) == true) 
 				message = "Erro ao Validadar Notificacao";
 		}
-		
-		//System.out.println(notificacao.getIdnotificacao());			
-
 	}
 	    
 
@@ -295,9 +276,7 @@ public class ServletVisita extends HttpServlet {
 		   tp_imovel =  request.getParameter("tp_imovel");
 	       estagio =  request.getParameterValues("estagio");
 		   tp_larvicida =  request.getParameterValues("tp_larvicida");
-		   ac_corretiva =  request.getParameterValues("ac_corretiva");
-		   local_foco =  request.getParameter("local_foco");
-		  
+	  
 		   try {			  
 				  for (int i=0;i<7;i++){
 					  if ("on".equals(request.getParameter("c"+(i+1))) && request.getParameter("c"+(i+1))!= null)
@@ -352,6 +331,7 @@ public class ServletVisita extends HttpServlet {
 			visita.setQt6(qt[5]);
 			visita.setQt7(qt[6]);	
 			
+			
 			for (int i=0;i<estagio.length;i++){
 				
 				if(i==estagio.length-1)
@@ -359,6 +339,9 @@ public class ServletVisita extends HttpServlet {
 				else
 					concatenaEstagio+=estagio[i] + ",";
 			}
+			
+			if (visita.getEstagio() == null || visita.getEstagio().equals("")) 
+				visita.setEstagio("Não encontrado");	
 			visita.setEstagio(concatenaEstagio);
 			
 			for (int i=0;i<tp_larvicida.length;i++){
@@ -368,21 +351,14 @@ public class ServletVisita extends HttpServlet {
 				else
 					concatenaLarvicida+=tp_larvicida[i] + ",";
 			}
-			visita.setTp_larvicida(concatenaLarvicida);
 			
-			for (int i=0;i<ac_corretiva.length;i++){
+			if (visita.getTp_larvicida() == null || visita.getTp_larvicida().equals("")) 
+				visita.setTp_larvicida("Não encontrado");
+			visita.setTp_larvicida(concatenaLarvicida);
 				
-				if(i==ac_corretiva.length-1)
-					concatenaAccorretiva+=ac_corretiva[i];						
-				else
-					concatenaAccorretiva+=ac_corretiva[i] + ",";
-			}
-			visita.setAc_corretiva(concatenaAccorretiva);
-			visita.setLocal_foco(local_foco);
-
 		} catch (Exception e) {
-			/*e.printStackTrace();
-			System.out.println("Parametro incorreto.");*/
+			e.printStackTrace();
+			System.out.println("Parametro incorreto.");
 		}
 
 		if (VisitaDAO.alterar(visita) == true)

@@ -92,7 +92,6 @@ public class ServletEnviaNotificacao extends HttpServlet {
 		request.setAttribute("listaimovel",populavisita.combotipoimovel);
 		request.setAttribute("listaestagio",populavisita.comboestagio);
 		request.setAttribute("listatratamento",populavisita.combotratamento);
-		request.setAttribute("listacorretiva",populavisita.combocorretiva);
 	}
 	
 	protected void capturaNomeUsuario(HttpServletRequest request,

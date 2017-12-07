@@ -31,6 +31,8 @@
 <link href="css/footable.standalone.min.css" rel="stylesheet">
 <!-- BootstrapDialog -->
 <link href="css/bootstrap-dialog.min.css" rel="stylesheet">
+<!-- Switch -->
+<link href="vendors/bootstrap-switch-master/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
 
 <!--
 <link href="css/footable.core.css" rel="stylesheet">
@@ -64,58 +66,7 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									<form class="form-horizontal form-label-left"
-										data-toggle="validator" method="post" action="buscavisita">
-										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Agente </label> <input type="text" name="txtpesquisa1"
-												class="form-control input-md">
-										</div>
-										<div class="form-group  col-lg-9 col-xs-12">
-											<label>Rua </label> <input type="text" name="txtpesquisa6"
-												class="form-control input-md">
-										</div>
-										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Bairro </label> <select name="txtpesquisa2"
-												title="Selecione uma opção"
-												class="form-control input-md selectpicker"
-												data-live-search="true">
-												<c:forEach var="combobairro" items="${listabairro}">
-													<option>${combobairro.nome_bairro}</option>
-												</c:forEach>
-											</select>
-										</div>
-										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Cidade </label> <select name="txtpesquisa3"
-												title="Selecione uma opção"
-												class="form-control input-md selectpicker"
-												data-live-search="true">
-												<c:forEach var="combocidade" items="${listacidade}">
-													<option>${combocidade.nome_cidade}</option>
-												</c:forEach>
-											</select>
-										</div>
-										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Tipo de Imovel </label> <select name="txtpesquisa4"
-												title="Selecione uma opção"
-												class="form-control input-md selectpicker"
-												data-live-search="true">
-												<c:forEach var="combotipoimovel" items="${listaimovel}">
-													<option>${combotipoimovel.nome_tpimovel}</option>
-												</c:forEach>
-											</select>
-										</div>
-										<div class="form-group  col-lg-3 col-xs-12">
-											<label>Estagio</label> <select name="txtpesquisa5"
-												title="Selecione uma opção"
-												class="form-control input-md selectpicker"
-												data-live-search="true">
-												<c:forEach var="comboestagio" items="${listaestagio}">
-													<option>${comboestagio.nome_estagio}</option>
-												</c:forEach>
-											</select>
-										</div>
-										<div class="x_content">
-											<div class="row">
+									<div class="row">
 												<c:if test="${not empty message}">
 													<div class="col-lg-12 col-xs-12">
 														<c:if test="${fn:contains(message, 'Erro')}">
@@ -130,17 +81,90 @@
 																<p>${message}</p>
 															</div>
 
-														</c:if>
-														<c:if test="${fn:contains(message, 'Sucesso')}">
-															<div class="alert alert-info fade in">
-																<a href="#" class="close" data-dismiss="alert">&times;</a>
-																<p>${message}</p>
-															</div>
-
+															</c:if>
+															<c:if test="${fn:contains(message, 'Sucesso')}">
+																<div class="alert alert-info fade in">
+																	<a href="#" class="close" data-dismiss="alert">&times;</a>
+																	<p>${message}</p>
+																</div>	
 														</c:if>
 													</div>
 												</c:if>
-											</div>
+										</div>	
+									<form class="form-horizontal form-label-left"
+										data-toggle="validator" method="post" action="buscavisita">
+										<div class="form-group  col-lg-3 col-xs-12">
+											<label>Cidade </label> <select name="txtpesquisa3"
+												title="Selecione uma opção"
+												class="form-control input-md selectpicker">
+												<c:forEach var="combocidade" items="${listacidade}">
+													<option>${combocidade.nome_cidade}</option>
+												</c:forEach>
+											</select>
+										</div>
+										<div class="form-group  col-lg-3 col-xs-12">
+											<label>Bairro </label> <select name="txtpesquisa2"
+												title="Selecione uma opção"
+												class="form-control input-md selectpicker"
+												data-live-search="true">
+												<c:forEach var="combobairro" items="${listabairro}">
+													<option>${combobairro.nome_bairro}</option>
+												</c:forEach>
+											</select>
+										</div>	
+										<div class="form-group  col-lg-3 col-xs-12">
+											<label>Rua </label> <input type="text" name="txtpesquisa6"
+												class="form-control input-md">
+										</div>
+										<div class="form-group  col-lg-1 col-xs-12">
+											<label>Quadra </label> <input type="text" name="txtpesquisa7"
+												class="form-control input-md">
+										</div>
+										<div class="form-group  col-lg-1 col-xs-12">
+											<label>Lote </label> <input type="text" name="txtpesquisa8"
+												class="form-control input-md">
+										</div>
+										<div class="form-group  col-lg-1 col-xs-12">
+											<label>Nº </label> <input type="text" name="txtpesquisa9"
+												class="form-control input-md">
+										</div>								
+										
+										<div class="form-group  col-lg-3 col-xs-12">
+											<label>Tipo de Imovel </label> <select name="txtpesquisa4"
+												title="Selecione uma opção"
+												class="form-control input-md selectpicker">
+												<c:forEach var="combotipoimovel" items="${listaimovel}">
+													<option>${combotipoimovel.nome_tpimovel}</option>
+												</c:forEach>
+											</select>
+										</div>
+										<div class="form-group  col-lg-3 col-xs-12">
+											<label>Estagio</label> <select name="txtpesquisa5"
+												title="Selecione uma opção"
+												class="form-control input-md selectpicker">
+												<option>Não encontrado</option>												
+												<c:forEach var="comboestagio" items="${listaestagio}">
+													<option>${comboestagio.nome_estagio}</option>
+												</c:forEach>
+											</select>
+										</div>										
+										<div class="form-group  col-lg-3 col-xs-12">
+											<label>Situação do Imovel </label>
+											<select name="txtpesquisa10"
+												title="Selecione uma opção"
+												class="form-control input-md selectpicker">												
+												<option value="Visitado">Visitado</option>
+												<option value="Fechado">Fechado</option>												
+												<option value="Recusado">Recusado</option>
+																								
+											</select>
+										</div>
+										<div class="form-group  col-lg-3 col-xs-12">
+											<label>Agente </label> <input type="text" name="txtpesquisa1"
+												class="form-control input-md">
+										</div>										
+										<div class="x_content">
+																																																	
 											<p class="text-muted font-13 m-b-30">
 												<a href="visita">
 													<button type="button" class="btn btn-success"
@@ -160,7 +184,7 @@
 													data-placement="bottom" title="Buscar">
 													<i class="fa fa-search"></i>
 												</button>
-											</p>
+											</p>											
 											<div>
 												<div class="ln_solid"></div>
 												<table
@@ -170,16 +194,15 @@
 														<tr>
 																													
 															<th data-breakpoints="xs">Data da Visita</th>
+															<th data-breakpoints="xs">Situação</th>
 															<th>Cidade</th>
 															<th data-breakpoints="xs">Bairro</th>
 															<th data-breakpoints="all">Rua</th>
 															<th data-breakpoints="all">Quadra</th>
 															<th data-breakpoints="all">Lote</th>															
-															<th data-breakpoints="all">Ação Corretiva</th>
 															<th data-breakpoints="all">Tipo de Imovel</th>
-															<th data-breakpoints="all">Estagio</th>	
-															<th data-breakpoints="all">Agente</th>
-															
+															<th data-breakpoints="all">Estagio</th>
+															<th data-breakpoints="all">Agente</th>															
 															<th>Ações</th>
 														</tr>
 													</thead>
@@ -190,14 +213,14 @@
 																<td><fmt:formatDate value="${visita.data_visita}"
 																		type="both" pattern="dd/MM/yyyy HH:mm"
 																		dateStyle="full" /></td>
+																<td>${visita.status}</td>
 																<td>${visita.cidade}</td>
 																<td>${visita.bairro}</td>
 																<td>${visita.rua}</td>
 																<td>${visita.quadra}</td>
-																<td>${visita.lote}</td>																
-																<td>${visita.ac_corretiva}</td>
+																<td>${visita.lote}</td>
 																<td>${visita.tp_imovel}</td>
-																<td>${visita.estagio}</td>
+																<td>${visita.estagio}</td>																																																
 																<td>${visita.agente}</td>																	
 
 																<td><div class="btn-group">
@@ -248,6 +271,8 @@
 	<script src="js/footable.js"></script>
 	<!-- Bootstrap Dialog -->
 	<script src="js/bootstrap-dialog.min.js"></script>
+	<!-- Slider -->
+	<script src="vendors/bootstrap-switch-master/dist/js/bootstrap-switch.min.js"></script>
 
 	<script type="text/javascript">
 	// Instanciar Footable
@@ -257,9 +282,9 @@
 				"paging": {
 					"enabled": true,											
 					"position": "right",
-					"limit": 3,
+					"limit": 4,
 					"size": 8,
-					"countFormat": "Registros {PF} a {PL} de {TR} resultados?"
+					"countFormat": "Registros {PF} a {PL} de {TR} resultados"
 				}
 			});
 		});
@@ -280,7 +305,6 @@
        	});
     }
     	     
-   	
     </script>
 	<c:import url="rodape.jsp" />
 </body>

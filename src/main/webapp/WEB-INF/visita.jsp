@@ -61,7 +61,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Visita</h2>
+                      <h2>Visita <small>Dados do Imovel</small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -87,11 +87,9 @@
 	                                        <input  type="hidden" readonly="readonly" type="text" id="idnotificacao" name="idnotificacao" value="${visita.idnotificacao}" class="form-control input-md">
 	                                    </div>
 	                              </div>                                 
-                               <!--Situalção Input-->                                										
+                               <!--Situação Input-->                                										
 									<div class="form-group">
-									<label class="control-label col-md-3" for="bairro">Situação
-										<span class="required">*</span>
-									</label>
+									<label class="control-label col-md-3"></label>
 									<div class="col-lg-3 col-xs-12">																		
 					                      <p>					                        
 					                       <c:if test = "${visita.status==null}">
@@ -136,8 +134,6 @@
                                       	<div class="help-block with-errors"></div>
                                       </div>
                                     </div>
-                                    
-                                      
                                     
                         <!--Rua Input-->
                                     <div class="form-group">
@@ -237,7 +233,14 @@
                             </select>
                             <div class="help-block with-errors"></div>
                             </div>
-                          </div>
+                          </div>                          
+                          <div class="x_title">
+		                      <h2>Dados da Coleta</h2>
+		                      <ul class="nav navbar-right panel_toolbox">		                       		                        
+		                      </ul>
+		                      <div class="clearfix"></div>		                      
+		                   </div>
+		                   <br>		                   
                            <!--Switcher
                    				 	 <div class="form-group">
                      				 	 <label class="control-label col-md-3"> Foco de Infestação                           					
@@ -247,12 +250,13 @@
                         				  </div>
                        				 </div>
                          		     <div class="ln_solid"></div>-->                                    
+                        
                         <!--Estagio select-->
                           <div class="form-group">
                           <label class="control-label col-md-3" for="estagio">Estagio do Ciclo </label>
                             <div class="col-lg-3 col-xs-12">
                             <select multiple data-size="5" data-actions-box="false" id="estagio" name="estagio" title="Selecione item(s)" class="form-control input-md selectpicker">
-                              <c:if test = "${not empty visita.estagio}">											
+                              <c:if test = "${visita.estagio!='Não encontrado'}">											
                               	<option selected="selected">${visita.estagio}</option>
     		    			  </c:if>	
                               <c:forEach var="comboestagio" items="${listaestagio}">      
@@ -260,7 +264,25 @@
 							  </c:forEach>							  
                             </select>
                             </div>
-                          </div>	
+                          </div>
+                          <!--Coleta-->
+                          <div class="form-group">                          
+                          <label class="control-label col-md-3" for="quant_larvicida">Coleta de Amostras</label>
+                            <div class="col-lg-1 col-xs-12">
+                             <input type="tel" id="num_ini" name="num_ini" value="" class="form-control input-md">                            
+                             <div class="help">Nº Inicial</div>
+                            </div>
+                            <label class="control-label col-md-1"></label>
+                             <div class="col-lg-1 col-xs-12">                              
+                             <input type="tel" id="num_fim" name="num_fim" value="" class="form-control input-md">
+                             <div class="help">Nº Final</div>                             
+                            </div>
+                            <label class="control-label col-md-1"></label>
+                             <div class="col-lg-1 col-xs-12">                              
+                             <input type="tel" id="tubitos" name=""tubitos"" value="" class="form-control input-md">
+                             <div class="help">Quantidade de Tubitos</div>                             
+                            </div>
+                          </div>
                           <!--Tratamento select-->
                           <div class="form-group">
                           <label class="control-label col-md-3" for="tp_larvicida">Tratamento Local </label>
@@ -270,30 +292,44 @@
                                 <option selected="selected">${visita.tp_larvicida}</option>
                               </c:if>
                               <c:forEach var="combotratamento" items="${listatratamento}">      
-						     	<option>${combotratamento.nome_tratamento}</option>      
+						     	<option data-subtext="${combotratamento.tp_tratamento}">${combotratamento.nome_tratamento}</option>     
 							  </c:forEach>
                             </select>
                             </div>
                           </div>
-                          <!--Ação Recomendada select-->
+                             <!--Quantidade Larvicida select-->
                           <div class="form-group">
-                          <label class="control-label col-md-3" for="ac_corretiva">Ação Corretiva Recomendada </label>
-                            <div class="col-lg-3 col-xs-12">
-                            <select multiple data-size="5" id="ac_corretiva" name="ac_corretiva" title="Selecione item(s)" class="form-control input-md selectpicker">            
-                              <c:if test = "${not empty visita.ac_corretiva}">											
-                                <option selected="selected">${visita.ac_corretiva}</option>
-                              </c:if>
-                               <c:forEach var="combocorretiva" items="${listacorretiva}">      
-						     	<option>${combocorretiva.nome_ac_corretiva}</option>      
-							  </c:forEach>
-                            </select>
+                          <label class="control-label col-md-3" for="quant_larvicida">Quantidade Usada (g)</label>
+                            <div class="col-lg-1 col-xs-12">
+                             <input type="tel" id="larvicida1" name="larvicida1" value="" class="form-control input-md">
+                             <div class="help">Larvicida 1</div>
+                             </div>
+                             <label class="control-label col-md-1"></label>                                                    
+                             <div class="col-lg-1 col-xs-12">
+                             <input type="tel" id="larvicida2" name="larvicida2" value="" class="form-control input-md">
+                             <div class="help">Larvicida 2</div>                             
                             </div>
                           </div>
+                          <!--Quantidade Adulticida select-->
+                          <div class="form-group">                          
+                          <label class="control-label col-md-3" for="quant_larvicida">Quantidade Usada (carga)</label>
+                            <div class="col-lg-1 col-xs-12">
+                             <input type="tel" id="Adulticida1" name="Adulticida1" value="" class="form-control input-md">                            
+                             <div class="help">Adulticida 1</div>
+                            </div>
+                            <label class="control-label col-md-1"></label>
+                             <div class="col-lg-1 col-xs-12">                              
+                             <input type="tel" id="Adulticida2" name="Adulticida2" value="" class="form-control input-md">
+                             <div class="help">Adulticida 2</div>                             
+                            </div>
+                          </div>                     
                           
 			  			 <!-- Depositos -->
   							<div class="form-group">
-                               <label class="control-label col-md-3">Depositos(s) <span class="required">*</span></label>
+                               <label class="control-label col-md-3">Depositos(s) </label>
                             </div>
+                            <!--item 1--> 
+                            
                             <div class="form-group">
                                <label class="control-label col-md-3"></label>                            
                                <div class="col-lg-2 col-xs-6">
@@ -311,7 +347,7 @@
                                  	<div class="help">Quantidade</div>
                                </div>
                              </div>
-
+							<!--item 2-->	
                              <div class="form-group">
                               <label class="control-label col-md-3"></label>
 	                              	 <div class="col-lg-2 col-xs-6">
@@ -329,7 +365,7 @@
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div>
-                             
+                             	<!--item 3-->
                               <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-6">
@@ -346,7 +382,7 @@
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div>  
-                             
+                             	<!--item 4-->
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-6">
@@ -363,7 +399,7 @@
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
-                             
+                             	<!--item 5-->
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-6">
@@ -380,7 +416,7 @@
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
-                             
+                             	<!--item 6-->
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-6">
@@ -397,7 +433,7 @@
                                  	<div class="help">Quantidade</div>
                                </div>                                                                                                
                              </div> 
-                             
+                             	<!--item 7-->
                                <div class="form-group">
                               <label class="control-label col-md-3"></label>
                               	 <div class="col-lg-2 col-xs-6">
@@ -415,19 +451,12 @@
                                </div>                                                                                                
                              </div> 
 
-  						  
+  						  <!--
   						  <p><input type="checkbox" name="check-categoria" onclick="document.getElementById('categoria').disabled = !this.checked;"> Categoria:</p>
-  						  <p><input type="text" name="categoria" id="categoria" size="40" disabled="disabled"> </p>  						  
-                          
-                                
-                          
-                          <!--Local input-->
-                                    <div class="form-group">
-                                      <label class="control-label col-md-3" for="local_foco">Local do Foco </label>
-                                      <div class="col-lg-6 col-xs-12">
-                                        <input type="text" id="local_foco" name="local_foco" value="${visita.local_foco}" placeholder="ex: caixa d'agua,vaso sanitário" class="form-control input-md">
-                                      </div>
-                                    </div>				 
+  						  <p><input type="text" name="categoria" id="categoria" size="40" disabled="disabled"> </p>
+  						   -->
+  						    						  
+                              
                         <!--Botões-->    
                             <div class="ln_solid"></div>
                             <div class="form-group">

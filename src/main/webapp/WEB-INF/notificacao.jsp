@@ -81,10 +81,17 @@
 												da Denúncia <span class="required">*</span>
 											</label>
 											<div class="col-lg-2 col-xs-12">
-												<input type="text" id="data_notificacao" name="data_notificacao"
+												<c:if test = "${notificacao.data_notificacao!=null}">
+                                      				<input type="text"id="data_notificacao" name="data_notificacao" readonly="readonly" value="<fmt:formatDate value="${notificacao.data_notificacao}" pattern="dd/MM/yyyy HH:mm"/>" required="required" class="form-control input-md">                                        
+                                      			</c:if>
+                                      			<c:if test = "${notificacao.data_notificacao==null}">
+                                    				<input type="text" id="data_notificacao" name="data_notificacao" readonly="readonly" value="${data_notificacao}"  required="required" class="form-control input-md">
+                                    			</c:if>
+												<!-- <input type="text" id="data_notificacao" name="data_notificacao"
 													value="<fmt:formatDate value="${notificacao.data_notificacao}" pattern="dd/MM/yyyy HH:mm:ss"/>"
 													required="required" class="form-control input-md">
-												<div class="help-block with-errors"></div>
+													<div class="help-block with-errors"></div>
+												 -->
 											</div>
 										</div>									
 										<!--Rua Input-->
@@ -121,8 +128,27 @@
 													<div class="help-block with-errors"></div>
 											</div>
 										</div>
-										<!--Bairro Input-->
-										
+											<!--Cidade select-->
+										<div class="form-group">
+											<label class="control-label col-md-3" for="cidade">Cidade
+												<span class="required">*</span>
+											</label>
+											<div class="col-lg-3 col-xs-12">
+												<select required id="cidade" name="cidade"
+													title="Selecione item"
+													class="form-control input-md selectpicker"
+													data-live-search="true">
+													 <c:if test = "${not empty notificacao.cidade}">											
+                                					 	<option selected="selected">${notificacao.cidade}</option>
+                              						 </c:if>										
+													 <c:forEach var="combocidade" items="${listacidade}">      
+						      							<option>${combocidade.nome_cidade}</option>      
+													 </c:forEach> 
+												</select>
+												<div class="help-block with-errors"></div>
+											</div>
+										</div> 
+										<!--Bairro Input-->										
 											<div class="form-group">
 											<label class="control-label col-md-3" for="bairro">Bairro
 												<span class="required">*</span>
@@ -142,26 +168,7 @@
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>																				
-										<!--Cidade select-->
-										<div class="form-group">
-											<label class="control-label col-md-3" for="cidade">Cidade
-												<span class="required">*</span>
-											</label>
-											<div class="col-lg-3 col-xs-12">
-												<select required id="cidade" name="cidade"
-													title="Selecione item"
-													class="form-control input-md selectpicker"
-													data-live-search="true">
-													 <c:if test = "${not empty notificacao.cidade}">											
-                                					 	<option selected="selected">${notificacao.cidade}</option>
-                              						 </c:if>										
-													 <c:forEach var="combocidade" items="${listacidade}">      
-						      							<option>${combocidade.nome_cidade}</option>      
-													 </c:forEach> 
-												</select>
-												<div class="help-block with-errors"></div>
-											</div>
-										</div>                    			
+									                   			
 										<!--Tipo_Imovel select-->
 										<div class="form-group">
 											<label class="control-label col-md-3" for="imovel">Tipo
@@ -186,10 +193,10 @@
 
 										<div class="form-group">
 											<label class="control-label col-md-3" for="notificacao">Descrição
-												da Notificação <span class="required">*</span>
+												da Notificação
 											</label>
 											<div class="col-lg-6 col-xs-12">
-												<textarea id="desc_notificacao" name="desc_notificacao" required="required"
+												<textarea id="desc_notificacao" name="desc_notificacao"
 													class="form-control">${notificacao.desc_notificacao}</textarea>
 												<div class="help-block with-errors"></div>
 											</div>
@@ -228,7 +235,7 @@
      <!-- bootstrap-VALIDATOR -->
     <script src="js/validator.min.js"></script>
     <script>	 
-        $(function() {
+       /* $(function() {
         $('input[name="data_notificacao"]').daterangepicker({            
 	    singleDatePicker: true,
             singleDatePicker: true,
@@ -240,7 +247,7 @@
                 format: 'DD/MM/YYYY HH:mm'
             }
         });
-    });
+    });*/
     </script>
 	<c:import url="rodape.jsp" />
 </body>

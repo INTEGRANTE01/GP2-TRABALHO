@@ -4,8 +4,6 @@ import java.util.List;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.AcaoCorretiva;
-import model.AcaoCorretivaDAO;
 import model.Bairro;
 import model.BairroDAO;
 import model.Cidade;
@@ -24,7 +22,6 @@ public class PopulaVisita {
 	List<TipoImovel> combotipoimovel = new ArrayList<TipoImovel>();
 	List<Estagio> comboestagio = new ArrayList<Estagio>();
 	List<Tratamento> combotratamento = new ArrayList<Tratamento>();
-	List<AcaoCorretiva> combocorretiva = new ArrayList<AcaoCorretiva>();	
 	
 public void  popularCombosVisita() {	
 		
@@ -33,7 +30,6 @@ public void  popularCombosVisita() {
 		TipoImovelDAO imovelDAO = new TipoImovelDAO();
 		EstagioDAO estagioDAO = new EstagioDAO();
 		TratamentoDAO tratamentoDAO = new TratamentoDAO();
-		AcaoCorretivaDAO acaocorretivaDAO = new AcaoCorretivaDAO();
 		
 		
 		try {
@@ -42,7 +38,6 @@ public void  popularCombosVisita() {
 			combotipoimovel = imovelDAO.populaComboTipoImovel();
 			comboestagio = estagioDAO.populaComboEstagio();
 			combotratamento = tratamentoDAO.populaComboTratamento();
-			combocorretiva = acaocorretivaDAO.populaComboCorretiva();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

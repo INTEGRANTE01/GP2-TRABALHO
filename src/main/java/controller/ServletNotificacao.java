@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class ServletNotificacao extends HttpServlet {
 	private NotificacaoDAO notificacaoDAO = new NotificacaoDAO();
 	private Notificacao notificacao = new Notificacao();
 	private PopulaNotificacao populanotificacao = new PopulaNotificacao();
+	private CapturaDataHora capturadatahora = new CapturaDataHora();
 	private String destino = "";
 	private int idnotificacao;
 	private String data_string;
@@ -42,7 +44,9 @@ public class ServletNotificacao extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		request.setAttribute("data_notificacao", capturadatahora.getDateTime());
+		
 		try {
 			popularcombos(request,response);
 		} catch (SQLException e) {
@@ -100,7 +104,7 @@ public class ServletNotificacao extends HttpServlet {
 	
 	protected void adicionaNotificacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		data_string = request.getParameter("data_notificacao");
+		//data_string = request.getParameter("data_notificacao");
 		bairro = request.getParameter("bairro");
 		rua = request.getParameter("rua");
 		quadra = request.getParameter("quadra");
@@ -112,13 +116,18 @@ public class ServletNotificacao extends HttpServlet {
 
 		try {
 
-			try {
+			/*try {
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 				data_notificacao = (Date) formato.parse(data_string);
 				notificacao.setData_notificacao(data_notificacao);
 			} catch (Exception e) {
 				System.out.println("Erro ao formatar data.");
-			}
+			}*/
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			Date date = new Date();
+			data_string = dateFormat.format(date);		
+			data_notificacao = (Date) dateFormat.parse(data_string);
+			notificacao.setData_notificacao(data_notificacao);
 			notificacao.setBairro(bairro);
 			notificacao.setRua(rua);
 			notificacao.setQuadra(quadra);
@@ -129,6 +138,7 @@ public class ServletNotificacao extends HttpServlet {
 			notificacao.setDesc_notificacao(desc_notificacao);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Parametro incorreto.");
 		}
 		if (notificacaoDAO.inserir(notificacao) == true)
@@ -154,13 +164,18 @@ public class ServletNotificacao extends HttpServlet {
 
 		try {
 
-			try {
+			/*try {
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 				data_notificacao = (Date) formato.parse(data_string);
 				notificacao.setData_notificacao(data_notificacao);
 			} catch (Exception e) {
 				System.out.println("Erro ao formatar data.");
-			}
+			}*/
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			Date date = new Date();
+			data_string = dateFormat.format(date);		
+			data_notificacao = (Date) dateFormat.parse(data_string);
+			notificacao.setData_notificacao(data_notificacao);
 			notificacao.setIdnotificacao(idnotificacao);
 			notificacao.setBairro(bairro);
 			notificacao.setRua(rua);
@@ -172,6 +187,7 @@ public class ServletNotificacao extends HttpServlet {
 			notificacao.setDesc_notificacao(desc_notificacao);			
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Parametro incorreto.");
 		}
 

@@ -22,8 +22,6 @@ public class Visita {
 	private String tp_imovel;
 	private String estagio;
 	private String tp_larvicida;
-	private String ac_corretiva;
-	private String local_foco;
 	private int dp1;	
 	private int dp2;
 	private int dp3;	
@@ -135,18 +133,6 @@ public class Visita {
 	public void setTp_larvicida(String tp_larvicida) {
 		this.tp_larvicida = tp_larvicida;
 	}
-	public String getAc_corretiva() {
-		return ac_corretiva;
-	}
-	public void setAc_corretiva(String ac_corretiva) {
-		this.ac_corretiva = ac_corretiva;
-	}
-	public String getLocal_foco() {
-		return local_foco;
-	}
-	public void setLocal_foco(String local_foco) {
-		this.local_foco = local_foco;
-	}
 	public int getDp1() {
 		return dp1;
 	}
@@ -243,12 +229,9 @@ public class Visita {
 				+ agente + ", data_visita=" + data_visita + ", bairro=" + bairro + ", rua=" + rua + ", quadra=" + quadra
 				+ ", lote=" + lote + ", numero=" + numero + ", cidade=" + cidade + ", latitude=" + latitude
 				+ ", longitude=" + longitude + ", tp_imovel=" + tp_imovel + ", estagio=" + estagio + ", tp_larvicida="
-				+ tp_larvicida + ", ac_corretiva=" + ac_corretiva + ", local_foco=" + local_foco + ", dp1=" + dp1
-				+ ", dp2=" + dp2 + ", dp3=" + dp3 + ", dp4=" + dp4 + ", dp5=" + dp5 + ", dp6=" + dp6 + ", dp7=" + dp7
-				+ ", qt1=" + qt1 + ", qt2=" + qt2 + ", qt3=" + qt3 + ", qt4=" + qt4 + ", qt5=" + qt5 + ", qt6=" + qt6
-				+ ", qt7=" + qt7 + ", verifica_foco=" + verifica_foco + "]";
+				+ tp_larvicida + ", dp1=" + dp1 + ", dp2=" + dp2 + ", dp3=" + dp3 + ", dp4=" + dp4 + ", dp5=" + dp5
+				+ ", dp6=" + dp6 + ", dp7=" + dp7 + ", qt1=" + qt1 + ", qt2=" + qt2 + ", qt3=" + qt3 + ", qt4=" + qt4
+				+ ", qt5=" + qt5 + ", qt6=" + qt6 + ", qt7=" + qt7 + ", verifica_foco=" + verifica_foco + "]";
 	}
 	
-	
-		
 }

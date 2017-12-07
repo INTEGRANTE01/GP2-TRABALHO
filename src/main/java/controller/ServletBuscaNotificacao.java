@@ -103,8 +103,8 @@ public class ServletBuscaNotificacao extends HttpServlet {
 			e.printStackTrace();
 		}
 			
-		System.out.println(textopesquisa4);
-		System.out.println(verificado);
+	//	System.out.println(textopesquisa4);
+	//	System.out.println(verificado);
 
 	//	if ((textopesquisa1 != "" && textopesquisa1 != null) || (textopesquisa2 != "" && textopesquisa2 != null)
 	//			|| (textopesquisa3 != "" && textopesquisa3 != null)

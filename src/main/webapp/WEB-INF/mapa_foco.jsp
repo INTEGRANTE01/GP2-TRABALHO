@@ -84,34 +84,46 @@ html, body {
 											<label>Cidade </label> <select name="txtpesquisa2"
 												title="Selecione uma opção"
 												class="form-control input-md selectpicker"
-												data-live-search="true">
+												>
 												<c:forEach var="combocidade" items="${listacidade}">
 													<option>${combocidade.nome_cidade}</option>
 												</c:forEach>
 											</select>
 										</div>
-										<div class="form-group  col-lg-3 col-xs-12">
+										<div class="form-group  col-lg-2 col-xs-12">
 											<label>Tipo de Imovel </label> <select name="txtpesquisa3"
 												title="Selecione uma opção"
 												class="form-control input-md selectpicker"
-												data-live-search="true">
+												>
 												<c:forEach var="combotipoimovel" items="${listaimovel}">
 													<option>${combotipoimovel.nome_tpimovel}</option>
 												</c:forEach>
 											</select>
 										</div>
-										<div class="form-group  col-lg-3 col-xs-12">
+										<div class="form-group  col-lg-2 col-xs-12">
 											<label>Estagio</label> <select name="txtpesquisa4"
 												title="Selecione uma opção"
 												class="form-control input-md selectpicker"
-												data-live-search="true">
+												>
 												<c:forEach var="comboestagio" items="${listaestagio}">
 													<option>${comboestagio.nome_estagio}</option>
 												</c:forEach>
 											</select>
 										</div>
+										
+										<div class="form-group  col-lg-2 col-xs-12">
+											<label>Situação do Imovel </label>
+											<select name="txtpesquisa5"
+												title="Selecione uma opção"
+												class="form-control input-md selectpicker">												
+												<option value="Visitado">Visitado</option>
+												<option value="Fechado">Fechado</option>												
+												<option value="Recusado">Recusado</option>
+																								
+											</select>
+										</div>
 																										
-										<div class="form-group  col-lg-3 col-xs-12">										
+										<div class="form-group  col-lg-2 col-xs-12">										
 										<button type="submit" class="btn btn-info"
 											data-container="body" data-toggle="popover"
 											data-placement="bottom" title="Visualizar no Mapa">
@@ -192,7 +204,9 @@ html, body {
 												String textopesquisa2 = request.getParameter("txtpesquisa2");
 												String textopesquisa3 = request.getParameter("txtpesquisa3");
 												String textopesquisa4 = request.getParameter("txtpesquisa4");
-												listavisita = visitaDAO.listarmapa(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4);
+												String textopesquisa5 = request.getParameter("txtpesquisa5");
+												listavisita = visitaDAO.listarmapa(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4, textopesquisa5);
+												
 										%>
 												var locations = [ 
 												<%

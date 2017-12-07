@@ -110,11 +110,11 @@ public class TratamentoDAO extends ConectaBanco {
 		return tratamento;
 	}
 	
-public List<Tratamento> populaComboTratamento() throws SQLException {
+	public List<Tratamento> populaComboTratamento() throws SQLException {
 		
 		List<Tratamento> comboTratamento = new ArrayList<Tratamento>();
 		Connection conexao = getConexao();
-		PreparedStatement pstm = conexao.prepareStatement("Select nome_tratamento from tratamento order by nome_tratamento asc");
+		PreparedStatement pstm = conexao.prepareStatement("Select nome_tratamento, tp_tratamento from tratamento order by nome_tratamento asc");
 		try {
 			
 			ResultSet rs = pstm.executeQuery();
@@ -122,6 +122,7 @@ public List<Tratamento> populaComboTratamento() throws SQLException {
 				Tratamento tratamento  = new Tratamento();
 				tratamento.setNome_tratamento(rs.getString("nome_tratamento"));
 				comboTratamento.add(tratamento);
+				tratamento.setTp_tratamento(rs.getString("tp_tratamento"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

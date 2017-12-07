@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.VisitaDAO;
-import model.AcaoCorretiva;
-import model.AcaoCorretivaDAO;
 import model.Bairro;
 import model.BairroDAO;
 import model.Cidade;
@@ -47,6 +45,11 @@ public class ServletBuscaVisita extends HttpServlet {
 	private String textopesquisa4;
 	private String textopesquisa5; 
 	private String textopesquisa6;
+	private String textopesquisa7; 
+	private String textopesquisa8;
+	private String textopesquisa9; 
+	private String textopesquisa10;
+
 	private Date data_formatada;
 
 	
@@ -96,20 +99,25 @@ public class ServletBuscaVisita extends HttpServlet {
 		request.setAttribute("listaimovel",populavisita.combotipoimovel);
 		request.setAttribute("listaestagio",populavisita.comboestagio);
 		request.setAttribute("listatratamento",populavisita.combotratamento);
-		request.setAttribute("listacorretiva",populavisita.combocorretiva);
 	}
 	protected void buscarvisita(HttpServletRequest request,
 		    HttpServletResponse response) throws ServletException, IOException, SQLException {
 
+			List<Visita> listavisita = new ArrayList<Visita>();
+			
 			textopesquisa1 = request.getParameter("txtpesquisa1");
 			textopesquisa2 = request.getParameter("txtpesquisa2");		
 			textopesquisa3 = request.getParameter("txtpesquisa3");
 			textopesquisa4 = request.getParameter("txtpesquisa4");	
 			textopesquisa5 = request.getParameter("txtpesquisa5");
-			textopesquisa6 = request.getParameter("txtpesquisa6");
-
-			List<Visita> listavisita = new ArrayList<Visita>();
+			textopesquisa6 = request.getParameter("txtpesquisa6");			
+			textopesquisa7 = request.getParameter("txtpesquisa7");
+			textopesquisa8 = request.getParameter("txtpesquisa8");
+			textopesquisa9 = request.getParameter("txtpesquisa9");
+			textopesquisa10 = request.getParameter("txtpesquisa10");
+		
 			
+
 			
 	      //  if((textopesquisa1!="" && textopesquisa1!=null)
 	      //  		|| (textopesquisa2!="" && textopesquisa2!=null)
@@ -118,7 +126,9 @@ public class ServletBuscaVisita extends HttpServlet {
 	      //  		|| (textopesquisa5!="" && textopesquisa5!=null)){
 
 				    		
-				listavisita = visitaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4, textopesquisa5, textopesquisa6);				
+				listavisita = visitaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4,
+							  textopesquisa5, textopesquisa6, textopesquisa7, textopesquisa8, textopesquisa9,
+							  textopesquisa10);				
 		   //  }else{
 		   // 	listavisita = visitaDAO.listar();	
 		   // }	 
@@ -142,8 +152,10 @@ public class ServletBuscaVisita extends HttpServlet {
 				visita.setIdvisita(idvisita);			
 				request.setAttribute("visita", visita);
 				visitaDAO.excluir(visita);
-				List<Visita> listavisita = new ArrayList<Visita>();    		
-	        	listavisita = visitaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4, textopesquisa5, textopesquisa6);
+				List<Visita> listavisita = new ArrayList<Visita>();
+				listavisita = visitaDAO.listar(textopesquisa1, textopesquisa2, textopesquisa3, textopesquisa4,
+						  textopesquisa5, textopesquisa6, textopesquisa7, textopesquisa8, textopesquisa9,
+						  textopesquisa10);
 				request.setAttribute("listavisita", listavisita);				
 				destino = "WEB-INF/c_visita.jsp";	
 		}

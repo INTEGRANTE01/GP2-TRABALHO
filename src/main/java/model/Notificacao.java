@@ -6,6 +6,7 @@ public class Notificacao {
 	
 	private int idnotificacao;
 	private Date data_notificacao;
+	private Date data_visita;
 	private String bairro;
 	private String rua;
 	private String quadra;
@@ -27,6 +28,12 @@ public class Notificacao {
 	}
 	public void setData_notificacao(Date data_notificacao) {
 		this.data_notificacao = data_notificacao;
+	}
+	public Date getData_visita() {
+		return data_visita;
+	}
+	public void setData_visita(Date data_visita) {
+		this.data_visita = data_visita;
 	}
 	public String getBairro() {
 		return bairro;
@@ -85,10 +92,12 @@ public class Notificacao {
 	
 	@Override
 	public String toString() {
-		return "Notificacao [idnotificacao=" + idnotificacao + ", data_notificacao=" + data_notificacao + ", bairro="
-				+ bairro + ", rua=" + rua + ", quadra=" + quadra + ", lote=" + lote + ", numero=" + numero + ", cidade="
-				+ cidade + ", tp_imovel=" + tp_imovel + ", desc_notificacao=" + desc_notificacao + ", verifcacao="
-				+ verifcacao + "]";
+		return "Notificacao [idnotificacao=" + idnotificacao + ", data_notificacao=" + data_notificacao
+				+ ", data_visita=" + data_visita + ", bairro=" + bairro + ", rua=" + rua + ", quadra=" + quadra
+				+ ", lote=" + lote + ", numero=" + numero + ", cidade=" + cidade + ", tp_imovel=" + tp_imovel
+				+ ", desc_notificacao=" + desc_notificacao + ", verifcacao=" + verifcacao + "]";
 	}
+	
+	
 	
 }

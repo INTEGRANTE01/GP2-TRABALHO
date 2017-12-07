@@ -104,6 +104,7 @@ public class NotificacaoDAO extends ConectaBanco {
 			pstm.setString(9, notificacao.getDesc_notificacao());			
 			pstm.execute();
 		} catch (Exception e) {
+			e.printStackTrace();
 			erro = true;	
 		}finally{
 			pstm.close();
@@ -127,6 +128,7 @@ public class NotificacaoDAO extends ConectaBanco {
 				Notificacao notificacao = new Notificacao();
 				notificacao.setIdnotificacao(rs.getInt("idnotificacao"));
 				notificacao.setData_notificacao(rs.getTimestamp("data_notificacao"));
+				notificacao.setData_visita(rs.getTimestamp("data_visita"));
 				notificacao.setBairro(rs.getString("bairro"));
 				notificacao.setRua(rs.getString("rua"));
 				notificacao.setQuadra(rs.getString("quadra"));

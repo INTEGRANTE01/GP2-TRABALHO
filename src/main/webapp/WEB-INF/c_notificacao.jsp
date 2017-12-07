@@ -67,6 +67,31 @@
 								<div class="x_content">
 									<form class="form-horizontal form-label-left"
 										data-toggle="validator" method="post" action="buscanotificacao">										
+										<div class="row">
+												<c:if test="${not empty message}">
+													<div class="col-lg-12 col-xs-12">
+														<c:if test="${fn:contains(message, 'Erro')}">
+															<div class="alert alert-danger fade in">
+																<a href="#" class="close" data-dismiss="alert">&times;</a>
+																<p>${message}</p>
+															</div>
+														</c:if>
+														<c:if test="${fn:contains(message, 'pesquisa')}">
+															<div class="alert alert-warning fade in">
+																<a href="#" class="close" data-dismiss="alert">&times;</a>
+																<p>${message}</p>
+															</div>
+
+														</c:if>
+														<c:if test="${fn:contains(message, 'Sucesso')}">
+															<div class="alert alert-info fade in">
+																<a href="#" class="close" data-dismiss="alert">&times;</a>
+																<p>${message}</p>
+															</div>
+														</c:if>
+													</div>
+												</c:if>
+											</div>
 										<div class="form-group  col-lg-4 col-xs-12">
 											<label>Bairro </label> <select name="txtpesquisa1"
 												title="Selecione uma opção"
@@ -110,31 +135,7 @@
 																																	
 										 -->																				
 										<div class="x_content">
-											<div class="row">
-												<c:if test="${not empty message}">
-													<div class="col-lg-12 col-xs-12">
-														<c:if test="${fn:contains(message, 'Erro')}">
-															<div class="alert alert-danger fade in">
-																<a href="#" class="close" data-dismiss="alert">&times;</a>
-																<p>${message}</p>
-															</div>
-														</c:if>
-														<c:if test="${fn:contains(message, 'pesquisa')}">
-															<div class="alert alert-warning fade in">
-																<a href="#" class="close" data-dismiss="alert">&times;</a>
-																<p>${message}</p>
-															</div>
-
-														</c:if>
-														<c:if test="${fn:contains(message, 'Sucesso')}">
-															<div class="alert alert-info fade in">
-																<a href="#" class="close" data-dismiss="alert">&times;</a>
-																<p>${message}</p>
-															</div>
-														</c:if>
-													</div>
-												</c:if>
-											</div>
+											
 											<div class="pull-right">
 												<input id="txtpesquisa4" name="txtpesquisa4" type="checkbox" checked="checked" data-size="normal"
 												data-on-text="Sim" data-off-text="Não">
@@ -142,13 +143,16 @@
 												
 											</div>
 											<p class="text-muted font-13 m-b-30">
+												<%if (session.getAttribute("funcao").equals("Atendente") || session.getAttribute("funcao").equals("Administrador")){%>
 												<a href="notificacao">
 													<button type="button" class="btn btn-success"
 														data-container="body" data-toggle="popover"
 														data-placement="bottom" title="Incluir Nova Notificação">
 														<i class="fa fa-plus-circle"></i>
 													</button>
-												</a> <a href="buscanotificacao">
+												</a>
+												<%}%> 
+												<a href="buscanotificacao">
 													<button type="button" class="btn btn-primary"
 														data-container="body" data-toggle="popover"
 														data-placement="bottom" title="Limpar Listagem">
@@ -172,6 +176,7 @@
 														<tr>
 															<!-- <th data-breakpoints="xs">Status</th>   -->
 															<th data-breakpoints="xs">Data da Notificação</th>
+															<th data-breakpoints="xs">Data da Visita</th>
 															<th>Cidade</th>
 															<th data-breakpoints="xs">Bairro</th>
 															<th data-breakpoints="all">Tipo de imovel</th>
@@ -192,6 +197,9 @@
 																
 																<td><fmt:formatDate
 																		value="${notificacao.data_notificacao}" type="both"
+																		pattern="dd/MM/yyyy HH:mm" dateStyle="full" /></td>
+																<td><fmt:formatDate
+																		value="${notificacao.data_visita}" type="both"
 																		pattern="dd/MM/yyyy HH:mm" dateStyle="full" /></td>
 																<td>${notificacao.cidade}</td>
 																<td>${notificacao.bairro}</td>
@@ -222,11 +230,13 @@
 																				 <%}%>
 																			 	
 																			 	<%if (session.getAttribute("funcao").equals("Atendente") || session.getAttribute("funcao").equals("Administrador")){%>
+													 
 																					 <li><a
 																						onclick="confirmaexclusao(${notificacao.idnotificacao})"><span
-																						class="glyphicon glyphicon-remove-sign"></span>
-																						Excluir</a></li>
+																						class="glyphicon glyphicon-remove-sign"></span>	Excluir</a></li>
+																																											
 																				<%}%>
+																				
 																		</ul>
 																	</div></td>
 															</tr>
@@ -270,7 +280,7 @@
 					"paging": {
 						"enabled": true,											
 						"position": "right",
-						"limit": 3,
+						"limit": 4,
 						"size": 8,
 						"countFormat": "Registros {PF} a {PL} de {TR} resultados"
 					}
@@ -291,8 +301,7 @@
 		    	     	}   	
 		            }        		           
 		   		});
-		   	}
-		
+		   	}	
 		// Switxh
 		$("[name='txtpesquisa4']").bootstrapSwitch();
 		</script>
