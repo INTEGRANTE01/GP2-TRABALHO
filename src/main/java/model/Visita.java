@@ -43,7 +43,8 @@ public class Visita {
 	private int qt_larv2;	
 	private int qt_adult1;
 	private int qt_adult2;
-	private int qt_focostratados;	
+	private int qt_focostratados;
+	private String complemento;
 	private boolean verifica_foco;
 	public int getIdvisita() {
 		return idvisita;
@@ -273,6 +274,12 @@ public class Visita {
 	public void setQt_focostratados(int qt_focostratados) {
 		this.qt_focostratados = qt_focostratados;
 	}
+	public String getComplemento() {
+		return complemento;
+	}
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
 	public boolean isVerifica_foco() {
 		return verifica_foco;
 	}
@@ -289,7 +296,9 @@ public class Visita {
 				+ ", dp6=" + dp6 + ", dp7=" + dp7 + ", qt1=" + qt1 + ", qt2=" + qt2 + ", qt3=" + qt3 + ", qt4=" + qt4
 				+ ", qt5=" + qt5 + ", qt6=" + qt6 + ", qt7=" + qt7 + ", n_ini=" + n_ini + ", n_fim=" + n_fim
 				+ ", n_tubitos=" + n_tubitos + ", qt_larv1=" + qt_larv1 + ", qt_larv2=" + qt_larv2 + ", qt_adult1="
-				+ qt_adult1 + ", qt_adult2=" + qt_adult2 + ", qt_focostratados=" + qt_focostratados + ", verifica_foco="
-				+ verifica_foco + "]";
-	}		
+				+ qt_adult1 + ", qt_adult2=" + qt_adult2 + ", qt_focostratados=" + qt_focostratados + ", complemento="
+				+ complemento + ", verifica_foco=" + verifica_foco + "]";
+	}
+	
+		
 }

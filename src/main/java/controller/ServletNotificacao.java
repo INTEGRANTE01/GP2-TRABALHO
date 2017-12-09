@@ -39,6 +39,7 @@ public class ServletNotificacao extends HttpServlet {
 	private String cidade;
 	private String tp_imovel;
 	private String desc_notificacao;
+	private String complemento;
 	private String message;
 	private boolean acao = false;
 
@@ -113,6 +114,7 @@ public class ServletNotificacao extends HttpServlet {
 		cidade = request.getParameter("cidade");
 		tp_imovel = request.getParameter("tp_imovel");
 		desc_notificacao = request.getParameter("desc_notificacao");
+		complemento = request.getParameter("complemento");
 
 		try {
 
@@ -136,6 +138,7 @@ public class ServletNotificacao extends HttpServlet {
 			notificacao.setCidade(cidade);
 			notificacao.setTp_imovel(tp_imovel);
 			notificacao.setDesc_notificacao(desc_notificacao);
+			notificacao.setComplemento(complemento);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -161,6 +164,8 @@ public class ServletNotificacao extends HttpServlet {
 		cidade = request.getParameter("cidade");
 		tp_imovel = request.getParameter("tp_imovel");
 		desc_notificacao = request.getParameter("desc_notificacao");
+		complemento = request.getParameter("complemento");
+
 
 		try {
 
@@ -184,7 +189,8 @@ public class ServletNotificacao extends HttpServlet {
 			notificacao.setNumero(numero);
 			notificacao.setCidade(cidade);
 			notificacao.setTp_imovel(tp_imovel);
-			notificacao.setDesc_notificacao(desc_notificacao);			
+			notificacao.setDesc_notificacao(desc_notificacao);	
+			notificacao.setComplemento(complemento);
 
 		} catch (Exception e) {
 			e.printStackTrace();

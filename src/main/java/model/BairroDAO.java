@@ -70,8 +70,8 @@ public class BairroDAO extends ConectaBanco {
 		PreparedStatement pstm = conexao
 				.prepareStatement("Select * from bairro where nome_bairro like ? and nome_cidade like ? order by nome_bairro asc");		
 		try {
-			pstm.setString(1, "%" + par_bairro +"%");			
-			pstm.setString(2, "%" + par_cidade +"%");
+			pstm.setString(1, par_bairro +"%");			
+			pstm.setString(2, par_cidade +"%");
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
 				Bairro bairro = new Bairro();

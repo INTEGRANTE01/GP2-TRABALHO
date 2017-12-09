@@ -24,7 +24,7 @@ public class NotificacaoDAO extends ConectaBanco {
 		Connection conexao = getConexao();
 		PreparedStatement pstmt = conexao
 				.prepareStatement("Update notificacao SET data_notificacao = ?, bairro = ?, rua = ?, quadra = ?, "
-						+ "lote = ?, numero = ?, cidade = ?, tp_imovel = ?, desc_notificacao = ?"
+						+ "lote = ?, numero = ?, cidade = ?, tp_imovel = ?, desc_notificacao = ?, complemento = ?"
 						+ " WHERE idnotificacao = ? ");
 		try {			
 			pstmt.setTimestamp(1,  new java.sql.Timestamp(notificacao.getData_notificacao().getTime()));  
@@ -36,7 +36,8 @@ public class NotificacaoDAO extends ConectaBanco {
 			pstmt.setString(7, notificacao.getCidade());
 			pstmt.setString(8, notificacao.getTp_imovel());
 			pstmt.setString(9, notificacao.getDesc_notificacao());			
-			pstmt.setInt(10, notificacao.getIdnotificacao());
+			pstmt.setString(10, notificacao.getComplemento());
+			pstmt.setInt(11, notificacao.getIdnotificacao());
 			pstmt.execute();
 			}catch (Exception e) {
 				erro = true;					
@@ -91,7 +92,7 @@ public class NotificacaoDAO extends ConectaBanco {
 		Connection conexao = getConexao();
 		PreparedStatement pstm = conexao
 				.prepareStatement("Insert into	notificacao (data_notificacao, bairro, rua, quadra, lote, numero, "
-						+ "cidade, tp_imovel, desc_notificacao) values	(?,?,?,?,?,?,?,?,?)");
+						+ "cidade, tp_imovel, desc_notificacao, complemento) values	(?,?,?,?,?,?,?,?,?,?)");
 		try {			
 			pstm.setTimestamp(1,  new java.sql.Timestamp(notificacao.getData_notificacao().getTime()));  
 			pstm.setString(2, notificacao.getBairro());
@@ -101,7 +102,8 @@ public class NotificacaoDAO extends ConectaBanco {
 			pstm.setString(6, notificacao.getNumero());
 			pstm.setString(7, notificacao.getCidade());
 			pstm.setString(8, notificacao.getTp_imovel());
-			pstm.setString(9, notificacao.getDesc_notificacao());			
+			pstm.setString(9, notificacao.getDesc_notificacao());
+			pstm.setString(10, notificacao.getComplemento());
 			pstm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -166,6 +168,7 @@ public class NotificacaoDAO extends ConectaBanco {
 				notificacao.setCidade(rs.getString("cidade"));
 				notificacao.setTp_imovel(rs.getString("tp_imovel"));
 				notificacao.setDesc_notificacao(rs.getString("desc_notificacao"));
+				notificacao.setComplemento(rs.getString("complemento"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -192,6 +195,7 @@ public class NotificacaoDAO extends ConectaBanco {
 				visita.setNumero(rs.getString("numero"));
 				visita.setCidade(rs.getString("cidade"));
 				visita.setTp_imovel(rs.getString("tp_imovel"));
+				visita.setComplemento(rs.getString("complemento"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

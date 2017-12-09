@@ -65,6 +65,7 @@ public class ServletVisita extends HttpServlet {
 	private String qt_adult1;
 	private String qt_adult2;
 	private String qt_focostratados;
+	private String complemento;
 	private boolean acao = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -178,7 +179,7 @@ public class ServletVisita extends HttpServlet {
 		  qt_adult1 = request.getParameter("qt_adult1");
 		  qt_adult2 = request.getParameter("qt_adult2");
 		  qt_focostratados = request.getParameter("qt_focostratados");
-
+		  complemento = request.getParameter("complemento");
 		  
 		  try {			  
 			  for (int i=0;i<7;i++){
@@ -242,7 +243,8 @@ public class ServletVisita extends HttpServlet {
 			visita.setQt_larv2(Integer.parseInt(qt_larv2));
 			visita.setQt_adult1(Integer.parseInt(qt_adult1));
 			visita.setQt_adult2(Integer.parseInt(qt_adult2));
-			visita.setQt_focostratados(Integer.parseInt(qt_focostratados));		
+			visita.setQt_focostratados(Integer.parseInt(qt_focostratados));
+			visita.setComplemento(complemento);
 			notificacao.setIdnotificacao(idnotificacao);
 			
 						
@@ -317,7 +319,8 @@ public class ServletVisita extends HttpServlet {
 		   qt_adult1 = request.getParameter("qt_adult1");
 		   qt_adult2 = request.getParameter("qt_adult2");
 		   qt_focostratados = request.getParameter("qt_focostratados");
-	  
+		   complemento = request.getParameter("complemento");
+
 		   try {			  
 				  for (int i=0;i<7;i++){
 					  if ("on".equals(request.getParameter("c"+(i+1))) && request.getParameter("c"+(i+1))!= null)
@@ -379,7 +382,7 @@ public class ServletVisita extends HttpServlet {
 			visita.setQt_adult1(Integer.parseInt(qt_adult1));
 			visita.setQt_adult2(Integer.parseInt(qt_adult2));
 			visita.setQt_focostratados(Integer.parseInt(qt_focostratados));
-			
+			visita.setComplemento(complemento);
 			
 			try {
 				for (int i=0;i<estagio.length;i++){

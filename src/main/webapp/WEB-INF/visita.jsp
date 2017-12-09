@@ -161,7 +161,15 @@
                                         data-error="Preencha este campo">
                                         <div class="help-block with-errors"></div>
                                       </div>
-                                    </div>            
+                                    </div> 
+                                 <!--Complemento Input-->
+                                    <div class="form-group">
+                                      <label class="control-label col-md-3">Complemento</label>
+                                      <div class="col-lg-3 col-xs-12">
+                                        <input type="text" id="complemento" name="complemento" value="${visita.complemento}" class="form-control input-md">
+                                        <div class="help-block with-errors"></div>
+                                      </div>
+                                    </div>           
                                 <!--Cidade select-->
 		                          <div class="form-group">
 		                          <label class="control-label col-md-3" for="cidade">Cidade <span class="required">*</span></label>
@@ -196,44 +204,39 @@
 										</select>
 										<div class="help-block with-errors"></div>
 									</div>
-								</div>                    
+								</div> 
+							<!--Tipo_Imovel select-->                        
+		                          <div class="form-group">
+		                          <label class="control-label col-md-3" for="tipo">Tipo do Imovel <span class="required">*</span></label>
+		                            <div class="col-lg-3 col-xs-12">
+		                            <select required data-size="5" id="tp_imovel" name="tp_imovel"  title="Selecione item" class="form-control input-md selectpicker">
+		                             <c:if test = "${not empty visita.tp_imovel}">											
+		                                <option selected="selected">${visita.tp_imovel}</option>
+		                              </c:if>                               
+		                              <c:forEach var="combotipoimovel" items="${listaimovel}">      
+								     	<option>${combotipoimovel.nome_tpimovel}</option>      
+									  </c:forEach>
+		                            </select>
+		                            <div class="help-block with-errors"></div>
+		                            </div>
+		                          </div>		                   
                         <!--Coordenadas-->                                                                       
-                                      <div class="form-group">
-                                      <label class="control-label col-md-3" for="coordenadas">Coordenadas <span class="required">*</span></label>
+                                    <div class="form-group">                                    
+                                      <!-- <label class="control-label col-md-3">Coordenadas <span class="required">*</span></label>  -->
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="latitude" readonly="readonly" name="latitude" value="${visita.latitude}" required="required" class="form-control input-md">
-                                        <div class="help-block with-errors"></div>
-                                        <div class="help">Latitude</div>
+                                        <input type="hidden" id="latitude"  readonly="readonly" name="latitude" value="${visita.latitude}" required="required" class="form-control input-md">
                                       </div>
                                       <div class="col-lg-2 col-xs-12">
-                                        <input type="text" id="longitude" readonly="readonly" name="longitude" value="${visita.longitude}" required="required" class="form-control input-md">
-                                        <div class="help-block with-errors"></div>
-                                        <div class="help">Longitude</div>
-                                      </div>                                                          
-                                    </div> 
-	                               <!--  <c:if test="${not empty erro_localiza}">
-	                               </c:if>-->
+                                        <input type="hidden" id="longitude"  readonly="readonly" name="longitude" value="${visita.longitude}" required="required" class="form-control input-md">
+                                      </div>                
+                                     </div>                                          
 	                                 <div class="form-group">
                                     	<label class="control-label col-md-3"></label>
-                                      	<div class="col-lg-4 col-xs-12">
-                                        <p id="msgerro"></p>                                      				
+                                      	<div class="col-lg-6 col-xs-12">
+                                        <h4><p id="msgerro"></p></h4>                                      				
 										</div>      				    														
 									</div>										
-						<!--Tipo_Imovel select-->                        
-                          <div class="form-group">
-                          <label class="control-label col-md-3" for="tipo">Tipo do Imovel <span class="required">*</span></label>
-                            <div class="col-lg-3 col-xs-12">
-                            <select required data-size="5" id="tp_imovel" name="tp_imovel"  title="Selecione item" class="form-control input-md selectpicker">
-                             <c:if test = "${not empty visita.tp_imovel}">											
-                                <option selected="selected">${visita.tp_imovel}</option>
-                              </c:if>                               
-                              <c:forEach var="combotipoimovel" items="${listaimovel}">      
-						     	<option>${combotipoimovel.nome_tpimovel}</option>      
-							  </c:forEach>
-                            </select>
-                            <div class="help-block with-errors"></div>
-                            </div>
-                          </div>                          
+					                          
                           <div class="x_title">
 		                      <h2>Visita<small>Dados da Visita</small></h2>
 		                      <ul class="nav navbar-right panel_toolbox">		                       		                        
@@ -383,7 +386,7 @@
                    					<c:if test = "${visita.dp3==0}">
                    						<input id="c3" name="c3" type="checkbox" data-size="normal" data-on-text="Sim" data-off-text="Não">
                    					</c:if>                   						                          
-                                	 <div class="help">Outros depositos de armazenamnto de água</div>
+                                	 <div class="help">Outros depositos de armazenamento de água</div>
                                </div>
                                <div class="col-lg-1">
 	  								<input id="qt3" name="qt3" type="tel" size="5" value="${visita.qt3}" class="form-control input-md">
@@ -527,7 +530,8 @@
     </script>
     
     <script>
-		var lat = document.getElementById("latitude");
+		
+    	var lat = document.getElementById("latitude");
 		var log = document.getElementById("longitude");
 		var exibe_erro = document.getElementById("msgerro");
 

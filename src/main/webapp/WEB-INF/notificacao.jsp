@@ -128,6 +128,14 @@
 													<div class="help-block with-errors"></div>
 											</div>
 										</div>
+										 <!--Complemento Input-->
+	                                    <div class="form-group">
+	                                      <label class="control-label col-md-3">Complemento</label>
+	                                      <div class="col-lg-3 col-xs-12">
+	                                        <input type="text" id="complemento" name="complemento" value="${notificacao.complemento}" class="form-control input-md">
+	                                        <div class="help-block with-errors"></div>
+	                                      </div>
+	                                    </div>     
 											<!--Cidade select-->
 										<div class="form-group">
 											<label class="control-label col-md-3" for="cidade">Cidade
